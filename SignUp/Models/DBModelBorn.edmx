@@ -1,0 +1,1523 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ecc_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="calendar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="startDate" Type="datetime" Nullable="false" />
+          <Property Name="endDate" Type="datetime" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="allDay" Type="bit" Nullable="false" />
+          <Property Name="booked" Type="bit" Nullable="false" />
+          <Property Name="clientId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="completed" Type="bit" Nullable="false" />
+          <Property Name="price" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="cancelled" Type="bit" Nullable="false" />
+          <Property Name="Notes" Type="nvarchar(max)" />
+          <Property Name="AdminNotes" Type="nvarchar(max)" />
+          <Property Name="RemiderSent" Type="bit" />
+          <Property Name="Payments" Type="numeric" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="Children">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="DateOfBirth" Type="nvarchar" MaxLength="25" />
+          <Property Name="LivingWithYou" Type="bit" />
+        </EntityType>
+        <EntityType Name="info">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="startDate" Type="date" />
+          <Property Name="endDate" Type="date" />
+          <Property Name="header" Type="nvarchar" MaxLength="50" />
+          <Property Name="notice" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="UserInfo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="120" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar(max)" />
+          <Property Name="LastName" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="Gender" Type="nvarchar(max)" />
+          <Property Name="Age" Type="nvarchar(max)" />
+          <Property Name="Notes" Type="nvarchar(max)" />
+          <Property Name="Profile" Type="nvarchar(max)" />
+          <Property Name="FirstName" Type="nvarchar(max)" />
+          <Property Name="DateOfBirth" Type="nvarchar(max)" />
+          <Property Name="BirthCountry" Type="nvarchar(max)" />
+          <Property Name="Address1" Type="nvarchar(max)" />
+          <Property Name="Address2" Type="nvarchar(max)" />
+          <Property Name="Suburb" Type="nvarchar(max)" />
+          <Property Name="City" Type="nvarchar(max)" />
+          <Property Name="OtherContact" Type="nvarchar(max)" />
+          <Property Name="Occupation" Type="nvarchar(max)" />
+          <Property Name="MaritalStatus" Type="nvarchar(max)" />
+          <Property Name="MaritalState" Type="nvarchar(max)" />
+          <Property Name="FatherLiving" Type="bit" />
+          <Property Name="MotherLiving" Type="bit" />
+          <Property Name="ParentProblems" Type="nvarchar(max)" />
+          <Property Name="ParentMarriage" Type="nvarchar(max)" />
+          <Property Name="ChildLife" Type="nvarchar(max)" />
+          <Property Name="TeenageLife" Type="nvarchar(max)" />
+          <Property Name="SixMonthLife" Type="nvarchar(max)" />
+          <Property Name="FamilyComments" Type="nvarchar(max)" />
+          <Property Name="MedicalNotes" Type="nvarchar(max)" />
+          <Property Name="LastCheckup" Type="nvarchar(max)" />
+          <Property Name="Checkupdate" Type="nvarchar(max)" />
+          <Property Name="OnMedication" Type="bit" />
+          <Property Name="MedicationName" Type="nvarchar(max)" />
+          <Property Name="MedicationReason" Type="nvarchar(max)" />
+          <Property Name="PsycNotes" Type="nvarchar(max)" />
+          <Property Name="PsycProblems" Type="nvarchar(max)" />
+          <Property Name="PsycPrevious" Type="bit" />
+          <Property Name="PsycPreviousDates" Type="nvarchar(max)" />
+          <Property Name="PsycPreviousTreated" Type="nvarchar(max)" />
+          <Property Name="ViolenceScale" Type="nvarchar" MaxLength="10" />
+          <Property Name="ViolenceExplain" Type="nvarchar(max)" />
+          <Property Name="GreatestFear" Type="nvarchar(max)" />
+          <Property Name="GreatestHope" Type="nvarchar(max)" />
+          <Property Name="SeekingHelpFor" Type="nvarchar(max)" />
+          <Property Name="WhoKnows" Type="nvarchar(max)" />
+          <Property Name="OutcomeWanted" Type="nvarchar(max)" />
+          <Property Name="MeetingAssist" Type="nvarchar(max)" />
+          <Property Name="AdditionalComments" Type="nvarchar(max)" />
+          <Property Name="AdminNotes" Type="nvarchar(max)" />
+          <Property Name="PsycBreakdown" Type="bit" />
+          <Property Name="EmailReminder" Type="bit" />
+          <Property Name="Privacy" Type="bit" />
+        </EntityType>
+        <EntityType Name="AggregatedCounter">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Value" Type="bigint" Nullable="false" />
+          <Property Name="ExpireAt" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ecc_db.HangFire.Counter' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Counter">
+          <Key>
+            <PropertyRef Name="Key" />
+            <PropertyRef Name="Value" />
+          </Key>
+          <Property Name="Key" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Value" Type="int" Nullable="false" />
+          <Property Name="ExpireAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Hash">
+          <Key>
+            <PropertyRef Name="Key" />
+            <PropertyRef Name="Field" />
+          </Key>
+          <Property Name="Key" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Field" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Value" Type="nvarchar(max)" />
+          <Property Name="ExpireAt" Type="datetime2" Precision="7" />
+        </EntityType>
+        <EntityType Name="Job">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StateId" Type="bigint" />
+          <Property Name="StateName" Type="nvarchar" MaxLength="20" />
+          <Property Name="InvocationData" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Arguments" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+          <Property Name="ExpireAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="JobParameter">
+          <Key>
+            <PropertyRef Name="JobId" />
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="JobId" Type="bigint" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="Value" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="JobQueue">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Queue" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JobId" Type="bigint" Nullable="false" />
+          <Property Name="Queue" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FetchedAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="List">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Key" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Value" Type="nvarchar(max)" />
+          <Property Name="ExpireAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Schema">
+          <Key>
+            <PropertyRef Name="Version" />
+          </Key>
+          <Property Name="Version" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Server">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Data" Type="nvarchar(max)" />
+          <Property Name="LastHeartbeat" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Set">
+          <Key>
+            <PropertyRef Name="Key" />
+            <PropertyRef Name="Value" />
+          </Key>
+          <Property Name="Key" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Score" Type="float" Nullable="false" />
+          <Property Name="Value" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="ExpireAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="JobId" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JobId" Type="bigint" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Reason" Type="nvarchar" MaxLength="100" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+          <Property Name="Data" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HangFire_JobParameter_Job">
+          <End Role="Job" Type="Self.Job" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="JobParameter" Type="Self.JobParameter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Job">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="JobParameter">
+              <PropertyRef Name="JobId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HangFire_State_Job">
+          <End Role="Job" Type="Self.Job" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="State" Type="Self.State" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Job">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="State">
+              <PropertyRef Name="JobId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="getCalendarList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="getCalendarListByClient" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="clientId" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="getCalendarWeek" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="startDate" Type="nvarchar" Mode="In" />
+          <Parameter Name="endDate" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="getCalendarWeekClient" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="startDate" Type="nvarchar" Mode="In" />
+          <Parameter Name="endDate" Type="nvarchar" Mode="In" />
+          <Parameter Name="clientId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="getChildren" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="getUserInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="getUserList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="setEmail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="ecc_dbModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="calendar" EntityType="Self.calendar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Children" EntityType="Self.Children" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="info" EntityType="Self.info" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserInfo" EntityType="Self.UserInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AggregatedCounter" EntityType="Self.AggregatedCounter" Schema="HangFire" store:Type="Tables" />
+          <EntitySet Name="Hash" EntityType="Self.Hash" Schema="HangFire" store:Type="Tables" />
+          <EntitySet Name="Job" EntityType="Self.Job" Schema="HangFire" store:Type="Tables" />
+          <EntitySet Name="JobParameter" EntityType="Self.JobParameter" Schema="HangFire" store:Type="Tables" />
+          <EntitySet Name="JobQueue" EntityType="Self.JobQueue" Schema="HangFire" store:Type="Tables" />
+          <EntitySet Name="List" EntityType="Self.List" Schema="HangFire" store:Type="Tables" />
+          <EntitySet Name="Schema" EntityType="Self.Schema" Schema="HangFire" store:Type="Tables" />
+          <EntitySet Name="Server" EntityType="Self.Server" Schema="HangFire" store:Type="Tables" />
+          <EntitySet Name="Set" EntityType="Self.Set" Schema="HangFire" store:Type="Tables" />
+          <EntitySet Name="State" EntityType="Self.State" Schema="HangFire" store:Type="Tables" />
+          <EntitySet Name="Counter" EntityType="Self.Counter" store:Type="Tables" store:Schema="HangFire">
+            <DefiningQuery>SELECT 
+    [Counter].[Key] AS [Key], 
+    [Counter].[Value] AS [Value], 
+    [Counter].[ExpireAt] AS [ExpireAt]
+    FROM [HangFire].[Counter] AS [Counter]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HangFire_JobParameter_Job" Association="Self.FK_HangFire_JobParameter_Job">
+            <End Role="Job" EntitySet="Job" />
+            <End Role="JobParameter" EntitySet="JobParameter" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HangFire_State_Job" Association="Self.FK_HangFire_State_Job">
+            <End Role="Job" EntitySet="Job" />
+            <End Role="State" EntitySet="State" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ecc_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="DBModelBorn" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <EntitySet Name="infoes" EntityType="ecc_dbModel.info" />
+          <EntitySet Name="Children" EntityType="ecc_dbModel.Child" />
+          <EntitySet Name="calendars" EntityType="ecc_dbModel.calendar" />
+          <EntitySet Name="AggregatedCounters" EntityType="ecc_dbModel.AggregatedCounter" />
+          <EntitySet Name="Jobs" EntityType="ecc_dbModel.Job" />
+          <EntitySet Name="JobParameters" EntityType="ecc_dbModel.JobParameter" />
+          <EntitySet Name="Lists" EntityType="ecc_dbModel.List" />
+          <EntitySet Name="Schemata" EntityType="ecc_dbModel.Schema" />
+          <EntitySet Name="States" EntityType="ecc_dbModel.State" />
+          <EntitySet Name="Counters" EntityType="ecc_dbModel.Counter" />
+          <AssociationSet Name="FK_HangFire_JobParameter_Job" Association="ecc_dbModel.FK_HangFire_JobParameter_Job">
+            <End Role="Job" EntitySet="Jobs" />
+            <End Role="JobParameter" EntitySet="JobParameters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HangFire_State_Job" Association="ecc_dbModel.FK_HangFire_State_Job">
+            <End Role="Job" EntitySet="Jobs" />
+            <End Role="State" EntitySet="States" />
+          </AssociationSet>
+          <EntitySet Name="Hashes" EntityType="ecc_dbModel.Hash" />
+          <EntitySet Name="JobQueues" EntityType="ecc_dbModel.JobQueue" />
+          <EntitySet Name="Servers" EntityType="ecc_dbModel.Server" />
+          <EntitySet Name="Sets" EntityType="ecc_dbModel.Set" />
+          <EntitySet Name="UserInfoes" EntityType="ecc_dbModel.UserInfo" />
+          <FunctionImport Name="getCalendarList" ReturnType="Collection(ecc_dbModel.getCalendarList_Result)" />
+          <FunctionImport Name="getCalendarListByClient" ReturnType="Collection(ecc_dbModel.getCalendarListByClient_Result)">
+            <Parameter Name="clientId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getCalendarWeek" ReturnType="Collection(ecc_dbModel.getCalendarWeek_Result)">
+            <Parameter Name="startDate" Mode="In" Type="String" />
+            <Parameter Name="endDate" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getCalendarWeekClient" ReturnType="Collection(ecc_dbModel.getCalendarWeekClient_Result)">
+            <Parameter Name="startDate" Mode="In" Type="String" />
+            <Parameter Name="endDate" Mode="In" Type="String" />
+            <Parameter Name="clientId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="getChildren" ReturnType="Collection(ecc_dbModel.getChildren_Result)">
+            <Parameter Name="UserId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getUserInfo" ReturnType="Collection(ecc_dbModel.getUserInfo_Result)">
+            <Parameter Name="UserName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getUserList" ReturnType="Collection(ecc_dbModel.getUserList_Result)" />
+          <FunctionImport Name="setEmail">
+            <Parameter Name="UserId" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="info">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="startDate" Type="DateTime" Precision="0" />
+          <Property Name="endDate" Type="DateTime" Precision="0" />
+          <Property Name="header" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="notice" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Child">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfBirth" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="LivingWithYou" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="calendar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="startDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="endDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="allDay" Type="Boolean" Nullable="false" />
+          <Property Name="booked" Type="Boolean" Nullable="false" />
+          <Property Name="clientId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="completed" Type="Boolean" Nullable="false" />
+          <Property Name="price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="cancelled" Type="Boolean" Nullable="false" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AdminNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RemiderSent" Type="Boolean" />
+          <Property Name="Payments" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="AggregatedCounter">
+          <Key>
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Key" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="Int64" Nullable="false" />
+          <Property Name="ExpireAt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Job">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StateId" Type="Int64" />
+          <Property Name="StateName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="InvocationData" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Arguments" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ExpireAt" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="JobParameters" Relationship="ecc_dbModel.FK_HangFire_JobParameter_Job" FromRole="Job" ToRole="JobParameter" />
+          <NavigationProperty Name="States" Relationship="ecc_dbModel.FK_HangFire_State_Job" FromRole="Job" ToRole="State" />
+        </EntityType>
+        <EntityType Name="JobParameter">
+          <Key>
+            <PropertyRef Name="JobId" />
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="JobId" Type="Int64" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Job" Relationship="ecc_dbModel.FK_HangFire_JobParameter_Job" FromRole="JobParameter" ToRole="Job" />
+        </EntityType>
+        <EntityType Name="List">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Key" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Key" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ExpireAt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Schema">
+          <Key>
+            <PropertyRef Name="Version" />
+          </Key>
+          <Property Name="Version" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="JobId" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JobId" Type="Int64" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Reason" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Data" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Job" Relationship="ecc_dbModel.FK_HangFire_State_Job" FromRole="State" ToRole="Job" />
+        </EntityType>
+        <EntityType Name="Counter">
+          <Key>
+            <PropertyRef Name="Key" />
+            <PropertyRef Name="Value" />
+          </Key>
+          <Property Name="Key" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="Int32" Nullable="false" />
+          <Property Name="ExpireAt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <Association Name="FK_HangFire_JobParameter_Job">
+          <End Type="ecc_dbModel.Job" Role="Job" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ecc_dbModel.JobParameter" Role="JobParameter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Job">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="JobParameter">
+              <PropertyRef Name="JobId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HangFire_State_Job">
+          <End Type="ecc_dbModel.Job" Role="Job" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ecc_dbModel.State" Role="State" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Job">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="State">
+              <PropertyRef Name="JobId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Hash">
+          <Key>
+            <PropertyRef Name="Key" />
+            <PropertyRef Name="Field" />
+          </Key>
+          <Property Name="Key" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Field" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ExpireAt" Type="DateTime" Precision="7" />
+        </EntityType>
+        <EntityType Name="JobQueue">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Queue" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JobId" Type="Int64" Nullable="false" />
+          <Property Name="Queue" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FetchedAt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Server">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Data" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastHeartbeat" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Set">
+          <Key>
+            <PropertyRef Name="Key" />
+            <PropertyRef Name="Value" />
+          </Key>
+          <Property Name="Key" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Score" Type="Double" Nullable="false" />
+          <Property Name="Value" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="ExpireAt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="UserInfo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="120" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Age" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Profile" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfBirth" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BirthCountry" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Suburb" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OtherContact" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Occupation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MaritalStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MaritalState" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FatherLiving" Type="Boolean" />
+          <Property Name="MotherLiving" Type="Boolean" />
+          <Property Name="ParentProblems" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ParentMarriage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ChildLife" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TeenageLife" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SixMonthLife" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FamilyComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MedicalNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastCheckup" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Checkupdate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OnMedication" Type="Boolean" />
+          <Property Name="MedicationName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MedicationReason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PsycNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PsycProblems" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PsycPrevious" Type="Boolean" />
+          <Property Name="PsycPreviousDates" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PsycPreviousTreated" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ViolenceScale" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ViolenceExplain" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GreatestFear" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GreatestHope" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SeekingHelpFor" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WhoKnows" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OutcomeWanted" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MeetingAssist" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AdditionalComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AdminNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PsycBreakdown" Type="Boolean" />
+          <Property Name="EmailReminder" Type="Boolean" />
+          <Property Name="Privacy" Type="Boolean" />
+        </EntityType>
+        <ComplexType Name="getCalendarList_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="DateTime" Name="startDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="endDate" Nullable="false" Precision="23" />
+          <Property Type="String" Name="title" Nullable="false" MaxLength="50" />
+          <Property Type="Boolean" Name="allDay" Nullable="false" />
+          <Property Type="Boolean" Name="booked" Nullable="false" />
+          <Property Type="String" Name="clientId" Nullable="false" MaxLength="128" />
+          <Property Type="Boolean" Name="completed" Nullable="false" />
+          <Property Type="Decimal" Name="price" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Boolean" Name="cancelled" Nullable="false" />
+          <Property Type="String" Name="Notes" Nullable="true" />
+          <Property Type="String" Name="AdminNotes" Nullable="true" />
+          <Property Type="Boolean" Name="RemiderSent" Nullable="true" />
+          <Property Type="Decimal" Name="Payments" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="Client" Nullable="true" />
+          <Property Type="Boolean" Name="EmailReminder" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="getCalendarListByClient_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="DateTime" Name="startDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="endDate" Nullable="false" Precision="23" />
+          <Property Type="String" Name="title" Nullable="false" MaxLength="50" />
+          <Property Type="Boolean" Name="allDay" Nullable="false" />
+          <Property Type="Boolean" Name="booked" Nullable="false" />
+          <Property Type="String" Name="clientId" Nullable="false" MaxLength="128" />
+          <Property Type="Boolean" Name="completed" Nullable="false" />
+          <Property Type="Decimal" Name="price" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Boolean" Name="cancelled" Nullable="false" />
+          <Property Type="String" Name="Notes" Nullable="true" />
+          <Property Type="String" Name="AdminNotes" Nullable="true" />
+          <Property Type="Boolean" Name="RemiderSent" Nullable="true" />
+          <Property Type="Decimal" Name="Payments" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="Client" Nullable="true" />
+          <Property Type="Boolean" Name="EmailReminder" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="getCalendarWeek_Result">
+          <Property Type="DateTime" Name="startDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="endDate" Nullable="false" Precision="23" />
+          <Property Type="String" Name="title" Nullable="false" MaxLength="50" />
+          <Property Type="Boolean" Name="allDay" Nullable="false" />
+          <Property Type="Boolean" Name="booked" Nullable="false" />
+          <Property Type="String" Name="clientId" Nullable="false" MaxLength="128" />
+          <Property Type="Boolean" Name="completed" Nullable="false" />
+          <Property Type="Decimal" Name="price" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Boolean" Name="cancelled" Nullable="false" />
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="Notes" Nullable="true" />
+          <Property Type="String" Name="AdminNotes" Nullable="true" />
+          <Property Type="Decimal" Name="Payments" Nullable="true" Precision="18" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="getCalendarWeekClient_Result">
+          <Property Type="DateTime" Name="startDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="endDate" Nullable="false" Precision="23" />
+          <Property Type="String" Name="FirstName" Nullable="true" />
+          <Property Type="Boolean" Name="allDay" Nullable="false" />
+          <Property Type="Boolean" Name="booked" Nullable="false" />
+          <Property Type="String" Name="clientId" Nullable="false" MaxLength="128" />
+          <Property Type="Boolean" Name="completed" Nullable="false" />
+          <Property Type="Decimal" Name="price" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Boolean" Name="cancelled" Nullable="false" />
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="Notes" Nullable="true" />
+          <Property Type="String" Name="AdminNotes" Nullable="true" />
+          <Property Type="Decimal" Name="Payments" Nullable="true" Precision="18" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="getChildren_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="Boolean" Name="LivingWithYou" Nullable="true" />
+          <Property Type="String" Name="DateOfBirth" Nullable="true" MaxLength="25" />
+        </ComplexType>
+        <ComplexType Name="getUserInfo_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="Email" Nullable="false" />
+          <Property Type="String" Name="UserId" Nullable="false" MaxLength="120" />
+          <Property Type="String" Name="UserName" Nullable="true" />
+          <Property Type="String" Name="LastName" Nullable="true" />
+          <Property Type="String" Name="PhoneNumber" Nullable="true" />
+          <Property Type="String" Name="Gender" Nullable="true" />
+          <Property Type="String" Name="Age" Nullable="true" />
+          <Property Type="String" Name="Notes" Nullable="true" />
+          <Property Type="String" Name="Profile" Nullable="true" />
+          <Property Type="String" Name="FirstName" Nullable="true" />
+          <Property Type="String" Name="DateOfBirth" Nullable="true" />
+          <Property Type="String" Name="BirthCountry" Nullable="true" />
+          <Property Type="String" Name="Address1" Nullable="true" />
+          <Property Type="String" Name="Address2" Nullable="true" />
+          <Property Type="String" Name="Suburb" Nullable="true" />
+          <Property Type="String" Name="City" Nullable="true" />
+          <Property Type="String" Name="OtherContact" Nullable="true" />
+          <Property Type="String" Name="Occupation" Nullable="true" />
+          <Property Type="String" Name="MaritalStatus" Nullable="true" />
+          <Property Type="String" Name="MaritalState" Nullable="true" />
+          <Property Type="Boolean" Name="FatherLiving" Nullable="true" />
+          <Property Type="Boolean" Name="MotherLiving" Nullable="true" />
+          <Property Type="String" Name="ParentProblems" Nullable="true" />
+          <Property Type="String" Name="ParentMarriage" Nullable="true" />
+          <Property Type="String" Name="ChildLife" Nullable="true" />
+          <Property Type="String" Name="TeenageLife" Nullable="true" />
+          <Property Type="String" Name="SixMonthLife" Nullable="true" />
+          <Property Type="String" Name="FamilyComments" Nullable="true" />
+          <Property Type="String" Name="MedicalNotes" Nullable="true" />
+          <Property Type="String" Name="LastCheckup" Nullable="true" />
+          <Property Type="String" Name="Checkupdate" Nullable="true" />
+          <Property Type="Boolean" Name="OnMedication" Nullable="true" />
+          <Property Type="String" Name="MedicationName" Nullable="true" />
+          <Property Type="String" Name="MedicationReason" Nullable="true" />
+          <Property Type="String" Name="PsycNotes" Nullable="true" />
+          <Property Type="String" Name="PsycProblems" Nullable="true" />
+          <Property Type="Boolean" Name="PsycPrevious" Nullable="true" />
+          <Property Type="String" Name="PsycPreviousDates" Nullable="true" />
+          <Property Type="String" Name="PsycPreviousTreated" Nullable="true" />
+          <Property Type="String" Name="ViolenceScale" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="ViolenceExplain" Nullable="true" />
+          <Property Type="String" Name="GreatestFear" Nullable="true" />
+          <Property Type="String" Name="GreatestHope" Nullable="true" />
+          <Property Type="String" Name="SeekingHelpFor" Nullable="true" />
+          <Property Type="String" Name="WhoKnows" Nullable="true" />
+          <Property Type="String" Name="OutcomeWanted" Nullable="true" />
+          <Property Type="String" Name="MeetingAssist" Nullable="true" />
+          <Property Type="String" Name="AdditionalComments" Nullable="true" />
+          <Property Type="String" Name="AdminNotes" Nullable="true" />
+          <Property Type="Boolean" Name="PsycBreakdown" Nullable="true" />
+          <Property Type="Boolean" Name="EmailReminder" Nullable="true" />
+          <Property Type="Boolean" Name="Privacy" Nullable="true" />
+          <Property Type="Boolean" Name="EmailConfirmed" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="getUserList_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="Email" Nullable="false" />
+          <Property Type="String" Name="UserId" Nullable="false" MaxLength="120" />
+          <Property Type="String" Name="UserName" Nullable="true" />
+          <Property Type="String" Name="LastName" Nullable="true" />
+          <Property Type="String" Name="PhoneNumber" Nullable="true" />
+          <Property Type="String" Name="Gender" Nullable="true" />
+          <Property Type="String" Name="Age" Nullable="true" />
+          <Property Type="String" Name="Notes" Nullable="true" />
+          <Property Type="String" Name="Profile" Nullable="true" />
+          <Property Type="String" Name="FirstName" Nullable="true" />
+          <Property Type="String" Name="DateOfBirth" Nullable="true" />
+          <Property Type="String" Name="BirthCountry" Nullable="true" />
+          <Property Type="String" Name="Address1" Nullable="true" />
+          <Property Type="String" Name="Address2" Nullable="true" />
+          <Property Type="String" Name="Suburb" Nullable="true" />
+          <Property Type="String" Name="City" Nullable="true" />
+          <Property Type="String" Name="OtherContact" Nullable="true" />
+          <Property Type="String" Name="Occupation" Nullable="true" />
+          <Property Type="String" Name="MaritalStatus" Nullable="true" />
+          <Property Type="String" Name="MaritalState" Nullable="true" />
+          <Property Type="Boolean" Name="FatherLiving" Nullable="true" />
+          <Property Type="Boolean" Name="MotherLiving" Nullable="true" />
+          <Property Type="String" Name="ParentProblems" Nullable="true" />
+          <Property Type="String" Name="ParentMarriage" Nullable="true" />
+          <Property Type="String" Name="ChildLife" Nullable="true" />
+          <Property Type="String" Name="TeenageLife" Nullable="true" />
+          <Property Type="String" Name="SixMonthLife" Nullable="true" />
+          <Property Type="String" Name="FamilyComments" Nullable="true" />
+          <Property Type="String" Name="MedicalNotes" Nullable="true" />
+          <Property Type="String" Name="LastCheckup" Nullable="true" />
+          <Property Type="String" Name="Checkupdate" Nullable="true" />
+          <Property Type="Boolean" Name="OnMedication" Nullable="true" />
+          <Property Type="String" Name="MedicationName" Nullable="true" />
+          <Property Type="String" Name="MedicationReason" Nullable="true" />
+          <Property Type="String" Name="PsycNotes" Nullable="true" />
+          <Property Type="String" Name="PsycProblems" Nullable="true" />
+          <Property Type="Boolean" Name="PsycPrevious" Nullable="true" />
+          <Property Type="String" Name="PsycPreviousDates" Nullable="true" />
+          <Property Type="String" Name="PsycPreviousTreated" Nullable="true" />
+          <Property Type="String" Name="ViolenceScale" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="ViolenceExplain" Nullable="true" />
+          <Property Type="String" Name="GreatestFear" Nullable="true" />
+          <Property Type="String" Name="GreatestHope" Nullable="true" />
+          <Property Type="String" Name="SeekingHelpFor" Nullable="true" />
+          <Property Type="String" Name="WhoKnows" Nullable="true" />
+          <Property Type="String" Name="OutcomeWanted" Nullable="true" />
+          <Property Type="String" Name="MeetingAssist" Nullable="true" />
+          <Property Type="String" Name="AdditionalComments" Nullable="true" />
+          <Property Type="String" Name="AdminNotes" Nullable="true" />
+          <Property Type="Boolean" Name="PsycBreakdown" Nullable="true" />
+          <Property Type="Boolean" Name="EmailReminder" Nullable="true" />
+          <Property Type="Boolean" Name="Privacy" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ecc_dbModelStoreContainer" CdmEntityContainer="DBModelBorn">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="ecc_dbModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="ecc_dbModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="ecc_dbModel.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="ecc_dbModel.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="ecc_dbModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="ecc_dbModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="infoes">
+            <EntityTypeMapping TypeName="ecc_dbModel.info">
+              <MappingFragment StoreEntitySet="info">
+                <ScalarProperty Name="notice" ColumnName="notice" />
+                <ScalarProperty Name="header" ColumnName="header" />
+                <ScalarProperty Name="endDate" ColumnName="endDate" />
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Children">
+            <EntityTypeMapping TypeName="ecc_dbModel.Child">
+              <MappingFragment StoreEntitySet="Children">
+                <ScalarProperty Name="LivingWithYou" ColumnName="LivingWithYou" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="calendars">
+            <EntityTypeMapping TypeName="ecc_dbModel.calendar">
+              <MappingFragment StoreEntitySet="calendar">
+                <ScalarProperty Name="Payments" ColumnName="Payments" />
+                <ScalarProperty Name="RemiderSent" ColumnName="RemiderSent" />
+                <ScalarProperty Name="AdminNotes" ColumnName="AdminNotes" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="cancelled" ColumnName="cancelled" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="completed" ColumnName="completed" />
+                <ScalarProperty Name="clientId" ColumnName="clientId" />
+                <ScalarProperty Name="booked" ColumnName="booked" />
+                <ScalarProperty Name="allDay" ColumnName="allDay" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="endDate" ColumnName="endDate" />
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AggregatedCounters">
+            <EntityTypeMapping TypeName="ecc_dbModel.AggregatedCounter">
+              <MappingFragment StoreEntitySet="AggregatedCounter">
+                <ScalarProperty Name="ExpireAt" ColumnName="ExpireAt" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Jobs">
+            <EntityTypeMapping TypeName="ecc_dbModel.Job">
+              <MappingFragment StoreEntitySet="Job">
+                <ScalarProperty Name="ExpireAt" ColumnName="ExpireAt" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="Arguments" ColumnName="Arguments" />
+                <ScalarProperty Name="InvocationData" ColumnName="InvocationData" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JobParameters">
+            <EntityTypeMapping TypeName="ecc_dbModel.JobParameter">
+              <MappingFragment StoreEntitySet="JobParameter">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="JobId" ColumnName="JobId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lists">
+            <EntityTypeMapping TypeName="ecc_dbModel.List">
+              <MappingFragment StoreEntitySet="List">
+                <ScalarProperty Name="ExpireAt" ColumnName="ExpireAt" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Schemata">
+            <EntityTypeMapping TypeName="ecc_dbModel.Schema">
+              <MappingFragment StoreEntitySet="Schema">
+                <ScalarProperty Name="Version" ColumnName="Version" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="States">
+            <EntityTypeMapping TypeName="ecc_dbModel.State">
+              <MappingFragment StoreEntitySet="State">
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="JobId" ColumnName="JobId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Counters">
+            <EntityTypeMapping TypeName="ecc_dbModel.Counter">
+              <MappingFragment StoreEntitySet="Counter">
+                <ScalarProperty Name="ExpireAt" ColumnName="ExpireAt" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hashes">
+            <EntityTypeMapping TypeName="ecc_dbModel.Hash">
+              <MappingFragment StoreEntitySet="Hash">
+                <ScalarProperty Name="ExpireAt" ColumnName="ExpireAt" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Field" ColumnName="Field" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JobQueues">
+            <EntityTypeMapping TypeName="ecc_dbModel.JobQueue">
+              <MappingFragment StoreEntitySet="JobQueue">
+                <ScalarProperty Name="FetchedAt" ColumnName="FetchedAt" />
+                <ScalarProperty Name="Queue" ColumnName="Queue" />
+                <ScalarProperty Name="JobId" ColumnName="JobId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Servers">
+            <EntityTypeMapping TypeName="ecc_dbModel.Server">
+              <MappingFragment StoreEntitySet="Server">
+                <ScalarProperty Name="LastHeartbeat" ColumnName="LastHeartbeat" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sets">
+            <EntityTypeMapping TypeName="ecc_dbModel.Set">
+              <MappingFragment StoreEntitySet="Set">
+                <ScalarProperty Name="ExpireAt" ColumnName="ExpireAt" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Score" ColumnName="Score" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserInfoes">
+            <EntityTypeMapping TypeName="ecc_dbModel.UserInfo">
+              <MappingFragment StoreEntitySet="UserInfo">
+                <ScalarProperty Name="Privacy" ColumnName="Privacy" />
+                <ScalarProperty Name="EmailReminder" ColumnName="EmailReminder" />
+                <ScalarProperty Name="PsycBreakdown" ColumnName="PsycBreakdown" />
+                <ScalarProperty Name="AdminNotes" ColumnName="AdminNotes" />
+                <ScalarProperty Name="AdditionalComments" ColumnName="AdditionalComments" />
+                <ScalarProperty Name="MeetingAssist" ColumnName="MeetingAssist" />
+                <ScalarProperty Name="OutcomeWanted" ColumnName="OutcomeWanted" />
+                <ScalarProperty Name="WhoKnows" ColumnName="WhoKnows" />
+                <ScalarProperty Name="SeekingHelpFor" ColumnName="SeekingHelpFor" />
+                <ScalarProperty Name="GreatestHope" ColumnName="GreatestHope" />
+                <ScalarProperty Name="GreatestFear" ColumnName="GreatestFear" />
+                <ScalarProperty Name="ViolenceExplain" ColumnName="ViolenceExplain" />
+                <ScalarProperty Name="ViolenceScale" ColumnName="ViolenceScale" />
+                <ScalarProperty Name="PsycPreviousTreated" ColumnName="PsycPreviousTreated" />
+                <ScalarProperty Name="PsycPreviousDates" ColumnName="PsycPreviousDates" />
+                <ScalarProperty Name="PsycPrevious" ColumnName="PsycPrevious" />
+                <ScalarProperty Name="PsycProblems" ColumnName="PsycProblems" />
+                <ScalarProperty Name="PsycNotes" ColumnName="PsycNotes" />
+                <ScalarProperty Name="MedicationReason" ColumnName="MedicationReason" />
+                <ScalarProperty Name="MedicationName" ColumnName="MedicationName" />
+                <ScalarProperty Name="OnMedication" ColumnName="OnMedication" />
+                <ScalarProperty Name="Checkupdate" ColumnName="Checkupdate" />
+                <ScalarProperty Name="LastCheckup" ColumnName="LastCheckup" />
+                <ScalarProperty Name="MedicalNotes" ColumnName="MedicalNotes" />
+                <ScalarProperty Name="FamilyComments" ColumnName="FamilyComments" />
+                <ScalarProperty Name="SixMonthLife" ColumnName="SixMonthLife" />
+                <ScalarProperty Name="TeenageLife" ColumnName="TeenageLife" />
+                <ScalarProperty Name="ChildLife" ColumnName="ChildLife" />
+                <ScalarProperty Name="ParentMarriage" ColumnName="ParentMarriage" />
+                <ScalarProperty Name="ParentProblems" ColumnName="ParentProblems" />
+                <ScalarProperty Name="MotherLiving" ColumnName="MotherLiving" />
+                <ScalarProperty Name="FatherLiving" ColumnName="FatherLiving" />
+                <ScalarProperty Name="MaritalState" ColumnName="MaritalState" />
+                <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
+                <ScalarProperty Name="Occupation" ColumnName="Occupation" />
+                <ScalarProperty Name="OtherContact" ColumnName="OtherContact" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Suburb" ColumnName="Suburb" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="BirthCountry" ColumnName="BirthCountry" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Profile" ColumnName="Profile" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="getCalendarList" FunctionName="ecc_dbModel.Store.getCalendarList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ecc_dbModel.getCalendarList_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="endDate" ColumnName="endDate" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="allDay" ColumnName="allDay" />
+                <ScalarProperty Name="booked" ColumnName="booked" />
+                <ScalarProperty Name="clientId" ColumnName="clientId" />
+                <ScalarProperty Name="completed" ColumnName="completed" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="cancelled" ColumnName="cancelled" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="AdminNotes" ColumnName="AdminNotes" />
+                <ScalarProperty Name="RemiderSent" ColumnName="RemiderSent" />
+                <ScalarProperty Name="Payments" ColumnName="Payments" />
+                <ScalarProperty Name="Client" ColumnName="Client" />
+                <ScalarProperty Name="EmailReminder" ColumnName="EmailReminder" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getCalendarListByClient" FunctionName="ecc_dbModel.Store.getCalendarListByClient">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ecc_dbModel.getCalendarListByClient_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="endDate" ColumnName="endDate" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="allDay" ColumnName="allDay" />
+                <ScalarProperty Name="booked" ColumnName="booked" />
+                <ScalarProperty Name="clientId" ColumnName="clientId" />
+                <ScalarProperty Name="completed" ColumnName="completed" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="cancelled" ColumnName="cancelled" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="AdminNotes" ColumnName="AdminNotes" />
+                <ScalarProperty Name="RemiderSent" ColumnName="RemiderSent" />
+                <ScalarProperty Name="Payments" ColumnName="Payments" />
+                <ScalarProperty Name="Client" ColumnName="Client" />
+                <ScalarProperty Name="EmailReminder" ColumnName="EmailReminder" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getCalendarWeek" FunctionName="ecc_dbModel.Store.getCalendarWeek">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ecc_dbModel.getCalendarWeek_Result">
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="endDate" ColumnName="endDate" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="allDay" ColumnName="allDay" />
+                <ScalarProperty Name="booked" ColumnName="booked" />
+                <ScalarProperty Name="clientId" ColumnName="clientId" />
+                <ScalarProperty Name="completed" ColumnName="completed" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="cancelled" ColumnName="cancelled" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="AdminNotes" ColumnName="AdminNotes" />
+                <ScalarProperty Name="Payments" ColumnName="Payments" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getCalendarWeekClient" FunctionName="ecc_dbModel.Store.getCalendarWeekClient">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ecc_dbModel.getCalendarWeekClient_Result">
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="endDate" ColumnName="endDate" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="allDay" ColumnName="allDay" />
+                <ScalarProperty Name="booked" ColumnName="booked" />
+                <ScalarProperty Name="clientId" ColumnName="clientId" />
+                <ScalarProperty Name="completed" ColumnName="completed" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="cancelled" ColumnName="cancelled" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="AdminNotes" ColumnName="AdminNotes" />
+                <ScalarProperty Name="Payments" ColumnName="Payments" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getChildren" FunctionName="ecc_dbModel.Store.getChildren">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ecc_dbModel.getChildren_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="LivingWithYou" ColumnName="LivingWithYou" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getUserInfo" FunctionName="ecc_dbModel.Store.getUserInfo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ecc_dbModel.getUserInfo_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Profile" ColumnName="Profile" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="BirthCountry" ColumnName="BirthCountry" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Suburb" ColumnName="Suburb" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="OtherContact" ColumnName="OtherContact" />
+                <ScalarProperty Name="Occupation" ColumnName="Occupation" />
+                <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
+                <ScalarProperty Name="MaritalState" ColumnName="MaritalState" />
+                <ScalarProperty Name="FatherLiving" ColumnName="FatherLiving" />
+                <ScalarProperty Name="MotherLiving" ColumnName="MotherLiving" />
+                <ScalarProperty Name="ParentProblems" ColumnName="ParentProblems" />
+                <ScalarProperty Name="ParentMarriage" ColumnName="ParentMarriage" />
+                <ScalarProperty Name="ChildLife" ColumnName="ChildLife" />
+                <ScalarProperty Name="TeenageLife" ColumnName="TeenageLife" />
+                <ScalarProperty Name="SixMonthLife" ColumnName="SixMonthLife" />
+                <ScalarProperty Name="FamilyComments" ColumnName="FamilyComments" />
+                <ScalarProperty Name="MedicalNotes" ColumnName="MedicalNotes" />
+                <ScalarProperty Name="LastCheckup" ColumnName="LastCheckup" />
+                <ScalarProperty Name="Checkupdate" ColumnName="Checkupdate" />
+                <ScalarProperty Name="OnMedication" ColumnName="OnMedication" />
+                <ScalarProperty Name="MedicationName" ColumnName="MedicationName" />
+                <ScalarProperty Name="MedicationReason" ColumnName="MedicationReason" />
+                <ScalarProperty Name="PsycNotes" ColumnName="PsycNotes" />
+                <ScalarProperty Name="PsycProblems" ColumnName="PsycProblems" />
+                <ScalarProperty Name="PsycPrevious" ColumnName="PsycPrevious" />
+                <ScalarProperty Name="PsycPreviousDates" ColumnName="PsycPreviousDates" />
+                <ScalarProperty Name="PsycPreviousTreated" ColumnName="PsycPreviousTreated" />
+                <ScalarProperty Name="ViolenceScale" ColumnName="ViolenceScale" />
+                <ScalarProperty Name="ViolenceExplain" ColumnName="ViolenceExplain" />
+                <ScalarProperty Name="GreatestFear" ColumnName="GreatestFear" />
+                <ScalarProperty Name="GreatestHope" ColumnName="GreatestHope" />
+                <ScalarProperty Name="SeekingHelpFor" ColumnName="SeekingHelpFor" />
+                <ScalarProperty Name="WhoKnows" ColumnName="WhoKnows" />
+                <ScalarProperty Name="OutcomeWanted" ColumnName="OutcomeWanted" />
+                <ScalarProperty Name="MeetingAssist" ColumnName="MeetingAssist" />
+                <ScalarProperty Name="AdditionalComments" ColumnName="AdditionalComments" />
+                <ScalarProperty Name="AdminNotes" ColumnName="AdminNotes" />
+                <ScalarProperty Name="PsycBreakdown" ColumnName="PsycBreakdown" />
+                <ScalarProperty Name="EmailReminder" ColumnName="EmailReminder" />
+                <ScalarProperty Name="Privacy" ColumnName="Privacy" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getUserList" FunctionName="ecc_dbModel.Store.getUserList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ecc_dbModel.getUserList_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Profile" ColumnName="Profile" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="BirthCountry" ColumnName="BirthCountry" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Suburb" ColumnName="Suburb" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="OtherContact" ColumnName="OtherContact" />
+                <ScalarProperty Name="Occupation" ColumnName="Occupation" />
+                <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
+                <ScalarProperty Name="MaritalState" ColumnName="MaritalState" />
+                <ScalarProperty Name="FatherLiving" ColumnName="FatherLiving" />
+                <ScalarProperty Name="MotherLiving" ColumnName="MotherLiving" />
+                <ScalarProperty Name="ParentProblems" ColumnName="ParentProblems" />
+                <ScalarProperty Name="ParentMarriage" ColumnName="ParentMarriage" />
+                <ScalarProperty Name="ChildLife" ColumnName="ChildLife" />
+                <ScalarProperty Name="TeenageLife" ColumnName="TeenageLife" />
+                <ScalarProperty Name="SixMonthLife" ColumnName="SixMonthLife" />
+                <ScalarProperty Name="FamilyComments" ColumnName="FamilyComments" />
+                <ScalarProperty Name="MedicalNotes" ColumnName="MedicalNotes" />
+                <ScalarProperty Name="LastCheckup" ColumnName="LastCheckup" />
+                <ScalarProperty Name="Checkupdate" ColumnName="Checkupdate" />
+                <ScalarProperty Name="OnMedication" ColumnName="OnMedication" />
+                <ScalarProperty Name="MedicationName" ColumnName="MedicationName" />
+                <ScalarProperty Name="MedicationReason" ColumnName="MedicationReason" />
+                <ScalarProperty Name="PsycNotes" ColumnName="PsycNotes" />
+                <ScalarProperty Name="PsycProblems" ColumnName="PsycProblems" />
+                <ScalarProperty Name="PsycPrevious" ColumnName="PsycPrevious" />
+                <ScalarProperty Name="PsycPreviousDates" ColumnName="PsycPreviousDates" />
+                <ScalarProperty Name="PsycPreviousTreated" ColumnName="PsycPreviousTreated" />
+                <ScalarProperty Name="ViolenceScale" ColumnName="ViolenceScale" />
+                <ScalarProperty Name="ViolenceExplain" ColumnName="ViolenceExplain" />
+                <ScalarProperty Name="GreatestFear" ColumnName="GreatestFear" />
+                <ScalarProperty Name="GreatestHope" ColumnName="GreatestHope" />
+                <ScalarProperty Name="SeekingHelpFor" ColumnName="SeekingHelpFor" />
+                <ScalarProperty Name="WhoKnows" ColumnName="WhoKnows" />
+                <ScalarProperty Name="OutcomeWanted" ColumnName="OutcomeWanted" />
+                <ScalarProperty Name="MeetingAssist" ColumnName="MeetingAssist" />
+                <ScalarProperty Name="AdditionalComments" ColumnName="AdditionalComments" />
+                <ScalarProperty Name="AdminNotes" ColumnName="AdminNotes" />
+                <ScalarProperty Name="PsycBreakdown" ColumnName="PsycBreakdown" />
+                <ScalarProperty Name="EmailReminder" ColumnName="EmailReminder" />
+                <ScalarProperty Name="Privacy" ColumnName="Privacy" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="setEmail" FunctionName="ecc_dbModel.Store.setEmail" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
