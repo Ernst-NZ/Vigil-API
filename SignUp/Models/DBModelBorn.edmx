@@ -524,7 +524,7 @@ warning 6002: The table/view 'ecc_db.HangFire.Counter' does not have a primary k
           <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="DBModelBorn" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="DBModelVigil" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
@@ -1011,7 +1011,7 @@ warning 6002: The table/view 'ecc_db.HangFire.Counter' does not have a primary k
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ecc_dbModelStoreContainer" CdmEntityContainer="DBModelBorn">
+        <EntityContainerMapping StorageEntityContainer="ecc_dbModelStoreContainer" CdmEntityContainer="DBModelVigil">
           <EntitySetMapping Name="C__MigrationHistory">
             <EntityTypeMapping TypeName="ecc_dbModel.C__MigrationHistory">
               <MappingFragment StoreEntitySet="__MigrationHistory">

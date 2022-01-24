@@ -16,7 +16,7 @@ namespace SignUp.Controllers
     [AllowAnonymous]
     public class UsersController : ApiController
     {
-        private DBModelBorn db = new DBModelBorn();
+        private DBModelVigil db = new DBModelVigil();
 
         // GET: api/Users
         public IQueryable<AspNetUser> GetAspNetUsers()

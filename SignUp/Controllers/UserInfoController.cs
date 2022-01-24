@@ -16,7 +16,7 @@ namespace SignUp.Controllers
 {
   public class UserInfoController : ApiController
   {
-    private DBModelBorn db = new DBModelBorn();
+    private DBModelVigil db = new DBModelVigil();
 
     // GET: api/UserInfo
     public IQueryable<UserInfo> GetUserInfoes()

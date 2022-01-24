@@ -17,7 +17,7 @@ namespace SignUp.Controllers
     public IHttpActionResult setEmail(string id)
     {
       string Result = "";
-      using (var db = new DBModelBorn())        
+      using (var db = new DBModelVigil())        
       {
         try
         {

@@ -14,7 +14,7 @@ namespace SignUp.Controllers
 {
     public class infoesController : ApiController
     {
-        private DBModelBorn db = new DBModelBorn();
+        private DBModelVigil db = new DBModelVigil();
 
         // GET: api/infoes
         public IQueryable<info> Getinfoes()

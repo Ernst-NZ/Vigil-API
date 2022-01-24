@@ -141,7 +141,7 @@ namespace SignUp.Controllers
 
     public static string updateEmail(int id)
     {
-      using (var db = new DBModelBorn())
+      using (var db = new DBModelVigil())
       {
         var Calendar = db.calendars.Single(u => u.id == id);
         Calendar.RemiderSent = true;

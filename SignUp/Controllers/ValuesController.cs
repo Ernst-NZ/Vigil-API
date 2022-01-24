@@ -16,7 +16,7 @@ namespace WebAPI.Controllers
   [AllowAnonymous]
   public class ValuesController : ApiController
   {
-    private DBModelBorn db = new DBModelBorn();
+    private DBModelVigil db = new DBModelVigil();
 
     //public List<Persoon> GetEmails()
     //{
