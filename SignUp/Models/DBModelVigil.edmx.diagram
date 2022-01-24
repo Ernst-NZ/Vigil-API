@@ -4,7 +4,28 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f8ec1d1f998b4d059a6883025b3d993e" Name="Diagram1" />
+      <Diagram DiagramId="f8ec1d1f998b4d059a6883025b3d993e" Name="Diagram1" >
+        <EntityTypeShape EntityType="VigilModel.AspNetRole" Width="1.5" PointX="0.75" PointY="2.5" />
+        <EntityTypeShape EntityType="VigilModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="VigilModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="3.75" />
+        <EntityTypeShape EntityType="VigilModel.AspNetUser" Width="1.5" PointX="3" PointY="1.375" />
+        <EntityTypeShape EntityType="VigilModel.AggregatedCounter" Width="1.5" PointX="5.75" PointY="6.75" />
+        <EntityTypeShape EntityType="VigilModel.Hash" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="VigilModel.Job" Width="1.5" PointX="0.75" PointY="8.125" />
+        <EntityTypeShape EntityType="VigilModel.JobParameter" Width="1.5" PointX="3" PointY="10.125" />
+        <EntityTypeShape EntityType="VigilModel.JobQueue" Width="1.5" PointX="7.75" PointY="3.75" />
+        <EntityTypeShape EntityType="VigilModel.List" Width="1.5" PointX="7.75" PointY="6.75" />
+        <EntityTypeShape EntityType="VigilModel.Schema" Width="1.5" PointX="9.75" PointY="0.75" />
+        <EntityTypeShape EntityType="VigilModel.Server" Width="1.5" PointX="9.75" PointY="2.75" />
+        <EntityTypeShape EntityType="VigilModel.Set" Width="1.5" PointX="9.75" PointY="5.75" />
+        <EntityTypeShape EntityType="VigilModel.State" Width="1.5" PointX="3" PointY="7.125" />
+        <EntityTypeShape EntityType="VigilModel.Counter" Width="1.5" PointX="5.75" PointY="9.75" />
+        <AssociationConnector Association="VigilModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="VigilModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="VigilModel.FK_HangFire_JobParameter_Job" />
+        <AssociationConnector Association="VigilModel.FK_HangFire_State_Job" />
+        <AssociationConnector Association="VigilModel.AspNetUserRoles" />
+      </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
