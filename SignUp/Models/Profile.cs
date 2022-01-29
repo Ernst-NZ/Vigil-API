@@ -12,11 +12,10 @@ namespace SignUp.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class C__MigrationHistory
+    public partial class Profile
     {
-        public string MigrationId { get; set; }
-        public string ContextKey { get; set; }
-        public byte[] Model { get; set; }
-        public string ProductVersion { get; set; }
+        public int ProfileId { get; set; }
+        public string ProfileName { get; set; }
+        public int ProfileLevel { get; set; }
     }
 }

@@ -10,13 +10,17 @@
 namespace SignUp.Models
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class getChildren_Result
+    public partial class CompanyDoc
     {
-        public int id { get; set; }
-        public string Name { get; set; }
-        public int UserId { get; set; }
-        public Nullable<bool> LivingWithYou { get; set; }
-        public string DateOfBirth { get; set; }
+        public int CompanyDocId { get; set; }
+        public string CompanyCode { get; set; }
+        public string CompanySubFolder { get; set; }
+        public string CompanyDocName { get; set; }
+        public string CompanyDocType { get; set; }
+        public string CompanyDocDescription { get; set; }
+        public string AddedBy { get; set; }
+        public string Date { get; set; }
     }
 }

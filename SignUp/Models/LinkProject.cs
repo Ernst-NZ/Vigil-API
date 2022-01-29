@@ -12,12 +12,11 @@ namespace SignUp.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class info
+    public partial class LinkProject
     {
-        public int id { get; set; }
-        public Nullable<System.DateTime> startDate { get; set; }
-        public Nullable<System.DateTime> endDate { get; set; }
-        public string header { get; set; }
-        public string notice { get; set; }
+        public string ProjectCode { get; set; }
+        public string UserCode { get; set; }
+        public string LinkedBy { get; set; }
+        public string Date { get; set; }
     }
 }

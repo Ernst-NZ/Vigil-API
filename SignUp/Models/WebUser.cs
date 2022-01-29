@@ -12,12 +12,16 @@ namespace SignUp.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Child
+    public partial class WebUser
     {
-        public int id { get; set; }
-        public int UserId { get; set; }
-        public string Name { get; set; }
-        public string DateOfBirth { get; set; }
-        public Nullable<bool> LivingWithYou { get; set; }
+        public string Username { get; set; }
+        public string CompanyCode { get; set; }
+        public string Email { get; set; }
+        public string PhoneNumber { get; set; }
+        public string RoleCode { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string AddedBy { get; set; }
+        public Nullable<bool> NotActive { get; set; }
     }
 }

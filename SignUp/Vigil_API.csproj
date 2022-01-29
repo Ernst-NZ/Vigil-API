@@ -251,79 +251,90 @@
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AggregatedCounter.cs">
-      <DependentUpon>DBModelBorn.tt</DependentUpon>
+      <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AspNetRole.cs">
-      <DependentUpon>DBModelBorn.tt</DependentUpon>
+      <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AspNetUser.cs">
-      <DependentUpon>DBModelBorn.tt</DependentUpon>
+      <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AspNetUserClaim.cs">
-      <DependentUpon>DBModelBorn.tt</DependentUpon>
+      <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AspNetUserLogin.cs">
-      <DependentUpon>DBModelBorn.tt</DependentUpon>
+      <DependentUpon>Vigil.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Company.cs">
+      <DependentUpon>Vigil.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CompanyDoc.cs">
+      <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Counter.cs">
-      <DependentUpon>DBModelBorn.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DBModelBorn.cs">
-      <DependentUpon>DBModelBorn.tt</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
-    <Compile Include="Models\DBModelBorn.Designer.cs">
-      <DependentUpon>DBModelBorn.edmx</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
-    <Compile Include="Models\DBModelVigil.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBModelVigil.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DBModelVigil.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBModelVigil.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DBModelVigil.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBModelVigil.edmx</DependentUpon>
+      <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EModel.cs" />
     <Compile Include="Models\Enc.cs" />
     <Compile Include="Models\gmail.cs" />
     <Compile Include="Models\HangfireAthorizationFilte.cs" />
     <Compile Include="Models\Hash.cs">
-      <DependentUpon>DBModelBorn.tt</DependentUpon>
+      <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Job.cs">
-      <DependentUpon>DBModelBorn.tt</DependentUpon>
+      <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\JobParameter.cs">
-      <DependentUpon>DBModelBorn.tt</DependentUpon>
+      <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\JobQueue.cs">
-      <DependentUpon>DBModelBorn.tt</DependentUpon>
+      <DependentUpon>Vigil.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LinkProject.cs">
+      <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\List.cs">
-      <DependentUpon>DBModelBorn.tt</DependentUpon>
+      <DependentUpon>Vigil.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Profile.cs">
+      <DependentUpon>Vigil.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Project.cs">
+      <DependentUpon>Vigil.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProjectDoc.cs">
+      <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Schema.cs">
-      <DependentUpon>DBModelBorn.tt</DependentUpon>
+      <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Server.cs">
-      <DependentUpon>DBModelBorn.tt</DependentUpon>
+      <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Set.cs">
-      <DependentUpon>DBModelBorn.tt</DependentUpon>
+      <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\State.cs">
-      <DependentUpon>DBModelBorn.tt</DependentUpon>
+      <DependentUpon>Vigil.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Vigil.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Vigil.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Vigil.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Vigil.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Vigil.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Vigil.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WebUser.cs">
+      <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
@@ -343,20 +354,15 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Models\DBModelBorn.tt">
-      <DependentUpon>DBModelBorn.edmx</DependentUpon>
+    <Content Include="Models\Vigil.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DBModelBorn.cs</LastGenOutput>
+      <DependentUpon>Vigil.edmx</DependentUpon>
+      <LastGenOutput>Vigil.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\DBModelVigil.Context.tt">
+    <Content Include="Models\Vigil.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DBModelVigil.edmx</DependentUpon>
-      <LastGenOutput>DBModelVigil.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\DBModelVigil.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DBModelVigil.edmx</DependentUpon>
-      <LastGenOutput>DBModelVigil.cs</LastGenOutput>
+      <DependentUpon>Vigil.edmx</DependentUpon>
+      <LastGenOutput>Vigil.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
@@ -377,16 +383,12 @@
     <Content Include="Content\bootstrap-reboot.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap.min.css.map" />
-    <EntityDeploy Include="Models\DBModelBorn.edmx">
+    <EntityDeploy Include="Models\Vigil.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DBModelBorn.Designer.cs</LastGenOutput>
+      <LastGenOutput>Vigil.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <EntityDeploy Include="Models\DBModelVigil.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DBModelVigil.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\DBModelVigil.edmx.diagram">
-      <DependentUpon>DBModelVigil.edmx</DependentUpon>
+    <Content Include="Models\Vigil.edmx.diagram">
+      <DependentUpon>Vigil.edmx</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
