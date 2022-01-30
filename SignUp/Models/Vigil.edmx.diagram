@@ -5,17 +5,11 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="907cabada1e346a89789d4a894442ddd" Name="Diagram1" ZoomLevel="64">
-        <EntityTypeShape EntityType="DBModelVigil.AspNetRole" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBModelVigil.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBModelVigil.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBModelVigil.AspNetUser" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="DBModelVigil.CompanyDoc" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DBModelVigil.LinkProject" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DBModelVigil.Profile" Width="1.5" PointX="7.75" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DBModelVigil.ProjectDoc" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DBModelVigil.Project" Width="1.5" PointX="9.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBModelVigil.WebUser" Width="1.5" PointX="9.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBModelVigil.AggregatedCounter" Width="1.5" PointX="11.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DBModelVigil.Hash" Width="1.5" PointX="11.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DBModelVigil.Job" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DBModelVigil.JobParameter" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
@@ -26,12 +20,18 @@
         <EntityTypeShape EntityType="DBModelVigil.Set" Width="1.5" PointX="0.75" PointY="12.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DBModelVigil.State" Width="1.5" PointX="3" PointY="9.625" IsExpanded="true" />
         <EntityTypeShape EntityType="DBModelVigil.Counter" Width="1.5" PointX="2.75" PointY="12.75" IsExpanded="true" />
-        <AssociationConnector Association="DBModelVigil.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="DBModelVigil.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="DBModelVigil.FK_HangFire_JobParameter_Job" ManuallyRouted="false" />
         <AssociationConnector Association="DBModelVigil.FK_HangFire_State_Job" ManuallyRouted="false" />
-        <AssociationConnector Association="DBModelVigil.AspNetUserRoles" ManuallyRouted="false" />
         <EntityTypeShape EntityType="DBModelVigil.Company" Width="1.5" PointX="8.375" PointY="12.75" />
+        <EntityTypeShape EntityType="DBModelVigil.AspNetRole" Width="1.5" PointX="14.75" PointY="2.5" />
+        <EntityTypeShape EntityType="DBModelVigil.AspNetUserClaim" Width="1.5" PointX="19.25" PointY="1" />
+        <EntityTypeShape EntityType="DBModelVigil.AspNetUserLogin" Width="1.5" PointX="19.25" PointY="3.75" />
+        <EntityTypeShape EntityType="DBModelVigil.AspNetUser" Width="1.5" PointX="17" PointY="1.125" />
+        <EntityTypeShape EntityType="DBModelVigil.WebUser" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DBModelVigil.AggregatedCounter" Width="1.5" PointX="2.75" PointY="0.75" />
+        <AssociationConnector Association="DBModelVigil.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="DBModelVigil.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="DBModelVigil.AspNetUserRoles" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

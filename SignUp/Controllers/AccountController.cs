@@ -19,6 +19,8 @@ using SignUp.Results;
 using Microsoft.Owin.Security.DataProtection;
 using System.Net.Mail;
 using System.IO;
+using System.Linq;
+using System.Data.Entity.Infrastructure;
 
 namespace SignUp.Controllers
 {
@@ -387,12 +389,12 @@ namespace SignUp.Controllers
       var email = await UserManager.FindByEmailAsync(model.Email);
       if (email != null)
       {
-
         return BadRequest("The email " + model.Email + " is already associated with an account.");
       }
 
       var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email, PhoneNumber = model.PhoneNumber };
-//      user.EmailConfirmed = true;
+      user.EmailConfirmed = true;
+
       manager.PasswordValidator = new PasswordValidator
       {
         RequiredLength = 4
@@ -401,6 +403,24 @@ namespace SignUp.Controllers
       confirmEmail(model.firstName, model.Email, user.Id);
 
       IdentityResult result = manager.Create(user, model.Password);
+
+      using (var db = new Entities())
+      {
+        var Users = db.WebUsers.Single(u => u.UserId == user.Id);
+        Users.UserFirstName = model.firstName;
+        Users.UserLastName = model.LastName;
+        Users.UserCompanyCode = model.CompanyCode;
+        Users.UserAddedBy = model.AddedBy;
+        try
+        {
+          db.SaveChanges();
+        }
+        catch (DbUpdateException)
+        {
+       
+        }
+      }
+
       return Ok(result.Succeeded ? result : result); 
     }
     #endregion

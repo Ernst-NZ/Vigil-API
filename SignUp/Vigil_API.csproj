@@ -238,11 +238,13 @@
     <Compile Include="Controllers\AspNetRolesController.cs" />
     <Compile Include="Controllers\AspNetUserRolesController.cs" />
     <Compile Include="Controllers\AspNetUsersController.cs" />
+    <Compile Include="Controllers\CompaniesController.cs" />
     <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Controllers\fileUploadController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\WebUsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -318,6 +320,7 @@
     <Compile Include="Models\State.cs">
       <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\UserNameDetailsController.cs" />
     <Compile Include="Models\Vigil.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

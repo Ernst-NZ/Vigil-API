@@ -14,14 +14,17 @@ namespace SignUp.Models
     
     public partial class WebUser
     {
+        public string UserId { get; set; }
         public string Username { get; set; }
-        public string CompanyCode { get; set; }
-        public string Email { get; set; }
-        public string PhoneNumber { get; set; }
-        public string RoleCode { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string AddedBy { get; set; }
-        public Nullable<bool> NotActive { get; set; }
+        public string UserCompanyCode { get; set; }
+        public string UserFirstName { get; set; }
+        public string UserLastName { get; set; }
+        public string UserEmail { get; set; }
+        public string UserPhoneNumber { get; set; }
+        public string UserDepartmentCode { get; set; }
+        public string UserFunctionCode { get; set; }
+        public string UserProfileCode { get; set; }
+        public string UserAddedBy { get; set; }
+        public Nullable<bool> UserNotActive { get; set; }
     }
 }
