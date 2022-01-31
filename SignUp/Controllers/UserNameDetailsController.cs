@@ -9,6 +9,7 @@ using System.Web.Http;
 
 namespace SignUp.Models
 {
+  [AllowAnonymous]
   public class UserNameDetailsController : ApiController
     {
     private Entities db = new Entities();
@@ -16,12 +17,15 @@ namespace SignUp.Models
     public IHttpActionResult GetWebUser(string id)
     {
       var webUser = from user in db.WebUsers
-                where user.Username == id 
-                select user;
+                    join comp in db.Companies on user.UserCompanyCode equals comp.CompanyCode
+                    where user.Username == id
+                    select new { user, comp };
+      webUser.OrderBy(x => x.user.UserFirstName);
       if (webUser == null)
       {
         return NotFound();
       }
+     
       return Ok(webUser);
     }
   }

@@ -243,6 +243,7 @@
     <Compile Include="Controllers\fileUploadController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProfilesController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\WebUsersController.cs" />
     <Compile Include="Global.asax.cs">
