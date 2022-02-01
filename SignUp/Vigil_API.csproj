@@ -239,11 +239,16 @@
     <Compile Include="Controllers\AspNetUserRolesController.cs" />
     <Compile Include="Controllers\AspNetUsersController.cs" />
     <Compile Include="Controllers\CompaniesController.cs" />
+    <Compile Include="Controllers\CompanyDocsController.cs" />
+    <Compile Include="Controllers\DepartmentsController.cs" />
     <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Controllers\fileUploadController.cs" />
+    <Compile Include="Controllers\FunctionsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProfilesController.cs" />
+    <Compile Include="Controllers\ProjectDocsController.cs" />
+    <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\WebUsersController.cs" />
     <Compile Include="Global.asax.cs">
@@ -277,8 +282,14 @@
     <Compile Include="Models\Counter.cs">
       <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Department.cs">
+      <DependentUpon>Vigil.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\EModel.cs" />
     <Compile Include="Models\Enc.cs" />
+    <Compile Include="Models\Function.cs">
+      <DependentUpon>Vigil.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\gmail.cs" />
     <Compile Include="Models\HangfireAthorizationFilte.cs" />
     <Compile Include="Models\Hash.cs">

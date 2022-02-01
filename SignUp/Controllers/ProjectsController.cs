@@ -12,45 +12,44 @@ using SignUp.Models;
 
 namespace SignUp.Controllers
 {
-  [AllowAnonymous]
-  public class ProfilesController : ApiController
+    public class ProjectsController : ApiController
     {
         private Entities db = new Entities();
 
-        // GET: api/Profiles
-        public IQueryable<Profile> GetProfiles()
+        // GET: api/Projects
+        public IQueryable<Project> GetProjects()
         {
-            return db.Profiles;
+            return db.Projects;
         }
 
-        // GET: api/Profiles/5
-        [ResponseType(typeof(Profile))]
-        public IHttpActionResult GetProfile(int id)
+        // GET: api/Projects/5
+        [ResponseType(typeof(Project))]
+        public IHttpActionResult GetProject(int id)
         {
-            Profile profile = db.Profiles.Find(id);
-            if (profile == null)
+            Project project = db.Projects.Find(id);
+            if (project == null)
             {
                 return NotFound();
             }
 
-            return Ok(profile);
+            return Ok(project);
         }
 
-        // PUT: api/Profiles/5
+        // PUT: api/Projects/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutProfile(int id, Profile profile)
+        public IHttpActionResult PutProject(int id, Project project)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != profile.ProfileId)
+            if (id != project.ProjectId)
             {
                 return BadRequest();
             }
 
-            db.Entry(profile).State = EntityState.Modified;
+            db.Entry(project).State = EntityState.Modified;
 
             try
             {
@@ -58,7 +57,7 @@ namespace SignUp.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ProfileExists(id))
+                if (!ProjectExists(id))
                 {
                     return NotFound();
                 }
@@ -71,35 +70,35 @@ namespace SignUp.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Profiles
-        [ResponseType(typeof(Profile))]
-        public IHttpActionResult PostProfile(Profile profile)
+        // POST: api/Projects
+        [ResponseType(typeof(Project))]
+        public IHttpActionResult PostProject(Project project)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Profiles.Add(profile);
+            db.Projects.Add(project);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = profile.ProfileId }, profile);
+            return CreatedAtRoute("DefaultApi", new { id = project.ProjectId }, project);
         }
 
-        // DELETE: api/Profiles/5
-        [ResponseType(typeof(Profile))]
-        public IHttpActionResult DeleteProfile(int id)
+        // DELETE: api/Projects/5
+        [ResponseType(typeof(Project))]
+        public IHttpActionResult DeleteProject(int id)
         {
-            Profile profile = db.Profiles.Find(id);
-            if (profile == null)
+            Project project = db.Projects.Find(id);
+            if (project == null)
             {
                 return NotFound();
             }
 
-            db.Profiles.Remove(profile);
+            db.Projects.Remove(project);
             db.SaveChanges();
 
-            return Ok(profile);
+            return Ok(project);
         }
 
         protected override void Dispose(bool disposing)
@@ -111,9 +110,9 @@ namespace SignUp.Controllers
             base.Dispose(disposing);
         }
 
-        private bool ProfileExists(int id)
+        private bool ProjectExists(int id)
         {
-            return db.Profiles.Count(e => e.ProfileId == id) > 0;
+            return db.Projects.Count(e => e.ProjectId == id) > 0;
         }
     }
 }

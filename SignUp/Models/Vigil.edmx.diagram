@@ -7,7 +7,6 @@
       <Diagram DiagramId="907cabada1e346a89789d4a894442ddd" Name="Diagram1" ZoomLevel="64">
         <EntityTypeShape EntityType="DBModelVigil.CompanyDoc" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DBModelVigil.LinkProject" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBModelVigil.Profile" Width="1.5" PointX="7.75" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DBModelVigil.ProjectDoc" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DBModelVigil.Project" Width="1.5" PointX="9.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DBModelVigil.Hash" Width="1.5" PointX="11.75" PointY="3.75" IsExpanded="true" />
@@ -32,6 +31,9 @@
         <AssociationConnector Association="DBModelVigil.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="DBModelVigil.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="DBModelVigil.AspNetUserRoles" />
+        <EntityTypeShape EntityType="DBModelVigil.Profile" Width="1.5" PointX="3.375" PointY="3.75" />
+        <EntityTypeShape EntityType="DBModelVigil.Department" Width="1.5" PointX="5.375" PointY="7.75" />
+        <EntityTypeShape EntityType="DBModelVigil.Function" Width="1.5" PointX="7.375" PointY="8.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -27,7 +27,6 @@ namespace SignUp.Models
     
         public virtual DbSet<CompanyDoc> CompanyDocs { get; set; }
         public virtual DbSet<LinkProject> LinkProjects { get; set; }
-        public virtual DbSet<Profile> Profiles { get; set; }
         public virtual DbSet<ProjectDoc> ProjectDocs { get; set; }
         public virtual DbSet<Project> Projects { get; set; }
         public virtual DbSet<Hash> Hashes { get; set; }
@@ -47,5 +46,8 @@ namespace SignUp.Models
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<WebUser> WebUsers { get; set; }
         public virtual DbSet<AggregatedCounter> AggregatedCounters { get; set; }
+        public virtual DbSet<Profile> Profiles { get; set; }
+        public virtual DbSet<Department> Departments { get; set; }
+        public virtual DbSet<Function> Functions { get; set; }
     }
 }

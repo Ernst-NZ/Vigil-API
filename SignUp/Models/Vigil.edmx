@@ -90,6 +90,22 @@
           <Property Name="AddedBy" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="Date" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="Departments">
+          <Key>
+            <PropertyRef Name="DepartmentId" />
+          </Key>
+          <Property Name="DepartmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepartmentName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CompanyCode" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Functions">
+          <Key>
+            <PropertyRef Name="FunctionId" />
+          </Key>
+          <Property Name="FunctionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FunctionName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CompanyCode" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="LinkProjects">
           <Key>
             <PropertyRef Name="ProjectCode" />
@@ -352,6 +368,8 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CompanyDocs" EntityType="Self.CompanyDocs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Functions" EntityType="Self.Functions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LinkProjects" EntityType="Self.LinkProjects" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Profiles" EntityType="Self.Profiles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProjectDocs" EntityType="Self.ProjectDocs" Schema="dbo" store:Type="Tables" />
@@ -425,14 +443,6 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <Property Name="UserCode" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="LinkedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Profile">
-          <Key>
-            <PropertyRef Name="ProfileId" />
-          </Key>
-          <Property Name="ProfileId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProfileName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ProfileLevel" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="ProjectDoc">
           <Key>
@@ -594,7 +604,6 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="CompanyDocs" EntityType="Self.CompanyDoc" />
           <EntitySet Name="LinkProjects" EntityType="Self.LinkProject" />
-          <EntitySet Name="Profiles" EntityType="Self.Profile" />
           <EntitySet Name="ProjectDocs" EntityType="Self.ProjectDoc" />
           <EntitySet Name="Projects" EntityType="Self.Project" />
           <EntitySet Name="Hashes" EntityType="Self.Hash" />
@@ -634,6 +643,9 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <EntitySet Name="Profiles" EntityType="DBModelVigil.Profile" />
+          <EntitySet Name="Departments" EntityType="DBModelVigil.Department" />
+          <EntitySet Name="Functions" EntityType="DBModelVigil.Function" />
         </EntityContainer>
         <EntityType Name="Company">
           <Key>
@@ -762,6 +774,30 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <End Type="DBModelVigil.AspNetRole" Role="AspNetRole" Multiplicity="*" />
           <End Type="DBModelVigil.AspNetUser" Role="AspNetUser" Multiplicity="*" />
         </Association>
+        <EntityType Name="Profile">
+          <Key>
+            <PropertyRef Name="ProfileId" />
+          </Key>
+          <Property Name="ProfileId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProfileName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProfileLevel" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="DepartmentId" />
+          </Key>
+          <Property Name="DepartmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepartmentName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyCode" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Function">
+          <Key>
+            <PropertyRef Name="FunctionId" />
+          </Key>
+          <Property Name="FunctionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FunctionName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyCode" Type="Int32" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -789,15 +825,6 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
                 <ScalarProperty Name="UserCode" ColumnName="UserCode" />
                 <ScalarProperty Name="LinkedBy" ColumnName="LinkedBy" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Profiles">
-            <EntityTypeMapping TypeName="DBModelVigil.Profile">
-              <MappingFragment StoreEntitySet="Profiles">
-                <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
-                <ScalarProperty Name="ProfileName" ColumnName="ProfileName" />
-                <ScalarProperty Name="ProfileLevel" ColumnName="ProfileLevel" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1033,6 +1060,33 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="Profiles">
+            <EntityTypeMapping TypeName="DBModelVigil.Profile">
+              <MappingFragment StoreEntitySet="Profiles">
+                <ScalarProperty Name="ProfileLevel" ColumnName="ProfileLevel" />
+                <ScalarProperty Name="ProfileName" ColumnName="ProfileName" />
+                <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="DBModelVigil.Department">
+              <MappingFragment StoreEntitySet="Departments">
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Functions">
+            <EntityTypeMapping TypeName="DBModelVigil.Function">
+              <MappingFragment StoreEntitySet="Functions">
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="FunctionName" ColumnName="FunctionName" />
+                <ScalarProperty Name="FunctionId" ColumnName="FunctionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -12,45 +12,44 @@ using SignUp.Models;
 
 namespace SignUp.Controllers
 {
-  [AllowAnonymous]
-  public class ProfilesController : ApiController
+    public class ProjectDocsController : ApiController
     {
         private Entities db = new Entities();
 
-        // GET: api/Profiles
-        public IQueryable<Profile> GetProfiles()
+        // GET: api/ProjectDocs
+        public IQueryable<ProjectDoc> GetProjectDocs()
         {
-            return db.Profiles;
+            return db.ProjectDocs;
         }
 
-        // GET: api/Profiles/5
-        [ResponseType(typeof(Profile))]
-        public IHttpActionResult GetProfile(int id)
+        // GET: api/ProjectDocs/5
+        [ResponseType(typeof(ProjectDoc))]
+        public IHttpActionResult GetProjectDoc(int id)
         {
-            Profile profile = db.Profiles.Find(id);
-            if (profile == null)
+            ProjectDoc projectDoc = db.ProjectDocs.Find(id);
+            if (projectDoc == null)
             {
                 return NotFound();
             }
 
-            return Ok(profile);
+            return Ok(projectDoc);
         }
 
-        // PUT: api/Profiles/5
+        // PUT: api/ProjectDocs/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutProfile(int id, Profile profile)
+        public IHttpActionResult PutProjectDoc(int id, ProjectDoc projectDoc)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != profile.ProfileId)
+            if (id != projectDoc.ProjectDocId)
             {
                 return BadRequest();
             }
 
-            db.Entry(profile).State = EntityState.Modified;
+            db.Entry(projectDoc).State = EntityState.Modified;
 
             try
             {
@@ -58,7 +57,7 @@ namespace SignUp.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ProfileExists(id))
+                if (!ProjectDocExists(id))
                 {
                     return NotFound();
                 }
@@ -71,35 +70,35 @@ namespace SignUp.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Profiles
-        [ResponseType(typeof(Profile))]
-        public IHttpActionResult PostProfile(Profile profile)
+        // POST: api/ProjectDocs
+        [ResponseType(typeof(ProjectDoc))]
+        public IHttpActionResult PostProjectDoc(ProjectDoc projectDoc)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Profiles.Add(profile);
+            db.ProjectDocs.Add(projectDoc);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = profile.ProfileId }, profile);
+            return CreatedAtRoute("DefaultApi", new { id = projectDoc.ProjectDocId }, projectDoc);
         }
 
-        // DELETE: api/Profiles/5
-        [ResponseType(typeof(Profile))]
-        public IHttpActionResult DeleteProfile(int id)
+        // DELETE: api/ProjectDocs/5
+        [ResponseType(typeof(ProjectDoc))]
+        public IHttpActionResult DeleteProjectDoc(int id)
         {
-            Profile profile = db.Profiles.Find(id);
-            if (profile == null)
+            ProjectDoc projectDoc = db.ProjectDocs.Find(id);
+            if (projectDoc == null)
             {
                 return NotFound();
             }
 
-            db.Profiles.Remove(profile);
+            db.ProjectDocs.Remove(projectDoc);
             db.SaveChanges();
 
-            return Ok(profile);
+            return Ok(projectDoc);
         }
 
         protected override void Dispose(bool disposing)
@@ -111,9 +110,9 @@ namespace SignUp.Controllers
             base.Dispose(disposing);
         }
 
-        private bool ProfileExists(int id)
+        private bool ProjectDocExists(int id)
         {
-            return db.Profiles.Count(e => e.ProfileId == id) > 0;
+            return db.ProjectDocs.Count(e => e.ProjectDocId == id) > 0;
         }
     }
 }

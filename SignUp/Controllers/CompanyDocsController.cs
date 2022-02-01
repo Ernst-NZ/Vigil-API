@@ -12,45 +12,44 @@ using SignUp.Models;
 
 namespace SignUp.Controllers
 {
-  [AllowAnonymous]
-  public class ProfilesController : ApiController
+    public class CompanyDocsController : ApiController
     {
         private Entities db = new Entities();
 
-        // GET: api/Profiles
-        public IQueryable<Profile> GetProfiles()
+        // GET: api/CompanyDocs
+        public IQueryable<CompanyDoc> GetCompanyDocs()
         {
-            return db.Profiles;
+            return db.CompanyDocs;
         }
 
-        // GET: api/Profiles/5
-        [ResponseType(typeof(Profile))]
-        public IHttpActionResult GetProfile(int id)
+        // GET: api/CompanyDocs/5
+        [ResponseType(typeof(CompanyDoc))]
+        public IHttpActionResult GetCompanyDoc(int id)
         {
-            Profile profile = db.Profiles.Find(id);
-            if (profile == null)
+            CompanyDoc companyDoc = db.CompanyDocs.Find(id);
+            if (companyDoc == null)
             {
                 return NotFound();
             }
 
-            return Ok(profile);
+            return Ok(companyDoc);
         }
 
-        // PUT: api/Profiles/5
+        // PUT: api/CompanyDocs/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutProfile(int id, Profile profile)
+        public IHttpActionResult PutCompanyDoc(int id, CompanyDoc companyDoc)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != profile.ProfileId)
+            if (id != companyDoc.CompanyDocId)
             {
                 return BadRequest();
             }
 
-            db.Entry(profile).State = EntityState.Modified;
+            db.Entry(companyDoc).State = EntityState.Modified;
 
             try
             {
@@ -58,7 +57,7 @@ namespace SignUp.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ProfileExists(id))
+                if (!CompanyDocExists(id))
                 {
                     return NotFound();
                 }
@@ -71,35 +70,35 @@ namespace SignUp.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Profiles
-        [ResponseType(typeof(Profile))]
-        public IHttpActionResult PostProfile(Profile profile)
+        // POST: api/CompanyDocs
+        [ResponseType(typeof(CompanyDoc))]
+        public IHttpActionResult PostCompanyDoc(CompanyDoc companyDoc)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Profiles.Add(profile);
+            db.CompanyDocs.Add(companyDoc);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = profile.ProfileId }, profile);
+            return CreatedAtRoute("DefaultApi", new { id = companyDoc.CompanyDocId }, companyDoc);
         }
 
-        // DELETE: api/Profiles/5
-        [ResponseType(typeof(Profile))]
-        public IHttpActionResult DeleteProfile(int id)
+        // DELETE: api/CompanyDocs/5
+        [ResponseType(typeof(CompanyDoc))]
+        public IHttpActionResult DeleteCompanyDoc(int id)
         {
-            Profile profile = db.Profiles.Find(id);
-            if (profile == null)
+            CompanyDoc companyDoc = db.CompanyDocs.Find(id);
+            if (companyDoc == null)
             {
                 return NotFound();
             }
 
-            db.Profiles.Remove(profile);
+            db.CompanyDocs.Remove(companyDoc);
             db.SaveChanges();
 
-            return Ok(profile);
+            return Ok(companyDoc);
         }
 
         protected override void Dispose(bool disposing)
@@ -111,9 +110,9 @@ namespace SignUp.Controllers
             base.Dispose(disposing);
         }
 
-        private bool ProfileExists(int id)
+        private bool CompanyDocExists(int id)
         {
-            return db.Profiles.Count(e => e.ProfileId == id) > 0;
+            return db.CompanyDocs.Count(e => e.CompanyDocId == id) > 0;
         }
     }
 }

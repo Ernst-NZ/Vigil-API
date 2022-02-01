@@ -12,45 +12,44 @@ using SignUp.Models;
 
 namespace SignUp.Controllers
 {
-  [AllowAnonymous]
-  public class ProfilesController : ApiController
+    public class DepartmentsController : ApiController
     {
         private Entities db = new Entities();
 
-        // GET: api/Profiles
-        public IQueryable<Profile> GetProfiles()
+        // GET: api/Departments
+        public IQueryable<Department> GetDepartments()
         {
-            return db.Profiles;
+            return db.Departments;
         }
 
-        // GET: api/Profiles/5
-        [ResponseType(typeof(Profile))]
-        public IHttpActionResult GetProfile(int id)
+        // GET: api/Departments/5
+        [ResponseType(typeof(Department))]
+        public IHttpActionResult GetDepartment(int id)
         {
-            Profile profile = db.Profiles.Find(id);
-            if (profile == null)
+            Department department = db.Departments.Find(id);
+            if (department == null)
             {
                 return NotFound();
             }
 
-            return Ok(profile);
+            return Ok(department);
         }
 
-        // PUT: api/Profiles/5
+        // PUT: api/Departments/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutProfile(int id, Profile profile)
+        public IHttpActionResult PutDepartment(int id, Department department)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != profile.ProfileId)
+            if (id != department.DepartmentId)
             {
                 return BadRequest();
             }
 
-            db.Entry(profile).State = EntityState.Modified;
+            db.Entry(department).State = EntityState.Modified;
 
             try
             {
@@ -58,7 +57,7 @@ namespace SignUp.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ProfileExists(id))
+                if (!DepartmentExists(id))
                 {
                     return NotFound();
                 }
@@ -71,35 +70,35 @@ namespace SignUp.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Profiles
-        [ResponseType(typeof(Profile))]
-        public IHttpActionResult PostProfile(Profile profile)
+        // POST: api/Departments
+        [ResponseType(typeof(Department))]
+        public IHttpActionResult PostDepartment(Department department)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Profiles.Add(profile);
+            db.Departments.Add(department);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = profile.ProfileId }, profile);
+            return CreatedAtRoute("DefaultApi", new { id = department.DepartmentId }, department);
         }
 
-        // DELETE: api/Profiles/5
-        [ResponseType(typeof(Profile))]
-        public IHttpActionResult DeleteProfile(int id)
+        // DELETE: api/Departments/5
+        [ResponseType(typeof(Department))]
+        public IHttpActionResult DeleteDepartment(int id)
         {
-            Profile profile = db.Profiles.Find(id);
-            if (profile == null)
+            Department department = db.Departments.Find(id);
+            if (department == null)
             {
                 return NotFound();
             }
 
-            db.Profiles.Remove(profile);
+            db.Departments.Remove(department);
             db.SaveChanges();
 
-            return Ok(profile);
+            return Ok(department);
         }
 
         protected override void Dispose(bool disposing)
@@ -111,9 +110,9 @@ namespace SignUp.Controllers
             base.Dispose(disposing);
         }
 
-        private bool ProfileExists(int id)
+        private bool DepartmentExists(int id)
         {
-            return db.Profiles.Count(e => e.ProfileId == id) > 0;
+            return db.Departments.Count(e => e.DepartmentId == id) > 0;
         }
     }
 }
