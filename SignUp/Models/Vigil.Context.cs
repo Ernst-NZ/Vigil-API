@@ -39,7 +39,6 @@ namespace SignUp.Models
         public virtual DbSet<Set> Sets { get; set; }
         public virtual DbSet<State> States { get; set; }
         public virtual DbSet<Counter> Counters { get; set; }
-        public virtual DbSet<Company> Companies { get; set; }
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
@@ -49,5 +48,6 @@ namespace SignUp.Models
         public virtual DbSet<Profile> Profiles { get; set; }
         public virtual DbSet<Department> Departments { get; set; }
         public virtual DbSet<Function> Functions { get; set; }
+        public virtual DbSet<Company> Companies { get; set; }
     }
 }

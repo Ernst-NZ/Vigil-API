@@ -21,7 +21,6 @@
         <EntityTypeShape EntityType="DBModelVigil.Counter" Width="1.5" PointX="2.75" PointY="12.75" IsExpanded="true" />
         <AssociationConnector Association="DBModelVigil.FK_HangFire_JobParameter_Job" ManuallyRouted="false" />
         <AssociationConnector Association="DBModelVigil.FK_HangFire_State_Job" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="DBModelVigil.Company" Width="1.5" PointX="8.375" PointY="12.75" />
         <EntityTypeShape EntityType="DBModelVigil.AspNetRole" Width="1.5" PointX="14.75" PointY="2.5" />
         <EntityTypeShape EntityType="DBModelVigil.AspNetUserClaim" Width="1.5" PointX="19.25" PointY="1" />
         <EntityTypeShape EntityType="DBModelVigil.AspNetUserLogin" Width="1.5" PointX="19.25" PointY="3.75" />
@@ -34,6 +33,7 @@
         <EntityTypeShape EntityType="DBModelVigil.Profile" Width="1.5" PointX="3.375" PointY="3.75" />
         <EntityTypeShape EntityType="DBModelVigil.Department" Width="1.5" PointX="5.375" PointY="7.75" />
         <EntityTypeShape EntityType="DBModelVigil.Function" Width="1.5" PointX="7.375" PointY="8.75" />
+        <EntityTypeShape EntityType="DBModelVigil.Company" Width="1.5" PointX="8.375" PointY="11.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -17,16 +17,19 @@ namespace SignUp.Models
         public int CompanyId { get; set; }
         public string CompanyCode { get; set; }
         public string CompanyName { get; set; }
-        public string CompanyPhone { get; set; }
         public string CompanyAddress1 { get; set; }
         public string CompanyAddress2 { get; set; }
         public string CompanyTown { get; set; }
         public Nullable<decimal> CompanyPostcode { get; set; }
-        public string ContactPerson { get; set; }
-        public string ContactEmail { get; set; }
-        public string ContactPhone { get; set; }
-        public string ContactPosition { get; set; }
+        public string CompanyContactPerson { get; set; }
+        public string CompanyContactEmail { get; set; }
+        public string CompanyContactPhone { get; set; }
+        public string CompanyContactPosition { get; set; }
         public string CompanyHSManager { get; set; }
         public string CompanyHSEmail { get; set; }
+        public string ReportPerson1 { get; set; }
+        public string ReportEmail1 { get; set; }
+        public string ReportPerson2 { get; set; }
+        public string ReportEmail2 { get; set; }
     }
 }
