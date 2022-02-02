@@ -65,17 +65,20 @@
           <Property Name="CompanyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CompanyCode" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="CompanyName" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="CompanyPhone" Type="nvarchar" MaxLength="50" />
           <Property Name="CompanyAddress1" Type="nvarchar" MaxLength="50" />
           <Property Name="CompanyAddress2" Type="nvarchar" MaxLength="50" />
           <Property Name="CompanyTown" Type="nvarchar" MaxLength="50" />
           <Property Name="CompanyPostcode" Type="numeric" Precision="18" Scale="0" />
-          <Property Name="ContactPerson" Type="varchar" MaxLength="100" />
-          <Property Name="ContactEmail" Type="varchar" MaxLength="100" />
-          <Property Name="ContactPhone" Type="varchar" MaxLength="100" />
-          <Property Name="ContactPosition" Type="varchar" MaxLength="50" />
+          <Property Name="CompanyContactPerson" Type="varchar" MaxLength="100" />
+          <Property Name="CompanyContactEmail" Type="varchar" MaxLength="100" />
+          <Property Name="CompanyContactPhone" Type="varchar" MaxLength="100" />
+          <Property Name="CompanyContactPosition" Type="varchar" MaxLength="50" />
           <Property Name="CompanyHSManager" Type="nvarchar" MaxLength="150" />
           <Property Name="CompanyHSEmail" Type="nvarchar" MaxLength="150" />
+          <Property Name="ReportPerson1" Type="nvarchar" MaxLength="150" />
+          <Property Name="ReportEmail1" Type="nvarchar" MaxLength="150" />
+          <Property Name="ReportPerson2" Type="nvarchar" MaxLength="150" />
+          <Property Name="ReportEmail2" Type="nvarchar" MaxLength="150" />
         </EntityType>
         <EntityType Name="CompanyDocs">
           <Key>
@@ -624,7 +627,6 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
             <End Role="Job" EntitySet="Jobs" />
             <End Role="State" EntitySet="States" />
           </AssociationSet>
-          <EntitySet Name="Companies" EntityType="DBModelVigil.Company" />
           <EntitySet Name="AspNetRoles" EntityType="DBModelVigil.AspNetRole" />
           <EntitySet Name="AspNetUserClaims" EntityType="DBModelVigil.AspNetUserClaim" />
           <EntitySet Name="AspNetUserLogins" EntityType="DBModelVigil.AspNetUserLogin" />
@@ -646,26 +648,8 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <EntitySet Name="Profiles" EntityType="DBModelVigil.Profile" />
           <EntitySet Name="Departments" EntityType="DBModelVigil.Department" />
           <EntitySet Name="Functions" EntityType="DBModelVigil.Function" />
+          <EntitySet Name="Companies" EntityType="DBModelVigil.Company" />
         </EntityContainer>
-        <EntityType Name="Company">
-          <Key>
-            <PropertyRef Name="CompanyId" />
-          </Key>
-          <Property Name="CompanyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CompanyCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="CompanyPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CompanyAddress1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CompanyAddress2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CompanyTown" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CompanyPostcode" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="ContactPerson" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="ContactEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="ContactPhone" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="ContactPosition" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CompanyHSManager" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="CompanyHSEmail" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="AspNetRole">
           <Key>
             <PropertyRef Name="Id" />
@@ -797,6 +781,28 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <Property Name="FunctionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FunctionName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CompanyCode" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="CompanyId" />
+          </Key>
+          <Property Name="CompanyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyAddress1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyAddress2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyTown" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyPostcode" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="CompanyContactPerson" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyContactEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyContactPhone" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyContactPosition" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyHSManager" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyHSEmail" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ReportPerson1" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ReportEmail1" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ReportPerson2" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ReportEmail2" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -958,26 +964,6 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Companies">
-            <EntityTypeMapping TypeName="DBModelVigil.Company">
-              <MappingFragment StoreEntitySet="Company">
-                <ScalarProperty Name="CompanyHSEmail" ColumnName="CompanyHSEmail" />
-                <ScalarProperty Name="CompanyHSManager" ColumnName="CompanyHSManager" />
-                <ScalarProperty Name="ContactPosition" ColumnName="ContactPosition" />
-                <ScalarProperty Name="ContactPhone" ColumnName="ContactPhone" />
-                <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
-                <ScalarProperty Name="ContactPerson" ColumnName="ContactPerson" />
-                <ScalarProperty Name="CompanyPostcode" ColumnName="CompanyPostcode" />
-                <ScalarProperty Name="CompanyTown" ColumnName="CompanyTown" />
-                <ScalarProperty Name="CompanyAddress2" ColumnName="CompanyAddress2" />
-                <ScalarProperty Name="CompanyAddress1" ColumnName="CompanyAddress1" />
-                <ScalarProperty Name="CompanyPhone" ColumnName="CompanyPhone" />
-                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
-                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
-                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="AspNetRoles">
             <EntityTypeMapping TypeName="DBModelVigil.AspNetRole">
               <MappingFragment StoreEntitySet="AspNetRoles">
@@ -1084,6 +1070,29 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
                 <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
                 <ScalarProperty Name="FunctionName" ColumnName="FunctionName" />
                 <ScalarProperty Name="FunctionId" ColumnName="FunctionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Companies">
+            <EntityTypeMapping TypeName="DBModelVigil.Company">
+              <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="ReportEmail2" ColumnName="ReportEmail2" />
+                <ScalarProperty Name="ReportPerson2" ColumnName="ReportPerson2" />
+                <ScalarProperty Name="ReportEmail1" ColumnName="ReportEmail1" />
+                <ScalarProperty Name="ReportPerson1" ColumnName="ReportPerson1" />
+                <ScalarProperty Name="CompanyHSEmail" ColumnName="CompanyHSEmail" />
+                <ScalarProperty Name="CompanyHSManager" ColumnName="CompanyHSManager" />
+                <ScalarProperty Name="CompanyContactPosition" ColumnName="CompanyContactPosition" />
+                <ScalarProperty Name="CompanyContactPhone" ColumnName="CompanyContactPhone" />
+                <ScalarProperty Name="CompanyContactEmail" ColumnName="CompanyContactEmail" />
+                <ScalarProperty Name="CompanyContactPerson" ColumnName="CompanyContactPerson" />
+                <ScalarProperty Name="CompanyPostcode" ColumnName="CompanyPostcode" />
+                <ScalarProperty Name="CompanyTown" ColumnName="CompanyTown" />
+                <ScalarProperty Name="CompanyAddress2" ColumnName="CompanyAddress2" />
+                <ScalarProperty Name="CompanyAddress1" ColumnName="CompanyAddress1" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
