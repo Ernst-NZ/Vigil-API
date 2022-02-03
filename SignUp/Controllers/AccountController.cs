@@ -400,16 +400,19 @@ namespace SignUp.Controllers
         RequiredLength = 4
       };
 
-      confirmEmail(model.firstName, model.Email, user.Id);
+      confirmEmail(model.UserFirstName, model.Email, user.Id);
 
       IdentityResult result = manager.Create(user, model.Password);
 
       using (var db = new Entities())
       {
         var Users = db.WebUsers.Single(u => u.UserId == user.Id);
-        Users.UserFirstName = model.firstName;
-        Users.UserLastName = model.LastName;
-        Users.UserCompanyCode = model.CompanyCode;
+        Users.UserFirstName = model.UserFirstName;
+        Users.UserLastName = model.UserLastName;
+        Users.UserCompanyCode = model.UserCompanyCode;
+        Users.UserDepartmentCode = model.UserDepartment;
+        Users.UserFunctionCode = model.UserFunction;
+        Users.UserProfileCode = model.UserProfile;
         Users.UserAddedBy = model.AddedBy;
         try
         {
