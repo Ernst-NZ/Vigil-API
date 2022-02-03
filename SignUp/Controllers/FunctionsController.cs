@@ -1,25 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using SignUp.Models;
 
 namespace SignUp.Controllers
 {
-    public class FunctionsController : ApiController
+  public class FunctionsController : ApiController
     {
         private Entities db = new Entities();
 
         // GET: api/Functions
         public IQueryable<Function> GetFunctions()
         {
-            return db.Functions;
+            return db.Functions.OrderBy(c => c.FunctionName);
         }
 
         // GET: api/Functions/5
