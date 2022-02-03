@@ -240,9 +240,11 @@
     <Compile Include="Controllers\AspNetUsersController.cs" />
     <Compile Include="Controllers\CompaniesController.cs" />
     <Compile Include="Controllers\CompanyDocsController.cs" />
+    <Compile Include="Controllers\DepartmentsByCompaniesController.cs" />
     <Compile Include="Controllers\DepartmentsController.cs" />
     <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Controllers\fileUploadController.cs" />
+    <Compile Include="Controllers\FunctionsByCompaniesController.cs" />
     <Compile Include="Controllers\FunctionsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />

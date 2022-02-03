@@ -1,25 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using SignUp.Models;
 
 namespace SignUp.Controllers
 {
-    public class DepartmentsController : ApiController
+  public class DepartmentsController : ApiController
     {
         private Entities db = new Entities();
 
         // GET: api/Departments
         public IQueryable<Department> GetDepartments()
         {
-            return db.Departments;
+            return db.Departments.OrderBy(c => c.DepartmentName);
         }
 
         // GET: api/Departments/5
