@@ -9,7 +9,6 @@ using System.Web.Http;
 
 namespace SignUp.Models
 {
-  [AllowAnonymous]
   public class UserNameDetailsController : ApiController
     {
     private Entities db = new Entities();

@@ -4,7 +4,6 @@ using System.Web.Http;
 
 namespace SignUp.Controllers
 {
-  [AllowAnonymous]
   public class DepartmentsByCompaniesController : ApiController
   {
     private Entities db = new Entities();
