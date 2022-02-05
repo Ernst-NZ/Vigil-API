@@ -252,7 +252,9 @@
     <Compile Include="Controllers\ProjectDocsController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\WebUsersByCompaniesController.cs" />
     <Compile Include="Controllers\WebUsersController.cs" />
+    <Compile Include="Controllers\WebUserUpdateStatusesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
