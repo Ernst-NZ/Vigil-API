@@ -247,10 +247,16 @@
     <Compile Include="Controllers\FunctionsByCompaniesController.cs" />
     <Compile Include="Controllers\FunctionsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LinkedProjectsByUsernameController.cs" />
+    <Compile Include="Controllers\LinkedProjectsController.cs" />
+    <Compile Include="Controllers\LinkedProjectsOutstandingForUserNameController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProfilesController.cs" />
     <Compile Include="Controllers\ProjectDocsController.cs" />
+    <Compile Include="Controllers\ProjectsByCompanyIdController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
+    <Compile Include="Controllers\TrainingByUserIdController.cs" />
+    <Compile Include="Controllers\TrainingsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\WebUsersByCompaniesController.cs" />
     <Compile Include="Controllers\WebUsersController.cs" />
@@ -309,7 +315,7 @@
     <Compile Include="Models\JobQueue.cs">
       <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LinkProject.cs">
+    <Compile Include="Models\LinkedProject.cs">
       <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\List.cs">
@@ -337,6 +343,9 @@
       <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\UserNameDetailsController.cs" />
+    <Compile Include="Models\Training.cs">
+      <DependentUpon>Vigil.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Vigil.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

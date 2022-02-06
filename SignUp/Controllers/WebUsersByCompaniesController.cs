@@ -28,15 +28,15 @@ namespace SignUp.Controllers
         	UserNotActive,
         	Profiles.ProfileName,
         	Company.CompanyName,
-        	count(linkprojects.ProjectCode) as Projects,
+        	count(linkedprojects.ProjectCode) as Projects,
         	count(Training.TrainingId) as Training
         from WebUser	
           inner join Company on WebUser.UserCompanyCode = Company.CompanyCode
           inner join profiles on WebUser.UserProfileCode = Profiles.ProfileLevel
           Left Join Departments on Departments.DepartmentId = WebUser.UserDepartmentCode
           Left Join Functions on WebUser.UserFunctionCode = Functions.FunctionId
-          left join LinkProjects on WebUser.userId = LinkProjects.UserCode
-          left join Projects on LinkProjects.ProjectCode = Projects.ProjectCode
+          left join LinkedProjects on WebUser.userId = LinkedProjects.UserCode
+          left join Projects on LinkedProjects.ProjectCode = Projects.ProjectCode
           Left Join Training on Training.UserId = WebUser.UserId
         Where Company.CompanyId = '" + id + "'  " +
         "Group by webUser.UserId, " +

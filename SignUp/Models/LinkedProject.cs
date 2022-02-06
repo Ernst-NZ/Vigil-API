@@ -12,8 +12,9 @@ namespace SignUp.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class LinkProject
+    public partial class LinkedProject
     {
+        public int LinkedId { get; set; }
         public string ProjectCode { get; set; }
         public string UserCode { get; set; }
         public string LinkedBy { get; set; }

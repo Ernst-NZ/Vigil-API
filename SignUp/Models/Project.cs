@@ -16,6 +16,7 @@ namespace SignUp.Models
     {
         public int ProjectId { get; set; }
         public string ProjectCode { get; set; }
+        public string CompanyId { get; set; }
         public string ProjectName { get; set; }
         public string ContactFirstName { get; set; }
         public string ContactLastName { get; set; }

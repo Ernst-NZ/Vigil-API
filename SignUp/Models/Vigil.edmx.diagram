@@ -6,9 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="907cabada1e346a89789d4a894442ddd" Name="Diagram1" ZoomLevel="64">
         <EntityTypeShape EntityType="DBModelVigil.CompanyDoc" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBModelVigil.LinkProject" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DBModelVigil.ProjectDoc" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBModelVigil.Project" Width="1.5" PointX="9.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DBModelVigil.Hash" Width="1.5" PointX="11.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DBModelVigil.Job" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DBModelVigil.JobParameter" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
@@ -34,6 +32,9 @@
         <EntityTypeShape EntityType="DBModelVigil.Department" Width="1.5" PointX="5.375" PointY="7.75" />
         <EntityTypeShape EntityType="DBModelVigil.Function" Width="1.5" PointX="7.375" PointY="8.75" />
         <EntityTypeShape EntityType="DBModelVigil.Company" Width="1.5" PointX="8.375" PointY="11.75" />
+        <EntityTypeShape EntityType="DBModelVigil.Project" Width="1.5" PointX="14.375" PointY="6.75" />
+        <EntityTypeShape EntityType="DBModelVigil.Training" Width="1.5" PointX="5.375" PointY="14.75" />
+        <EntityTypeShape EntityType="DBModelVigil.LinkedProject" Width="1.5" PointX="5.375" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

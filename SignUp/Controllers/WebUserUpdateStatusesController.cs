@@ -17,15 +17,6 @@ namespace SignUp.Controllers
     [ResponseType(typeof(void))]
     public IHttpActionResult PutWebUser(string id, dynamic webUser)
     {
-      //if (!ModelState.IsValid)
-      //{
-      //  return BadRequest(ModelState);
-      //}
-
-      //if (id != webUser["UserId"])
-      //{
-      //  return BadRequest();
-      //}
       var status = webUser["Status"];
 
       using (var db = new Entities())
