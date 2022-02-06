@@ -116,8 +116,8 @@
           <Property Name="LinkedId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProjectCode" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="UserCode" Type="nvarchar" MaxLength="250" Nullable="false" />
-          <Property Name="LinkedBy" Type="nvarchar" MaxLength="250" Nullable="false" />
-          <Property Name="Date" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LinkedBy" Type="nvarchar" MaxLength="250" />
+          <Property Name="Date" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Profiles">
           <Key>
@@ -833,8 +833,8 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <Property Name="LinkedId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ProjectCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UserCode" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="LinkedBy" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="Date" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LinkedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>

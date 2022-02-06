@@ -13,13 +13,11 @@ namespace SignUp.Controllers
     {
       DataTable dataTable = new DataTable();
       string connString = ConfigurationManager.ConnectionStrings["IdentityDemoConnection"].ConnectionString;
-      string query = @"Select Distinct Company.companyId,
-	                    Projects.ProjectName
-                    From Webuser
-                    Inner Join Company on Company.CompanyCode = WebUser.UserCompanyCode
-                    Inner Join Projects on Projects.CompanyId = Company.companyId
-                    Inner Join LinkedProjects On LinkedProjects.userCode = WebUser.UserId
-                    Where WebUser.Username = '" + id +"'";
+      string query = @"Select Distinct Projects.ProjectName,
+                      LinkedProjects.LinkedId
+                    From LinkedProjects
+                    Inner Join Projects on Projects.ProjectId = LinkedProjects.ProjectCode
+                    Where LinkedProjects.UserCode = '" + id + "' ";
 
       SqlConnection conn = new SqlConnection(connString);
       SqlCommand cmd = new SqlCommand(query, conn);

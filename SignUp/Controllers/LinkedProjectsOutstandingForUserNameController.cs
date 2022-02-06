@@ -14,14 +14,16 @@ namespace SignUp.Controllers
       DataTable dataTable = new DataTable();
       string connString = ConfigurationManager.ConnectionStrings["IdentityDemoConnection"].ConnectionString;
       string query = @"Select Distinct Company.companyId,
-	                      Projects.ProjectName
+	                      Projects.ProjectName,
+                        Projects.ProjectId
                       From Webuser
                       Inner Join Company on Company.CompanyCode = WebUser.UserCompanyCode
                       Inner Join Projects on Projects.CompanyId = Company.companyId
-                      Where WebUser.Username = '" + id + "' " +
+                      Where WebUser.UserId = '" + id + "' " +
                         "and Projects.ProjectId NOT IN( " +
                             "select distinct LinkedProjects.ProjectCode " +
-                                "From LinkedProjects	)'";
+                                "From LinkedProjects	" +
+                                "where LinkedProjects.UserCode = WebUser.UserId)";
 
       SqlConnection conn = new SqlConnection(connString);
       SqlCommand cmd = new SqlCommand(query, conn);
