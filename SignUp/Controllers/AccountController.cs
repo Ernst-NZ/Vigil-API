@@ -404,25 +404,30 @@ namespace SignUp.Controllers
 
       IdentityResult result = manager.Create(user, model.Password);
 
-      using (var db = new Entities())
+      if (result.Succeeded)
       {
-        var Users = db.WebUsers.Single(u => u.UserId == user.Id);
-        Users.UserFirstName = model.UserFirstName;
-        Users.UserLastName = model.UserLastName;
-        Users.UserCompanyCode = model.UserCompanyCode;
-        Users.UserDepartmentCode = model.UserDepartment;
-        Users.UserFunctionCode = model.UserFunction;
-        Users.UserProfileCode = model.UserProfile;
-        Users.UserAddedBy = model.AddedBy;
-        try
+        using (var db = new Entities())
         {
-          db.SaveChanges();
-        }
-        catch (DbUpdateException)
-        {
-       
+          var Users = db.WebUsers.Single(u => u.UserId == user.Id);
+          Users.UserFirstName = model.UserFirstName;
+          Users.UserLastName = model.UserLastName;
+          Users.UserCompanyCode = model.UserCompanyCode;
+          Users.UserDepartmentCode = model.UserDepartment;
+          Users.UserFunctionCode = model.UserFunction;
+          Users.UserProfileCode = model.UserProfile;
+          Users.UserAddedBy = model.AddedBy;
+          try
+          {
+            db.SaveChanges();
+          }
+          catch (DbUpdateException ex)
+          {
+            return BadRequest("Error Saving WebUser " + ex.Message);
+          }
         }
       }
+
+    
 
       return Ok(result.Succeeded ? result : result); 
     }

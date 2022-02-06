@@ -109,11 +109,11 @@
           <Property Name="FunctionName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="CompanyCode" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="LinkProjects">
+        <EntityType Name="LinkedProjects">
           <Key>
-            <PropertyRef Name="ProjectCode" />
-            <PropertyRef Name="UserCode" />
+            <PropertyRef Name="LinkedId" />
           </Key>
+          <Property Name="LinkedId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProjectCode" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="UserCode" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="LinkedBy" Type="nvarchar" MaxLength="250" Nullable="false" />
@@ -146,15 +146,30 @@
           </Key>
           <Property Name="ProjectId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProjectCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CompanyId" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ProjectName" Type="nvarchar" MaxLength="250" Nullable="false" />
-          <Property Name="ContactFirstName" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="ContactFirstName" Type="nvarchar" MaxLength="250" />
           <Property Name="ContactLastName" Type="nvarchar" MaxLength="250" />
           <Property Name="ContactEmail" Type="nvarchar" MaxLength="250" />
           <Property Name="ContactPhone" Type="nvarchar" MaxLength="250" />
           <Property Name="ProjectLocation" Type="nvarchar" MaxLength="500" />
-          <Property Name="ProjectStatus" Type="nvarchar" MaxLength="250" Nullable="false" />
-          <Property Name="AddedBy" Type="nvarchar" MaxLength="250" Nullable="false" />
-          <Property Name="Date" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProjectStatus" Type="nvarchar" MaxLength="250" />
+          <Property Name="AddedBy" Type="nvarchar" MaxLength="250" />
+          <Property Name="Date" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Training">
+          <Key>
+            <PropertyRef Name="TrainingId" />
+          </Key>
+          <Property Name="TrainingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CourseName" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="CourseDate" Type="nvarchar" MaxLength="50" />
+          <Property Name="ExpiryDate" Type="nvarchar" MaxLength="50" />
+          <Property Name="CompetencyLevel" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProviderName" Type="varchar" MaxLength="100" />
+          <Property Name="LastUpdateBy" Type="varchar" MaxLength="100" />
+          <Property Name="UpdateDate" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="WebUser">
           <Key>
@@ -373,10 +388,11 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <EntitySet Name="CompanyDocs" EntityType="Self.CompanyDocs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Functions" EntityType="Self.Functions" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="LinkProjects" EntityType="Self.LinkProjects" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LinkedProjects" EntityType="Self.LinkedProjects" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Profiles" EntityType="Self.Profiles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProjectDocs" EntityType="Self.ProjectDocs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Projects" EntityType="Self.Projects" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Training" EntityType="Self.Training" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WebUser" EntityType="Self.WebUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AggregatedCounter" EntityType="Self.AggregatedCounter" Schema="HangFire" store:Type="Tables" />
           <EntitySet Name="Hash" EntityType="Self.Hash" Schema="HangFire" store:Type="Tables" />
@@ -437,16 +453,6 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <Property Name="AddedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
-        <EntityType Name="LinkProject">
-          <Key>
-            <PropertyRef Name="ProjectCode" />
-            <PropertyRef Name="UserCode" />
-          </Key>
-          <Property Name="ProjectCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="UserCode" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="LinkedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-        </EntityType>
         <EntityType Name="ProjectDoc">
           <Key>
             <PropertyRef Name="ProjectDocId" />
@@ -457,22 +463,6 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <Property Name="ProjectDocName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ProjectDocType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ProjectDocDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="AddedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Project">
-          <Key>
-            <PropertyRef Name="ProjectId" />
-          </Key>
-          <Property Name="ProjectId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProjectCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ProjectName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ContactFirstName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ContactLastName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="ContactEmail" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="ContactPhone" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="ProjectLocation" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="ProjectStatus" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="AddedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
@@ -606,9 +596,7 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
         </Association>
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="CompanyDocs" EntityType="Self.CompanyDoc" />
-          <EntitySet Name="LinkProjects" EntityType="Self.LinkProject" />
           <EntitySet Name="ProjectDocs" EntityType="Self.ProjectDoc" />
-          <EntitySet Name="Projects" EntityType="Self.Project" />
           <EntitySet Name="Hashes" EntityType="Self.Hash" />
           <EntitySet Name="Jobs" EntityType="Self.Job" />
           <EntitySet Name="JobParameters" EntityType="Self.JobParameter" />
@@ -649,6 +637,9 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <EntitySet Name="Departments" EntityType="DBModelVigil.Department" />
           <EntitySet Name="Functions" EntityType="DBModelVigil.Function" />
           <EntitySet Name="Companies" EntityType="DBModelVigil.Company" />
+          <EntitySet Name="Projects" EntityType="DBModelVigil.Project" />
+          <EntitySet Name="Trainings" EntityType="DBModelVigil.Training" />
+          <EntitySet Name="LinkedProjects" EntityType="DBModelVigil.LinkedProject" />
         </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
@@ -804,6 +795,47 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <Property Name="ReportPerson2" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="ReportEmail2" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="ProjectId" />
+          </Key>
+          <Property Name="ProjectId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProjectName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ContactFirstName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ContactLastName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ContactEmail" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ContactPhone" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ProjectLocation" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ProjectStatus" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="AddedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Training">
+          <Key>
+            <PropertyRef Name="TrainingId" />
+          </Key>
+          <Property Name="TrainingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CourseName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="CourseDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ExpiryDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompetencyLevel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LastUpdateBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UpdateDate" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="LinkedProject">
+          <Key>
+            <PropertyRef Name="LinkedId" />
+          </Key>
+          <Property Name="LinkedId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserCode" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="LinkedBy" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -824,16 +856,6 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="LinkProjects">
-            <EntityTypeMapping TypeName="DBModelVigil.LinkProject">
-              <MappingFragment StoreEntitySet="LinkProjects">
-                <ScalarProperty Name="ProjectCode" ColumnName="ProjectCode" />
-                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
-                <ScalarProperty Name="LinkedBy" ColumnName="LinkedBy" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ProjectDocs">
             <EntityTypeMapping TypeName="DBModelVigil.ProjectDoc">
               <MappingFragment StoreEntitySet="ProjectDocs">
@@ -843,23 +865,6 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
                 <ScalarProperty Name="ProjectDocName" ColumnName="ProjectDocName" />
                 <ScalarProperty Name="ProjectDocType" ColumnName="ProjectDocType" />
                 <ScalarProperty Name="ProjectDocDescription" ColumnName="ProjectDocDescription" />
-                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Projects">
-            <EntityTypeMapping TypeName="DBModelVigil.Project">
-              <MappingFragment StoreEntitySet="Projects">
-                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
-                <ScalarProperty Name="ProjectCode" ColumnName="ProjectCode" />
-                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
-                <ScalarProperty Name="ContactFirstName" ColumnName="ContactFirstName" />
-                <ScalarProperty Name="ContactLastName" ColumnName="ContactLastName" />
-                <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
-                <ScalarProperty Name="ContactPhone" ColumnName="ContactPhone" />
-                <ScalarProperty Name="ProjectLocation" ColumnName="ProjectLocation" />
-                <ScalarProperty Name="ProjectStatus" ColumnName="ProjectStatus" />
                 <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
               </MappingFragment>
@@ -1093,6 +1098,50 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
                 <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
                 <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
                 <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projects">
+            <EntityTypeMapping TypeName="DBModelVigil.Project">
+              <MappingFragment StoreEntitySet="Projects">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+                <ScalarProperty Name="ProjectStatus" ColumnName="ProjectStatus" />
+                <ScalarProperty Name="ProjectLocation" ColumnName="ProjectLocation" />
+                <ScalarProperty Name="ContactPhone" ColumnName="ContactPhone" />
+                <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
+                <ScalarProperty Name="ContactLastName" ColumnName="ContactLastName" />
+                <ScalarProperty Name="ContactFirstName" ColumnName="ContactFirstName" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="ProjectCode" ColumnName="ProjectCode" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Trainings">
+            <EntityTypeMapping TypeName="DBModelVigil.Training">
+              <MappingFragment StoreEntitySet="Training">
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="LastUpdateBy" ColumnName="LastUpdateBy" />
+                <ScalarProperty Name="ProviderName" ColumnName="ProviderName" />
+                <ScalarProperty Name="CompetencyLevel" ColumnName="CompetencyLevel" />
+                <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+                <ScalarProperty Name="CourseDate" ColumnName="CourseDate" />
+                <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="TrainingId" ColumnName="TrainingId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LinkedProjects">
+            <EntityTypeMapping TypeName="DBModelVigil.LinkedProject">
+              <MappingFragment StoreEntitySet="LinkedProjects">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="LinkedBy" ColumnName="LinkedBy" />
+                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+                <ScalarProperty Name="ProjectCode" ColumnName="ProjectCode" />
+                <ScalarProperty Name="LinkedId" ColumnName="LinkedId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
