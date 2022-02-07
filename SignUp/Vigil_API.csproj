@@ -255,6 +255,7 @@
     <Compile Include="Controllers\ProjectDocsController.cs" />
     <Compile Include="Controllers\ProjectsByCompanyIdController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
+    <Compile Include="Controllers\TrainingByCompanyIdController.cs" />
     <Compile Include="Controllers\TrainingByUserIdController.cs" />
     <Compile Include="Controllers\TrainingsController.cs" />
     <Compile Include="Controllers\UserController.cs" />

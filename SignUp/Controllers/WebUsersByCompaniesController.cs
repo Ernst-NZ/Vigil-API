@@ -36,7 +36,6 @@ namespace SignUp.Controllers
           Left Join Departments on Departments.DepartmentId = WebUser.UserDepartmentCode
           Left Join Functions on WebUser.UserFunctionCode = Functions.FunctionId
           left join LinkedProjects on WebUser.userId = LinkedProjects.UserCode
-          left join Projects on LinkedProjects.ProjectCode = Projects.ProjectCode
           Left Join Training on Training.UserId = WebUser.UserId
         Where Company.CompanyId = '" + id + "'  " +
         "Group by webUser.UserId, " +
