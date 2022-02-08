@@ -260,6 +260,7 @@
     <Compile Include="Controllers\TrainingsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\WebUsersByCompaniesController.cs" />
+    <Compile Include="Controllers\WebUsersByUserIdController.cs" />
     <Compile Include="Controllers\WebUsersController.cs" />
     <Compile Include="Controllers\WebUserUpdateStatusesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -468,7 +469,9 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\WebUsersById\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
