@@ -1,16 +1,11 @@
-﻿using SignUp.Models;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 namespace SignUp.Controllers
-{  
+{
     public class WebUsersByCompaniesController : ApiController
     {
     [HttpGet]
@@ -24,7 +19,7 @@ namespace SignUp.Controllers
     	    UserEmail,
         	UserPhoneNumber,
         	DepartmentName,
-          FunctionName,
+            FunctionName,
         	UserNotActive,
         	Profiles.ProfileName,
         	Company.CompanyName,
@@ -36,7 +31,6 @@ namespace SignUp.Controllers
           Left Join Departments on Departments.DepartmentId = WebUser.UserDepartmentCode
           Left Join Functions on WebUser.UserFunctionCode = Functions.FunctionId
           left join LinkedProjects on WebUser.userId = LinkedProjects.UserCode
-          left join Projects on LinkedProjects.ProjectCode = Projects.ProjectCode
           Left Join Training on Training.UserId = WebUser.UserId
         Where Company.CompanyId = '" + id + "'  " +
         "Group by webUser.UserId, " +
