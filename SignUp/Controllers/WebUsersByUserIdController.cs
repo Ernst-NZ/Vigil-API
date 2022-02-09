@@ -24,7 +24,7 @@ namespace SignUp.Controllers
     	    UserEmail,
         	UserPhoneNumber,
         	DepartmentName,
-          FunctionName,
+            FunctionName,
         	UserNotActive,
         	Profiles.ProfileName,
         	Company.CompanyName,
