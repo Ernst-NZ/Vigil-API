@@ -50,5 +50,6 @@ namespace SignUp.Models
         public virtual DbSet<Project> Projects { get; set; }
         public virtual DbSet<Training> Trainings { get; set; }
         public virtual DbSet<LinkedProject> LinkedProjects { get; set; }
+        public virtual DbSet<FileData> FileDatas { get; set; }
     }
 }

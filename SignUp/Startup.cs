@@ -20,7 +20,6 @@ namespace SignUp
 
       app.UseCors(CorsOptions.AllowAll);
 
-
       OAuthAuthorizationServerOptions option = new OAuthAuthorizationServerOptions
       {
         TokenEndpointPath = new PathString("/token"),

@@ -243,10 +243,13 @@
     <Compile Include="Controllers\DepartmentsByCompaniesController.cs" />
     <Compile Include="Controllers\DepartmentsController.cs" />
     <Compile Include="Controllers\EmailController.cs" />
-    <Compile Include="Controllers\fileUploadController.cs" />
+    <Compile Include="Controllers\FilemanagerController.cs" />
+    <Compile Include="Controllers\fileUploadControllerOld.cs" />
     <Compile Include="Controllers\FunctionsByCompaniesController.cs" />
     <Compile Include="Controllers\FunctionsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImageController.cs" />
+    <Compile Include="Controllers\ImagesGetController.cs" />
     <Compile Include="Controllers\LinkedProjectsByUsernameController.cs" />
     <Compile Include="Controllers\LinkedProjectsController.cs" />
     <Compile Include="Controllers\LinkedProjectsOutstandingForUserNameController.cs" />
@@ -299,6 +302,11 @@
     </Compile>
     <Compile Include="Models\EModel.cs" />
     <Compile Include="Models\Enc.cs" />
+    <Compile Include="Models\FileData.cs">
+      <DependentUpon>Vigil.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FileModel.cs" />
+    <Compile Include="Models\FileRecord.cs" />
     <Compile Include="Models\Function.cs">
       <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>
@@ -470,6 +478,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="image\" />
     <Folder Include="Views\WebUsersById\" />
   </ItemGroup>
   <ItemGroup>

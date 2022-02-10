@@ -9,7 +9,8 @@ using System.IO;
 
 namespace SignUp.Controllers
 {
-  public class fileUploadController : ApiController
+    [AllowAnonymous]
+  public class fileUploadControllerOld : ApiController
   {
 
 

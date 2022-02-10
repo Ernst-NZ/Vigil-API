@@ -35,6 +35,7 @@
         <EntityTypeShape EntityType="DBModelVigil.Project" Width="1.5" PointX="14.375" PointY="6.75" />
         <EntityTypeShape EntityType="DBModelVigil.Training" Width="1.5" PointX="5.375" PointY="14.75" />
         <EntityTypeShape EntityType="DBModelVigil.LinkedProject" Width="1.5" PointX="5.375" PointY="4.75" />
+        <EntityTypeShape EntityType="DBModelVigil.FileData" Width="1.5" PointX="7.375" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
