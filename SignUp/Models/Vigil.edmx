@@ -106,10 +106,16 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FileName" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="FileExtension" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="MimeType" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="FilePath" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="ParentId" Type="int" />
+          <Property Name="ParentName" Type="nvarchar" MaxLength="250" />
+          <Property Name="SubFolder" Type="nvarchar" MaxLength="250" />
+          <Property Name="FileDescription" Type="nvarchar" MaxLength="500" />
+          <Property Name="FileTopic" Type="nvarchar" MaxLength="250" />
+          <Property Name="FileName" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="FileExtension" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="FileSize" Type="nvarchar" MaxLength="50" />
+          <Property Name="AddedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="Date" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="Functions">
           <Key>
@@ -166,6 +172,13 @@
           <Property Name="ProjectStatus" Type="nvarchar" MaxLength="250" />
           <Property Name="AddedBy" Type="nvarchar" MaxLength="250" />
           <Property Name="Date" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="RawData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="RawFile" Type="varbinary(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="Training">
           <Key>
@@ -403,6 +416,7 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <EntitySet Name="Profiles" EntityType="Self.Profiles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProjectDocs" EntityType="Self.ProjectDocs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Projects" EntityType="Self.Projects" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RawData" EntityType="Self.RawData" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Training" EntityType="Self.Training" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WebUser" EntityType="Self.WebUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AggregatedCounter" EntityType="Self.AggregatedCounter" Schema="HangFire" store:Type="Tables" />
@@ -651,6 +665,7 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <EntitySet Name="Projects" EntityType="DBModelVigil.Project" />
           <EntitySet Name="Trainings" EntityType="DBModelVigil.Training" />
           <EntitySet Name="LinkedProjects" EntityType="DBModelVigil.LinkedProject" />
+          <EntitySet Name="RawDatas" EntityType="DBModelVigil.RawData" />
           <EntitySet Name="FileDatas" EntityType="DBModelVigil.FileData" />
         </EntityContainer>
         <EntityType Name="AspNetRole">
@@ -848,15 +863,28 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <Property Name="LinkedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="RawData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="RawFile" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+        </EntityType>
         <EntityType Name="FileData">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FileName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="FileExtension" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MimeType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="FilePath" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ParentId" Type="Int32" />
+          <Property Name="ParentName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="SubFolder" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="FileDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="FileTopic" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="FileName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="FileExtension" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="FileSize" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AddedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1167,13 +1195,27 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="RawDatas">
+            <EntityTypeMapping TypeName="DBModelVigil.RawData">
+              <MappingFragment StoreEntitySet="RawData">
+                <ScalarProperty Name="RawFile" ColumnName="RawFile" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="FileDatas">
             <EntityTypeMapping TypeName="DBModelVigil.FileData">
               <MappingFragment StoreEntitySet="FileData">
-                <ScalarProperty Name="FilePath" ColumnName="FilePath" />
-                <ScalarProperty Name="MimeType" ColumnName="MimeType" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+                <ScalarProperty Name="FileSize" ColumnName="FileSize" />
                 <ScalarProperty Name="FileExtension" ColumnName="FileExtension" />
                 <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="FileTopic" ColumnName="FileTopic" />
+                <ScalarProperty Name="FileDescription" ColumnName="FileDescription" />
+                <ScalarProperty Name="SubFolder" ColumnName="SubFolder" />
+                <ScalarProperty Name="ParentName" ColumnName="ParentName" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

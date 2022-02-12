@@ -12,18 +12,9 @@ namespace SignUp.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class FileData
+    public partial class RawData
     {
         public int Id { get; set; }
-        public Nullable<int> ParentId { get; set; }
-        public string ParentName { get; set; }
-        public string SubFolder { get; set; }
-        public string FileDescription { get; set; }
-        public string FileTopic { get; set; }
-        public string FileName { get; set; }
-        public string FileExtension { get; set; }
-        public string FileSize { get; set; }
-        public string AddedBy { get; set; }
-        public string Date { get; set; }
+        public byte[] RawFile { get; set; }
     }
 }
