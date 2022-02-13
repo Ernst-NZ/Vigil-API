@@ -42,9 +42,10 @@ namespace SignUp.Controllers
                               ,Projects.ProjectStatus
                               ,Projects.AddedBy
                               ,Projects.Date
-	                          ,count(PD.ProjectDocId) as Docs
+	                          ,count(FD.Id) as Docs
                           FROM Projects
-                            inner Join ProjectDocs as PD on PD.ProjectCode = Projects.ProjectId
+                            Left Join FileData as FD on FD.ParentId = Projects.ProjectId 
+                                 AND FD.ParentName = 'Project'   
                           Where Projects.CompanyId = " + id + " " +
                           "Group by Projects.ProjectId" +
                                ", Projects.ProjectCode" +
