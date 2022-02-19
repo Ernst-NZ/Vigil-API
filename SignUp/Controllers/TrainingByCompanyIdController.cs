@@ -22,13 +22,13 @@ namespace SignUp.Controllers
                       user.UserLastName,
                       train.TrainingId,
                       train.UserId,
-                      train.CourseName, 
-                      train.CourseDate, 
-                      train.ExpiryDate,
-                      train.CompetencyLevel,
-                      train.ProviderName,
+                      CourseName = train.CourseName ?? "", 
+                      CourseDate = train.CourseDate ?? "", 
+                      ExpiryDate = train.ExpiryDate ?? "",
+                      CompetencyLevel = train.CompetencyLevel ?? "",
+                      ProviderName = train.ProviderName ?? "",
                       train.LastUpdateBy,
-                      train.UpdateDate
+                      UpdateDate = train.UpdateDate ?? "",
                     };
       companyTraining.OrderBy(x => x.UserFirstName).ThenBy(z => z.CourseName) ;
       if (companyTraining == null)

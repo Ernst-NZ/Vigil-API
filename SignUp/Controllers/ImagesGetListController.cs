@@ -21,7 +21,19 @@ namespace SignUp.Controllers
 
             var imageFiles = from files in db.FileDatas
                              where files.ParentName == ParentName && files.ParentId == ParentId
-                             select files;
+                             select new { 
+                                files.Id,
+                                files.ParentId,
+                                files.ParentName,
+                                SubFolder = files.SubFolder ?? " ",
+                                FileDescription = files.FileDescription ?? " ",
+                                files.FileTopic,
+                                files.FileName,
+                                files.FileExtension,
+                                files.FileSize,
+                                files.AddedBy,
+                             files.Date
+                             };
             imageFiles.OrderBy(x => x.SubFolder).ThenBy(z => z.FileTopic).ThenBy(z => z.FileDescription);
             if (imageFiles == null)
             {

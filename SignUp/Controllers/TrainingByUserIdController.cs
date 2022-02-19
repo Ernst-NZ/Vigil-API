@@ -15,8 +15,19 @@ namespace SignUp.Controllers
     public IHttpActionResult GetTrainingByUserId(string id)
     {
       var trainings = from i in db.Trainings
-                     where i.UserId == id
-                     select i;
+                      where i.UserId == id
+                      select new
+                      {
+                        i.UserId,
+                        i.TrainingId,
+                        CompetencyLevel = i.CompetencyLevel ?? "",
+                        ExpiryDate = i.ExpiryDate ?? "",
+                        UpdateDate = i.UpdateDate ?? "",
+                        LastUpdateBy = i.LastUpdateBy ?? "",
+                        CourseDate = i.CourseDate ?? "",
+                        CourseName = i.CourseName ?? "",
+                        ProviderName = i.ProviderName ?? ""
+                      };
       trainings.OrderBy(x => x.CourseName);
       if (trainings == null)
       {

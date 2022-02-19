@@ -34,14 +34,14 @@ namespace SignUp.Controllers
                               ,Projects.ProjectCode
                               ,Projects.CompanyId
                               ,Projects.ProjectName
-                              ,Projects.ContactFirstName
-                              ,Projects.ContactLastName
-                              ,Projects.ContactEmail
-                              ,Projects.ContactPhone
-                              ,Projects.ProjectLocation
-                              ,Projects.ProjectStatus
-                              ,Projects.AddedBy
-                              ,Projects.Date
+                              ,coalesce(Projects.ContactFirstName, '') ContactFirstName
+                              ,coalesce(Projects.ContactLastName, '') ContactLastName
+                              ,coalesce(Projects.ContactEmail, '') ContactEmail
+                              ,coalesce(Projects.ContactPhone, '') ContactPhone
+                              ,coalesce(Projects.ProjectLocation, '') ProjectLocation
+                              ,coalesce(Projects.ProjectStatus, '') ProjectStatus
+                              ,coalesce(Projects.AddedBy, '') AddedBy
+                              ,coalesce(Projects.Date, '') Date
 	                          ,count(FD.Id) as Docs
                           FROM Projects
                             Left Join FileData as FD on FD.ParentId = Projects.ProjectId 
