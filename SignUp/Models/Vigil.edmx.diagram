@@ -31,12 +31,15 @@
         <EntityTypeShape EntityType="DBModelVigil.Profile" Width="1.5" PointX="3.375" PointY="3.75" />
         <EntityTypeShape EntityType="DBModelVigil.Department" Width="1.5" PointX="5.375" PointY="7.75" />
         <EntityTypeShape EntityType="DBModelVigil.Function" Width="1.5" PointX="7.375" PointY="8.75" />
-        <EntityTypeShape EntityType="DBModelVigil.Company" Width="1.5" PointX="17.125" PointY="6.25" />
         <EntityTypeShape EntityType="DBModelVigil.Project" Width="1.5" PointX="14.375" PointY="6.75" />
         <EntityTypeShape EntityType="DBModelVigil.Training" Width="1.5" PointX="8.125" PointY="4.25" />
         <EntityTypeShape EntityType="DBModelVigil.LinkedProject" Width="1.5" PointX="5.375" PointY="4.75" />
         <EntityTypeShape EntityType="DBModelVigil.RawData" Width="1.5" PointX="5.375" PointY="11.75" />
         <EntityTypeShape EntityType="DBModelVigil.FileData" Width="1.5" PointX="7.375" PointY="11.75" />
+        <EntityTypeShape EntityType="DBModelVigil.CheckLogFull" Width="1.5" PointX="9.75" PointY="11.75" />
+        <EntityTypeShape EntityType="DBModelVigil.Company" Width="1.5" PointX="11.75" PointY="11.75" />
+        <EntityTypeShape EntityType="DBModelVigil.Image" Width="1.5" PointX="0.75" PointY="12.75" />
+        <EntityTypeShape EntityType="DBModelVigil.Incident" Width="1.5" PointX="2.75" PointY="12.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -15,6 +15,8 @@ namespace SignUp.Models
     public partial class Company
     {
         public int CompanyId { get; set; }
+        public Nullable<bool> IsParentCompany { get; set; }
+        public int ParentCode { get; set; }
         public string CompanyCode { get; set; }
         public string CompanyName { get; set; }
         public string CompanyAddress1 { get; set; }

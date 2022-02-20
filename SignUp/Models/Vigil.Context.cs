@@ -46,11 +46,14 @@ namespace SignUp.Models
         public virtual DbSet<Profile> Profiles { get; set; }
         public virtual DbSet<Department> Departments { get; set; }
         public virtual DbSet<Function> Functions { get; set; }
-        public virtual DbSet<Company> Companies { get; set; }
         public virtual DbSet<Project> Projects { get; set; }
         public virtual DbSet<Training> Trainings { get; set; }
         public virtual DbSet<LinkedProject> LinkedProjects { get; set; }
         public virtual DbSet<RawData> RawDatas { get; set; }
         public virtual DbSet<FileData> FileDatas { get; set; }
+        public virtual DbSet<CheckLogFull> CheckLogFulls { get; set; }
+        public virtual DbSet<Company> Companies { get; set; }
+        public virtual DbSet<Image> Images { get; set; }
+        public virtual DbSet<Incident> Incidents { get; set; }
     }
 }
