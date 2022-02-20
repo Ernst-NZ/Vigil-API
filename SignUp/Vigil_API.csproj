@@ -237,8 +237,8 @@
     <Compile Include="Controllers\AspNetRolesController.cs" />
     <Compile Include="Controllers\AspNetUserRolesController.cs" />
     <Compile Include="Controllers\AspNetUsersController.cs" />
-    <Compile Include="Controllers\Companies1Controller.cs" />
-    <Compile Include="Controllers\CompaniesController.cs" />
+    <Compile Include="Controllers\Companies\CompaniesParentsController.cs" />
+    <Compile Include="Controllers\Companies\CompaniesController.cs" />
     <Compile Include="Controllers\CompanyDocsController.cs" />
     <Compile Include="Controllers\DepartmentsByCompaniesController.cs" />
     <Compile Include="Controllers\DepartmentsController.cs" />
@@ -494,7 +494,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controllers\Companies\" />
     <Folder Include="Views\WebUsersById\" />
   </ItemGroup>
   <ItemGroup>

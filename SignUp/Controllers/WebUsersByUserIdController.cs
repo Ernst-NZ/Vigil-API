@@ -28,8 +28,8 @@ namespace SignUp.Controllers
         	UserNotActive,
         	Profiles.ProfileName,
         	Company.CompanyName,
-        	count(linkedprojects.ProjectCode) as Projects,
-        	count(Training.TrainingId) as Training
+        	count(distinct linkedprojects.ProjectCode) as Projects,
+        	count(distinct Training.TrainingId) as Training
         from WebUser	
           inner join Company on WebUser.UserCompanyCode = Company.CompanyCode
           inner join profiles on WebUser.UserProfileCode = Profiles.ProfileLevel
