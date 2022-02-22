@@ -39,7 +39,7 @@ namespace SignUp.Controllers
 
     //  return Ok(trainings);
     //}
-    public IHttpActionResult TrainingByCompanyId(string id)
+    public IHttpActionResult TrainingByUserCode(string id)
     {
       DataTable dataTable = new DataTable();
       string connString = ConfigurationManager.ConnectionStrings["IdentityDemoConnection"].ConnectionString;
@@ -60,7 +60,7 @@ namespace SignUp.Controllers
                             Inner Join Training train on train.UserId = WebUser.UserId
                             left Join FileData as FD on FD.ParentId = train.TrainingId 
                                  AND FD.ParentName = 'Training'   
-                          Where WebUser.UserId = " + id + " " +
+                          Where WebUser.Username = '" + id + "' " +
                          "Group by WebUser.UserFirstName " +
                               ", WebUser.UserLastName " +
                               ",train.TrainingId " +
