@@ -259,9 +259,12 @@
           <Property Name="Acknowledged" Type="bit" />
           <Property Name="AcknowledgedBy" Type="nvarchar" MaxLength="50" />
           <Property Name="AcknowledgeDate" Type="nvarchar" MaxLength="50" />
+          <Property Name="ManagementComments" Type="nvarchar(max)" />
           <Property Name="ReportDate" Type="nvarchar" MaxLength="250" />
           <Property Name="ReportableIncident" Type="bit" />
           <Property Name="Reported" Type="bit" />
+          <Property Name="ReportedBy" Type="varchar" MaxLength="250" />
+          <Property Name="ReportedDate" Type="varchar" MaxLength="250" />
           <Property Name="CompanyCode" Type="nvarchar" MaxLength="50" />
           <Property Name="AddedBy" Type="nvarchar" MaxLength="125" />
         </EntityType>
@@ -1166,9 +1169,12 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <Property Name="Acknowledged" Type="Boolean" />
           <Property Name="AcknowledgedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="AcknowledgeDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ManagementComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ReportDate" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="ReportableIncident" Type="Boolean" />
           <Property Name="Reported" Type="Boolean" />
+          <Property Name="ReportedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ReportedDate" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="CompanyCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="AddedBy" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
         </EntityType>
@@ -1623,9 +1629,12 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
               <MappingFragment StoreEntitySet="Incidents">
                 <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
                 <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="ReportedDate" ColumnName="ReportedDate" />
+                <ScalarProperty Name="ReportedBy" ColumnName="ReportedBy" />
                 <ScalarProperty Name="Reported" ColumnName="Reported" />
                 <ScalarProperty Name="ReportableIncident" ColumnName="ReportableIncident" />
                 <ScalarProperty Name="ReportDate" ColumnName="ReportDate" />
+                <ScalarProperty Name="ManagementComments" ColumnName="ManagementComments" />
                 <ScalarProperty Name="AcknowledgeDate" ColumnName="AcknowledgeDate" />
                 <ScalarProperty Name="AcknowledgedBy" ColumnName="AcknowledgedBy" />
                 <ScalarProperty Name="Acknowledged" ColumnName="Acknowledged" />

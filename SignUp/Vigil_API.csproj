@@ -239,17 +239,18 @@
     <Compile Include="Controllers\AspNetUsersController.cs" />
     <Compile Include="Controllers\Companies\CompaniesParentsController.cs" />
     <Compile Include="Controllers\Companies\CompaniesController.cs" />
-    <Compile Include="Controllers\CompanyDocsController.cs" />
-    <Compile Include="Controllers\DepartmentsByCompaniesController.cs" />
-    <Compile Include="Controllers\DepartmentsController.cs" />
+    <Compile Include="Controllers\Companies\CompanyDocsController.cs" />
+    <Compile Include="Controllers\Departments\DepartmentsByCompaniesController.cs" />
+    <Compile Include="Controllers\Departments\DepartmentsController.cs" />
     <Compile Include="Controllers\EmailController.cs" />
-    <Compile Include="Controllers\FileDatasController.cs" />
-    <Compile Include="Controllers\fileUploadControllerOld.cs" />
-    <Compile Include="Controllers\FunctionsByCompaniesController.cs" />
-    <Compile Include="Controllers\FunctionsController.cs" />
+    <Compile Include="Controllers\FileUpload\FileDatasController.cs" />
+    <Compile Include="Controllers\FileUpload\fileUploadControllerOld.cs" />
+    <Compile Include="Controllers\Functions\FunctionsByCompaniesController.cs" />
+    <Compile Include="Controllers\Functions\FunctionsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ImageController.cs" />
-    <Compile Include="Controllers\Incidents\ImagesController.cs" />
+    <Compile Include="Controllers\FileUpload\ImageController.cs" />
+    <Compile Include="Controllers\FileUpload\ImagesController.cs" />
+    <Compile Include="Controllers\Incidents\IncidentsController.cs" />
     <Compile Include="Models\CheckLogFull.cs">
       <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>
@@ -257,24 +258,24 @@
       <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\imageSearch.cs" />
-    <Compile Include="Controllers\ImagesGetListController.cs" />
-    <Compile Include="Controllers\LinkedProjectsByUsernameController.cs" />
-    <Compile Include="Controllers\LinkedProjectsController.cs" />
-    <Compile Include="Controllers\LinkedProjectsOutstandingForUserNameController.cs" />
+    <Compile Include="Controllers\FileUpload\ImagesGetListController.cs" />
+    <Compile Include="Controllers\Projects\LinkedProjectsByUsernameController.cs" />
+    <Compile Include="Controllers\Projects\LinkedProjectsController.cs" />
+    <Compile Include="Controllers\Projects\LinkedProjectsOutstandingForUserNameController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\ProfilesController.cs" />
-    <Compile Include="Controllers\ProjectDocsController.cs" />
-    <Compile Include="Controllers\ProjectsByCompanyIdController.cs" />
-    <Compile Include="Controllers\ProjectsController.cs" />
-    <Compile Include="Controllers\RawDatasController.cs" />
-    <Compile Include="Controllers\TrainingByCompanyIdController.cs" />
-    <Compile Include="Controllers\TrainingByUserIdController.cs" />
-    <Compile Include="Controllers\TrainingsController.cs" />
-    <Compile Include="Controllers\UserController.cs" />
-    <Compile Include="Controllers\WebUsersByCompaniesController.cs" />
-    <Compile Include="Controllers\WebUsersByUserIdController.cs" />
-    <Compile Include="Controllers\WebUsersController.cs" />
-    <Compile Include="Controllers\WebUserUpdateStatusesController.cs" />
+    <Compile Include="Controllers\Users\ProfilesController.cs" />
+    <Compile Include="Controllers\Projects\ProjectDocsController.cs" />
+    <Compile Include="Controllers\Projects\ProjectsByCompanyIdController.cs" />
+    <Compile Include="Controllers\Projects\ProjectsController.cs" />
+    <Compile Include="Controllers\FileUpload\RawDatasController.cs" />
+    <Compile Include="Controllers\Training\TrainingByCompanyIdController.cs" />
+    <Compile Include="Controllers\Training\TrainingByUserIdController.cs" />
+    <Compile Include="Controllers\Training\TrainingsController.cs" />
+    <Compile Include="Controllers\Users\UserController.cs" />
+    <Compile Include="Controllers\Users\WebUsersByCompaniesController.cs" />
+    <Compile Include="Controllers\Users\WebUsersByUserIdController.cs" />
+    <Compile Include="Controllers\Users\WebUsersController.cs" />
+    <Compile Include="Controllers\Users\WebUserUpdateStatusesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -367,7 +368,7 @@
     <Compile Include="Models\State.cs">
       <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\UserNameDetailsController.cs" />
+    <Compile Include="Controllers\Users\UserNameDetailsController.cs" />
     <Compile Include="Models\Training.cs">
       <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>

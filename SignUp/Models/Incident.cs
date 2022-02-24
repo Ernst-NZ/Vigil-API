@@ -34,9 +34,12 @@ namespace SignUp.Models
         public Nullable<bool> Acknowledged { get; set; }
         public string AcknowledgedBy { get; set; }
         public string AcknowledgeDate { get; set; }
+        public string ManagementComments { get; set; }
         public string ReportDate { get; set; }
         public Nullable<bool> ReportableIncident { get; set; }
         public Nullable<bool> Reported { get; set; }
+        public string ReportedBy { get; set; }
+        public string ReportedDate { get; set; }
         public string CompanyCode { get; set; }
         public string AddedBy { get; set; }
     }
