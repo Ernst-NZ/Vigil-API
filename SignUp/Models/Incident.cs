@@ -20,7 +20,7 @@ namespace SignUp.Models
         public string IncidentDate { get; set; }
         public string IncidentTime { get; set; }
         public string PartyName { get; set; }
-        public bool IncidentInjuries { get; set; }
+        public Nullable<bool> IncidentInjuries { get; set; }
         public string TreatmentType { get; set; }
         public string Treatment { get; set; }
         public string UrgentAction { get; set; }
@@ -40,7 +40,7 @@ namespace SignUp.Models
         public Nullable<bool> Reported { get; set; }
         public string ReportedBy { get; set; }
         public string ReportedDate { get; set; }
-        public string CompanyCode { get; set; }
+        public int CompanyId { get; set; }
         public string AddedBy { get; set; }
     }
 }

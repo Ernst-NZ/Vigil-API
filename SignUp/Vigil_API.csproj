@@ -250,6 +250,9 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\FileUpload\ImageController.cs" />
     <Compile Include="Controllers\FileUpload\ImagesController.cs" />
+    <Compile Include="Controllers\Images\GetImagesByRefAndIdsController.cs" />
+    <Compile Include="Controllers\Images\SATSImagesController.cs" />
+    <Compile Include="Controllers\Incidents\IncidentsByCompanyIdsController.cs" />
     <Compile Include="Controllers\Incidents\IncidentsController.cs" />
     <Compile Include="Models\CheckLogFull.cs">
       <DependentUpon>Vigil.tt</DependentUpon>
@@ -326,6 +329,7 @@
       <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\imagesParams.cs" />
     <Compile Include="Models\Incident.cs">
       <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>
@@ -354,6 +358,9 @@
       <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RawData.cs">
+      <DependentUpon>Vigil.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SATSImage.cs">
       <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Schema.cs">
