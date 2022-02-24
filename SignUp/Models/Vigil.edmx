@@ -240,16 +240,16 @@
             <PropertyRef Name="IncidentId" />
           </Key>
           <Property Name="IncidentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IncidentType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IncidentType" Type="nvarchar" MaxLength="50" />
           <Property Name="IncidentLocation" Type="nvarchar(max)" Nullable="false" />
           <Property Name="IncidentDate" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="IncidentTime" Type="nvarchar" MaxLength="50" />
           <Property Name="PartyName" Type="nvarchar(max)" />
-          <Property Name="IncidentInjuries" Type="bit" Nullable="false" />
-          <Property Name="TreatmentType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IncidentInjuries" Type="bit" />
+          <Property Name="TreatmentType" Type="nvarchar" MaxLength="50" />
           <Property Name="Treatment" Type="nvarchar(max)" />
           <Property Name="UrgentAction" Type="nvarchar(max)" />
-          <Property Name="IncidentSeverity" Type="nvarchar" MaxLength="125" Nullable="false" />
+          <Property Name="IncidentSeverity" Type="nvarchar" MaxLength="125" />
           <Property Name="IncidentDescription" Type="nvarchar(max)" Nullable="false" />
           <Property Name="TreatmentBy" Type="nvarchar(max)" />
           <Property Name="Status" Type="bit" Nullable="false" />
@@ -265,7 +265,7 @@
           <Property Name="Reported" Type="bit" />
           <Property Name="ReportedBy" Type="varchar" MaxLength="250" />
           <Property Name="ReportedDate" Type="varchar" MaxLength="250" />
-          <Property Name="CompanyCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="CompanyId" Type="int" Nullable="false" />
           <Property Name="AddedBy" Type="nvarchar" MaxLength="125" />
         </EntityType>
         <EntityType Name="LinkedProjects">
@@ -322,6 +322,18 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="RawFile" Type="varbinary(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SATSImages">
+          <Key>
+            <PropertyRef Name="ImageId" />
+          </Key>
+          <Property Name="ImageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ImageCat" Type="nvarchar" MaxLength="150" />
+          <Property Name="ReferenceId" Type="int" />
+          <Property Name="ImageUrl" Type="varbinary(max)" />
+          <Property Name="ImageNotes" Type="nvarchar(max)" />
+          <Property Name="UserCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="UploadDate" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Training">
           <Key>
@@ -563,6 +575,7 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <EntitySet Name="ProjectDocs" EntityType="Self.ProjectDocs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Projects" EntityType="Self.Projects" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RawData" EntityType="Self.RawData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SATSImages" EntityType="Self.SATSImages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Training" EntityType="Self.Training" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WebUser" EntityType="Self.WebUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AggregatedCounter" EntityType="Self.AggregatedCounter" Schema="HangFire" store:Type="Tables" />
@@ -815,6 +828,7 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <EntitySet Name="CheckLogFulls" EntityType="DBModelVigil.CheckLogFull" />
           <EntitySet Name="Companies" EntityType="DBModelVigil.Company" />
           <EntitySet Name="Images" EntityType="DBModelVigil.Image" />
+          <EntitySet Name="SATSImages" EntityType="DBModelVigil.SATSImage" />
           <EntitySet Name="Incidents" EntityType="DBModelVigil.Incident" />
         </EntityContainer>
         <EntityType Name="AspNetRole">
@@ -1145,21 +1159,33 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <Property Name="UserCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UploadDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="SATSImage">
+          <Key>
+            <PropertyRef Name="ImageId" />
+          </Key>
+          <Property Name="ImageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ImageCat" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ReferenceId" Type="Int32" />
+          <Property Name="ImageUrl" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ImageNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UploadDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="Incident">
           <Key>
             <PropertyRef Name="IncidentId" />
           </Key>
           <Property Name="IncidentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IncidentType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IncidentType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IncidentLocation" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IncidentDate" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IncidentTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PartyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IncidentInjuries" Type="Boolean" Nullable="false" />
-          <Property Name="TreatmentType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IncidentInjuries" Type="Boolean" />
+          <Property Name="TreatmentType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Treatment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="UrgentAction" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IncidentSeverity" Type="String" Nullable="false" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="IncidentSeverity" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
           <Property Name="IncidentDescription" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="TreatmentBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Status" Type="Boolean" Nullable="false" />
@@ -1175,7 +1201,7 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <Property Name="Reported" Type="Boolean" />
           <Property Name="ReportedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="ReportedDate" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="CompanyCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyId" Type="Int32" Nullable="false" />
           <Property Name="AddedBy" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
@@ -1624,11 +1650,24 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="SATSImages">
+            <EntityTypeMapping TypeName="DBModelVigil.SATSImage">
+              <MappingFragment StoreEntitySet="SATSImages">
+                <ScalarProperty Name="UploadDate" ColumnName="UploadDate" />
+                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+                <ScalarProperty Name="ImageNotes" ColumnName="ImageNotes" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="ReferenceId" ColumnName="ReferenceId" />
+                <ScalarProperty Name="ImageCat" ColumnName="ImageCat" />
+                <ScalarProperty Name="ImageId" ColumnName="ImageId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Incidents">
             <EntityTypeMapping TypeName="DBModelVigil.Incident">
               <MappingFragment StoreEntitySet="Incidents">
                 <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
-                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
                 <ScalarProperty Name="ReportedDate" ColumnName="ReportedDate" />
                 <ScalarProperty Name="ReportedBy" ColumnName="ReportedBy" />
                 <ScalarProperty Name="Reported" ColumnName="Reported" />
