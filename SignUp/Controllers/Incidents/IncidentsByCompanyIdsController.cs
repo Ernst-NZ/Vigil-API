@@ -11,34 +11,42 @@ namespace SignUp.Controllers.Incidents
     public IHttpActionResult IncidentsByCompanyId(int id)
     {
       var companyIncidents = from i in db.Incidents
-                            where i.CompanyId == id
+                             join w in db.WebUsers on i.AddedBy equals w.Username
+                             where i.CompanyId == id
                             select new
                             {
                               i.IncidentId,
-                              i.IncidentType,
-                              i.IncidentLocation,
                               i.IncidentDate,
                               IncidentTime = i.IncidentTime ?? "",
+                              i.IncidentLocation,
                               PartyName = i.PartyName ?? "",
                               i.IncidentInjuries,
-                              TreatmentType = i.TreatmentType ?? "",
-                              UrgentAction = i.UrgentAction ?? "",
-                              IncidentSeverity = i.IncidentSeverity ?? "",
                               i.IncidentDescription,
-                              TreatmentBy = i.TreatmentBy ?? "",
-                              i.Status,
-                              StatusDetail = i.StatusDetail ?? "",
+                              ReportDate = i.ReportDate ?? "",
+                              FirstReportBy = w.UserFirstName + " " + w.UserLastName ?? "",
                               i.EmailSent,
                               EmailTo = i.EmailTo ?? "",
+                              i.Status,
+                              StatusDetail = i.StatusDetail ?? "",
                               i.Acknowledged,
                               AcknowledgedBy = i.AcknowledgedBy ?? "",
                               AcknowledgeDate = i.AcknowledgeDate ?? "",
+                              IncidentType = i.IncidentType ?? "",
+                              TreatmentType = i.TreatmentType ?? "",
+                              Treatment = i.Treatment ?? "",
+                              TreatmentBy = i.TreatmentBy ?? "",
+                              UrgentAction = i.UrgentAction ?? "",
+                              IncidentSeverity = i.IncidentSeverity ?? "",
                               ManagementComments = i.ManagementComments ?? "",
-                              ReportDate = i.ReportDate ?? "",
+                              ManagementCommentsBy = i.ManagementCommentsBy ?? "",
+                              ManagementCommentsDate = i.ManagementCommentsDate ?? "",
                               i.ReportableIncident,
                               i.Reported,
                               ReportedBy = i.ReportedBy ?? "",
                               ReportedDate = i.ReportedDate ?? "",
+                              i.FeedbackToAffected,
+                              FeedbackDate = i.FeedbackDate ?? "",
+                              FeedbackBy = i.FeedbackBy ?? "", 
                               i.CompanyId,
                               AddedBy = i.AddedBy ?? "",
                             };
