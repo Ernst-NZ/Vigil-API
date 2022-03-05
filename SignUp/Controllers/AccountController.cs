@@ -441,7 +441,7 @@ namespace SignUp.Controllers
       string mailBody;
       string messageResult;
       //string EmailFrom = "admin@anbcounselling.co.nz";
-      string EmailFrom = "ernst@ezy.kiwi";
+      string EmailFrom = "admin@nzsats.co.nz";
 
       //string FilePath = "E:/_Git/AB/API 2/SignUp/Views/SignUp.html";
       var mappedPath = System.Web.Hosting.HostingEnvironment.MapPath("~/SignUp.html");
@@ -460,7 +460,7 @@ namespace SignUp.Controllers
 
 
       MailMessage mm = new MailMessage(EmailFrom, EmailTo);
-      MailAddress bcc = new MailAddress("ernst@hotmail.co.nz; anneke.bornman@yahoo.co.nz");
+      MailAddress bcc = new MailAddress("ernst@hotmail.co.nz;");
       mm.Bcc.Add(bcc);
 
       mm.Subject = "AnB Counselling Confirmation: " + client;
@@ -535,11 +535,11 @@ namespace SignUp.Controllers
           // Send an email with this link
           string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
          //     string callbackUrl = "http://localhost:4200/reset-password/userId=" + user.Id + "code=" + code;
-             string callbackUrl = "https://anbcounselling.co.nz/reset-password/userId=" + user.Id + "code=" + code;
+             string callbackUrl = "https://reflect.nzsats.co.nz/users/reset-password/userId=" + user.Id + "code=" + code;
 
           
          await UserManager.SendEmailAsync(user.Id, "Reset Password",
-          "<br><br><h3>Message From AnB Counselling.</h3><br><br><h4> Please reset your password by clicking <a href=\"" + callbackUrl + "\">here.</a></h4><br><br><h2>Kind Regards<br>The AnB Counselling Team</h2>");
+          "<br><br><h3>Message From NZ SATS.</h3><br><br><h4> Please reset your password by clicking <a href=\"" + callbackUrl + "\">here.</a></h4><br><br><h2>Kind Regards<br>The Nz SATS Counselling Team</h2>");
           return Ok("An email has been sent to your inbox.");
         }
         catch (Exception ex)
