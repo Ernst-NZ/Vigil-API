@@ -14,17 +14,20 @@ namespace SignUp.Controllers
  
       DataTable dataTable = new DataTable();
       string connString = ConfigurationManager.ConnectionStrings["IdentityDemoConnection"].ConnectionString;
-      string query = @"Select webuser.UserId,
-        	UserFirstName + ' ' + coalesce(UserLastName, '') as Username,
+      string query =
+        @"Select webuser.UserId,
+        	UserFirstName as Username,
+          UserLastName,
     	    UserEmail,
         	coalesce(UserPhoneNumber, '') UserPhoneNumber,
         	coalesce(DepartmentName, '') DepartmentName,
-            coalesce(FunctionName,'') FunctionName,
+          coalesce(FunctionName,'') FunctionName,
         	coalesce(UserNotActive, '0') UserNotActive,
         	Profiles.ProfileName,
         	Company.CompanyName,
         	count(distinct linkedprojects.ProjectCode) as Projects,
-        	count(distinct Training.TrainingId) as Training
+        	count(distinct Training.TrainingId) as Training,
+          1 as AppUser
         from WebUser	
           inner join Company on WebUser.UserCompanyCode = Company.CompanyCode
           inner join profiles on WebUser.UserProfileCode = Profiles.ProfileLevel
@@ -32,20 +35,39 @@ namespace SignUp.Controllers
           Left Join Functions on WebUser.UserFunctionCode = Functions.FunctionId
           left join LinkedProjects on WebUser.userId = LinkedProjects.UserCode
           Left Join Training on Training.UserId = WebUser.UserId
-        Where Company.CompanyId = '" + id + "'  " +
-        "Group by webUser.UserId, " +
+        Where Company.CompanyId = '" + id + "' " +
+        "Group by webUser.UserId,  " +
           "UserFirstName, " +
           "UserlastName, " +
           "UserEmail, " +
           "UserPhoneNumber, " +
           "UserDepartmentCode, " +
           "UserFunctionCode, " +
-           "UserProfileCode, " +
+          "UserProfileCode, " +
           "UserNotActive, " +
           "CompanyName, " +
           "ProfileName, " +
           "DepartmentName, " +
-          "FunctionName";
+          "FunctionName " +
+        "Union " +
+        "Select cast (StaffId as nvarchar(4)), " +
+          "StaffName + ' ' + coalesce(StaffSurName, '') as Username, " +
+          "StaffSurName, " +
+          "'', " +
+          "'', " +
+          "coalesce(DepartmentName, '') DepartmentName, " +
+          "'', " +
+          "coalesce(InActive, '0') UserNotActive, " +
+          "'', " +
+          "Company.CompanyName, " +
+          "'' as Projects, " +
+          "'' as Training, " +
+          "0 as AppUser " +
+        "from CompanyStaff " +
+          "inner join Company on CompanyStaff.CompanyCode = Company.CompanyCode " +
+          "Left Join Departments on Departments.DepartmentId = CompanyStaff.UserDepartmentCode " +
+        "Where Company.CompanyId = '" + id + "' " +
+        "Order By AppUser desc, Username ";
   
       SqlConnection conn = new SqlConnection(connString);
       SqlCommand cmd = new SqlCommand(query, conn);

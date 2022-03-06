@@ -254,7 +254,12 @@
     <Compile Include="Controllers\Images\SATSImagesController.cs" />
     <Compile Include="Controllers\Incidents\IncidentsByCompanyIdsController.cs" />
     <Compile Include="Controllers\Incidents\IncidentsController.cs" />
+    <Compile Include="Controllers\Users\CompanyStaffsController.cs" />
+    <Compile Include="Controllers\Users\CompanyUserUpdateStatusesController.cs" />
     <Compile Include="Models\CheckLogFull.cs">
+      <DependentUpon>Vigil.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CompanyStaff.cs">
       <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Image.cs">

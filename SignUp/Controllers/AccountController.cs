@@ -400,7 +400,7 @@ namespace SignUp.Controllers
         RequiredLength = 4
       };
 
-      confirmEmail(model.UserFirstName, model.Email, user.Id);
+     confirmEmail(model.UserFirstName, model.Email, user.Id);
 
       IdentityResult result = manager.Create(user, model.Password);
 
@@ -438,49 +438,49 @@ namespace SignUp.Controllers
 
     public static string confirmEmail(string client, string EmailTo, string Id)
     {
-      string mailBody;
-      string messageResult;
-      //string EmailFrom = "admin@anbcounselling.co.nz";
-      string EmailFrom = "admin@nzsats.co.nz";
+      //  string mailBody;
+      //  string messageResult;
+      //  //string EmailFrom = "admin@anbcounselling.co.nz";
+      //  string EmailFrom = "admin@nzsats.co.nz";
 
-      //string FilePath = "E:/_Git/AB/API 2/SignUp/Views/SignUp.html";
-      var mappedPath = System.Web.Hosting.HostingEnvironment.MapPath("~/SignUp.html");
+      //  //string FilePath = "E:/_Git/AB/API 2/SignUp/Views/SignUp.html";
+      //  var mappedPath = System.Web.Hosting.HostingEnvironment.MapPath("~/SignUp.html");
 
-      string FilePath = mappedPath; // "https://anbcounselling.co.nz/SignUp.html";
+      //  string FilePath = mappedPath; // "https://anbcounselling.co.nz/SignUp.html";
 
-      StreamReader str = new StreamReader(FilePath);
-      string MailText = str.ReadToEnd();
-      str.Close();
+      //  StreamReader str = new StreamReader(FilePath);
+      //  string MailText = str.ReadToEnd();
+      //  str.Close();
 
-      mailBody = MailText;
-      mailBody = mailBody.Replace("[userId]", Id);
-      mailBody = mailBody.Replace("[emailAddress]", EmailTo.Trim());
-      mailBody = mailBody.Replace("[newusername]", client.Trim());      
-      mailBody = mailBody.Replace("[blank]", "");
+      //  mailBody = MailText;
+      //  mailBody = mailBody.Replace("[userId]", Id);
+      //  mailBody = mailBody.Replace("[emailAddress]", EmailTo.Trim());
+      //  mailBody = mailBody.Replace("[newusername]", client.Trim());      
+      //  mailBody = mailBody.Replace("[blank]", "");
 
 
-      MailMessage mm = new MailMessage(EmailFrom, EmailTo);
-      MailAddress bcc = new MailAddress("ernst@hotmail.co.nz;");
-      mm.Bcc.Add(bcc);
+      //  MailMessage mm = new MailMessage(EmailFrom, EmailTo);
+      //  MailAddress bcc = new MailAddress("ernst@hotmail.co.nz;");
+      //  mm.Bcc.Add(bcc);
 
-      mm.Subject = "AnB Counselling Confirmation: " + client;
-      mm.Body = mailBody;
-      mm.IsBodyHtml = true;
-      try
-      {
-        SmtpClient smtp = new SmtpClient();
-        smtp.Send(mm);
+      //  mm.Subject = "AnB Counselling Confirmation: " + client;
+      //  mm.Body = mailBody;
+      //  mm.IsBodyHtml = true;
+      //  try
+      //  {
+      //    SmtpClient smtp = new SmtpClient();
+      //    smtp.Send(mm);
+      //  }
+      //  catch (Exception e)
+      //  {
+      //    Console.Write(e.Message);
+      //    messageResult = e.Message;
+      //  }
+        return "Email Sent";
       }
-      catch (Exception e)
-      {
-        Console.Write(e.Message);
-        messageResult = e.Message;
-      }
-      return "Email Sent";
-    }
 
-    // GET: /Account/ConfirmEmail
-    [Route("ResendConfirmEmail")]
+      // GET: /Account/ConfirmEmail
+      [Route("ResendConfirmEmail")]
     [AllowAnonymous]
     [HttpPost]
     public IHttpActionResult ResendConfirmEmail(ResendEmailModel model)
@@ -489,7 +489,7 @@ namespace SignUp.Controllers
       {
         return NotFound();
       }
-      confirmEmail(model.Client, model.Email, model.Id);
+//      confirmEmail(model.Client, model.Email, model.Id);
       return Ok("An email has been sent to your inbox.");
     }
 
@@ -544,7 +544,7 @@ namespace SignUp.Controllers
         }
         catch (Exception ex)
         {
-          return InternalServerError();
+          return InternalServerError(ex);
         }
 
       }
