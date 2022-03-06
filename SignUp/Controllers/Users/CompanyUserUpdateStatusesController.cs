@@ -1,28 +1,24 @@
 ﻿using SignUp.Models;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 
-namespace SignUp.Controllers
+namespace SignUp.Controllers.Users
 {
-    public class WebUserUpdateStatusesController : ApiController
+  public class CompanyUserUpdateStatusesController : ApiController
     {
-
-    // PUT: api/WebUserUpdateStatusesController/
+    // PUT: api/CompanyUserUpdateStatuses/
     [ResponseType(typeof(void))]
-    public IHttpActionResult PutWebUser(string id, dynamic webUser)
+    public IHttpActionResult PutCompanyUser(int id, dynamic companyUser)
     {
-      var status = webUser["Status"];
+      var status = companyUser["Status"];
 
       using (var db = new Entities())
       {
-        var User = db.WebUsers.Single(u => u.UserId == id);
-        User.UserNotActive = status;
+        var User = db.CompanyStaffs.Single(u => u.StaffId == id);
+        User.Inactive = status;
         try
         {
           db.SaveChanges();

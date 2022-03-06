@@ -56,5 +56,6 @@ namespace SignUp.Models
         public virtual DbSet<Image> Images { get; set; }
         public virtual DbSet<SATSImage> SATSImages { get; set; }
         public virtual DbSet<Incident> Incidents { get; set; }
+        public virtual DbSet<CompanyStaff> CompanyStaffs { get; set; }
     }
 }

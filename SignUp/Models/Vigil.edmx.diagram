@@ -41,6 +41,7 @@
         <EntityTypeShape EntityType="DBModelVigil.Image" Width="1.5" PointX="0.75" PointY="12.75" />
         <EntityTypeShape EntityType="DBModelVigil.SATSImage" Width="1.5" PointX="14.375" PointY="11.75" />
         <EntityTypeShape EntityType="DBModelVigil.Incident" Width="1.5" PointX="3.375" PointY="14.75" />
+        <EntityTypeShape EntityType="DBModelVigil.CompanyStaff" Width="1.5" PointX="5.375" PointY="15.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

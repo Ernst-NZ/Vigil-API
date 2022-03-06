@@ -191,6 +191,20 @@
           <Property Name="AddedBy" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="Date" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="CompanyStaff">
+          <Key>
+            <PropertyRef Name="StaffId" />
+          </Key>
+          <Property Name="StaffId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StaffName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="StaffSurname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CompanyCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserDepartmentCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Inactive" Type="bit" Nullable="false" />
+          <Property Name="AddedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastUpdate" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AppUserId" Type="nvarchar" MaxLength="128" />
+        </EntityType>
         <EntityType Name="Departments">
           <Key>
             <PropertyRef Name="DepartmentId" />
@@ -570,6 +584,7 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <EntitySet Name="CheckLogFull" EntityType="Self.CheckLogFull" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CompanyDocs" EntityType="Self.CompanyDocs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CompanyStaff" EntityType="Self.CompanyStaff" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FileData" EntityType="Self.FileData" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Functions" EntityType="Self.Functions" Schema="dbo" store:Type="Tables" />
@@ -835,6 +850,7 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <EntitySet Name="Images" EntityType="DBModelVigil.Image" />
           <EntitySet Name="SATSImages" EntityType="DBModelVigil.SATSImage" />
           <EntitySet Name="Incidents" EntityType="DBModelVigil.Incident" />
+          <EntitySet Name="CompanyStaffs" EntityType="DBModelVigil.CompanyStaff" />
         </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
@@ -1213,6 +1229,20 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <Property Name="FeedbackBy" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="CompanyId" Type="Int32" Nullable="false" />
           <Property Name="AddedBy" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CompanyStaff">
+          <Key>
+            <PropertyRef Name="StaffId" />
+          </Key>
+          <Property Name="StaffId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StaffName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StaffSurname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserDepartmentCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Inactive" Type="Boolean" Nullable="false" />
+          <Property Name="AddedBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdate" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AppUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1709,6 +1739,21 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
                 <ScalarProperty Name="IncidentTime" ColumnName="IncidentTime" />
                 <ScalarProperty Name="IncidentDate" ColumnName="IncidentDate" />
                 <ScalarProperty Name="IncidentId" ColumnName="IncidentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CompanyStaffs">
+            <EntityTypeMapping TypeName="DBModelVigil.CompanyStaff">
+              <MappingFragment StoreEntitySet="CompanyStaff">
+                <ScalarProperty Name="AppUserId" ColumnName="AppUserId" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+                <ScalarProperty Name="Inactive" ColumnName="Inactive" />
+                <ScalarProperty Name="UserDepartmentCode" ColumnName="UserDepartmentCode" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="StaffSurname" ColumnName="StaffSurname" />
+                <ScalarProperty Name="StaffName" ColumnName="StaffName" />
+                <ScalarProperty Name="StaffId" ColumnName="StaffId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
