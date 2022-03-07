@@ -61,12 +61,20 @@ namespace SignUp.Controllers
           "'', " +
           "Company.CompanyName, " +
           "'' as Projects, " +
-          "'' as Training, " +
+          "count(distinct Training.TrainingId) as Training, " +
           "0 as AppUser " +
         "from CompanyStaff " +
-          "inner join Company on CompanyStaff.CompanyCode = Company.CompanyCode " +
-          "Left Join Departments on Departments.DepartmentId = CompanyStaff.UserDepartmentCode " +
+        "  inner join Company on CompanyStaff.CompanyCode = Company.CompanyCode " +
+        "  Left Join Departments on Departments.DepartmentId = CompanyStaff.UserDepartmentCode " +
+        "  Left Join Training on Training.UserId = cast(CompanyStaff.StaffId as varchar(6))  " +
         "Where Company.CompanyId = '" + id + "' " +
+         "Group by StaffId,  " +
+          "StaffName, " +
+          "StaffSurName, " +
+          "UserDepartmentCode, " +
+          "Inactive, " +
+          "CompanyName, " +
+          "DepartmentName " +          
         "Order By AppUser desc, Username ";
   
       SqlConnection conn = new SqlConnection(connString);
