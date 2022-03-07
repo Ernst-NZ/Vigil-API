@@ -12,13 +12,15 @@ namespace SignUp.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Image
+    public partial class Meeting
     {
-        public int ImageId { get; set; }
-        public string ImageCat { get; set; }
-        public Nullable<int> ReferenceId { get; set; }
-        public byte[] ImageUrl { get; set; }
-        public string ImageNotes { get; set; }
+        public int MeetingId { get; set; }
+        public string MeetingCompanyCode { get; set; }
+        public string MeetingType { get; set; }
+        public string MeetingDate { get; set; }
+        public string MeetingHeldBy { get; set; }
+        public string MeetingNotes { get; set; }
+        public string MeetingActionSteps { get; set; }
         public string AddedBy { get; set; }
         public string LastUpdate { get; set; }
     }
