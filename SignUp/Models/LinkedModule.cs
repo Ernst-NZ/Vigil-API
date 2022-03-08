@@ -12,14 +12,12 @@ namespace SignUp.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Image
+    public partial class LinkedModule
     {
-        public int ImageId { get; set; }
-        public string ImageCat { get; set; }
-        public Nullable<int> ReferenceId { get; set; }
-        public byte[] ImageUrl { get; set; }
-        public string ImageNotes { get; set; }
-        public string AddedBy { get; set; }
-        public string LastUpdate { get; set; }
+        public int LinkedId { get; set; }
+        public string ModuleCode { get; set; }
+        public string CompanyCode { get; set; }
+        public string LinkedBy { get; set; }
+        public string Date { get; set; }
     }
 }

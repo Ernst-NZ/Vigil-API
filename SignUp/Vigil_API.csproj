@@ -251,9 +251,16 @@
     <Compile Include="Controllers\FileUpload\ImageController.cs" />
     <Compile Include="Controllers\FileUpload\ImagesController.cs" />
     <Compile Include="Controllers\Images\GetImagesByRefAndIdsController.cs" />
+    <Compile Include="Controllers\Images\ImagesController.cs" />
     <Compile Include="Controllers\Images\SATSImagesController.cs" />
     <Compile Include="Controllers\Incidents\IncidentsByCompanyIdsController.cs" />
     <Compile Include="Controllers\Incidents\IncidentsController.cs" />
+    <Compile Include="Controllers\Meetings\MeetingsController.cs" />
+    <Compile Include="Controllers\Modules\CompanyModulesController.cs" />
+    <Compile Include="Controllers\Modules\LinkedModulesController.cs" />
+    <Compile Include="Controllers\Modules\ModulesController.cs" />
+    <Compile Include="Controllers\Modules\ModulesLinkedController.cs" />
+    <Compile Include="Controllers\Modules\ModulesOutstandingController.cs" />
     <Compile Include="Controllers\Users\CompanyStaffsController.cs" />
     <Compile Include="Controllers\Users\CompanyUserUpdateStatusesController.cs" />
     <Compile Include="Models\CheckLogFull.cs">
@@ -347,10 +354,19 @@
     <Compile Include="Models\JobQueue.cs">
       <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\LinkedModule.cs">
+      <DependentUpon>Vigil.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\LinkedProject.cs">
       <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\List.cs">
+      <DependentUpon>Vigil.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Meeting.cs">
+      <DependentUpon>Vigil.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Module.cs">
       <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Profile.cs">
