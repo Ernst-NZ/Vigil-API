@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using SignUp.Models;
 
 namespace SignUp.Controllers.Modules
 {
-    public class LinkedModulesController : ApiController
+  public class LinkedModulesController : ApiController
     {
         private Entities db = new Entities();
 
@@ -24,7 +20,7 @@ namespace SignUp.Controllers.Modules
 
         // GET: api/LinkedModules/5
         [ResponseType(typeof(LinkedModule))]
-        public IHttpActionResult GetLinkedModule(string id)
+        public IHttpActionResult GetLinkedModule(int id)
         {
             LinkedModule linkedModule = db.LinkedModules.Find(id);
             if (linkedModule == null)
@@ -37,14 +33,14 @@ namespace SignUp.Controllers.Modules
 
         // PUT: api/LinkedModules/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutLinkedModule(string id, LinkedModule linkedModule)
+        public IHttpActionResult PutLinkedModule(int id, LinkedModule linkedModule)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != linkedModule.ModuleCode)
+            if (id != linkedModule.LinkedId)
             {
                 return BadRequest();
             }
@@ -80,29 +76,14 @@ namespace SignUp.Controllers.Modules
             }
 
             db.LinkedModules.Add(linkedModule);
+            db.SaveChanges();
 
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateException)
-            {
-                if (LinkedModuleExists(linkedModule.ModuleCode))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return CreatedAtRoute("DefaultApi", new { id = linkedModule.ModuleCode }, linkedModule);
+            return CreatedAtRoute("DefaultApi", new { id = linkedModule.LinkedId }, linkedModule);
         }
 
         // DELETE: api/LinkedModules/5
         [ResponseType(typeof(LinkedModule))]
-        public IHttpActionResult DeleteLinkedModule(string id)
+        public IHttpActionResult DeleteLinkedModule(int id)
         {
             LinkedModule linkedModule = db.LinkedModules.Find(id);
             if (linkedModule == null)
@@ -125,9 +106,9 @@ namespace SignUp.Controllers.Modules
             base.Dispose(disposing);
         }
 
-        private bool LinkedModuleExists(string id)
+        private bool LinkedModuleExists(int id)
         {
-            return db.LinkedModules.Count(e => e.ModuleCode == id) > 0;
+            return db.LinkedModules.Count(e => e.LinkedId == id) > 0;
         }
     }
 }

@@ -18,16 +18,13 @@ namespace SignUp.Controllers.Modules
       DataTable dataTable = new DataTable();
       string connString = ConfigurationManager.ConnectionStrings["IdentityDemoConnection"].ConnectionString;
       string query =
-        @"Select Distinct Company.companyId,
-	        Module.ModuleCode,
-          Module.ModuleDescription          
-        From Company
-          Inner Join Modules on modules.CompanyCode = Company.companyCode
-        Where Company.companyCode = '" + id + "' " +
-        "  and Module.ModuleCode NOT IN( " +
-        "   select distinct LinkedModules.ModuleCode " +
-        "   From LinkedProjects	" +
-        "   where LinkedModules.ModuleCode = '" + id + "' )";
+        @"Select Distinct Modules.ModuleCode,
+	          Modules.ModuleDescription
+          From Modules
+          Where Modules.ModuleCode NOT IN(
+	          Select Distinct LinkedModules.ModuleCode 
+		          From LinkedModules
+                  where LinkedModules.companyCode = '" + id + "' )";
 
       SqlConnection conn = new SqlConnection(connString);
       SqlCommand cmd = new SqlCommand(query, conn);

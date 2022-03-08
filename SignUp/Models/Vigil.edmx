@@ -289,11 +289,13 @@
         </EntityType>
         <EntityType Name="LinkedModules">
           <Key>
-            <PropertyRef Name="ModuleCode" />
-            <PropertyRef Name="CompanyCode" />
+            <PropertyRef Name="LinkedId" />
           </Key>
+          <Property Name="LinkedId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ModuleCode" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="CompanyCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CompanyCode" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="LinkedBy" Type="nvarchar" MaxLength="250" />
+          <Property Name="Date" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="LinkedProjects">
           <Key>
@@ -1302,11 +1304,13 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
         </EntityType>
         <EntityType Name="LinkedModule">
           <Key>
-            <PropertyRef Name="ModuleCode" />
-            <PropertyRef Name="CompanyCode" />
+            <PropertyRef Name="LinkedId" />
           </Key>
+          <Property Name="LinkedId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ModuleCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CompanyCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyCode" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="LinkedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1847,8 +1851,11 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <EntitySetMapping Name="LinkedModules">
             <EntityTypeMapping TypeName="DBModelVigil.LinkedModule">
               <MappingFragment StoreEntitySet="LinkedModules">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="LinkedBy" ColumnName="LinkedBy" />
                 <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
                 <ScalarProperty Name="ModuleCode" ColumnName="ModuleCode" />
+                <ScalarProperty Name="LinkedId" ColumnName="LinkedId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

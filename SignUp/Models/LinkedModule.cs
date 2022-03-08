@@ -14,7 +14,10 @@ namespace SignUp.Models
     
     public partial class LinkedModule
     {
+        public int LinkedId { get; set; }
         public string ModuleCode { get; set; }
         public string CompanyCode { get; set; }
+        public string LinkedBy { get; set; }
+        public string Date { get; set; }
     }
 }

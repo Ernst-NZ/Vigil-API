@@ -256,6 +256,7 @@
     <Compile Include="Controllers\Incidents\IncidentsByCompanyIdsController.cs" />
     <Compile Include="Controllers\Incidents\IncidentsController.cs" />
     <Compile Include="Controllers\Meetings\MeetingsController.cs" />
+    <Compile Include="Controllers\Modules\CompanyModulesController.cs" />
     <Compile Include="Controllers\Modules\LinkedModulesController.cs" />
     <Compile Include="Controllers\Modules\ModulesController.cs" />
     <Compile Include="Controllers\Modules\ModulesLinkedController.cs" />
