@@ -8,7 +8,7 @@ namespace SignUp.Controllers.Meetings
   {
     private Entities db = new Entities();
     [HttpGet]
-    public IHttpActionResult IncidentsByCompanyId(string id)
+    public IHttpActionResult MeetingsByCompanyCode(string id)
     {
       var meetings = from m in db.Meetings
                              where m.MeetingCompanyCode == id

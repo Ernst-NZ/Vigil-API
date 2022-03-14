@@ -262,8 +262,11 @@
     <Compile Include="Controllers\Modules\ModulesController.cs" />
     <Compile Include="Controllers\Modules\ModulesLinkedController.cs" />
     <Compile Include="Controllers\Modules\ModulesOutstandingController.cs" />
+    <Compile Include="Controllers\StepBack\StepbacksController.cs" />
+    <Compile Include="Controllers\StepBack\StepBackByCompanyCodesController.cs" />
     <Compile Include="Controllers\Users\CompanyStaffsController.cs" />
     <Compile Include="Controllers\Users\CompanyUserUpdateStatusesController.cs" />
+    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Models\CheckLogFull.cs">
       <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>
@@ -398,6 +401,9 @@
       <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\Users\UserNameDetailsController.cs" />
+    <Compile Include="Models\Stepback.cs">
+      <DependentUpon>Vigil.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Training.cs">
       <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>

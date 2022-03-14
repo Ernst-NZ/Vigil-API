@@ -60,5 +60,6 @@ namespace SignUp.Models
         public virtual DbSet<Meeting> Meetings { get; set; }
         public virtual DbSet<Module> Modules { get; set; }
         public virtual DbSet<LinkedModule> LinkedModules { get; set; }
+        public virtual DbSet<Stepback> Stepbacks { get; set; }
     }
 }

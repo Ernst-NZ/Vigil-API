@@ -385,6 +385,99 @@
           <Property Name="UserCode" Type="nvarchar" MaxLength="50" />
           <Property Name="UploadDate" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="Stepback">
+          <Key>
+            <PropertyRef Name="LogId" />
+          </Key>
+          <Property Name="LogId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Reference" Type="nvarchar" MaxLength="250" />
+          <Property Name="AHeading" Type="nvarchar" MaxLength="125" />
+          <Property Name="A1Text" Type="nvarchar" MaxLength="125" />
+          <Property Name="A1Result" Type="nvarchar" MaxLength="125" />
+          <Property Name="A1Comment" Type="nvarchar(max)" />
+          <Property Name="A2Text" Type="nvarchar" MaxLength="125" />
+          <Property Name="A2Result" Type="nvarchar" MaxLength="125" />
+          <Property Name="A2Comment" Type="nvarchar(max)" />
+          <Property Name="A3Text" Type="nvarchar" MaxLength="150" />
+          <Property Name="A3Result" Type="nvarchar" MaxLength="150" />
+          <Property Name="A3Comment" Type="nvarchar(max)" />
+          <Property Name="A4Text" Type="nvarchar" MaxLength="150" />
+          <Property Name="A4Result" Type="nvarchar" MaxLength="150" />
+          <Property Name="A4Comment" Type="nvarchar(max)" />
+          <Property Name="A5Text" Type="nvarchar" MaxLength="125" />
+          <Property Name="A5Result" Type="nvarchar" MaxLength="125" />
+          <Property Name="A5Comment" Type="nvarchar(max)" />
+          <Property Name="A6Text" Type="nvarchar" MaxLength="125" />
+          <Property Name="A6Result" Type="nvarchar" MaxLength="125" />
+          <Property Name="A6Comment" Type="nvarchar(max)" />
+          <Property Name="A7Text" Type="nvarchar" MaxLength="125" />
+          <Property Name="A7Result" Type="nvarchar" MaxLength="125" />
+          <Property Name="A7Comment" Type="nvarchar(max)" />
+          <Property Name="BHeading" Type="nvarchar" MaxLength="125" />
+          <Property Name="B1Text" Type="nvarchar" MaxLength="125" />
+          <Property Name="B1Result" Type="nvarchar" MaxLength="125" />
+          <Property Name="B1Comment" Type="nvarchar(max)" />
+          <Property Name="B2Text" Type="nvarchar" MaxLength="125" />
+          <Property Name="B2Result" Type="nvarchar" MaxLength="125" />
+          <Property Name="B2Comment" Type="nvarchar(max)" />
+          <Property Name="B3Text" Type="nvarchar" MaxLength="125" />
+          <Property Name="B3Result" Type="nvarchar" MaxLength="125" />
+          <Property Name="B3Comment" Type="nvarchar(max)" />
+          <Property Name="B4Text" Type="nvarchar" MaxLength="125" />
+          <Property Name="B4Result" Type="nvarchar" MaxLength="125" />
+          <Property Name="B4Comment" Type="nvarchar(max)" />
+          <Property Name="B5Text" Type="nvarchar" MaxLength="125" />
+          <Property Name="B5Result" Type="nvarchar" MaxLength="125" />
+          <Property Name="B5Comment" Type="nvarchar(max)" />
+          <Property Name="B6Text" Type="nvarchar" MaxLength="125" />
+          <Property Name="B6Result" Type="nvarchar" MaxLength="125" />
+          <Property Name="B6Comment" Type="nvarchar(max)" />
+          <Property Name="B7Text" Type="nvarchar" MaxLength="125" />
+          <Property Name="B7Result" Type="nvarchar" MaxLength="125" />
+          <Property Name="B7Comment" Type="nvarchar(max)" />
+          <Property Name="B8Text" Type="nvarchar" MaxLength="125" />
+          <Property Name="B8Result" Type="nvarchar" MaxLength="125" />
+          <Property Name="B8Comment" Type="nvarchar(max)" />
+          <Property Name="CHeading" Type="nvarchar" MaxLength="125" />
+          <Property Name="C1Text" Type="nvarchar" MaxLength="125" />
+          <Property Name="C1Result" Type="nvarchar" MaxLength="125" />
+          <Property Name="C1Comment" Type="nvarchar(max)" />
+          <Property Name="H_Spillage" Type="bit" />
+          <Property Name="H_Slips" Type="bit" />
+          <Property Name="H_ManualHandling" Type="bit" />
+          <Property Name="H_ConfinedSpace" Type="bit" />
+          <Property Name="H_Lifting" Type="bit" />
+          <Property Name="H_AccessWay" Type="bit" />
+          <Property Name="H_Vehicles" Type="bit" />
+          <Property Name="H_Heat" Type="bit" />
+          <Property Name="H_Lightning" Type="bit" />
+          <Property Name="H_WorkingAtHeights" Type="bit" />
+          <Property Name="H_Radiation" Type="bit" />
+          <Property Name="H_Vibration" Type="bit" />
+          <Property Name="H_Electrical" Type="bit" />
+          <Property Name="H_HazardousSubstances" Type="bit" />
+          <Property Name="H_Tools" Type="bit" />
+          <Property Name="H_FallingObjects" Type="bit" />
+          <Property Name="H_Dust" Type="bit" />
+          <Property Name="H_Pressure" Type="bit" />
+          <Property Name="H_Noise" Type="bit" />
+          <Property Name="H_GroundConditions" Type="bit" />
+          <Property Name="H_StoredEnergy" Type="bit" />
+          <Property Name="H_PinchPoint" Type="bit" />
+          <Property Name="H_OtherHazards" Type="nvarchar" MaxLength="125" />
+          <Property Name="CompletionDate" Type="nvarchar" MaxLength="125" />
+          <Property Name="GeneralComments" Type="nvarchar" MaxLength="125" />
+          <Property Name="SupervisorCompany" Type="nvarchar" MaxLength="125" />
+          <Property Name="SupervisorName" Type="nvarchar" MaxLength="125" />
+          <Property Name="SupervisorSignature" Type="nvarchar(max)" />
+          <Property Name="EmployeeCompany" Type="nvarchar" MaxLength="125" />
+          <Property Name="EmployeeName" Type="nvarchar" MaxLength="125" />
+          <Property Name="EmployeeSignature" Type="nvarchar(max)" />
+          <Property Name="AddedBy" Type="nvarchar" MaxLength="125" />
+          <Property Name="CompanyCode" Type="nvarchar" MaxLength="125" />
+          <Property Name="AddedOn" Type="nvarchar" MaxLength="125" />
+          <Property Name="Status" Type="bit" />
+        </EntityType>
         <EntityType Name="Training">
           <Key>
             <PropertyRef Name="TrainingId" />
@@ -630,6 +723,7 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <EntitySet Name="Projects" EntityType="Self.Projects" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RawData" EntityType="Self.RawData" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SATSImages" EntityType="Self.SATSImages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stepback" EntityType="Self.Stepback" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Training" EntityType="Self.Training" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WebUser" EntityType="Self.WebUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AggregatedCounter" EntityType="Self.AggregatedCounter" Schema="HangFire" store:Type="Tables" />
@@ -888,6 +982,7 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <EntitySet Name="Meetings" EntityType="DBModelVigil.Meeting" />
           <EntitySet Name="Modules" EntityType="DBModelVigil.Module" />
           <EntitySet Name="LinkedModules" EntityType="DBModelVigil.LinkedModule" />
+          <EntitySet Name="Stepbacks" EntityType="DBModelVigil.Stepback" />
         </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
@@ -1311,6 +1406,99 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <Property Name="CompanyCode" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="LinkedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Stepback">
+          <Key>
+            <PropertyRef Name="LogId" />
+          </Key>
+          <Property Name="LogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Reference" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="AHeading" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="A1Text" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="A1Result" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="A1Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="A2Text" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="A2Result" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="A2Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="A3Text" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="A3Result" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="A3Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="A4Text" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="A4Result" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="A4Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="A5Text" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="A5Result" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="A5Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="A6Text" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="A6Result" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="A6Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="A7Text" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="A7Result" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="A7Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BHeading" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="B1Text" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="B1Result" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="B1Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="B2Text" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="B2Result" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="B2Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="B3Text" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="B3Result" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="B3Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="B4Text" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="B4Result" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="B4Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="B5Text" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="B5Result" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="B5Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="B6Text" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="B6Result" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="B6Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="B7Text" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="B7Result" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="B7Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="B8Text" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="B8Result" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="B8Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CHeading" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="C1Text" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="C1Result" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="C1Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="H_Spillage" Type="Boolean" />
+          <Property Name="H_Slips" Type="Boolean" />
+          <Property Name="H_ManualHandling" Type="Boolean" />
+          <Property Name="H_ConfinedSpace" Type="Boolean" />
+          <Property Name="H_Lifting" Type="Boolean" />
+          <Property Name="H_AccessWay" Type="Boolean" />
+          <Property Name="H_Vehicles" Type="Boolean" />
+          <Property Name="H_Heat" Type="Boolean" />
+          <Property Name="H_Lightning" Type="Boolean" />
+          <Property Name="H_WorkingAtHeights" Type="Boolean" />
+          <Property Name="H_Radiation" Type="Boolean" />
+          <Property Name="H_Vibration" Type="Boolean" />
+          <Property Name="H_Electrical" Type="Boolean" />
+          <Property Name="H_HazardousSubstances" Type="Boolean" />
+          <Property Name="H_Tools" Type="Boolean" />
+          <Property Name="H_FallingObjects" Type="Boolean" />
+          <Property Name="H_Dust" Type="Boolean" />
+          <Property Name="H_Pressure" Type="Boolean" />
+          <Property Name="H_Noise" Type="Boolean" />
+          <Property Name="H_GroundConditions" Type="Boolean" />
+          <Property Name="H_StoredEnergy" Type="Boolean" />
+          <Property Name="H_PinchPoint" Type="Boolean" />
+          <Property Name="H_OtherHazards" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="CompletionDate" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="GeneralComments" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="SupervisorCompany" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="SupervisorName" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="SupervisorSignature" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeCompany" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeName" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeSignature" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AddedBy" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyCode" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="AddedOn" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Boolean" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1856,6 +2044,100 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
                 <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
                 <ScalarProperty Name="ModuleCode" ColumnName="ModuleCode" />
                 <ScalarProperty Name="LinkedId" ColumnName="LinkedId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stepbacks">
+            <EntityTypeMapping TypeName="DBModelVigil.Stepback">
+              <MappingFragment StoreEntitySet="Stepback">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="AddedOn" ColumnName="AddedOn" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+                <ScalarProperty Name="EmployeeSignature" ColumnName="EmployeeSignature" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="EmployeeCompany" ColumnName="EmployeeCompany" />
+                <ScalarProperty Name="SupervisorSignature" ColumnName="SupervisorSignature" />
+                <ScalarProperty Name="SupervisorName" ColumnName="SupervisorName" />
+                <ScalarProperty Name="SupervisorCompany" ColumnName="SupervisorCompany" />
+                <ScalarProperty Name="GeneralComments" ColumnName="GeneralComments" />
+                <ScalarProperty Name="CompletionDate" ColumnName="CompletionDate" />
+                <ScalarProperty Name="H_OtherHazards" ColumnName="H_OtherHazards" />
+                <ScalarProperty Name="H_PinchPoint" ColumnName="H_PinchPoint" />
+                <ScalarProperty Name="H_StoredEnergy" ColumnName="H_StoredEnergy" />
+                <ScalarProperty Name="H_GroundConditions" ColumnName="H_GroundConditions" />
+                <ScalarProperty Name="H_Noise" ColumnName="H_Noise" />
+                <ScalarProperty Name="H_Pressure" ColumnName="H_Pressure" />
+                <ScalarProperty Name="H_Dust" ColumnName="H_Dust" />
+                <ScalarProperty Name="H_FallingObjects" ColumnName="H_FallingObjects" />
+                <ScalarProperty Name="H_Tools" ColumnName="H_Tools" />
+                <ScalarProperty Name="H_HazardousSubstances" ColumnName="H_HazardousSubstances" />
+                <ScalarProperty Name="H_Electrical" ColumnName="H_Electrical" />
+                <ScalarProperty Name="H_Vibration" ColumnName="H_Vibration" />
+                <ScalarProperty Name="H_Radiation" ColumnName="H_Radiation" />
+                <ScalarProperty Name="H_WorkingAtHeights" ColumnName="H_WorkingAtHeights" />
+                <ScalarProperty Name="H_Lightning" ColumnName="H_Lightning" />
+                <ScalarProperty Name="H_Heat" ColumnName="H_Heat" />
+                <ScalarProperty Name="H_Vehicles" ColumnName="H_Vehicles" />
+                <ScalarProperty Name="H_AccessWay" ColumnName="H_AccessWay" />
+                <ScalarProperty Name="H_Lifting" ColumnName="H_Lifting" />
+                <ScalarProperty Name="H_ConfinedSpace" ColumnName="H_ConfinedSpace" />
+                <ScalarProperty Name="H_ManualHandling" ColumnName="H_ManualHandling" />
+                <ScalarProperty Name="H_Slips" ColumnName="H_Slips" />
+                <ScalarProperty Name="H_Spillage" ColumnName="H_Spillage" />
+                <ScalarProperty Name="C1Comment" ColumnName="C1Comment" />
+                <ScalarProperty Name="C1Result" ColumnName="C1Result" />
+                <ScalarProperty Name="C1Text" ColumnName="C1Text" />
+                <ScalarProperty Name="CHeading" ColumnName="CHeading" />
+                <ScalarProperty Name="B8Comment" ColumnName="B8Comment" />
+                <ScalarProperty Name="B8Result" ColumnName="B8Result" />
+                <ScalarProperty Name="B8Text" ColumnName="B8Text" />
+                <ScalarProperty Name="B7Comment" ColumnName="B7Comment" />
+                <ScalarProperty Name="B7Result" ColumnName="B7Result" />
+                <ScalarProperty Name="B7Text" ColumnName="B7Text" />
+                <ScalarProperty Name="B6Comment" ColumnName="B6Comment" />
+                <ScalarProperty Name="B6Result" ColumnName="B6Result" />
+                <ScalarProperty Name="B6Text" ColumnName="B6Text" />
+                <ScalarProperty Name="B5Comment" ColumnName="B5Comment" />
+                <ScalarProperty Name="B5Result" ColumnName="B5Result" />
+                <ScalarProperty Name="B5Text" ColumnName="B5Text" />
+                <ScalarProperty Name="B4Comment" ColumnName="B4Comment" />
+                <ScalarProperty Name="B4Result" ColumnName="B4Result" />
+                <ScalarProperty Name="B4Text" ColumnName="B4Text" />
+                <ScalarProperty Name="B3Comment" ColumnName="B3Comment" />
+                <ScalarProperty Name="B3Result" ColumnName="B3Result" />
+                <ScalarProperty Name="B3Text" ColumnName="B3Text" />
+                <ScalarProperty Name="B2Comment" ColumnName="B2Comment" />
+                <ScalarProperty Name="B2Result" ColumnName="B2Result" />
+                <ScalarProperty Name="B2Text" ColumnName="B2Text" />
+                <ScalarProperty Name="B1Comment" ColumnName="B1Comment" />
+                <ScalarProperty Name="B1Result" ColumnName="B1Result" />
+                <ScalarProperty Name="B1Text" ColumnName="B1Text" />
+                <ScalarProperty Name="BHeading" ColumnName="BHeading" />
+                <ScalarProperty Name="A7Comment" ColumnName="A7Comment" />
+                <ScalarProperty Name="A7Result" ColumnName="A7Result" />
+                <ScalarProperty Name="A7Text" ColumnName="A7Text" />
+                <ScalarProperty Name="A6Comment" ColumnName="A6Comment" />
+                <ScalarProperty Name="A6Result" ColumnName="A6Result" />
+                <ScalarProperty Name="A6Text" ColumnName="A6Text" />
+                <ScalarProperty Name="A5Comment" ColumnName="A5Comment" />
+                <ScalarProperty Name="A5Result" ColumnName="A5Result" />
+                <ScalarProperty Name="A5Text" ColumnName="A5Text" />
+                <ScalarProperty Name="A4Comment" ColumnName="A4Comment" />
+                <ScalarProperty Name="A4Result" ColumnName="A4Result" />
+                <ScalarProperty Name="A4Text" ColumnName="A4Text" />
+                <ScalarProperty Name="A3Comment" ColumnName="A3Comment" />
+                <ScalarProperty Name="A3Result" ColumnName="A3Result" />
+                <ScalarProperty Name="A3Text" ColumnName="A3Text" />
+                <ScalarProperty Name="A2Comment" ColumnName="A2Comment" />
+                <ScalarProperty Name="A2Result" ColumnName="A2Result" />
+                <ScalarProperty Name="A2Text" ColumnName="A2Text" />
+                <ScalarProperty Name="A1Comment" ColumnName="A1Comment" />
+                <ScalarProperty Name="A1Result" ColumnName="A1Result" />
+                <ScalarProperty Name="A1Text" ColumnName="A1Text" />
+                <ScalarProperty Name="AHeading" ColumnName="AHeading" />
+                <ScalarProperty Name="Reference" ColumnName="Reference" />
+                <ScalarProperty Name="LogId" ColumnName="LogId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

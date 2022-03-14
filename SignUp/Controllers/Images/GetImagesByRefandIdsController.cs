@@ -1,15 +1,11 @@
 ﻿using SignUp.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 
 namespace SignUp.Controllers.Images
 {
-    public class GetImagesByRefAndIdsController : ApiController
+  public class GetImagesByRefAndIdsController : ApiController
     {
 
     private Entities db = new Entities();
