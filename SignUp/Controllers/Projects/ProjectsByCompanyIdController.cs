@@ -9,20 +9,9 @@ namespace SignUp.Controllers
 {
   public class ProjectsByCompanyIdController : ApiController
   {
-    private Entities db = new Entities();
     [HttpGet]
     public IHttpActionResult GeProjectByCompanyId(string id)
     {
-            //var projects = from p in db.Projects
-            //               join docs in db.ProjectDocs on p.ProjectCode equals docs.ProjectCode
-            //               where p.CompanyId == id
-            //                select p;
-            //projects.OrderBy(x => x.ProjectName);
-            //if (projects == null)
-            //{
-            //  return NotFound();
-            //}
-            //return Ok(projects);
             DataTable dataTable = new DataTable();
             string connString = ConfigurationManager.ConnectionStrings["IdentityDemoConnection"].ConnectionString;
             string query = @"SELECT Projects.ProjectId

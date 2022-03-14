@@ -10,13 +10,14 @@ using System.Web.Http.Description;
 using SignUp.Models;
 using System.Data;
 using System.IO;
+using System.Text;
 
 namespace WebAPI.Controllers
 {
   [AllowAnonymous]
   public class ValuesController : ApiController
   {
-    private DBModelVigil db = new DBModelVigil();
+  //  private DBModelVigil db = new DBModelVigil();
 
     //public List<Persoon> GetEmails()
     //{
@@ -37,12 +38,18 @@ namespace WebAPI.Controllers
     //   public IHttpActionResult PostBatchEmail(gmail gmail)
     public void PostEmail(gmail gmail)
     {
+      //var bytes = Convert.FromBase64String(gmail.Attachments[0]);
+      //MemoryStream strm = new MemoryStream(bytes);
+      //Attachment data = new Attachment(strm, "Test.pdf");
+
+
       string messageResult;
-      gmail.EmailFrom = "admin@anbcounselling.co.nz";
+      gmail.EmailFrom = "info@nzsats.co.nz";
       MailMessage mm = new MailMessage(gmail.EmailFrom, gmail.EmailTo);
       mm.Subject = gmail.Subject;
       mm.Body = gmail.Body;
       mm.IsBodyHtml = true;
+//      mm.Attachments.Add(data);
       try
       {
         SmtpClient smtp = new SmtpClient();

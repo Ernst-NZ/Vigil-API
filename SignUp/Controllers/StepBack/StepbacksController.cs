@@ -1,52 +1,55 @@
-﻿using System.Data;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using SignUp.Models;
 
 namespace SignUp.Controllers
 {
-  public class CompaniesController : ApiController
+    public class StepbacksController : ApiController
     {
         private Entities db = new Entities();
 
-        // GET: api/Companies
-        public IQueryable<Company> GetCompanies()
+        // GET: api/Stepbacks
+        public IQueryable<Stepback> GetStepbacks()
         {
-          return db.Companies.OrderBy(c => c.CompanyName);
-    }
+            return db.Stepbacks;
+        }
 
-        // GET: api/Companies/5
-        [ResponseType(typeof(Company))]
-        public IHttpActionResult GetCompany(int id)
+        // GET: api/Stepbacks/5
+        [ResponseType(typeof(Stepback))]
+        public IHttpActionResult GetStepback(int id)
         {
-            Company company = db.Companies.Find(id);
-            if (company == null)
+            Stepback stepback = db.Stepbacks.Find(id);
+            if (stepback == null)
             {
                 return NotFound();
             }
 
-            return Ok(company);
+            return Ok(stepback);
         }
 
-        // PUT: api/Companies/5
+        // PUT: api/Stepbacks/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutCompany(int id, Company company)
+        public IHttpActionResult PutStepback(int id, Stepback stepback)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != company.CompanyId)
+            if (id != stepback.LogId)
             {
                 return BadRequest();
             }
 
-            db.Entry(company).State = EntityState.Modified;
+            db.Entry(stepback).State = EntityState.Modified;
 
             try
             {
@@ -54,7 +57,7 @@ namespace SignUp.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CompanyExists(id))
+                if (!StepbackExists(id))
                 {
                     return NotFound();
                 }
@@ -67,35 +70,35 @@ namespace SignUp.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Companies
-        [ResponseType(typeof(Company))]
-        public IHttpActionResult PostCompany(Company company)
+        // POST: api/Stepbacks
+        [ResponseType(typeof(Stepback))]
+        public IHttpActionResult PostStepback(Stepback stepback)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Companies.Add(company);
+            db.Stepbacks.Add(stepback);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = company.CompanyId }, company);
+            return CreatedAtRoute("DefaultApi", new { id = stepback.LogId }, stepback);
         }
 
-        // DELETE: api/Companies/5
-        [ResponseType(typeof(Company))]
-        public IHttpActionResult DeleteCompany(int id)
+        // DELETE: api/Stepbacks/5
+        [ResponseType(typeof(Stepback))]
+        public IHttpActionResult DeleteStepback(int id)
         {
-            Company company = db.Companies.Find(id);
-            if (company == null)
+            Stepback stepback = db.Stepbacks.Find(id);
+            if (stepback == null)
             {
                 return NotFound();
             }
 
-            db.Companies.Remove(company);
+            db.Stepbacks.Remove(stepback);
             db.SaveChanges();
 
-            return Ok(company);
+            return Ok(stepback);
         }
 
         protected override void Dispose(bool disposing)
@@ -107,9 +110,9 @@ namespace SignUp.Controllers
             base.Dispose(disposing);
         }
 
-        private bool CompanyExists(int id)
+        private bool StepbackExists(int id)
         {
-            return db.Companies.Count(e => e.CompanyId == id) > 0;
+            return db.Stepbacks.Count(e => e.LogId == id) > 0;
         }
     }
 }
