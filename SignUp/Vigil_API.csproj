@@ -262,6 +262,7 @@
     <Compile Include="Controllers\Modules\ModulesController.cs" />
     <Compile Include="Controllers\Modules\ModulesLinkedController.cs" />
     <Compile Include="Controllers\Modules\ModulesOutstandingController.cs" />
+    <Compile Include="Controllers\StepBack\StepBackByIdsController.cs" />
     <Compile Include="Controllers\StepBack\StepbacksController.cs" />
     <Compile Include="Controllers\StepBack\StepBackByCompanyCodesController.cs" />
     <Compile Include="Controllers\Users\CompanyStaffsController.cs" />
