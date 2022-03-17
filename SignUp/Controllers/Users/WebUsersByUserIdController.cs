@@ -19,13 +19,16 @@ namespace SignUp.Controllers
 
             DataTable dataTable = new DataTable();
             string connString = ConfigurationManager.ConnectionStrings["IdentityDemoConnection"].ConnectionString;
-            string query = @"Select webuser.UserId,
+            string query =
+        @"Select webuser.UserId,
+          1 as AppUser,
         	UserFirstName + ' ' + coalesce(UserLastName, '') as Username,
+          UserLastName,
     	    UserEmail,
         	UserPhoneNumber,
         	DepartmentName,
-            FunctionName,
-        	UserNotActive,
+          FunctionName,
+        	coalesce(UserNotActive, '0') UserNotActive,
         	Profiles.ProfileName,
         	Company.CompanyName,
         	count(distinct linkedprojects.ProjectCode) as Projects,

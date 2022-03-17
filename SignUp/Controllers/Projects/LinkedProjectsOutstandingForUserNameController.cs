@@ -9,7 +9,7 @@ namespace SignUp.Controllers
     public class LinkedProjectsOutstandingForUserNameController : ApiController
   {
     [HttpGet]
-    public IHttpActionResult GetOutstandingProjectsByUsername(string id)
+    public IHttpActionResult LinkedProjectsOutstandingForUserName(string id)
     {
       DataTable dataTable = new DataTable();
       string connString = ConfigurationManager.ConnectionStrings["IdentityDemoConnection"].ConnectionString;
