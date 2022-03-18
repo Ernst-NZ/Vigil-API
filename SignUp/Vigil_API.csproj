@@ -237,6 +237,11 @@
     <Compile Include="Controllers\AspNetRolesController.cs" />
     <Compile Include="Controllers\AspNetUserRolesController.cs" />
     <Compile Include="Controllers\AspNetUsersController.cs" />
+    <Compile Include="Controllers\CheckList\ChecklistByUIDsController.cs" />
+    <Compile Include="Controllers\CheckList\ChecklistMastersController.cs" />
+    <Compile Include="Controllers\CheckList\ChecklistByCompanyCodesController.cs" />
+    <Compile Include="Controllers\CheckList\CheckListLogsController.cs" />
+    <Compile Include="Controllers\CheckList\ChecklistNameUpdateController.cs" />
     <Compile Include="Controllers\Companies\CompaniesParentsController.cs" />
     <Compile Include="Controllers\Companies\CompaniesController.cs" />
     <Compile Include="Controllers\Companies\CompanyDocsController.cs" />
@@ -262,11 +267,19 @@
     <Compile Include="Controllers\Modules\ModulesController.cs" />
     <Compile Include="Controllers\Modules\ModulesLinkedController.cs" />
     <Compile Include="Controllers\Modules\ModulesOutstandingController.cs" />
+    <Compile Include="Controllers\Projects\ProjectsByUserCodesController.cs" />
+    <Compile Include="Controllers\StepBack\StepBackByIdsController.cs" />
     <Compile Include="Controllers\StepBack\StepbacksController.cs" />
     <Compile Include="Controllers\StepBack\StepBackByCompanyCodesController.cs" />
     <Compile Include="Controllers\Users\CompanyStaffsController.cs" />
     <Compile Include="Controllers\Users\CompanyUserUpdateStatusesController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Models\CheckListLog.cs">
+      <DependentUpon>Vigil.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ChecklistMaster.cs">
+      <DependentUpon>Vigil.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\CheckLogFull.cs">
       <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>
