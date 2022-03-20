@@ -1,14 +1,19 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
+using Newtonsoft.Json.Linq;
 using SignUp.Models;
 
-namespace SignUp.Controllers
+namespace SignUp.Controllers.CheckList
 {
-  public class CheckListLogsController : ApiController
+    public class CheckListLogsController : ApiController
     {
         private Entities db = new Entities();
 
@@ -68,18 +73,43 @@ namespace SignUp.Controllers
 
         // POST: api/CheckListLogs
         [ResponseType(typeof(CheckListLog))]
-        public IHttpActionResult PostCheckListLog(CheckListLog checkListLog)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+         public IHttpActionResult Post(JArray objData)
+    {
+      List<CheckListLog> lstItemDetails = new List<CheckListLog>();
+      JArray itemDetailsJson = objData;
+      foreach (var item in itemDetailsJson)
+      {
+        lstItemDetails.Add(item.ToObject<CheckListLog>());
+      }
+      foreach (CheckListLog itemDetail in lstItemDetails)
+      {
+        db.CheckListLogs.Add(itemDetail);
+      }
+      dynamic xx = null;
+      xx = "";
+      try
+      {
+        db.SaveChanges();
+        System.Threading.Thread.Sleep(500);
+        return Ok();
+      }
+      catch (WebException ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+        //public IHttpActionResult PostCheckListLog(CheckListLog checkListLog)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            db.CheckListLogs.Add(checkListLog);
-            db.SaveChanges();
+        //    db.CheckListLogs.Add(checkListLog);
+        //    db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = checkListLog.CheckLogId }, checkListLog);
-        }
+        //    return CreatedAtRoute("DefaultApi", new { id = checkListLog.CheckLogId }, checkListLog);
+        //}
 
         // DELETE: api/CheckListLogs/5
         [ResponseType(typeof(CheckListLog))]

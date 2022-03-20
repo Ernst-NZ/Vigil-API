@@ -15,18 +15,21 @@ namespace SignUp.Models
     public partial class CheckListLog
     {
         public int CheckLogId { get; set; }
+        public string CheckListName { get; set; }
         public string CheckListUID { get; set; }
+        public string CheckListReference { get; set; }
         public string CheckListCategory { get; set; }
         public string CheckListItem { get; set; }
         public string CheckListDescription { get; set; }
         public string CheckListResult { get; set; }
-        public string CheckListNotes { get; set; }
+        public string CheckListLineNotes { get; set; }
         public string CheckListComments { get; set; }
-        public string CheckListName { get; set; }
+        public string CheckListEmployeeName { get; set; }
         public string CheckListSignature { get; set; }
         public Nullable<bool> CheckListStatus { get; set; }
         public Nullable<bool> CheckListCheckStatus { get; set; }
-        public string CheckListManagementCommants { get; set; }
+        public string CheckListManagementComments { get; set; }
+        public string CheckListCompanyCode { get; set; }
         public string AddedBy { get; set; }
         public string LastUpdate { get; set; }
     }
