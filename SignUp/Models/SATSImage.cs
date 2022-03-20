@@ -21,5 +21,6 @@ namespace SignUp.Models
         public string ImageNotes { get; set; }
         public string UserCode { get; set; }
         public string UploadDate { get; set; }
+        public string ReferenceUID { get; set; }
     }
 }

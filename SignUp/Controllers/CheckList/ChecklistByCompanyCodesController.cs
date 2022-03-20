@@ -10,14 +10,13 @@ namespace SignUp.Controllers.CheckList
     [HttpGet]
     public IHttpActionResult ChecklistByCompanyCode(string id)
     {
-      var list = from m in db.ChecklistMasters.Distinct()
+      var list = (from m in db.ChecklistMasters
                  where m.CompanyCode == id
                  select new
                  {
                    m.CheckListName,
-                   m.CheckListUID,
-                   m.LastUpdate
-                 };
+                   m.CheckListUID
+                 }).Distinct();
       list.OrderBy(x => x.CheckListName);
       if (list == null)
       {
