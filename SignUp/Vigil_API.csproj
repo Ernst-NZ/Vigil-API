@@ -242,6 +242,9 @@
     <Compile Include="Controllers\CheckList\ChecklistByCompanyCodesController.cs" />
     <Compile Include="Controllers\CheckList\CheckListLogsController.cs" />
     <Compile Include="Controllers\CheckList\ChecklistNameUpdateController.cs" />
+    <Compile Include="Controllers\CheckList\CompletedChecklistByCompanyCodesController.cs" />
+    <Compile Include="Controllers\CheckList\CompletedChecklistByUidsController.cs" />
+    <Compile Include="Controllers\CheckList\DeleteChecklistMastersController.cs" />
     <Compile Include="Controllers\Companies\CompaniesParentsController.cs" />
     <Compile Include="Controllers\Companies\CompaniesController.cs" />
     <Compile Include="Controllers\Companies\CompanyDocsController.cs" />

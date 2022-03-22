@@ -63,6 +63,7 @@
             <PropertyRef Name="CheckLogId" />
           </Key>
           <Property Name="CheckLogId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CheckListDate" Type="nvarchar" MaxLength="128" />
           <Property Name="CheckListName" Type="nvarchar" MaxLength="128" />
           <Property Name="CheckListUID" Type="nvarchar" MaxLength="128" />
           <Property Name="CheckListReference" Type="nvarchar" MaxLength="128" />
@@ -1023,8 +1024,8 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <EntitySet Name="LinkedModules" EntityType="DBModelVigil.LinkedModule" />
           <EntitySet Name="Stepbacks" EntityType="DBModelVigil.Stepback" />
           <EntitySet Name="ChecklistMasters" EntityType="DBModelVigil.ChecklistMaster" />
-          <EntitySet Name="CheckListLogs" EntityType="DBModelVigil.CheckListLog" />
           <EntitySet Name="SATSImages" EntityType="DBModelVigil.SATSImage" />
+          <EntitySet Name="CheckListLogs" EntityType="DBModelVigil.CheckListLog" />
         </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
@@ -1544,11 +1545,25 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <Property Name="AddedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="LastUpdate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="SATSImage">
+          <Key>
+            <PropertyRef Name="ImageId" />
+          </Key>
+          <Property Name="ImageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ImageCat" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ReferenceId" Type="Int32" />
+          <Property Name="ImageUrl" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ImageNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UploadDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ReferenceUID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="CheckListLog">
           <Key>
             <PropertyRef Name="CheckLogId" />
           </Key>
           <Property Name="CheckLogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CheckListDate" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="CheckListName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="CheckListUID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="CheckListReference" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
@@ -1566,19 +1581,6 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <Property Name="CheckListCompanyCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="AddedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="LastUpdate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="SATSImage">
-          <Key>
-            <PropertyRef Name="ImageId" />
-          </Key>
-          <Property Name="ImageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ImageCat" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="ReferenceId" Type="Int32" />
-          <Property Name="ImageUrl" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="ImageNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="UserCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="UploadDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ReferenceUID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2223,6 +2225,20 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="SATSImages">
+            <EntityTypeMapping TypeName="DBModelVigil.SATSImage">
+              <MappingFragment StoreEntitySet="SATSImages">
+                <ScalarProperty Name="ReferenceUID" ColumnName="ReferenceUID" />
+                <ScalarProperty Name="UploadDate" ColumnName="UploadDate" />
+                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+                <ScalarProperty Name="ImageNotes" ColumnName="ImageNotes" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="ReferenceId" ColumnName="ReferenceId" />
+                <ScalarProperty Name="ImageCat" ColumnName="ImageCat" />
+                <ScalarProperty Name="ImageId" ColumnName="ImageId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="CheckListLogs">
             <EntityTypeMapping TypeName="DBModelVigil.CheckListLog">
               <MappingFragment StoreEntitySet="CheckListLog">
@@ -2243,21 +2259,8 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
                 <ScalarProperty Name="CheckListReference" ColumnName="CheckListReference" />
                 <ScalarProperty Name="CheckListUID" ColumnName="CheckListUID" />
                 <ScalarProperty Name="CheckListName" ColumnName="CheckListName" />
+                <ScalarProperty Name="CheckListDate" ColumnName="CheckListDate" />
                 <ScalarProperty Name="CheckLogId" ColumnName="CheckLogId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SATSImages">
-            <EntityTypeMapping TypeName="DBModelVigil.SATSImage">
-              <MappingFragment StoreEntitySet="SATSImages">
-                <ScalarProperty Name="ReferenceUID" ColumnName="ReferenceUID" />
-                <ScalarProperty Name="UploadDate" ColumnName="UploadDate" />
-                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
-                <ScalarProperty Name="ImageNotes" ColumnName="ImageNotes" />
-                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
-                <ScalarProperty Name="ReferenceId" ColumnName="ReferenceId" />
-                <ScalarProperty Name="ImageCat" ColumnName="ImageCat" />
-                <ScalarProperty Name="ImageId" ColumnName="ImageId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

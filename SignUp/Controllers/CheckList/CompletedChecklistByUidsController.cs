@@ -1,23 +1,19 @@
 ﻿using SignUp.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 namespace SignUp.Controllers.CheckList
 {
-  public class ChecklistByUIDsController : ApiController
+  public class CompletedChecklistByUidsController : ApiController
   {
     private Entities db = new Entities();
     [HttpGet]
-    public IHttpActionResult MASTERChecklistByUID(string id)
+    public IHttpActionResult CompletedChecklistByUid(string id)
     {
-      var check = from c in db.ChecklistMasters
+      var check = from c in db.CheckListLogs
                   where c.CheckListUID == id
                   select c;
-      check.OrderBy(x => x.CheckListId);
+      check.OrderBy(x => x.CheckLogId);
       if (check == null)
       {
         return NotFound();
