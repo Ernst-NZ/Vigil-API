@@ -15,6 +15,7 @@ namespace SignUp.Models
     public partial class CheckListLog
     {
         public int CheckLogId { get; set; }
+        public string CheckListDate { get; set; }
         public string CheckListName { get; set; }
         public string CheckListUID { get; set; }
         public string CheckListReference { get; set; }

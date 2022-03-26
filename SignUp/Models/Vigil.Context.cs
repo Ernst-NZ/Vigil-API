@@ -61,7 +61,7 @@ namespace SignUp.Models
         public virtual DbSet<LinkedModule> LinkedModules { get; set; }
         public virtual DbSet<Stepback> Stepbacks { get; set; }
         public virtual DbSet<ChecklistMaster> ChecklistMasters { get; set; }
-        public virtual DbSet<CheckListLog> CheckListLogs { get; set; }
         public virtual DbSet<SATSImage> SATSImages { get; set; }
+        public virtual DbSet<CheckListLog> CheckListLogs { get; set; }
     }
 }

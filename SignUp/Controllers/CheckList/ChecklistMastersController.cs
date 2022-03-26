@@ -11,65 +11,65 @@ using SignUp.Models;
 namespace SignUp.Controllers
 {
   public class ChecklistMastersController : ApiController
+  {
+    private Entities db = new Entities();
+
+    // GET: api/ChecklistMasters
+    public IQueryable<ChecklistMaster> GetChecklistMasters()
     {
-        private Entities db = new Entities();
+      return db.ChecklistMasters;
+    }
 
-        // GET: api/ChecklistMasters
-        public IQueryable<ChecklistMaster> GetChecklistMasters()
+    // GET: api/ChecklistMasters/5
+    [ResponseType(typeof(ChecklistMaster))]
+    public IHttpActionResult GetChecklistMaster(int id)
+    {
+      ChecklistMaster checklistMaster = db.ChecklistMasters.Find(id);
+      if (checklistMaster == null)
+      {
+        return NotFound();
+      }
+
+      return Ok(checklistMaster);
+    }
+
+    // PUT: api/ChecklistMasters/5
+    [ResponseType(typeof(void))]
+    public IHttpActionResult PutChecklistMaster(int id, ChecklistMaster checklistMaster)
+    {
+      if (!ModelState.IsValid)
+      {
+        return BadRequest(ModelState);
+      }
+
+      if (id != checklistMaster.CheckListId)
+      {
+        return BadRequest();
+      }
+
+      db.Entry(checklistMaster).State = EntityState.Modified;
+
+      try
+      {
+        db.SaveChanges();
+      }
+      catch (DbUpdateConcurrencyException)
+      {
+        if (!ChecklistMasterExists(id))
         {
-            return db.ChecklistMasters;
+          return NotFound();
         }
-
-        // GET: api/ChecklistMasters/5
-        [ResponseType(typeof(ChecklistMaster))]
-        public IHttpActionResult GetChecklistMaster(int id)
+        else
         {
-            ChecklistMaster checklistMaster = db.ChecklistMasters.Find(id);
-            if (checklistMaster == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(checklistMaster);
+          throw;
         }
+      }
 
-        // PUT: api/ChecklistMasters/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutChecklistMaster(int id, ChecklistMaster checklistMaster)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+      return StatusCode(HttpStatusCode.NoContent);
+    }
 
-            if (id != checklistMaster.CheckListId)
-            {
-                return BadRequest();
-            }
-
-            db.Entry(checklistMaster).State = EntityState.Modified;
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ChecklistMasterExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return StatusCode(HttpStatusCode.NoContent);
-        }
-
-        // POST: api/ChecklistMasters
-        [ResponseType(typeof(ChecklistMaster))]
+    // POST: api/ChecklistMasters
+    [ResponseType(typeof(ChecklistMaster))]
     public IHttpActionResult PostChecklistMaster(ChecklistMaster checklistMaster)
     {
       if (!ModelState.IsValid)
@@ -85,32 +85,32 @@ namespace SignUp.Controllers
 
     // DELETE: api/ChecklistMasters/5
     [ResponseType(typeof(ChecklistMaster))]
-        public IHttpActionResult DeleteChecklistMaster(int id)
-        {
-            ChecklistMaster checklistMaster = db.ChecklistMasters.Find(id);
-            if (checklistMaster == null)
-            {
-                return NotFound();
-            }
+    public IHttpActionResult DeleteChecklistMaster(int id)
+    {
+      ChecklistMaster checklistMaster = db.ChecklistMasters.Find(id);
+      if (checklistMaster == null)
+      {
+        return NotFound();
+      }
 
-            db.ChecklistMasters.Remove(checklistMaster);
-            db.SaveChanges();
+      db.ChecklistMasters.Remove(checklistMaster);
+      db.SaveChanges();
 
-            return Ok(checklistMaster);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool ChecklistMasterExists(int id)
-        {
-            return db.ChecklistMasters.Count(e => e.CheckListId == id) > 0;
-        }
+      return Ok(checklistMaster);
     }
+
+    protected override void Dispose(bool disposing)
+    {
+      if (disposing)
+      {
+        db.Dispose();
+      }
+      base.Dispose(disposing);
+    }
+
+    private bool ChecklistMasterExists(int id)
+    {
+      return db.ChecklistMasters.Count(e => e.CheckListId == id) > 0;
+    }
+  }
 }

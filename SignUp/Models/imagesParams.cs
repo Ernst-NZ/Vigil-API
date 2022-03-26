@@ -9,5 +9,6 @@ namespace SignUp.Models
   {
     public int id { get; set; }
     public string category { get; set; }
+    public string uid { get; set; }
   }
 }
