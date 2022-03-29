@@ -531,6 +531,31 @@
           <Property Name="LastUpdateBy" Type="varchar" MaxLength="100" />
           <Property Name="UpdateDate" Type="varchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="VisitRegister">
+          <Key>
+            <PropertyRef Name="VisitId" />
+          </Key>
+          <Property Name="VisitId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DateIn" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DateOut" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Signature" Type="nvarchar(max)" />
+          <Property Name="Company" Type="nvarchar" MaxLength="250" />
+          <Property Name="Purpose" Type="nvarchar" MaxLength="500" />
+          <Property Name="Comments" Type="nvarchar(max)" />
+          <Property Name="WhoVisit" Type="nvarchar" MaxLength="150" />
+          <Property Name="TimeIn" Type="nvarchar" MaxLength="50" />
+          <Property Name="TimeOut" Type="nvarchar" MaxLength="50" />
+          <Property Name="SignatureOut" Type="nvarchar(max)" />
+          <Property Name="DeviceId" Type="nvarchar" MaxLength="250" />
+          <Property Name="Longitude" Type="nvarchar" MaxLength="250" />
+          <Property Name="Latitude" Type="nvarchar" MaxLength="250" />
+          <Property Name="DeviceType" Type="nvarchar" MaxLength="250" />
+          <Property Name="IsStaff" Type="nvarchar(max)" />
+          <Property Name="IsLogin" Type="bit" />
+        </EntityType>
         <EntityType Name="WebUser">
           <Key>
             <PropertyRef Name="UserId" />
@@ -766,6 +791,7 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <EntitySet Name="SATSImages" EntityType="Self.SATSImages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Stepback" EntityType="Self.Stepback" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Training" EntityType="Self.Training" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VisitRegister" EntityType="Self.VisitRegister" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WebUser" EntityType="Self.WebUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AggregatedCounter" EntityType="Self.AggregatedCounter" Schema="HangFire" store:Type="Tables" />
           <EntitySet Name="Hash" EntityType="Self.Hash" Schema="HangFire" store:Type="Tables" />
@@ -1026,6 +1052,7 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <EntitySet Name="ChecklistMasters" EntityType="DBModelVigil.ChecklistMaster" />
           <EntitySet Name="SATSImages" EntityType="DBModelVigil.SATSImage" />
           <EntitySet Name="CheckListLogs" EntityType="DBModelVigil.CheckListLog" />
+          <EntitySet Name="VisitRegisters" EntityType="DBModelVigil.VisitRegister" />
         </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
@@ -1581,6 +1608,31 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <Property Name="CheckListCompanyCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="AddedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="LastUpdate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="VisitRegister">
+          <Key>
+            <PropertyRef Name="VisitId" />
+          </Key>
+          <Property Name="VisitId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateIn" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateOut" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Signature" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Company" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Purpose" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WhoVisit" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="TimeIn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TimeOut" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SignatureOut" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DeviceId" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="IsStaff" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsLogin" Type="Boolean" />
+          <Property Name="Longitude" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Latitude" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="DeviceType" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2261,6 +2313,32 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
                 <ScalarProperty Name="CheckListName" ColumnName="CheckListName" />
                 <ScalarProperty Name="CheckListDate" ColumnName="CheckListDate" />
                 <ScalarProperty Name="CheckLogId" ColumnName="CheckLogId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VisitRegisters">
+            <EntityTypeMapping TypeName="DBModelVigil.VisitRegister">
+              <MappingFragment StoreEntitySet="VisitRegister">
+                <ScalarProperty Name="DeviceType" ColumnName="DeviceType" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="IsLogin" ColumnName="IsLogin" />
+                <ScalarProperty Name="IsStaff" ColumnName="IsStaff" />
+                <ScalarProperty Name="DeviceId" ColumnName="DeviceId" />
+                <ScalarProperty Name="SignatureOut" ColumnName="SignatureOut" />
+                <ScalarProperty Name="TimeOut" ColumnName="TimeOut" />
+                <ScalarProperty Name="TimeIn" ColumnName="TimeIn" />
+                <ScalarProperty Name="WhoVisit" ColumnName="WhoVisit" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="Purpose" ColumnName="Purpose" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="Signature" ColumnName="Signature" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DateOut" ColumnName="DateOut" />
+                <ScalarProperty Name="DateIn" ColumnName="DateIn" />
+                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="VisitId" ColumnName="VisitId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

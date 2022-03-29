@@ -63,5 +63,6 @@ namespace SignUp.Models
         public virtual DbSet<ChecklistMaster> ChecklistMasters { get; set; }
         public virtual DbSet<SATSImage> SATSImages { get; set; }
         public virtual DbSet<CheckListLog> CheckListLogs { get; set; }
+        public virtual DbSet<VisitRegister> VisitRegisters { get; set; }
     }
 }

@@ -20,6 +20,7 @@ namespace SignUp.Controllers
     }
 
         // GET: api/Companies/5
+        [AllowAnonymous]
         [ResponseType(typeof(Company))]
         public IHttpActionResult GetCompany(int id)
         {
