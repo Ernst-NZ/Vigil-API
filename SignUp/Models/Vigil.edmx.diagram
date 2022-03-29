@@ -48,6 +48,7 @@
         <EntityTypeShape EntityType="DBModelVigil.ChecklistMaster" Width="1.5" PointX="0.75" PointY="19.75" />
         <EntityTypeShape EntityType="DBModelVigil.SATSImage" Width="1.5" PointX="14.375" PointY="11.75" />
         <EntityTypeShape EntityType="DBModelVigil.CheckListLog" Width="1.5" PointX="5.375" PointY="19.75" />
+        <EntityTypeShape EntityType="DBModelVigil.VisitRegister" Width="1.5" PointX="19.375" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

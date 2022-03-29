@@ -278,6 +278,8 @@
     <Compile Include="Controllers\Users\CompanyStaffsController.cs" />
     <Compile Include="Controllers\Users\CompanyUserUpdateStatusesController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\Visits\VisitRegistersController.cs" />
+    <Compile Include="Controllers\Visits\VisitsByCompanyCodesController.cs" />
     <Compile Include="Models\CheckListLog.cs">
       <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>
@@ -439,6 +441,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Vigil.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VisitRegister.cs">
+      <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\WebUser.cs">
       <DependentUpon>Vigil.tt</DependentUpon>
