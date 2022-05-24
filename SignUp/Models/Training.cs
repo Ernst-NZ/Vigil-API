@@ -23,5 +23,6 @@ namespace SignUp.Models
         public string ProviderName { get; set; }
         public string LastUpdateBy { get; set; }
         public string UpdateDate { get; set; }
+        public string StudentNumber { get; set; }
     }
 }

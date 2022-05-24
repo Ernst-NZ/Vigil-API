@@ -54,6 +54,7 @@ namespace SignUp.Controllers
           ,coalesce(train.ExpiryDate, '') ExpiryDate
           ,coalesce(train.CompetencyLevel, '') CompetencyLevel
           ,coalesce(train.ProviderName, '') ProviderName
+          ,coalesce(train.StudentNumber, '') StudentNumber
           ,train.LastUpdateBy
           ,coalesce(train.UpdateDate, '') UpdateDate
   	      ,count(FD.Id) as Docs
@@ -72,6 +73,7 @@ namespace SignUp.Controllers
         "  ,train.ExpiryDate " +
         "  ,train.CompetencyLevel " +
         "  ,train.ProviderName " +
+        "  ,train.StudentNumber " +
         "  ,train.LastUpdateBy " +
         "  ,train.UpdateDate " +
         "Union " +
@@ -84,6 +86,7 @@ namespace SignUp.Controllers
         "  ,coalesce(train.ExpiryDate, '') ExpiryDate " +
         "  ,coalesce(train.CompetencyLevel, '') CompetencyLevel " +
         "  ,coalesce(train.ProviderName, '') ProviderName " +
+        "  , coalesce(train.StudentNumber, '') StudentNumber " +
         "  ,train.LastUpdateBy " +
         "  ,coalesce(train.UpdateDate, '') UpdateDate " +
         "  ,count(FD.Id) as Docs " +
@@ -102,6 +105,7 @@ namespace SignUp.Controllers
         "  ,train.ExpiryDate " +
         "  ,train.CompetencyLevel " +
         "  ,train.ProviderName " +
+        "  ,train.StudentNumber " +
         "  ,train.LastUpdateBy " +
         "  ,train.UpdateDate";
 

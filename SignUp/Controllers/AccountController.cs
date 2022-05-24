@@ -535,7 +535,7 @@ namespace SignUp.Controllers
           // Send an email with this link
           string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
          //     string callbackUrl = "http://localhost:4200/reset-password/userId=" + user.Id + "code=" + code;
-             string callbackUrl = "https://reflect.nzsats.co.nz/users/reset-password/userId=" + user.Id + "code=" + code;
+             string callbackUrl = "https://reflect.nzsats.co.nz/#/users/reset-password/userId=" + user.Id + "code=" + code;
 
           
          await UserManager.SendEmailAsync(user.Id, "Reset Password",

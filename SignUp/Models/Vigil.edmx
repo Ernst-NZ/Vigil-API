@@ -530,6 +530,7 @@
           <Property Name="ProviderName" Type="varchar" MaxLength="100" />
           <Property Name="LastUpdateBy" Type="varchar" MaxLength="100" />
           <Property Name="UpdateDate" Type="varchar" MaxLength="100" />
+          <Property Name="StudentNumber" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="VisitRegister">
           <Key>
@@ -1216,6 +1217,7 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <Property Name="ProviderName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="LastUpdateBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="UpdateDate" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="StudentNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="LinkedProject">
           <Key>
@@ -1897,6 +1899,7 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <EntitySetMapping Name="Trainings">
             <EntityTypeMapping TypeName="DBModelVigil.Training">
               <MappingFragment StoreEntitySet="Training">
+                <ScalarProperty Name="StudentNumber" ColumnName="StudentNumber" />
                 <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
                 <ScalarProperty Name="LastUpdateBy" ColumnName="LastUpdateBy" />
                 <ScalarProperty Name="ProviderName" ColumnName="ProviderName" />
