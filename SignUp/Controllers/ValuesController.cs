@@ -45,9 +45,11 @@ namespace WebAPI.Controllers
 
       string messageResult;
       gmail.EmailFrom = "info@nzsats.co.nz";
+      gmail.EmailBcc = "ernst@nzsats.co.nz";
       MailMessage mm = new MailMessage(gmail.EmailFrom, gmail.EmailTo);
       mm.Subject = gmail.Subject;
       mm.Body = gmail.Body;
+      mm.Bcc.Add(gmail.EmailBcc);
       mm.IsBodyHtml = true;
 //      mm.Attachments.Add(data);
       try
