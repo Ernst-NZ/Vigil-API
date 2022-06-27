@@ -38,40 +38,73 @@ namespace SignUp.Controllers.CheckList
 
     // PUT: api/CheckListLogs/5
     [ResponseType(typeof(void))]
-    public IHttpActionResult PutCheckListLog(int id, CheckListLog checkListLog)
+    public IHttpActionResult PutCheckListLog(int id, JArray objData)
     {
-      if (!ModelState.IsValid)
+      var logId = 0;
+      List<CheckListLog> lstItemDetails = new List<CheckListLog>();
+      JArray itemDetailsJson = objData;
+      foreach (var item in itemDetailsJson)
       {
-        return BadRequest(ModelState);
+        lstItemDetails.Add(item.ToObject<CheckListLog>());
       }
-
-      if (id != checkListLog.CheckLogId)
+      foreach (CheckListLog itemDetail in lstItemDetails)
       {
-        return BadRequest();
-      }
-
-      db.Entry(checkListLog).State = EntityState.Modified;
-
-      try
-      {
-        db.SaveChanges();
-      }
-      catch (DbUpdateConcurrencyException)
-      {
-        if (!CheckListLogExists(id))
+        //db.CheckListLogs.Add(itemDetail);
+        logId = itemDetail.CheckLogId;
+        if (logId != itemDetail.CheckLogId)
         {
-          return NotFound();
+          return BadRequest();
         }
-        else
+        db.Entry(itemDetail).State = EntityState.Modified;
+
+        try
         {
-          throw;
+          db.SaveChanges();
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+          if (!CheckListLogExists(id))
+          {
+            return NotFound();
+          }
+          else
+          {
+            throw;
+          }
         }
       }
+
+
+      //if (!ModelState.IsValid)
+      //{
+      //  return BadRequest(ModelState);
+      //}
+      //if (id != checkListLog.CheckLogId)
+      //{
+      //  return BadRequest();
+      //}
+      //db.Entry(checkListLog).State = EntityState.Modified;
+
+      //try
+      //{
+      //  db.SaveChanges();
+      //}
+      //catch (DbUpdateConcurrencyException)
+      //{
+      //  if (!CheckListLogExists(id))
+      //  {
+      //    return NotFound();
+      //  }
+      //  else
+      //  {
+      //    throw;
+      //  }
+      //}
+
+
 
       return StatusCode(HttpStatusCode.NoContent);
     }
-
-
 
 
     // POST: api/CheckListLogs
@@ -87,9 +120,7 @@ namespace SignUp.Controllers.CheckList
       foreach (CheckListLog itemDetail in lstItemDetails)
       {
         db.CheckListLogs.Add(itemDetail);
-      }
-      dynamic xx = null;
-      xx = "";
+      }     
       try
       {
         db.SaveChanges();

@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 namespace SignUp.Controllers.Modules
 {
-    public class ModulesOutstandingController : ApiController
+  public class ModulesOutstandingController : ApiController
     {
     [HttpGet]
     public IHttpActionResult GetOutstandingProjectsByUsername(string id)
@@ -24,7 +20,7 @@ namespace SignUp.Controllers.Modules
           Where Modules.ModuleCode NOT IN(
 	          Select Distinct LinkedModules.ModuleCode 
 		          From LinkedModules
-                  where LinkedModules.companyCode = '" + id + "' )";
+              where LinkedModules.companyCode = '" + id + "' )";
 
       SqlConnection conn = new SqlConnection(connString);
       SqlCommand cmd = new SqlCommand(query, conn);

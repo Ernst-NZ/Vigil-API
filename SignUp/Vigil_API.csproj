@@ -392,6 +392,9 @@
     <Compile Include="Models\Module.cs">
       <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MyLog.cs">
+      <DependentUpon>Vigil.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Profile.cs">
       <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>

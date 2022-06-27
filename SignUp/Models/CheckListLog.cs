@@ -33,5 +33,7 @@ namespace SignUp.Models
         public string CheckListCompanyCode { get; set; }
         public string AddedBy { get; set; }
         public string LastUpdate { get; set; }
+        public Nullable<bool> CheckListFinalStatus { get; set; }
+        public string CheckListFinalComments { get; set; }
     }
 }

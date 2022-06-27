@@ -81,6 +81,8 @@
           <Property Name="CheckListCompanyCode" Type="nvarchar" MaxLength="50" />
           <Property Name="AddedBy" Type="nvarchar" MaxLength="50" />
           <Property Name="LastUpdate" Type="nvarchar" MaxLength="50" />
+          <Property Name="CheckListFinalStatus" Type="bit" />
+          <Property Name="CheckListFinalComments" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="ChecklistMaster">
           <Key>
@@ -365,6 +367,17 @@
           </Key>
           <Property Name="ModuleCode" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ModuleDescription" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="MyLogs">
+          <Key>
+            <PropertyRef Name="LogId" />
+          </Key>
+          <Property Name="LogId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserCode" Type="nvarchar" MaxLength="128" />
+          <Property Name="Action" Type="nvarchar(max)" />
+          <Property Name="TablelName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Comments" Type="nvarchar(max)" />
+          <Property Name="Date" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Profiles">
           <Key>
@@ -785,6 +798,7 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <EntitySet Name="LinkedProjects" EntityType="Self.LinkedProjects" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Meetings" EntityType="Self.Meetings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Modules" EntityType="Self.Modules" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MyLogs" EntityType="Self.MyLogs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Profiles" EntityType="Self.Profiles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProjectDocs" EntityType="Self.ProjectDocs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Projects" EntityType="Self.Projects" Schema="dbo" store:Type="Tables" />
@@ -1052,8 +1066,9 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <EntitySet Name="Stepbacks" EntityType="DBModelVigil.Stepback" />
           <EntitySet Name="ChecklistMasters" EntityType="DBModelVigil.ChecklistMaster" />
           <EntitySet Name="SATSImages" EntityType="DBModelVigil.SATSImage" />
-          <EntitySet Name="CheckListLogs" EntityType="DBModelVigil.CheckListLog" />
           <EntitySet Name="VisitRegisters" EntityType="DBModelVigil.VisitRegister" />
+          <EntitySet Name="MyLogs" EntityType="DBModelVigil.MyLog" />
+          <EntitySet Name="CheckListLogs" EntityType="DBModelVigil.CheckListLog" />
         </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
@@ -1587,30 +1602,6 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <Property Name="UploadDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ReferenceUID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="CheckListLog">
-          <Key>
-            <PropertyRef Name="CheckLogId" />
-          </Key>
-          <Property Name="CheckLogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CheckListDate" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="CheckListName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="CheckListUID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="CheckListReference" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="CheckListCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CheckListItem" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CheckListDescription" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="CheckListResult" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CheckListLineNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CheckListComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CheckListEmployeeName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="CheckListSignature" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CheckListStatus" Type="Boolean" />
-          <Property Name="CheckListCheckStatus" Type="Boolean" />
-          <Property Name="CheckListManagementComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CheckListCompanyCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="AddedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="LastUpdate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="VisitRegister">
           <Key>
             <PropertyRef Name="VisitId" />
@@ -1635,6 +1626,43 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <Property Name="Longitude" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Latitude" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="DeviceType" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="MyLog">
+          <Key>
+            <PropertyRef Name="LogId" />
+          </Key>
+          <Property Name="LogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserCode" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Action" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TablelName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CheckListLog">
+          <Key>
+            <PropertyRef Name="CheckLogId" />
+          </Key>
+          <Property Name="CheckLogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CheckListDate" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CheckListName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CheckListUID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CheckListReference" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CheckListCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CheckListItem" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CheckListDescription" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CheckListResult" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CheckListLineNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CheckListComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CheckListEmployeeName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CheckListSignature" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CheckListStatus" Type="Boolean" />
+          <Property Name="CheckListCheckStatus" Type="Boolean" />
+          <Property Name="CheckListManagementComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CheckListCompanyCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AddedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CheckListFinalStatus" Type="Boolean" />
+          <Property Name="CheckListFinalComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2294,31 +2322,6 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="CheckListLogs">
-            <EntityTypeMapping TypeName="DBModelVigil.CheckListLog">
-              <MappingFragment StoreEntitySet="CheckListLog">
-                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
-                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
-                <ScalarProperty Name="CheckListCompanyCode" ColumnName="CheckListCompanyCode" />
-                <ScalarProperty Name="CheckListManagementComments" ColumnName="CheckListManagementComments" />
-                <ScalarProperty Name="CheckListCheckStatus" ColumnName="CheckListCheckStatus" />
-                <ScalarProperty Name="CheckListStatus" ColumnName="CheckListStatus" />
-                <ScalarProperty Name="CheckListSignature" ColumnName="CheckListSignature" />
-                <ScalarProperty Name="CheckListEmployeeName" ColumnName="CheckListEmployeeName" />
-                <ScalarProperty Name="CheckListComments" ColumnName="CheckListComments" />
-                <ScalarProperty Name="CheckListLineNotes" ColumnName="CheckListLineNotes" />
-                <ScalarProperty Name="CheckListResult" ColumnName="CheckListResult" />
-                <ScalarProperty Name="CheckListDescription" ColumnName="CheckListDescription" />
-                <ScalarProperty Name="CheckListItem" ColumnName="CheckListItem" />
-                <ScalarProperty Name="CheckListCategory" ColumnName="CheckListCategory" />
-                <ScalarProperty Name="CheckListReference" ColumnName="CheckListReference" />
-                <ScalarProperty Name="CheckListUID" ColumnName="CheckListUID" />
-                <ScalarProperty Name="CheckListName" ColumnName="CheckListName" />
-                <ScalarProperty Name="CheckListDate" ColumnName="CheckListDate" />
-                <ScalarProperty Name="CheckLogId" ColumnName="CheckLogId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="VisitRegisters">
             <EntityTypeMapping TypeName="DBModelVigil.VisitRegister">
               <MappingFragment StoreEntitySet="VisitRegister">
@@ -2342,6 +2345,45 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
                 <ScalarProperty Name="UserCode" ColumnName="UserCode" />
                 <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
                 <ScalarProperty Name="VisitId" ColumnName="VisitId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MyLogs">
+            <EntityTypeMapping TypeName="DBModelVigil.MyLog">
+              <MappingFragment StoreEntitySet="MyLogs">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="TablelName" ColumnName="TablelName" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+                <ScalarProperty Name="LogId" ColumnName="LogId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CheckListLogs">
+            <EntityTypeMapping TypeName="DBModelVigil.CheckListLog">
+              <MappingFragment StoreEntitySet="CheckListLog">
+                <ScalarProperty Name="CheckListFinalComments" ColumnName="CheckListFinalComments" />
+                <ScalarProperty Name="CheckListFinalStatus" ColumnName="CheckListFinalStatus" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+                <ScalarProperty Name="CheckListCompanyCode" ColumnName="CheckListCompanyCode" />
+                <ScalarProperty Name="CheckListManagementComments" ColumnName="CheckListManagementComments" />
+                <ScalarProperty Name="CheckListCheckStatus" ColumnName="CheckListCheckStatus" />
+                <ScalarProperty Name="CheckListStatus" ColumnName="CheckListStatus" />
+                <ScalarProperty Name="CheckListSignature" ColumnName="CheckListSignature" />
+                <ScalarProperty Name="CheckListEmployeeName" ColumnName="CheckListEmployeeName" />
+                <ScalarProperty Name="CheckListComments" ColumnName="CheckListComments" />
+                <ScalarProperty Name="CheckListLineNotes" ColumnName="CheckListLineNotes" />
+                <ScalarProperty Name="CheckListResult" ColumnName="CheckListResult" />
+                <ScalarProperty Name="CheckListDescription" ColumnName="CheckListDescription" />
+                <ScalarProperty Name="CheckListItem" ColumnName="CheckListItem" />
+                <ScalarProperty Name="CheckListCategory" ColumnName="CheckListCategory" />
+                <ScalarProperty Name="CheckListReference" ColumnName="CheckListReference" />
+                <ScalarProperty Name="CheckListUID" ColumnName="CheckListUID" />
+                <ScalarProperty Name="CheckListName" ColumnName="CheckListName" />
+                <ScalarProperty Name="CheckListDate" ColumnName="CheckListDate" />
+                <ScalarProperty Name="CheckLogId" ColumnName="CheckLogId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
