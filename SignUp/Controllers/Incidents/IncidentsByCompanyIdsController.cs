@@ -49,6 +49,8 @@ namespace SignUp.Controllers.Incidents
                               FeedbackBy = i.FeedbackBy ?? "", 
                               i.CompanyId,
                               AddedBy = i.AddedBy ?? "",
+                              Deleted = i.Deleted ?? false,
+                              DeletedBy = i.DeletedBy ?? ""
                             };
       companyIncidents.OrderBy(x => x.ReportedDate);
       if (companyIncidents == null)

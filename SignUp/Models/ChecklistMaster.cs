@@ -23,5 +23,6 @@ namespace SignUp.Models
         public string CheckListDescription { get; set; }
         public string AddedBy { get; set; }
         public string LastUpdate { get; set; }
+        public string Warning { get; set; }
     }
 }

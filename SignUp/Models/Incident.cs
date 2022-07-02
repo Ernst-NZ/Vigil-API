@@ -47,5 +47,7 @@ namespace SignUp.Models
         public string FeedbackBy { get; set; }
         public int CompanyId { get; set; }
         public string AddedBy { get; set; }
+        public Nullable<bool> Deleted { get; set; }
+        public string DeletedBy { get; set; }
     }
 }

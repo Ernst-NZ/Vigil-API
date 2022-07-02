@@ -22,7 +22,10 @@ namespace SignUp.Controllers.Meetings
                                MeetingNotes = m.MeetingNotes ?? "",
                                MeetingActionSteps = m.MeetingActionSteps ?? "",
                                AddedBy = m.AddedBy ?? "",
-                               m.LastUpdate
+                               MeetingNotesOld = m.MeetingNotesOld ?? "",
+                               m.LastUpdate,
+                               Deleted = m.Deleted ?? false,
+                               DeletedBy = m.DeletedBy ?? ""
                              };
       meetings.OrderBy(x => x.MeetingDate);
       if (meetings == null)
