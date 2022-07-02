@@ -22,6 +22,7 @@ namespace SignUp.Controllers.Meetings
                                MeetingNotes = m.MeetingNotes ?? "",
                                MeetingActionSteps = m.MeetingActionSteps ?? "",
                                AddedBy = m.AddedBy ?? "",
+                               MeetingNotesOld = m.MeetingNotesOld ?? "",
                                m.LastUpdate
                              };
       meetings.OrderBy(x => x.MeetingDate);

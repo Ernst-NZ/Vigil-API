@@ -363,6 +363,7 @@
           <Property Name="MeetingActionSteps" Type="nvarchar(max)" />
           <Property Name="AddedBy" Type="nvarchar" MaxLength="50" />
           <Property Name="LastUpdate" Type="nvarchar" MaxLength="50" />
+          <Property Name="MeetingNotesOld" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Modules">
           <Key>
@@ -1063,7 +1064,6 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <EntitySet Name="Incidents" EntityType="DBModelVigil.Incident" />
           <EntitySet Name="CompanyStaffs" EntityType="DBModelVigil.CompanyStaff" />
           <EntitySet Name="Images" EntityType="DBModelVigil.Image" />
-          <EntitySet Name="Meetings" EntityType="DBModelVigil.Meeting" />
           <EntitySet Name="Modules" EntityType="DBModelVigil.Module" />
           <EntitySet Name="LinkedModules" EntityType="DBModelVigil.LinkedModule" />
           <EntitySet Name="Stepbacks" EntityType="DBModelVigil.Stepback" />
@@ -1072,6 +1072,7 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <EntitySet Name="MyLogs" EntityType="DBModelVigil.MyLog" />
           <EntitySet Name="CheckListLogs" EntityType="DBModelVigil.CheckListLog" />
           <EntitySet Name="ChecklistMasters" EntityType="DBModelVigil.ChecklistMaster" />
+          <EntitySet Name="Meetings" EntityType="DBModelVigil.Meeting" />
         </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
@@ -1454,20 +1455,6 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <Property Name="AddedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="LastUpdate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="Meeting">
-          <Key>
-            <PropertyRef Name="MeetingId" />
-          </Key>
-          <Property Name="MeetingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MeetingCompanyCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MeetingType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MeetingDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MeetingHeldBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="MeetingNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="MeetingActionSteps" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="AddedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="LastUpdate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="Module">
           <Key>
             <PropertyRef Name="ModuleCode" />
@@ -1669,6 +1656,21 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <Property Name="AddedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="LastUpdate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Warning" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Meeting">
+          <Key>
+            <PropertyRef Name="MeetingId" />
+          </Key>
+          <Property Name="MeetingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MeetingCompanyCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MeetingType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MeetingDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MeetingHeldBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="MeetingNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MeetingActionSteps" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AddedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MeetingNotesOld" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2171,21 +2173,6 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Meetings">
-            <EntityTypeMapping TypeName="DBModelVigil.Meeting">
-              <MappingFragment StoreEntitySet="Meetings">
-                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
-                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
-                <ScalarProperty Name="MeetingActionSteps" ColumnName="MeetingActionSteps" />
-                <ScalarProperty Name="MeetingNotes" ColumnName="MeetingNotes" />
-                <ScalarProperty Name="MeetingHeldBy" ColumnName="MeetingHeldBy" />
-                <ScalarProperty Name="MeetingDate" ColumnName="MeetingDate" />
-                <ScalarProperty Name="MeetingType" ColumnName="MeetingType" />
-                <ScalarProperty Name="MeetingCompanyCode" ColumnName="MeetingCompanyCode" />
-                <ScalarProperty Name="MeetingId" ColumnName="MeetingId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Modules">
             <EntityTypeMapping TypeName="DBModelVigil.Module">
               <MappingFragment StoreEntitySet="Modules">
@@ -2393,6 +2380,22 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
                 <ScalarProperty Name="CheckListUID" ColumnName="CheckListUID" />
                 <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
                 <ScalarProperty Name="CheckListId" ColumnName="CheckListId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Meetings">
+            <EntityTypeMapping TypeName="DBModelVigil.Meeting">
+              <MappingFragment StoreEntitySet="Meetings">
+                <ScalarProperty Name="MeetingNotesOld" ColumnName="MeetingNotesOld" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+                <ScalarProperty Name="MeetingActionSteps" ColumnName="MeetingActionSteps" />
+                <ScalarProperty Name="MeetingNotes" ColumnName="MeetingNotes" />
+                <ScalarProperty Name="MeetingHeldBy" ColumnName="MeetingHeldBy" />
+                <ScalarProperty Name="MeetingDate" ColumnName="MeetingDate" />
+                <ScalarProperty Name="MeetingType" ColumnName="MeetingType" />
+                <ScalarProperty Name="MeetingCompanyCode" ColumnName="MeetingCompanyCode" />
+                <ScalarProperty Name="MeetingId" ColumnName="MeetingId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

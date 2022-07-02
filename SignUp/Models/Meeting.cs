@@ -23,5 +23,6 @@ namespace SignUp.Models
         public string MeetingActionSteps { get; set; }
         public string AddedBy { get; set; }
         public string LastUpdate { get; set; }
+        public string MeetingNotesOld { get; set; }
     }
 }
