@@ -37,5 +37,7 @@ namespace SignUp.Models
         public string CheckListFinalComments { get; set; }
         public string Warning { get; set; }
         public string EmailTo { get; set; }
+        public Nullable<bool> Deleted { get; set; }
+        public string DeletedBy { get; set; }
     }
 }

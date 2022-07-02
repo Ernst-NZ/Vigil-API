@@ -27,6 +27,8 @@ namespace SignUp.Controllers.CheckList
 	            ,Case when CheckListFinalStatus = 1 then 'Checked' when CheckListStatus = 0 then 'Fail' else 'Pass' end as StatusString 
 	            ,coalesce(CheckListComments, '') CheckListComments
               ,coalesce(CheckListFinalComments, '') CheckListFinalComments
+              ,coalesce(Deleted, 'false') Deleted
+              ,coalesce(DeletedBy, '') DeletedBy
 	            ,(Select max(S.CheckLogId)
 	              From  CheckListLog S
 	              Where s.CheckListUID = CheckListLog.CheckListUID) myTime

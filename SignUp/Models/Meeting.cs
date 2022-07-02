@@ -24,5 +24,7 @@ namespace SignUp.Models
         public string AddedBy { get; set; }
         public string LastUpdate { get; set; }
         public string MeetingNotesOld { get; set; }
+        public Nullable<bool> Deleted { get; set; }
+        public string DeletedBy { get; set; }
     }
 }
