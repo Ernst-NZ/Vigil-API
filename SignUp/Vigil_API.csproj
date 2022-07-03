@@ -266,6 +266,7 @@
     <Compile Include="Controllers\Images\ImagesController.cs" />
     <Compile Include="Controllers\Images\SATSImagesController.cs" />
     <Compile Include="Controllers\Incidents\IncidentsByCompanyIdsController.cs" />
+    <Compile Include="Controllers\Incidents\IncidentsByUserIdsController.cs" />
     <Compile Include="Controllers\Incidents\IncidentsController.cs" />
     <Compile Include="Controllers\Meetings\MeetingsByCompanyCodesController.cs" />
     <Compile Include="Controllers\Meetings\MeetingsController.cs" />
@@ -276,6 +277,7 @@
     <Compile Include="Controllers\Modules\ModulesOutstandingController.cs" />
     <Compile Include="Controllers\Projects\ProjectsByUserCodesController.cs" />
     <Compile Include="Controllers\StepBack\StepBackByIdsController.cs" />
+    <Compile Include="Controllers\StepBack\StepBackByUserCodesController.cs" />
     <Compile Include="Controllers\StepBack\StepbacksController.cs" />
     <Compile Include="Controllers\StepBack\StepBackByCompanyCodesController.cs" />
     <Compile Include="Controllers\Users\CompanyStaffsController.cs" />
@@ -559,6 +561,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\CompletedChecklistByUser\" />
+    <Folder Include="Views\IncidentsByUserIds\" />
+    <Folder Include="Views\StepBackByUserCodes\" />
     <Folder Include="Views\WebUsersById\" />
   </ItemGroup>
   <ItemGroup>

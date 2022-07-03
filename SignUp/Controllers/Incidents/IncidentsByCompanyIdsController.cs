@@ -11,7 +11,7 @@ namespace SignUp.Controllers.Incidents
     public IHttpActionResult IncidentsByCompanyId(int id)
     {
       var companyIncidents = from i in db.Incidents
-                             join w in db.WebUsers on i.AddedBy equals w.Username
+                             join w in db.WebUsers on i.AddedBy equals w.UserId
                              where i.CompanyId == id
                             select new
                             {
