@@ -8,12 +8,13 @@ using System.Data.SqlClient;
 
 namespace SignUp.Controllers.CheckList
 {
-  public class CompletedChecklistByCompanyCodesController : ApiController
+  public class CompletedChecklistByUserController : ApiController
   {
     private Entities db = new Entities();
     [HttpGet]
-    public IHttpActionResult CompletedChecklistByCompanyCode(string id)
+    public IHttpActionResult CompletedChecklistByUser(string id)
     {
+      var myId = id.ToString();
 
       DataTable dataTable = new DataTable();
       string connString = ConfigurationManager.ConnectionStrings["IdentityDemoConnection"].ConnectionString;
@@ -29,14 +30,12 @@ namespace SignUp.Controllers.CheckList
               ,coalesce(CheckListFinalComments, '') CheckListFinalComments
               ,coalesce(Deleted, 'false') Deleted
               ,coalesce(DeletedBy, '') DeletedBy
-              ,AddedBy
 	            ,(Select max(S.CheckLogId)
 	              From  CheckListLog S
 	              Where s.CheckListUID = CheckListLog.CheckListUID) myTime
           From CheckListLog
-          Where CheckListCompanyCode = '" + id + "' " +
+          Where AddedBy = '" + myId + "' " +
           "Order by myTime desc";
-
       SqlConnection conn = new SqlConnection(connString);
       SqlCommand cmd = new SqlCommand(query, conn);
       SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -58,7 +57,6 @@ namespace SignUp.Controllers.CheckList
         return NotFound();
       }
       return Ok(dataTable);
- 
     }
   }
 }
