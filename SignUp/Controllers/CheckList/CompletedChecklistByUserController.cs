@@ -11,10 +11,12 @@ namespace SignUp.Controllers.CheckList
   public class CompletedChecklistByUserController : ApiController
   {
     private Entities db = new Entities();
-    [HttpGet]
-    public IHttpActionResult CompletedChecklistByUser(string id)
+    [AllowAnonymous]
+    [HttpPut]
+    public IHttpActionResult CompletedChecklistByUser(string id, dynamic webUser)
     {
-      var myId = id.ToString();
+      var myIdx = id.ToString();
+      string myId = (webUser["UserId"]);
 
       DataTable dataTable = new DataTable();
       string connString = ConfigurationManager.ConnectionStrings["IdentityDemoConnection"].ConnectionString;

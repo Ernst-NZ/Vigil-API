@@ -1,4 +1,5 @@
 ﻿using SignUp.Models;
+using System;
 using System.Linq;
 using System.Web.Http;
 
@@ -7,12 +8,14 @@ namespace SignUp.Controllers.Incidents
   public class IncidentsByUserIdsController : ApiController
   {
     private Entities db = new Entities();
-    [HttpGet]
-    public IHttpActionResult IncidentsByUserId(string id)
+    [AllowAnonymous]
+    [HttpPut] 
+    public IHttpActionResult IncidentsByUserId(string id, dynamic webUser)
     {
+      string userID = (webUser["UserId"]);
       var companyIncidents = from i in db.Incidents
                              join w in db.WebUsers on i.AddedBy equals w.UserId
-                             where i.AddedBy == id
+                             where i.AddedBy == userID
                              select new
                              {
                                i.IncidentId,
