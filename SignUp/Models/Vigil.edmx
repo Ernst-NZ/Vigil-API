@@ -554,6 +554,7 @@
           <Property Name="LastUpdateBy" Type="varchar" MaxLength="100" />
           <Property Name="UpdateDate" Type="varchar" MaxLength="100" />
           <Property Name="StudentNumber" Type="varchar" MaxLength="50" />
+          <Property Name="NZQANumber" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="VisitRegister">
           <Key>
@@ -1061,7 +1062,6 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <EntitySet Name="Departments" EntityType="DBModelVigil.Department" />
           <EntitySet Name="Functions" EntityType="DBModelVigil.Function" />
           <EntitySet Name="Projects" EntityType="DBModelVigil.Project" />
-          <EntitySet Name="Trainings" EntityType="DBModelVigil.Training" />
           <EntitySet Name="LinkedProjects" EntityType="DBModelVigil.LinkedProject" />
           <EntitySet Name="RawDatas" EntityType="DBModelVigil.RawData" />
           <EntitySet Name="FileDatas" EntityType="DBModelVigil.FileData" />
@@ -1079,6 +1079,7 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <EntitySet Name="CheckLogFulls" EntityType="DBModelVigil.CheckLogFull" />
           <EntitySet Name="Incidents" EntityType="DBModelVigil.Incident" />
           <EntitySet Name="Meetings" EntityType="DBModelVigil.Meeting" />
+          <EntitySet Name="Trainings" EntityType="DBModelVigil.Training" />
         </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
@@ -1228,21 +1229,6 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <Property Name="ProjectStatus" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="AddedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Training">
-          <Key>
-            <PropertyRef Name="TrainingId" />
-          </Key>
-          <Property Name="TrainingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CourseName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="CourseDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ExpiryDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CompetencyLevel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ProviderName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="LastUpdateBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="UpdateDate" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="StudentNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="LinkedProject">
           <Key>
@@ -1684,6 +1670,22 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <Property Name="Deleted" Type="Boolean" />
           <Property Name="DeletedBy" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="Training">
+          <Key>
+            <PropertyRef Name="TrainingId" />
+          </Key>
+          <Property Name="TrainingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CourseName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="CourseDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ExpiryDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompetencyLevel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LastUpdateBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UpdateDate" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="StudentNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NZQANumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1941,22 +1943,6 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
                 <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
                 <ScalarProperty Name="ProjectCode" ColumnName="ProjectCode" />
                 <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Trainings">
-            <EntityTypeMapping TypeName="DBModelVigil.Training">
-              <MappingFragment StoreEntitySet="Training">
-                <ScalarProperty Name="StudentNumber" ColumnName="StudentNumber" />
-                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
-                <ScalarProperty Name="LastUpdateBy" ColumnName="LastUpdateBy" />
-                <ScalarProperty Name="ProviderName" ColumnName="ProviderName" />
-                <ScalarProperty Name="CompetencyLevel" ColumnName="CompetencyLevel" />
-                <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
-                <ScalarProperty Name="CourseDate" ColumnName="CourseDate" />
-                <ScalarProperty Name="CourseName" ColumnName="CourseName" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="TrainingId" ColumnName="TrainingId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2414,6 +2400,23 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
                 <ScalarProperty Name="MeetingType" ColumnName="MeetingType" />
                 <ScalarProperty Name="MeetingCompanyCode" ColumnName="MeetingCompanyCode" />
                 <ScalarProperty Name="MeetingId" ColumnName="MeetingId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Trainings">
+            <EntityTypeMapping TypeName="DBModelVigil.Training">
+              <MappingFragment StoreEntitySet="Training">
+                <ScalarProperty Name="NZQANumber" ColumnName="NZQANumber" />
+                <ScalarProperty Name="StudentNumber" ColumnName="StudentNumber" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="LastUpdateBy" ColumnName="LastUpdateBy" />
+                <ScalarProperty Name="ProviderName" ColumnName="ProviderName" />
+                <ScalarProperty Name="CompetencyLevel" ColumnName="CompetencyLevel" />
+                <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+                <ScalarProperty Name="CourseDate" ColumnName="CourseDate" />
+                <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="TrainingId" ColumnName="TrainingId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

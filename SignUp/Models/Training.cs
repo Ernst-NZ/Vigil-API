@@ -24,5 +24,6 @@ namespace SignUp.Models
         public string LastUpdateBy { get; set; }
         public string UpdateDate { get; set; }
         public string StudentNumber { get; set; }
+        public string NZQANumber { get; set; }
     }
 }

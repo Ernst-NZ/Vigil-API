@@ -244,6 +244,8 @@
     <Compile Include="Controllers\CheckList\ChecklistByCompanyCodesController.cs" />
     <Compile Include="Controllers\CheckList\CheckListLogsController.cs" />
     <Compile Include="Controllers\CheckList\ChecklistNameUpdateController.cs" />
+    <Compile Include="Controllers\CheckList\CheckListStatsByCompaniesController.cs" />
+    <Compile Include="Controllers\CheckList\CheckListStatsByUsersController.cs" />
     <Compile Include="Controllers\CheckList\CompletedChecklistByCompanyCodesController.cs" />
     <Compile Include="Controllers\CheckList\CompletedChecklistByUidsController.cs" />
     <Compile Include="Controllers\CheckList\CompletedChecklistByUserController.cs" />
@@ -265,11 +267,14 @@
     <Compile Include="Controllers\Images\GetImagesByRefAndIdsController.cs" />
     <Compile Include="Controllers\Images\ImagesController.cs" />
     <Compile Include="Controllers\Images\SATSImagesController.cs" />
+    <Compile Include="Controllers\Incidents\IncidentsByCompaniesController.cs" />
     <Compile Include="Controllers\Incidents\IncidentsByCompanyIdsController.cs" />
     <Compile Include="Controllers\Incidents\IncidentsByUserIdsController.cs" />
+    <Compile Include="Controllers\Incidents\IncidentsByUsersController.cs" />
     <Compile Include="Controllers\Incidents\IncidentsController.cs" />
     <Compile Include="Controllers\Meetings\MeetingsByCompanyCodesController.cs" />
     <Compile Include="Controllers\Meetings\MeetingsController.cs" />
+    <Compile Include="Controllers\Meetings\MeetingStatsByCompaniesController.cs" />
     <Compile Include="Controllers\Modules\CompanyModulesController.cs" />
     <Compile Include="Controllers\Modules\LinkedModulesController.cs" />
     <Compile Include="Controllers\Modules\ModulesController.cs" />
@@ -280,11 +285,13 @@
     <Compile Include="Controllers\StepBack\StepBackByUserCodesController.cs" />
     <Compile Include="Controllers\StepBack\StepbacksController.cs" />
     <Compile Include="Controllers\StepBack\StepBackByCompanyCodesController.cs" />
+    <Compile Include="Controllers\StepBack\StepbackStatsByCompaniesController.cs" />
     <Compile Include="Controllers\Users\CompanyStaffsController.cs" />
     <Compile Include="Controllers\Users\CompanyUserUpdateStatusesController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Controllers\Visits\VisitRegistersController.cs" />
     <Compile Include="Controllers\Visits\VisitsByCompanyCodesController.cs" />
+    <Compile Include="Controllers\Visits\VisitStatsByCompaniesController.cs" />
     <Compile Include="Models\CheckListLog.cs">
       <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>
@@ -560,6 +567,8 @@
     <Content Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Views\CheckListStatsByCompanies\" />
+    <Folder Include="Views\CheckListStatsByUsers\" />
     <Folder Include="Views\CompletedChecklistByUser\" />
     <Folder Include="Views\IncidentsByUserIds\" />
     <Folder Include="Views\StepBackByUserCodes\" />
