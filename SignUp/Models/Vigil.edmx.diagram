@@ -32,7 +32,6 @@
         <EntityTypeShape EntityType="DBModelVigil.Department" Width="1.5" PointX="5.375" PointY="7.75" />
         <EntityTypeShape EntityType="DBModelVigil.Function" Width="1.5" PointX="7.375" PointY="8.75" />
         <EntityTypeShape EntityType="DBModelVigil.Project" Width="1.5" PointX="14.375" PointY="6.75" />
-        <EntityTypeShape EntityType="DBModelVigil.Training" Width="1.5" PointX="8.125" PointY="4.25" />
         <EntityTypeShape EntityType="DBModelVigil.LinkedProject" Width="1.5" PointX="5.375" PointY="4.75" />
         <EntityTypeShape EntityType="DBModelVigil.RawData" Width="1.5" PointX="5.375" PointY="11.75" />
         <EntityTypeShape EntityType="DBModelVigil.FileData" Width="1.5" PointX="7.375" PointY="11.75" />
@@ -50,6 +49,7 @@
         <EntityTypeShape EntityType="DBModelVigil.CheckLogFull" Width="1.5" PointX="8.375" PointY="15.75" />
         <EntityTypeShape EntityType="DBModelVigil.Incident" Width="1.5" PointX="10.375" PointY="17.75" />
         <EntityTypeShape EntityType="DBModelVigil.Meeting" Width="1.5" PointX="14.375" PointY="15.75" />
+        <EntityTypeShape EntityType="DBModelVigil.Training" Width="1.5" PointX="8.375" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

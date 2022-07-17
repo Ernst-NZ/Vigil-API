@@ -55,6 +55,7 @@ namespace SignUp.Controllers
           ,coalesce(train.CompetencyLevel, '') CompetencyLevel
           ,coalesce(train.ProviderName, '') ProviderName
           ,coalesce(train.StudentNumber, '') StudentNumber
+          ,coalesce(train.NZQANumber, '') NZQANumber
           ,train.LastUpdateBy
           ,coalesce(train.UpdateDate, '') UpdateDate
   	      ,count(FD.Id) as Docs
@@ -74,6 +75,7 @@ namespace SignUp.Controllers
         "  ,train.CompetencyLevel " +
         "  ,train.ProviderName " +
         "  ,train.StudentNumber " +
+        "  ,train.NZQANumber " +
         "  ,train.LastUpdateBy " +
         "  ,train.UpdateDate " +
         "Union " +
@@ -87,6 +89,7 @@ namespace SignUp.Controllers
         "  ,coalesce(train.CompetencyLevel, '') CompetencyLevel " +
         "  ,coalesce(train.ProviderName, '') ProviderName " +
         "  , coalesce(train.StudentNumber, '') StudentNumber " +
+        " , coalesce(train.NZQANumber, '') NZQANumber " +
         "  ,train.LastUpdateBy " +
         "  ,coalesce(train.UpdateDate, '') UpdateDate " +
         "  ,count(FD.Id) as Docs " +
@@ -106,6 +109,7 @@ namespace SignUp.Controllers
         "  ,train.CompetencyLevel " +
         "  ,train.ProviderName " +
         "  ,train.StudentNumber " +
+        "  ,train.NZQANumber " +
         "  ,train.LastUpdateBy " +
         "  ,train.UpdateDate";
 
