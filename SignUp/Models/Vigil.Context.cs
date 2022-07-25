@@ -50,7 +50,6 @@ namespace SignUp.Models
         public virtual DbSet<LinkedProject> LinkedProjects { get; set; }
         public virtual DbSet<RawData> RawDatas { get; set; }
         public virtual DbSet<FileData> FileDatas { get; set; }
-        public virtual DbSet<Company> Companies { get; set; }
         public virtual DbSet<CompanyStaff> CompanyStaffs { get; set; }
         public virtual DbSet<Image> Images { get; set; }
         public virtual DbSet<Module> Modules { get; set; }
@@ -65,5 +64,7 @@ namespace SignUp.Models
         public virtual DbSet<Incident> Incidents { get; set; }
         public virtual DbSet<Meeting> Meetings { get; set; }
         public virtual DbSet<Training> Trainings { get; set; }
+        public virtual DbSet<Company> Companies { get; set; }
+        public virtual DbSet<Chemical> Chemicals { get; set; }
     }
 }

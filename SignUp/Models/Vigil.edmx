@@ -199,6 +199,30 @@
           <Property Name="AddedOn" Type="nvarchar" MaxLength="125" />
           <Property Name="Status" Type="bit" />
         </EntityType>
+        <EntityType Name="Chemical">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CompanyUid" Type="nvarchar" MaxLength="128" />
+          <Property Name="userCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="ChemicalName" Type="nvarchar" MaxLength="250" />
+          <Property Name="Manufacturer" Type="nvarchar" MaxLength="250" />
+          <Property Name="SDSDate" Type="nvarchar" MaxLength="50" />
+          <Property Name="MaxQty" Type="nvarchar" MaxLength="100" />
+          <Property Name="OnSiteQty" Type="nvarchar" MaxLength="100" />
+          <Property Name="Labelled" Type="nvarchar" MaxLength="100" />
+          <Property Name="RiskAssessment" Type="nvarchar" MaxLength="100" />
+          <Property Name="Controls" Type="nvarchar" MaxLength="100" />
+          <Property Name="SafetySheet" Type="nvarchar" MaxLength="200" />
+          <Property Name="SafetyLink" Type="nvarchar" MaxLength="200" />
+          <Property Name="Comments" Type="nvarchar(max)" />
+          <Property Name="LastCheck" Type="nvarchar" MaxLength="50" />
+          <Property Name="CheckBy" Type="varchar" MaxLength="255" />
+          <Property Name="AddedBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="LastUpdate" Type="nvarchar" MaxLength="100" />
+          <Property Name="LastUpdateBy" Type="nvarchar" MaxLength="100" />
+        </EntityType>
         <EntityType Name="Company">
           <Key>
             <PropertyRef Name="CompanyId" />
@@ -222,6 +246,7 @@
           <Property Name="ReportEmail1" Type="nvarchar" MaxLength="150" />
           <Property Name="ReportPerson2" Type="nvarchar" MaxLength="150" />
           <Property Name="ReportEmail2" Type="nvarchar" MaxLength="150" />
+          <Property Name="CompanyUid" Type="nvarchar" MaxLength="128" />
         </EntityType>
         <EntityType Name="CompanyDocs">
           <Key>
@@ -797,6 +822,7 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <EntitySet Name="CheckListLog" EntityType="Self.CheckListLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ChecklistMaster" EntityType="Self.ChecklistMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CheckLogFull" EntityType="Self.CheckLogFull" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Chemical" EntityType="Self.Chemical" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CompanyDocs" EntityType="Self.CompanyDocs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CompanyStaff" EntityType="Self.CompanyStaff" Schema="dbo" store:Type="Tables" />
@@ -1065,7 +1091,6 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <EntitySet Name="LinkedProjects" EntityType="DBModelVigil.LinkedProject" />
           <EntitySet Name="RawDatas" EntityType="DBModelVigil.RawData" />
           <EntitySet Name="FileDatas" EntityType="DBModelVigil.FileData" />
-          <EntitySet Name="Companies" EntityType="DBModelVigil.Company" />
           <EntitySet Name="CompanyStaffs" EntityType="DBModelVigil.CompanyStaff" />
           <EntitySet Name="Images" EntityType="DBModelVigil.Image" />
           <EntitySet Name="Modules" EntityType="DBModelVigil.Module" />
@@ -1080,6 +1105,8 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <EntitySet Name="Incidents" EntityType="DBModelVigil.Incident" />
           <EntitySet Name="Meetings" EntityType="DBModelVigil.Meeting" />
           <EntitySet Name="Trainings" EntityType="DBModelVigil.Training" />
+          <EntitySet Name="Companies" EntityType="DBModelVigil.Company" />
+          <EntitySet Name="Chemicals" EntityType="DBModelVigil.Chemical" />
         </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
@@ -1262,30 +1289,6 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <Property Name="FileSize" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="AddedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Date" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Company">
-          <Key>
-            <PropertyRef Name="CompanyId" />
-          </Key>
-          <Property Name="CompanyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IsParentCompany" Type="Boolean" />
-          <Property Name="ParentCode" Type="Int32" Nullable="false" />
-          <Property Name="CompanyCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="CompanyAddress1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CompanyAddress2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CompanyTown" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CompanyPostcode" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="CompanyContactPerson" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="CompanyContactEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="CompanyContactPhone" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="CompanyContactPosition" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CompanyHSManager" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="CompanyHSEmail" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="ReportPerson1" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="ReportEmail1" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="ReportPerson2" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="ReportEmail2" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="CompanyStaff">
           <Key>
@@ -1686,6 +1689,55 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <Property Name="StudentNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="NZQANumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="CompanyId" />
+          </Key>
+          <Property Name="CompanyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsParentCompany" Type="Boolean" />
+          <Property Name="ParentCode" Type="Int32" Nullable="false" />
+          <Property Name="CompanyCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyAddress1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyAddress2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyTown" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyPostcode" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="CompanyContactPerson" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyContactEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyContactPhone" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyContactPosition" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyHSManager" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyHSEmail" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ReportPerson1" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ReportEmail1" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ReportPerson2" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ReportEmail2" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyUid" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Chemical">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyUid" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="userCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ChemicalName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Manufacturer" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="SDSDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MaxQty" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="OnSiteQty" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Labelled" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RiskAssessment" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Controls" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SafetySheet" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="SafetyLink" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastCheck" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CheckBy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="AddedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdate" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdateBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1979,31 +2031,6 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
                 <ScalarProperty Name="ParentName" ColumnName="ParentName" />
                 <ScalarProperty Name="ParentId" ColumnName="ParentId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Companies">
-            <EntityTypeMapping TypeName="DBModelVigil.Company">
-              <MappingFragment StoreEntitySet="Company">
-                <ScalarProperty Name="ReportEmail2" ColumnName="ReportEmail2" />
-                <ScalarProperty Name="ReportPerson2" ColumnName="ReportPerson2" />
-                <ScalarProperty Name="ReportEmail1" ColumnName="ReportEmail1" />
-                <ScalarProperty Name="ReportPerson1" ColumnName="ReportPerson1" />
-                <ScalarProperty Name="CompanyHSEmail" ColumnName="CompanyHSEmail" />
-                <ScalarProperty Name="CompanyHSManager" ColumnName="CompanyHSManager" />
-                <ScalarProperty Name="CompanyContactPosition" ColumnName="CompanyContactPosition" />
-                <ScalarProperty Name="CompanyContactPhone" ColumnName="CompanyContactPhone" />
-                <ScalarProperty Name="CompanyContactEmail" ColumnName="CompanyContactEmail" />
-                <ScalarProperty Name="CompanyContactPerson" ColumnName="CompanyContactPerson" />
-                <ScalarProperty Name="CompanyPostcode" ColumnName="CompanyPostcode" />
-                <ScalarProperty Name="CompanyTown" ColumnName="CompanyTown" />
-                <ScalarProperty Name="CompanyAddress2" ColumnName="CompanyAddress2" />
-                <ScalarProperty Name="CompanyAddress1" ColumnName="CompanyAddress1" />
-                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
-                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
-                <ScalarProperty Name="ParentCode" ColumnName="ParentCode" />
-                <ScalarProperty Name="IsParentCompany" ColumnName="IsParentCompany" />
-                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2417,6 +2444,57 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
                 <ScalarProperty Name="CourseName" ColumnName="CourseName" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="TrainingId" ColumnName="TrainingId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Companies">
+            <EntityTypeMapping TypeName="DBModelVigil.Company">
+              <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="CompanyUid" ColumnName="CompanyUid" />
+                <ScalarProperty Name="ReportEmail2" ColumnName="ReportEmail2" />
+                <ScalarProperty Name="ReportPerson2" ColumnName="ReportPerson2" />
+                <ScalarProperty Name="ReportEmail1" ColumnName="ReportEmail1" />
+                <ScalarProperty Name="ReportPerson1" ColumnName="ReportPerson1" />
+                <ScalarProperty Name="CompanyHSEmail" ColumnName="CompanyHSEmail" />
+                <ScalarProperty Name="CompanyHSManager" ColumnName="CompanyHSManager" />
+                <ScalarProperty Name="CompanyContactPosition" ColumnName="CompanyContactPosition" />
+                <ScalarProperty Name="CompanyContactPhone" ColumnName="CompanyContactPhone" />
+                <ScalarProperty Name="CompanyContactEmail" ColumnName="CompanyContactEmail" />
+                <ScalarProperty Name="CompanyContactPerson" ColumnName="CompanyContactPerson" />
+                <ScalarProperty Name="CompanyPostcode" ColumnName="CompanyPostcode" />
+                <ScalarProperty Name="CompanyTown" ColumnName="CompanyTown" />
+                <ScalarProperty Name="CompanyAddress2" ColumnName="CompanyAddress2" />
+                <ScalarProperty Name="CompanyAddress1" ColumnName="CompanyAddress1" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="ParentCode" ColumnName="ParentCode" />
+                <ScalarProperty Name="IsParentCompany" ColumnName="IsParentCompany" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Chemicals">
+            <EntityTypeMapping TypeName="DBModelVigil.Chemical">
+              <MappingFragment StoreEntitySet="Chemical">
+                <ScalarProperty Name="LastUpdateBy" ColumnName="LastUpdateBy" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+                <ScalarProperty Name="CheckBy" ColumnName="CheckBy" />
+                <ScalarProperty Name="LastCheck" ColumnName="LastCheck" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="SafetyLink" ColumnName="SafetyLink" />
+                <ScalarProperty Name="SafetySheet" ColumnName="SafetySheet" />
+                <ScalarProperty Name="Controls" ColumnName="Controls" />
+                <ScalarProperty Name="RiskAssessment" ColumnName="RiskAssessment" />
+                <ScalarProperty Name="Labelled" ColumnName="Labelled" />
+                <ScalarProperty Name="OnSiteQty" ColumnName="OnSiteQty" />
+                <ScalarProperty Name="MaxQty" ColumnName="MaxQty" />
+                <ScalarProperty Name="SDSDate" ColumnName="SDSDate" />
+                <ScalarProperty Name="Manufacturer" ColumnName="Manufacturer" />
+                <ScalarProperty Name="ChemicalName" ColumnName="ChemicalName" />
+                <ScalarProperty Name="userCode" ColumnName="userCode" />
+                <ScalarProperty Name="CompanyUid" ColumnName="CompanyUid" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

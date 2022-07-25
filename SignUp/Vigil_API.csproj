@@ -251,8 +251,10 @@
     <Compile Include="Controllers\CheckList\CompletedChecklistByUserController.cs" />
     <Compile Include="Controllers\CheckList\DeleteChecklistMastersController.cs" />
     <Compile Include="Controllers\CheckList\DuplicateCheckListMastersController.cs" />
-    <Compile Include="Controllers\Companies\CompaniesParentsController.cs" />
+    <Compile Include="Controllers\Chemicals\ChemicalsByCompanyUidsController.cs" />
+    <Compile Include="Controllers\Chemicals\ChemicalsController.cs" />
     <Compile Include="Controllers\Companies\CompaniesController.cs" />
+    <Compile Include="Controllers\Companies\CompaniesParentsController.cs" />
     <Compile Include="Controllers\Companies\CompanyDocsController.cs" />
     <Compile Include="Controllers\Departments\DepartmentsByCompaniesController.cs" />
     <Compile Include="Controllers\Departments\DepartmentsController.cs" />
@@ -299,6 +301,9 @@
       <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CheckLogFull.cs">
+      <DependentUpon>Vigil.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Chemical.cs">
       <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CompanyStaff.cs">

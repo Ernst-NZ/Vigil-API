@@ -18,7 +18,6 @@ namespace SignUp.Controllers
       {
         return NotFound();
       }
-
       return Ok(departments);
     }
   }
