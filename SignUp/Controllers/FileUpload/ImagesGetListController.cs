@@ -20,6 +20,7 @@ namespace SignUp.Controllers
             int ParentId = fileData.ParentId;
 
             var imageFiles = from files in db.FileDatas
+                             join raw in db.RawDatas on files.Id equals raw.Id
                              where files.ParentName == ParentName && files.ParentId == ParentId
                              select new { 
                                 files.Id,

@@ -42,6 +42,10 @@ namespace WebAPI.Controllers
       //MemoryStream strm = new MemoryStream(bytes);
       //Attachment data = new Attachment(strm, "Test.pdf");
 
+      if (gmail.EmailTo2.Length > 5) {
+        gmail.EmailTo = gmail.EmailTo + " , " + gmail.EmailTo2;
+      }
+  
 
       string messageResult;
       gmail.EmailFrom = "info@nzsats.co.nz";
