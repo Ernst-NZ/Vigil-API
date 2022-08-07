@@ -25,7 +25,7 @@ namespace SignUp.Controllers.CheckList
              FROM   checklistlog
              WHERE  AddedBy = '" + id + "' " +
         "      AND (CAST((SUBSTRING(CheckListDate, 1, CHARINDEX(',', CheckListDate)-1)) as date)) >= dateadd(day, 1-datepart(dw, getdate()), CONVERT(date,getdate())) " +
-        "      AND (CAST((SUBSTRING(CheckListDate, 1, CHARINDEX(',', ReportCheckListDateDate)-1)) as date)) <  dateadd(day, 8-datepart(dw, getdate()), CONVERT(date,getdate())) " +
+        "      AND (CAST((SUBSTRING(CheckListDate, 1, CHARINDEX(',', CheckListDate)-1)) as date)) <  dateadd(day, 8-datepart(dw, getdate()), CONVERT(date,getdate())) " +
         "        AND checklistfinalstatus = 1) AS Done " +
         "  ,(SELECT Count(DISTINCT checklistuid) " +
         "    FROM   checklistlog " +
