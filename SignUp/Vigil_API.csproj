@@ -369,6 +369,8 @@
     <Compile Include="Controllers\StepBack\StepbacksController.cs" />
     <Compile Include="Controllers\StepBack\StepBackByCompanyCodesController.cs" />
     <Compile Include="Controllers\StepBack\StepbackStatsByCompaniesController.cs" />
+    <Compile Include="Controllers\Training\TrainingStatsByCompaniesController.cs" />
+    <Compile Include="Controllers\Training\TrainingStatsByUsersController.cs" />
     <Compile Include="Controllers\Users\CompanyStaffsController.cs" />
     <Compile Include="Controllers\Users\CompanyUserUpdateStatusesController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -658,6 +660,8 @@
     <Folder Include="Views\CompletedChecklistByUser\" />
     <Folder Include="Views\IncidentsByUserIds\" />
     <Folder Include="Views\StepBackByUserCodes\" />
+    <Folder Include="Views\TrainingStatsByCompanies\" />
+    <Folder Include="Views\TrainingStatsByUsers\" />
     <Folder Include="Views\WebUsersById\" />
   </ItemGroup>
   <ItemGroup>
