@@ -16,12 +16,14 @@ namespace SignUp.Controllers
     {
       var companies = from i in db.Companies
                       where i.CompanyId == id || i.ParentCode == id
+                      orderby i.CompanyName
                       select i;
       companies.OrderBy(x => x.CompanyName);
       if (companies == null)
       {
         return NotFound();
       }
+      var xx = companies;
 
       return Ok(companies);
     }

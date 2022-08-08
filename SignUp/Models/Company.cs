@@ -33,5 +33,6 @@ namespace SignUp.Models
         public string ReportEmail1 { get; set; }
         public string ReportPerson2 { get; set; }
         public string ReportEmail2 { get; set; }
+        public string CompanyUid { get; set; }
     }
 }

@@ -1,26 +1,28 @@
-﻿using System.Data;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using SignUp.Models;
 
-namespace SignUp.Controllers
+namespace SignUp.Controllers.Companies
 {
-  public class CompaniesController : ApiController
+    public class CompaniesController : ApiController
     {
         private Entities db = new Entities();
 
         // GET: api/Companies
         public IQueryable<Company> GetCompanies()
         {
-          return db.Companies.OrderBy(c => c.CompanyName);
-    }
+            return db.Companies;
+        }
 
         // GET: api/Companies/5
-        [AllowAnonymous]
         [ResponseType(typeof(Company))]
         public IHttpActionResult GetCompany(int id)
         {
