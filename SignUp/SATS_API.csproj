@@ -559,8 +559,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Cancellation.html" />
-    <Content Include="Confirmation.html" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -630,7 +628,6 @@
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="Services\MailFormat.xml" />
-    <Content Include="SignUp.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
