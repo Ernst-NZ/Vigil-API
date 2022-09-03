@@ -51,6 +51,7 @@
         <EntityTypeShape EntityType="DBModelVigil.Company" Width="1.5" PointX="10.375" PointY="11.75" />
         <EntityTypeShape EntityType="DBModelVigil.Chemical" Width="1.5" PointX="19.375" PointY="15.75" />
         <EntityTypeShape EntityType="DBModelVigil.CheckListLog" Width="1.5" PointX="0.75" PointY="19.75" />
+        <EntityTypeShape EntityType="DBModelVigil.Hazard" Width="1.5" PointX="12.375" PointY="20.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

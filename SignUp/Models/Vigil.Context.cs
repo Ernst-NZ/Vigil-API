@@ -66,5 +66,6 @@ namespace SignUp.Models
         public virtual DbSet<Company> Companies { get; set; }
         public virtual DbSet<Chemical> Chemicals { get; set; }
         public virtual DbSet<CheckListLog> CheckListLogs { get; set; }
+        public virtual DbSet<Hazard> Hazards { get; set; }
     }
 }

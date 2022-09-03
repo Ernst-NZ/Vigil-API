@@ -344,6 +344,8 @@
     <Compile Include="Controllers\FileUpload\fileUploadControllerOld.cs" />
     <Compile Include="Controllers\Functions\FunctionsByCompaniesController.cs" />
     <Compile Include="Controllers\Functions\FunctionsController.cs" />
+    <Compile Include="Controllers\Hazards\HazardsByCompanyIdsController.cs" />
+    <Compile Include="Controllers\Hazards\HazardsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\FileUpload\ImageController.cs" />
     <Compile Include="Controllers\FileUpload\ImagesController.cs" />
@@ -369,6 +371,7 @@
     <Compile Include="Controllers\StepBack\StepbacksController.cs" />
     <Compile Include="Controllers\StepBack\StepBackByCompanyCodesController.cs" />
     <Compile Include="Controllers\StepBack\StepbackStatsByCompaniesController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\Training\TrainingStatsByCompaniesController.cs" />
     <Compile Include="Controllers\Training\TrainingStatsByUsersController.cs" />
     <Compile Include="Controllers\Users\CompanyStaffsController.cs" />
@@ -390,6 +393,9 @@
       <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CompanyStaff.cs">
+      <DependentUpon>Vigil.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Hazard.cs">
       <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Image.cs">
