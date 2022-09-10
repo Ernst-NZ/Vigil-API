@@ -8,7 +8,7 @@ namespace SignUp.Models
     public class UploadData
     {
         public int Id { get; set; }
-        public Nullable<int> ParentId { get; set; }
+        public string ParentId { get; set; }
         public string ParentName { get; set; }
         public string SubFolder { get; set; }
         public string FileDescription { get; set; }

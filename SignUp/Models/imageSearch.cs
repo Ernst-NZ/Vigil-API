@@ -2,7 +2,7 @@
 {
     public class imageSearch
     {
-        public int ParentId { get; set; }
+        public string ParentId { get; set; }
         public string ParentName { get; set; }
     }
 }

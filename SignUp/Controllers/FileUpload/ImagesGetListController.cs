@@ -17,7 +17,7 @@ namespace SignUp.Controllers
         public IHttpActionResult PostStatement(imageSearch fileData)
         {
             string ParentName = fileData.ParentName;
-            int ParentId = fileData.ParentId;
+            string ParentId = fileData.ParentId;
 
             var imageFiles = from files in db.FileDatas
                              join raw in db.RawDatas on files.Id equals raw.Id
