@@ -10,7 +10,6 @@ namespace SignUp.Controllers.CheckList
 {
   public class TrainingStatsByCompaniesController : ApiController
   {
-    private Entities db = new Entities();
     [HttpGet]
     public IHttpActionResult TrainingStatsByCompanyCode(string id)
     {
@@ -27,7 +26,7 @@ namespace SignUp.Controllers.CheckList
             "FROM Training " +
             "inner join WebUser on webuser.userid = training.userId " +
             "Where DATEDIFF(day, getDate(), ExpiryDate) between 31 and 60  " +
-            "and UserCompanyCode = '" + id + "') as Blue " +
+            "and UserCompanyCode = '" + id + "') as blue " +
             "FROM Training " +
             "inner join WebUser on webuser.userid = training.userId " +
             "Where DATEDIFF(day, getDate(), ExpiryDate) < 0 " +

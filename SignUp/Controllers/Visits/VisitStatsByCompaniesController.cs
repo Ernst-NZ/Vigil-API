@@ -17,7 +17,7 @@ namespace SignUp.Controllers.Visits
       string connString = ConfigurationManager.ConnectionStrings["IdentityDemoConnection"].ConnectionString;
       string query =
          @"SET DATEFIRST 1
-          Select 'Visit Week', Count(distinct VisitId) as Total
+          Select 'Visit 1 Week', Count(distinct VisitId) as Total
 	          ,(Select Count(distinct VisitId)
             From VisitRegister
             Where CompanyCode = '" + id + "' " +
@@ -35,7 +35,7 @@ namespace SignUp.Controllers.Visits
          "   AND DateIn >= dateadd(day, 1-datepart(dw, getdate()), CONVERT(date,getdate())) " +
          "   AND DateIn <  dateadd(day, 8-datepart(dw, getdate()), CONVERT(date,getdate())) " +
          "   union " +
-         "   Select 'Visit Month', Count(distinct VisitId) as Total " +
+         "   Select 'Visit 2 Month', Count(distinct VisitId) as Total " +
          "   ,(Select Count(distinct VisitId) " +
          "   From VisitRegister " +
          "   Where CompanyCode = '" + id + "' " +
@@ -51,7 +51,25 @@ namespace SignUp.Controllers.Visits
          "   From VisitRegister " +
          "   Where CompanyCode = '" + id + "' " +
          "   and datepart(mm,DateIn) =month(getdate()) " +
-         " and datepart(yyyy,DateIn) =year(getdate())  ";
+         " and datepart(yyyy,DateIn) =year(getdate())  " +
+         "   union " +
+         "   Select 'Visit 3 Older', Count(distinct VisitId) as Total " +
+         "   ,(Select Count(distinct VisitId) " +
+         "   From VisitRegister " +
+         "   Where CompanyCode = '" + id + "' " +
+         "   and (datepart(mm,DateIn) < month(getdate()) " +
+         "        OR datepart(yyyy,DateIn) < year(getdate())) " +
+         "   and DateOut IS NOT NULl) as Done " +
+         "   ,(Select Count(distinct VisitId) " +
+         "   From VisitRegister " +
+         "   Where CompanyCode = '" + id + "' " +
+         " and (datepart(mm,DateIn) < month(getdate()) " +
+         "      OR datepart(yyyy,DateIn) < year(getdate())) " +
+         "   and ISNULL(DateOut, '') = '') as Outstanding " +
+         "   From VisitRegister " +
+         "   Where CompanyCode = '" + id + "' " +
+         "   and (datepart(mm,DateIn) < month(getdate()) " +
+         "        OR datepart(yyyy,DateIn) < year(getdate()))  ";
       SqlConnection conn = new SqlConnection(connString);
       SqlCommand cmd = new SqlCommand(query, conn);
       SqlDataAdapter da = new SqlDataAdapter(cmd);

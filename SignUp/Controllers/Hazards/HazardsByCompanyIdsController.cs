@@ -17,7 +17,7 @@ namespace SignUp.Controllers.Hazards
                                i.HazardUID,
                                i.CompanyUID,
                                Name = i.Name ?? "",
-                               Date = i.Date ?? "",
+                               Date = i.HazardDate ?? "",
                                Time = i.Time ?? "",
                                Site = i.Site ?? "",
                                i.Type,

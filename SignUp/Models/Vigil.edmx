@@ -315,7 +315,7 @@
           <Property Name="CompanyUID" Type="nvarchar" MaxLength="128" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="Position" Type="nvarchar" MaxLength="50" />
-          <Property Name="Date" Type="nvarchar" MaxLength="50" />
+          <Property Name="HazardDate" Type="nvarchar" MaxLength="50" />
           <Property Name="Time" Type="nvarchar" MaxLength="50" />
           <Property Name="Site" Type="nvarchar" MaxLength="500" />
           <Property Name="Type" Type="nvarchar" MaxLength="500" />
@@ -1785,7 +1785,7 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <Property Name="CompanyUID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HazardDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Site" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Type" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
@@ -2604,7 +2604,7 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
                 <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="Site" ColumnName="Site" />
                 <ScalarProperty Name="Time" ColumnName="Time" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="HazardDate" ColumnName="HazardDate" />
                 <ScalarProperty Name="Position" ColumnName="Position" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="CompanyUID" ColumnName="CompanyUID" />
