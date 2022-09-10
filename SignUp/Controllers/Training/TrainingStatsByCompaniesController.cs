@@ -19,18 +19,21 @@ namespace SignUp.Controllers.CheckList
        @"SELECT count(TrainingId) as red
         	  ,(SELECT count(TrainingId)
             FROM Training
-            inner join WebUser on webuser.userid = training.userId
+            Left join WebUser on webuser.userid = training.userId
+      			Left Join CompanyStaff on Cast(CompanyStaff.StaffId as varchar(6)) = Training.UserId
             Where DATEDIFF(day, getDate(), ExpiryDate) between 0 and 30
-            and UserCompanyCode = '" + id + "') as orange " +
+            and (UserCompanyCode = '" + id + "' OR CompanyStaff.CompanyCode = '" + id + "')) as orange " +
             ",(SELECT count(TrainingId) " +
             "FROM Training " +
-            "inner join WebUser on webuser.userid = training.userId " +
+            "Left join WebUser on webuser.userid = training.userId " +
+            "Left Join CompanyStaff on Cast(CompanyStaff.StaffId as varchar(6)) = Training.UserId " +
             "Where DATEDIFF(day, getDate(), ExpiryDate) between 31 and 60  " +
-            "and UserCompanyCode = '" + id + "') as blue " +
+            "and  (UserCompanyCode = '" + id + "' OR CompanyStaff.CompanyCode = '" + id + "'))  as blue " +
             "FROM Training " +
-            "inner join WebUser on webuser.userid = training.userId " +
+            "Left join WebUser on webuser.userid = training.userId " +
+            "Left Join CompanyStaff on Cast(CompanyStaff.StaffId as varchar(6)) = Training.UserId " +
             "Where DATEDIFF(day, getDate(), ExpiryDate) < 0 " +
-            "and UserCompanyCode = '" + id + "'"; 
+            "and   (UserCompanyCode = '" + id + "' OR CompanyStaff.CompanyCode = '" + id + "')" ; 
       SqlConnection conn = new SqlConnection(connString);
       SqlCommand cmd = new SqlCommand(query, conn);
       SqlDataAdapter da = new SqlDataAdapter(cmd);
