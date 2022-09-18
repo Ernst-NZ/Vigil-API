@@ -516,6 +516,12 @@
     <Compile Include="Models\RawData.cs">
       <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\RiskRegister.cs">
+      <DependentUpon>Vigil.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SafetyPlan.cs">
+      <DependentUpon>Vigil.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SATSImage.cs">
       <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>

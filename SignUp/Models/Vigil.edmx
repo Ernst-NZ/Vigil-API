@@ -496,6 +496,57 @@
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="RawFile" Type="varbinary(max)" Nullable="false" />
         </EntityType>
+        <EntityType Name="RiskRegister">
+          <Key>
+            <PropertyRef Name="RiskUid" />
+          </Key>
+          <Property Name="RiskUid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Risk" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="PotentialRisk" Type="nvarchar(max)" />
+          <Property Name="Likelihood" Type="int" />
+          <Property Name="Consequence" Type="int" />
+          <Property Name="RiskRating" Type="nvarchar" MaxLength="12" />
+          <Property Name="EliminateControl" Type="bit" />
+          <Property Name="SubstituteControl" Type="bit" />
+          <Property Name="IsolateControl" Type="bit" />
+          <Property Name="EngineeringControl" Type="bit" />
+          <Property Name="AdministrationControl" Type="bit" />
+          <Property Name="PPEControl" Type="bit" />
+          <Property Name="ControlDescription" Type="nvarchar(max)" />
+          <Property Name="ResidualRisk" Type="nvarchar" MaxLength="50" />
+          <Property Name="TrainingRequired" Type="bit" />
+          <Property Name="FurtherActions" Type="nvarchar(max)" />
+          <Property Name="PersonToAction" Type="nvarchar" MaxLength="250" />
+          <Property Name="DueDate" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateCompleted" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateChecked" Type="nvarchar" MaxLength="50" />
+          <Property Name="CheckedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CompanyUid" Type="nvarchar" MaxLength="128" />
+          <Property Name="DateAdded" Type="nvarchar" MaxLength="50" />
+          <Property Name="AddedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastUpdate" Type="nvarchar" MaxLength="50" />
+          <Property Name="UpdateBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="Deleted" Type="bit" />
+          <Property Name="DeletedBy" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SafetyPlan">
+          <Key>
+            <PropertyRef Name="PlanningUid" />
+          </Key>
+          <Property Name="PlanningUid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DueDate" Type="nvarchar" MaxLength="50" />
+          <Property Name="Objective" Type="nvarchar(max)" />
+          <Property Name="ActionRequired" Type="nvarchar(max)" />
+          <Property Name="ResponsiblePerson" Type="nvarchar(max)" />
+          <Property Name="DateCompleted" Type="nvarchar" MaxLength="50" />
+          <Property Name="Comments" Type="nvarchar(max)" />
+          <Property Name="AddedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateAdded" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastUpdate" Type="nvarchar" MaxLength="50" />
+          <Property Name="UpdateBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="Deleted" Type="bit" />
+          <Property Name="DeletedBy" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="SATSImages">
           <Key>
             <PropertyRef Name="ImageId" />
@@ -878,6 +929,8 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <EntitySet Name="ProjectDocs" EntityType="Self.ProjectDocs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Projects" EntityType="Self.Projects" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RawData" EntityType="Self.RawData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RiskRegister" EntityType="Self.RiskRegister" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SafetyPlan" EntityType="Self.SafetyPlan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SATSImages" EntityType="Self.SATSImages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Stepback" EntityType="Self.Stepback" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Training" EntityType="Self.Training" Schema="dbo" store:Type="Tables" />
@@ -1146,6 +1199,8 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <EntitySet Name="CheckListLogs" EntityType="DBModelVigil.CheckListLog" />
           <EntitySet Name="Hazards" EntityType="DBModelVigil.Hazard" />
           <EntitySet Name="FileDatas" EntityType="DBModelVigil.FileData" />
+          <EntitySet Name="RiskRegisters" EntityType="DBModelVigil.RiskRegister" />
+          <EntitySet Name="SafetyPlans" EntityType="DBModelVigil.SafetyPlan" />
         </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
@@ -1813,6 +1868,57 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <Property Name="FileSize" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="AddedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Date" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="RiskRegister">
+          <Key>
+            <PropertyRef Name="RiskUid" />
+          </Key>
+          <Property Name="RiskUid" Type="Guid" Nullable="false" />
+          <Property Name="Risk" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="PotentialRisk" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Likelihood" Type="Int32" />
+          <Property Name="Consequence" Type="Int32" />
+          <Property Name="RiskRating" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="EliminateControl" Type="Boolean" />
+          <Property Name="SubstituteControl" Type="Boolean" />
+          <Property Name="IsolateControl" Type="Boolean" />
+          <Property Name="EngineeringControl" Type="Boolean" />
+          <Property Name="AdministrationControl" Type="Boolean" />
+          <Property Name="PPEControl" Type="Boolean" />
+          <Property Name="ControlDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ResidualRisk" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TrainingRequired" Type="Boolean" />
+          <Property Name="FurtherActions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PersonToAction" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="DueDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateCompleted" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateChecked" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CheckedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyUid" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="DateAdded" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AddedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Deleted" Type="Boolean" />
+          <Property Name="DeletedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SafetyPlan">
+          <Key>
+            <PropertyRef Name="PlanningUid" />
+          </Key>
+          <Property Name="PlanningUid" Type="Guid" Nullable="false" />
+          <Property Name="DueDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Objective" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ActionRequired" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ResponsiblePerson" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateCompleted" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AddedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateAdded" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Deleted" Type="Boolean" />
+          <Property Name="DeletedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2609,6 +2715,59 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
                 <ScalarProperty Name="ParentName" ColumnName="ParentName" />
                 <ScalarProperty Name="ParentId" ColumnName="ParentId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RiskRegisters">
+            <EntityTypeMapping TypeName="DBModelVigil.RiskRegister">
+              <MappingFragment StoreEntitySet="RiskRegister">
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="CompanyUid" ColumnName="CompanyUid" />
+                <ScalarProperty Name="CheckedBy" ColumnName="CheckedBy" />
+                <ScalarProperty Name="DateChecked" ColumnName="DateChecked" />
+                <ScalarProperty Name="DateCompleted" ColumnName="DateCompleted" />
+                <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+                <ScalarProperty Name="PersonToAction" ColumnName="PersonToAction" />
+                <ScalarProperty Name="FurtherActions" ColumnName="FurtherActions" />
+                <ScalarProperty Name="TrainingRequired" ColumnName="TrainingRequired" />
+                <ScalarProperty Name="ResidualRisk" ColumnName="ResidualRisk" />
+                <ScalarProperty Name="ControlDescription" ColumnName="ControlDescription" />
+                <ScalarProperty Name="PPEControl" ColumnName="PPEControl" />
+                <ScalarProperty Name="AdministrationControl" ColumnName="AdministrationControl" />
+                <ScalarProperty Name="EngineeringControl" ColumnName="EngineeringControl" />
+                <ScalarProperty Name="IsolateControl" ColumnName="IsolateControl" />
+                <ScalarProperty Name="SubstituteControl" ColumnName="SubstituteControl" />
+                <ScalarProperty Name="EliminateControl" ColumnName="EliminateControl" />
+                <ScalarProperty Name="RiskRating" ColumnName="RiskRating" />
+                <ScalarProperty Name="Consequence" ColumnName="Consequence" />
+                <ScalarProperty Name="Likelihood" ColumnName="Likelihood" />
+                <ScalarProperty Name="PotentialRisk" ColumnName="PotentialRisk" />
+                <ScalarProperty Name="Risk" ColumnName="Risk" />
+                <ScalarProperty Name="RiskUid" ColumnName="RiskUid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SafetyPlans">
+            <EntityTypeMapping TypeName="DBModelVigil.SafetyPlan">
+              <MappingFragment StoreEntitySet="SafetyPlan">
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="DateCompleted" ColumnName="DateCompleted" />
+                <ScalarProperty Name="ResponsiblePerson" ColumnName="ResponsiblePerson" />
+                <ScalarProperty Name="ActionRequired" ColumnName="ActionRequired" />
+                <ScalarProperty Name="Objective" ColumnName="Objective" />
+                <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+                <ScalarProperty Name="PlanningUid" ColumnName="PlanningUid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
