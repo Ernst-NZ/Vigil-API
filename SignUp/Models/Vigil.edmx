@@ -5,6 +5,27 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="DBModelVigil.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AnnualSafetyPlan">
+          <Key>
+            <PropertyRef Name="PlanningUid" />
+          </Key>
+          <Property Name="PlanningUid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CompanyUid" Type="nvarchar" MaxLength="128" />
+          <Property Name="DueDate" Type="nvarchar" MaxLength="50" />
+          <Property Name="Objective" Type="nvarchar(max)" />
+          <Property Name="ActionRequired" Type="nvarchar(max)" />
+          <Property Name="ResponsiblePersonUid" Type="nvarchar" MaxLength="128" />
+          <Property Name="DateCompleted" Type="nvarchar" MaxLength="50" />
+          <Property Name="Comments" Type="nvarchar(max)" />
+          <Property Name="LastCheck" Type="nvarchar" MaxLength="128" />
+          <Property Name="CheckedBy" Type="nvarchar" MaxLength="128" />
+          <Property Name="AddedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateAdded" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastUpdate" Type="nvarchar" MaxLength="50" />
+          <Property Name="UpdateBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="Deleted" Type="bit" />
+          <Property Name="DeletedBy" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="AspNetRoles">
           <Key>
             <PropertyRef Name="Id" />
@@ -529,24 +550,6 @@
           <Property Name="Deleted" Type="bit" />
           <Property Name="DeletedBy" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="SafetyPlan">
-          <Key>
-            <PropertyRef Name="PlanningUid" />
-          </Key>
-          <Property Name="PlanningUid" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="DueDate" Type="nvarchar" MaxLength="50" />
-          <Property Name="Objective" Type="nvarchar(max)" />
-          <Property Name="ActionRequired" Type="nvarchar(max)" />
-          <Property Name="ResponsiblePerson" Type="nvarchar(max)" />
-          <Property Name="DateCompleted" Type="nvarchar" MaxLength="50" />
-          <Property Name="Comments" Type="nvarchar(max)" />
-          <Property Name="AddedBy" Type="nvarchar" MaxLength="50" />
-          <Property Name="DateAdded" Type="nvarchar" MaxLength="50" />
-          <Property Name="LastUpdate" Type="nvarchar" MaxLength="50" />
-          <Property Name="UpdateBy" Type="nvarchar" MaxLength="50" />
-          <Property Name="Deleted" Type="bit" />
-          <Property Name="DeletedBy" Type="nvarchar" MaxLength="50" />
-        </EntityType>
         <EntityType Name="SATSImages">
           <Key>
             <PropertyRef Name="ImageId" />
@@ -902,6 +905,7 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="DBModelVigilStoreContainer">
+          <EntitySet Name="AnnualSafetyPlan" EntityType="Self.AnnualSafetyPlan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
@@ -930,7 +934,6 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <EntitySet Name="Projects" EntityType="Self.Projects" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RawData" EntityType="Self.RawData" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RiskRegister" EntityType="Self.RiskRegister" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SafetyPlan" EntityType="Self.SafetyPlan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SATSImages" EntityType="Self.SATSImages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Stepback" EntityType="Self.Stepback" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Training" EntityType="Self.Training" Schema="dbo" store:Type="Tables" />
@@ -1200,7 +1203,7 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <EntitySet Name="Hazards" EntityType="DBModelVigil.Hazard" />
           <EntitySet Name="FileDatas" EntityType="DBModelVigil.FileData" />
           <EntitySet Name="RiskRegisters" EntityType="DBModelVigil.RiskRegister" />
-          <EntitySet Name="SafetyPlans" EntityType="DBModelVigil.SafetyPlan" />
+          <EntitySet Name="AnnualSafetyPlans" EntityType="DBModelVigil.AnnualSafetyPlan" />
         </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
@@ -1902,17 +1905,20 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <Property Name="Deleted" Type="Boolean" />
           <Property Name="DeletedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="SafetyPlan">
+        <EntityType Name="AnnualSafetyPlan">
           <Key>
             <PropertyRef Name="PlanningUid" />
           </Key>
           <Property Name="PlanningUid" Type="Guid" Nullable="false" />
+          <Property Name="CompanyUid" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="DueDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Objective" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ActionRequired" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ResponsiblePerson" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ResponsiblePersonUid" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="DateCompleted" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastCheck" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CheckedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="AddedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="DateAdded" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="LastUpdate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -2752,21 +2758,24 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SafetyPlans">
-            <EntityTypeMapping TypeName="DBModelVigil.SafetyPlan">
-              <MappingFragment StoreEntitySet="SafetyPlan">
+          <EntitySetMapping Name="AnnualSafetyPlans">
+            <EntityTypeMapping TypeName="DBModelVigil.AnnualSafetyPlan">
+              <MappingFragment StoreEntitySet="AnnualSafetyPlan">
                 <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
                 <ScalarProperty Name="Deleted" ColumnName="Deleted" />
                 <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
                 <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
                 <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
                 <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+                <ScalarProperty Name="CheckedBy" ColumnName="CheckedBy" />
+                <ScalarProperty Name="LastCheck" ColumnName="LastCheck" />
                 <ScalarProperty Name="Comments" ColumnName="Comments" />
                 <ScalarProperty Name="DateCompleted" ColumnName="DateCompleted" />
-                <ScalarProperty Name="ResponsiblePerson" ColumnName="ResponsiblePerson" />
+                <ScalarProperty Name="ResponsiblePersonUid" ColumnName="ResponsiblePersonUid" />
                 <ScalarProperty Name="ActionRequired" ColumnName="ActionRequired" />
                 <ScalarProperty Name="Objective" ColumnName="Objective" />
                 <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+                <ScalarProperty Name="CompanyUid" ColumnName="CompanyUid" />
                 <ScalarProperty Name="PlanningUid" ColumnName="PlanningUid" />
               </MappingFragment>
             </EntityTypeMapping>

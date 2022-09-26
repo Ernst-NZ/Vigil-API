@@ -1,5 +1,4 @@
-﻿using SignUp.Models;
-using System;
+﻿using System;
 using System.Web.Http;
 using System.Configuration;
 using System.Data;
@@ -7,7 +6,7 @@ using System.Data.SqlClient;
 
 namespace SignUp.Controllers.Chemicals
 {
-    public class ChemicalStatsByCompaniesController : ApiController
+  public class ChemicalStatsByCompaniesController : ApiController
   {
     [HttpGet]
     public IHttpActionResult ChemicalStatsByCompanies(string id)

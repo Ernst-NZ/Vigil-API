@@ -68,6 +68,6 @@ namespace SignUp.Models
         public virtual DbSet<Hazard> Hazards { get; set; }
         public virtual DbSet<FileData> FileDatas { get; set; }
         public virtual DbSet<RiskRegister> RiskRegisters { get; set; }
-        public virtual DbSet<SafetyPlan> SafetyPlans { get; set; }
+        public virtual DbSet<AnnualSafetyPlan> AnnualSafetyPlans { get; set; }
     }
 }
