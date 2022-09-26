@@ -19,7 +19,7 @@ namespace SignUp.Controllers.CheckList
       string connString = ConfigurationManager.ConnectionStrings["IdentityDemoConnection"].ConnectionString;
       string query =
         @"SET DATEFIRST 1
-          SELECT 'Checks Week'
+          SELECT 'Checks 1 Week'
           ,Count(DISTINCT checklistuid) AS Total
           ,(SELECT Count(DISTINCT checklistuid)
              FROM   checklistlog
@@ -38,7 +38,7 @@ namespace SignUp.Controllers.CheckList
         "  AND (CAST((SUBSTRING(CheckListDate, 1, CHARINDEX(',', CheckListDate)-1)) as date)) >= dateadd(day, 1-datepart(dw, getdate()), CONVERT(date,getdate())) " +
         "  AND (CAST((SUBSTRING(CheckListDate, 1, CHARINDEX(',', CheckListDate)-1)) as date)) <  dateadd(day, 8-datepart(dw, getdate()), CONVERT(date,getdate())) " +
         "UNION " +
-        "SELECT 'Checks Month' " +
+        "SELECT 'Checks 2 Month' " +
         "  ,Count(DISTINCT checklistuid) AS Total  " +
         "   ,(SELECT Count(DISTINCT checklistuid) " +
         "       FROM   checklistlog " +
@@ -55,7 +55,26 @@ namespace SignUp.Controllers.CheckList
         "FROM   checklistlog " +
         "WHERE  AddedBy = '" + id + "' " +
         "AND Datepart(mm, ( Cast(( Substring(checklistdate, 1, Charindex(',', checklistdate) - 1) ) AS DATE) )) = Month(Getdate()) " +
-        "AND Datepart(yyyy, ( Cast(( Substring(checklistdate, 1, Charindex(',', checklistdate ) - 1) ) AS DATE) )) = Year(Getdate()) "; ;
+        "AND Datepart(yyyy, ( Cast(( Substring(checklistdate, 1, Charindex(',', checklistdate ) - 1) ) AS DATE) )) = Year(Getdate()) " +
+        "UNION " +
+        "SELECT 'Checks 3 Older' " +
+        "  ,Count(DISTINCT checklistuid) AS Total  " +
+        "   ,(SELECT Count(DISTINCT checklistuid) " +
+        "       FROM   checklistlog " +
+        "       WHERE  AddedBy = '" + id + "' " +
+        "        AND (Datepart(mm, ( Cast(( Substring(checklistdate, 1, Charindex(',', checklistdate) - 1) ) AS DATE) )) < Month(Getdate()) " +
+        "             OR Datepart(yyyy, ( Cast(( Substring(checklistdate, 1, Charindex(',', checklistdate ) - 1) ) AS DATE) )) < Year(Getdate())) " +
+        "        AND [checklistfinalstatus] = 1) AS Done " +
+        "   ,(SELECT Count(DISTINCT checklistuid) " +
+        "       FROM   checklistlog " +
+        "       WHERE  AddedBy = '" + id + "' " +
+        "        AND (Datepart(mm, ( Cast(( Substring(checklistdate, 1, Charindex(',', checklistdate) - 1) ) AS DATE) )) < Month(Getdate()) " +
+        "               OR Datepart(yyyy, ( Cast(( Substring(checklistdate, 1, Charindex(',', checklistdate ) - 1) ) AS DATE) )) < Year(Getdate())) " +
+        "        AND Isnull([checklistfinalstatus], '') = '') AS Outstanding " +
+        "FROM   checklistlog " +
+        "WHERE  AddedBy = '" + id + "' " +
+        "AND (Datepart(mm, ( Cast(( Substring(checklistdate, 1, Charindex(',', checklistdate) - 1) ) AS DATE) )) < Month(Getdate()) " +
+        "     OR Datepart(yyyy, ( Cast(( Substring(checklistdate, 1, Charindex(',', checklistdate ) - 1) ) AS DATE) )) < Year(Getdate())) "; ;
       SqlConnection conn = new SqlConnection(connString);
       SqlCommand cmd = new SqlCommand(query, conn);
       SqlDataAdapter da = new SqlDataAdapter(cmd);

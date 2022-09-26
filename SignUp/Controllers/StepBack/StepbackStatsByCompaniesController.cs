@@ -17,17 +17,23 @@ namespace SignUp.Controllers.StepBack
       string connString = ConfigurationManager.ConnectionStrings["IdentityDemoConnection"].ConnectionString;
       string query =
          @"SET DATEFIRST 1
-          Select 'StepBack Week', Count(distinct LogId) as Total	
+          Select 'StepBack 1 Week', Count(distinct LogId) as Total	
             From Stepback
             Where CompanyCode = '" + id + "' " +
          "   AND (CAST((SUBSTRING(AddedOn, 1, CHARINDEX(',', AddedOn)-1)) as date)) >= dateadd(day, 1-datepart(dw, getdate()), CONVERT(date,getdate())) " +
          "   AND (CAST((SUBSTRING(AddedOn, 1, CHARINDEX(',', AddedOn)-1)) as date)) <  dateadd(day, 8-datepart(dw, getdate()), CONVERT(date,getdate())) " +
          "   union " +
-         "   Select 'Stepback Month', Count(distinct LogId) as Total " +
+         "   Select 'Stepback 2 Month', Count(distinct LogId) as Total " +
          "   From Stepback " +
          "   Where CompanyCode = '" + id + "' " +
          "   and datepart(mm,(CAST((SUBSTRING(AddedOn, 1, CHARINDEX(',', AddedOn)-1)) as date))) =month(getdate()) " +
-         "   and datepart(yyyy,(CAST((SUBSTRING(AddedOn, 1, CHARINDEX(',', AddedOn)-1)) as date))) =year(getdate()) ";
+         "   and datepart(yyyy,(CAST((SUBSTRING(AddedOn, 1, CHARINDEX(',', AddedOn)-1)) as date))) =year(getdate()) " +
+         "   union " +
+         "   Select 'Stepback 3 Older', Count(distinct LogId) as Total " +
+         "   From Stepback " +
+         "   Where CompanyCode = '" + id + "' " +
+         "   and (datepart(mm,(CAST((SUBSTRING(AddedOn, 1, CHARINDEX(',', AddedOn)-1)) as date))) < month(getdate()) " +
+         "        OR datepart(yyyy,(CAST((SUBSTRING(AddedOn, 1, CHARINDEX(',', AddedOn)-1)) as date))) < year(getdate())) ";
       SqlConnection conn = new SqlConnection(connString);
       SqlCommand cmd = new SqlCommand(query, conn);
       SqlDataAdapter da = new SqlDataAdapter(cmd);

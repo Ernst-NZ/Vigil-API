@@ -25,7 +25,7 @@ namespace SignUp.Controllers.CheckList
           ",(SELECT count(TrainingId) " +
           "FROM Training " +
           "Where DATEDIFF(day, getDate(), ExpiryDate) between 31 and 60  " +
-          "and userId = '" + id + "') as Blue " +
+          "and userId = '" + id + "') as blue " +
           "FROM Training " +
           "Where DATEDIFF(day, getDate(), ExpiryDate) < 0 " +
           "and userId = '" + id + "'";

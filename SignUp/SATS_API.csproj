@@ -334,6 +334,7 @@
     <Compile Include="Controllers\CheckList\DuplicateCheckListMastersController.cs" />
     <Compile Include="Controllers\Chemicals\ChemicalsByCompanyUidsController.cs" />
     <Compile Include="Controllers\Chemicals\ChemicalsController.cs" />
+    <Compile Include="Controllers\Chemicals\ChemicalStatsByCompaniesController.cs" />
     <Compile Include="Controllers\Companies\CompaniesController.cs" />
     <Compile Include="Controllers\Companies\CompaniesParentsController.cs" />
     <Compile Include="Controllers\Companies\CompanyDocsController.cs" />
@@ -344,16 +345,20 @@
     <Compile Include="Controllers\FileUpload\fileUploadControllerOld.cs" />
     <Compile Include="Controllers\Functions\FunctionsByCompaniesController.cs" />
     <Compile Include="Controllers\Functions\FunctionsController.cs" />
+    <Compile Include="Controllers\Hazards\HazardsByCompanyIdsController.cs" />
+    <Compile Include="Controllers\Hazards\HazardsController.cs" />
+    <Compile Include="Controllers\Hazards\HazardStatsByCompanyIdsController.cs" />
+    <Compile Include="Controllers\Hazards\HazardStatsByUsersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\FileUpload\ImageController.cs" />
     <Compile Include="Controllers\FileUpload\ImagesController.cs" />
     <Compile Include="Controllers\Images\GetImagesByRefAndIdsController.cs" />
     <Compile Include="Controllers\Images\ImagesController.cs" />
     <Compile Include="Controllers\Images\SATSImagesController.cs" />
-    <Compile Include="Controllers\Incidents\IncidentsByCompaniesController.cs" />
+    <Compile Include="Controllers\Incidents\IncidentStatsByCompaniesController.cs" />
     <Compile Include="Controllers\Incidents\IncidentsByCompanyIdsController.cs" />
     <Compile Include="Controllers\Incidents\IncidentsByUserIdsController.cs" />
-    <Compile Include="Controllers\Incidents\IncidentsByUsersController.cs" />
+    <Compile Include="Controllers\Incidents\IncidentStatsByUsersController.cs" />
     <Compile Include="Controllers\Incidents\IncidentsController.cs" />
     <Compile Include="Controllers\Meetings\MeetingsByCompanyCodesController.cs" />
     <Compile Include="Controllers\Meetings\MeetingsController.cs" />
@@ -364,11 +369,15 @@
     <Compile Include="Controllers\Modules\ModulesLinkedController.cs" />
     <Compile Include="Controllers\Modules\ModulesOutstandingController.cs" />
     <Compile Include="Controllers\Projects\ProjectsByUserCodesController.cs" />
+    <Compile Include="Controllers\SafetyPlan\AnnualSafetyPlansController.cs" />
+    <Compile Include="Controllers\SafetyPlan\SafetyPlansByCompanyUidsController.cs" />
+    <Compile Include="Controllers\SafetyPlan\SafetyPlanStatsByCompaniesController.cs" />
     <Compile Include="Controllers\StepBack\StepBackByIdsController.cs" />
     <Compile Include="Controllers\StepBack\StepBackByUserCodesController.cs" />
     <Compile Include="Controllers\StepBack\StepbacksController.cs" />
     <Compile Include="Controllers\StepBack\StepBackByCompanyCodesController.cs" />
     <Compile Include="Controllers\StepBack\StepbackStatsByCompaniesController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\Training\TrainingStatsByCompaniesController.cs" />
     <Compile Include="Controllers\Training\TrainingStatsByUsersController.cs" />
     <Compile Include="Controllers\Users\CompanyStaffsController.cs" />
@@ -377,6 +386,9 @@
     <Compile Include="Controllers\Visits\VisitRegistersController.cs" />
     <Compile Include="Controllers\Visits\VisitsByCompanyCodesController.cs" />
     <Compile Include="Controllers\Visits\VisitStatsByCompaniesController.cs" />
+    <Compile Include="Models\AnnualSafetyPlan.cs">
+      <DependentUpon>Vigil.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\CheckListLog.cs">
       <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>
@@ -390,6 +402,9 @@
       <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CompanyStaff.cs">
+      <DependentUpon>Vigil.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Hazard.cs">
       <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Image.cs">
@@ -507,6 +522,9 @@
     <Compile Include="Models\RawData.cs">
       <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\RiskRegister.cs">
+      <DependentUpon>Vigil.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SATSImage.cs">
       <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>
@@ -559,8 +577,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Cancellation.html" />
-    <Content Include="Confirmation.html" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -630,7 +646,6 @@
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="Services\MailFormat.xml" />
-    <Content Include="SignUp.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

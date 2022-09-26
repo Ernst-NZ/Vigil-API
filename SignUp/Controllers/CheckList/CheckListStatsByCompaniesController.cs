@@ -18,7 +18,7 @@ namespace SignUp.Controllers.CheckList
       string connString = ConfigurationManager.ConnectionStrings["IdentityDemoConnection"].ConnectionString;
       string query =
         @"SET DATEFIRST 1
-          SELECT 'Checks Week'
+          SELECT 'Checks 1  Week'
           ,Count(DISTINCT checklistuid) AS Total
           ,(SELECT Count(DISTINCT checklistuid)
              FROM   checklistlog
@@ -41,7 +41,7 @@ namespace SignUp.Controllers.CheckList
         " AND (CAST((SUBSTRING(CheckListDate, 1, CHARINDEX(',', CheckListDate)-1)) as date)) <  dateadd(day, 8-datepart(dw, getdate()), CONVERT(date,getdate())) " +
         " And Deleted is null or deleted = 0 " +
         "UNION " +
-        "SELECT 'Checks Month' " +
+        "SELECT 'Checks 2 Month' " +
         "  ,Count(DISTINCT checklistuid) AS Total  " +
         "   ,(SELECT Count(DISTINCT checklistuid) " +
         "       FROM   checklistlog " +
@@ -62,6 +62,29 @@ namespace SignUp.Controllers.CheckList
         "WHERE  checklistcompanycode = '" + id + "' " +
         "AND Datepart(mm, ( Cast(( Substring(checklistdate, 1, Charindex(',', checklistdate) - 1) ) AS DATE) )) = Month(Getdate()) " +
         "AND Datepart(yyyy, ( Cast(( Substring(checklistdate, 1, Charindex(',', checklistdate ) - 1) ) AS DATE) )) = Year(Getdate())" +
+        " And Deleted is null or deleted = 0 " +
+        "UNION " +
+        "SELECT 'Checks 3 Older' " +
+        "  ,Count(DISTINCT checklistuid) AS Total  " +
+        "   ,(SELECT Count(DISTINCT checklistuid) " +
+        "       FROM   checklistlog " +
+        "       WHERE  checklistcompanycode = '" + id + "' " +
+        "        AND (Datepart(mm, ( Cast(( Substring(checklistdate, 1, Charindex(',', checklistdate) - 1) ) AS DATE) )) < Month(Getdate()) " +
+        "             OR Datepart(yyyy, ( Cast(( Substring(checklistdate, 1, Charindex(',', checklistdate ) - 1) ) AS DATE) )) < Year(Getdate())) " +
+        "        AND (checklistfinalstatus = 1 OR CheckListStatus = 1) " +
+        "        And Deleted is null or deleted = 0) AS Done " +
+        "   ,(SELECT Count(DISTINCT checklistuid) " +
+        "       FROM   checklistlog " +
+        "       WHERE  checklistcompanycode = '" + id + "' " +
+        "        AND (Datepart(mm, ( Cast(( Substring(checklistdate, 1, Charindex(',', checklistdate) - 1) ) AS DATE) )) < Month(Getdate()) " +
+        "             OR Datepart(yyyy, ( Cast(( Substring(checklistdate, 1, Charindex(',', checklistdate ) - 1) ) AS DATE) )) < Year(Getdate())) " +
+        "        AND Isnull([checklistfinalstatus], '') = ''" +
+        "        AND CheckListStatus <> 1 " +
+        "        And Deleted is null or deleted = 0) AS Outstanding " +
+        "FROM   checklistlog " +
+        "WHERE  checklistcompanycode = '" + id + "' " +
+        "AND (Datepart(mm, ( Cast(( Substring(checklistdate, 1, Charindex(',', checklistdate) - 1) ) AS DATE) )) < Month(Getdate()) " +
+        "     OR Datepart(yyyy, ( Cast(( Substring(checklistdate, 1, Charindex(',', checklistdate ) - 1) ) AS DATE) )) < Year(Getdate())) " +
         " And Deleted is null or deleted = 0 ";
       SqlConnection conn = new SqlConnection(connString);
       SqlCommand cmd = new SqlCommand(query, conn);

@@ -5,6 +5,27 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="DBModelVigil.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AnnualSafetyPlan">
+          <Key>
+            <PropertyRef Name="PlanningUid" />
+          </Key>
+          <Property Name="PlanningUid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CompanyUid" Type="nvarchar" MaxLength="128" />
+          <Property Name="DueDate" Type="nvarchar" MaxLength="50" />
+          <Property Name="Objective" Type="nvarchar(max)" />
+          <Property Name="ActionRequired" Type="nvarchar(max)" />
+          <Property Name="ResponsiblePersonUid" Type="nvarchar" MaxLength="128" />
+          <Property Name="DateCompleted" Type="nvarchar" MaxLength="50" />
+          <Property Name="Comments" Type="nvarchar(max)" />
+          <Property Name="LastCheck" Type="nvarchar" MaxLength="128" />
+          <Property Name="CheckedBy" Type="nvarchar" MaxLength="128" />
+          <Property Name="AddedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateAdded" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastUpdate" Type="nvarchar" MaxLength="50" />
+          <Property Name="UpdateBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="Deleted" Type="bit" />
+          <Property Name="DeletedBy" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="AspNetRoles">
           <Key>
             <PropertyRef Name="Id" />
@@ -288,7 +309,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ParentId" Type="int" />
+          <Property Name="ParentId" Type="nvarchar" MaxLength="128" />
           <Property Name="ParentName" Type="nvarchar" MaxLength="250" />
           <Property Name="SubFolder" Type="nvarchar" MaxLength="250" />
           <Property Name="FileDescription" Type="nvarchar" MaxLength="500" />
@@ -306,6 +327,43 @@
           <Property Name="FunctionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FunctionName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="CompanyCode" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Hazards">
+          <Key>
+            <PropertyRef Name="HazardUID" />
+          </Key>
+          <Property Name="HazardUID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CompanyUID" Type="nvarchar" MaxLength="128" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Position" Type="nvarchar" MaxLength="50" />
+          <Property Name="HazardDate" Type="nvarchar" MaxLength="50" />
+          <Property Name="Time" Type="nvarchar" MaxLength="50" />
+          <Property Name="Site" Type="nvarchar" MaxLength="500" />
+          <Property Name="Type" Type="nvarchar" MaxLength="500" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="LocationOnSite" Type="nvarchar(max)" />
+          <Property Name="RiskMatrix" Type="int" />
+          <Property Name="ImmediateFix" Type="bit" />
+          <Property Name="ImmediateDescription" Type="nvarchar(max)" />
+          <Property Name="Isolated" Type="bit" />
+          <Property Name="Reported" Type="bit" />
+          <Property Name="SuggestedSolution" Type="nvarchar(max)" />
+          <Property Name="SupervisorName" Type="nvarchar" MaxLength="50" />
+          <Property Name="SupervisorPosition" Type="nvarchar" MaxLength="50" />
+          <Property Name="SupervisorAction" Type="nvarchar(max)" />
+          <Property Name="InitiatorAdvised" Type="bit" />
+          <Property Name="SupervisorSignOff" Type="nvarchar(max)" />
+          <Property Name="InitiatorSignOff" Type="nvarchar(max)" />
+          <Property Name="SupervisorSignOffDate" Type="nvarchar" MaxLength="50" />
+          <Property Name="InitiatorSignOffDate" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="AddedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="Created_Date" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastUpdate_By" Type="nvarchar" MaxLength="50" />
+          <Property Name="Updated_Date" Type="nvarchar" MaxLength="50" />
+          <Property Name="Deleted_By" Type="nvarchar" MaxLength="50" />
+          <Property Name="Deleted_Date" Type="nvarchar" MaxLength="50" />
+          <Property Name="Deleted" Type="bit" />
         </EntityType>
         <EntityType Name="Images">
           <Key>
@@ -458,6 +516,39 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="RawFile" Type="varbinary(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RiskRegister">
+          <Key>
+            <PropertyRef Name="RiskUid" />
+          </Key>
+          <Property Name="RiskUid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Risk" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="PotentialRisk" Type="nvarchar(max)" />
+          <Property Name="Likelihood" Type="int" />
+          <Property Name="Consequence" Type="int" />
+          <Property Name="RiskRating" Type="nvarchar" MaxLength="12" />
+          <Property Name="EliminateControl" Type="bit" />
+          <Property Name="SubstituteControl" Type="bit" />
+          <Property Name="IsolateControl" Type="bit" />
+          <Property Name="EngineeringControl" Type="bit" />
+          <Property Name="AdministrationControl" Type="bit" />
+          <Property Name="PPEControl" Type="bit" />
+          <Property Name="ControlDescription" Type="nvarchar(max)" />
+          <Property Name="ResidualRisk" Type="nvarchar" MaxLength="50" />
+          <Property Name="TrainingRequired" Type="bit" />
+          <Property Name="FurtherActions" Type="nvarchar(max)" />
+          <Property Name="PersonToAction" Type="nvarchar" MaxLength="250" />
+          <Property Name="DueDate" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateCompleted" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateChecked" Type="nvarchar" MaxLength="50" />
+          <Property Name="CheckedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CompanyUid" Type="nvarchar" MaxLength="128" />
+          <Property Name="DateAdded" Type="nvarchar" MaxLength="50" />
+          <Property Name="AddedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastUpdate" Type="nvarchar" MaxLength="50" />
+          <Property Name="UpdateBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="Deleted" Type="bit" />
+          <Property Name="DeletedBy" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="SATSImages">
           <Key>
@@ -814,6 +905,7 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="DBModelVigilStoreContainer">
+          <EntitySet Name="AnnualSafetyPlan" EntityType="Self.AnnualSafetyPlan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
@@ -829,6 +921,7 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FileData" EntityType="Self.FileData" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Functions" EntityType="Self.Functions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hazards" EntityType="Self.Hazards" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Images" EntityType="Self.Images" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Incidents" EntityType="Self.Incidents" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LinkedModules" EntityType="Self.LinkedModules" Schema="dbo" store:Type="Tables" />
@@ -840,6 +933,7 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <EntitySet Name="ProjectDocs" EntityType="Self.ProjectDocs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Projects" EntityType="Self.Projects" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RawData" EntityType="Self.RawData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RiskRegister" EntityType="Self.RiskRegister" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SATSImages" EntityType="Self.SATSImages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Stepback" EntityType="Self.Stepback" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Training" EntityType="Self.Training" Schema="dbo" store:Type="Tables" />
@@ -1090,7 +1184,6 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <EntitySet Name="Projects" EntityType="DBModelVigil.Project" />
           <EntitySet Name="LinkedProjects" EntityType="DBModelVigil.LinkedProject" />
           <EntitySet Name="RawDatas" EntityType="DBModelVigil.RawData" />
-          <EntitySet Name="FileDatas" EntityType="DBModelVigil.FileData" />
           <EntitySet Name="CompanyStaffs" EntityType="DBModelVigil.CompanyStaff" />
           <EntitySet Name="Images" EntityType="DBModelVigil.Image" />
           <EntitySet Name="Modules" EntityType="DBModelVigil.Module" />
@@ -1107,6 +1200,10 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <EntitySet Name="Companies" EntityType="DBModelVigil.Company" />
           <EntitySet Name="Chemicals" EntityType="DBModelVigil.Chemical" />
           <EntitySet Name="CheckListLogs" EntityType="DBModelVigil.CheckListLog" />
+          <EntitySet Name="Hazards" EntityType="DBModelVigil.Hazard" />
+          <EntitySet Name="FileDatas" EntityType="DBModelVigil.FileData" />
+          <EntitySet Name="RiskRegisters" EntityType="DBModelVigil.RiskRegister" />
+          <EntitySet Name="AnnualSafetyPlans" EntityType="DBModelVigil.AnnualSafetyPlan" />
         </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
@@ -1273,22 +1370,6 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="RawFile" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="FileData">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ParentId" Type="Int32" />
-          <Property Name="ParentName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="SubFolder" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="FileDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="FileTopic" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="FileName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="FileExtension" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="FileSize" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="AddedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Date" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="CompanyStaff">
           <Key>
@@ -1738,6 +1819,113 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <Property Name="Deleted" Type="Boolean" />
           <Property Name="DeletedBy" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="Hazard">
+          <Key>
+            <PropertyRef Name="HazardUID" />
+          </Key>
+          <Property Name="HazardUID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyUID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HazardDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Site" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LocationOnSite" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RiskMatrix" Type="Int32" />
+          <Property Name="ImmediateFix" Type="Boolean" />
+          <Property Name="ImmediateDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Isolated" Type="Boolean" />
+          <Property Name="Reported" Type="Boolean" />
+          <Property Name="SuggestedSolution" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SupervisorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SupervisorPosition" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SupervisorAction" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="InitiatorAdvised" Type="Boolean" />
+          <Property Name="SupervisorSignOff" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="InitiatorSignOff" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SupervisorSignOffDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InitiatorSignOffDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AddedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Created_Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdate_By" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Updated_Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Deleted_By" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Deleted_Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Deleted" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="FileData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParentId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ParentName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="SubFolder" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="FileDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="FileTopic" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="FileName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="FileExtension" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="FileSize" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AddedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="RiskRegister">
+          <Key>
+            <PropertyRef Name="RiskUid" />
+          </Key>
+          <Property Name="RiskUid" Type="Guid" Nullable="false" />
+          <Property Name="Risk" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="PotentialRisk" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Likelihood" Type="Int32" />
+          <Property Name="Consequence" Type="Int32" />
+          <Property Name="RiskRating" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="EliminateControl" Type="Boolean" />
+          <Property Name="SubstituteControl" Type="Boolean" />
+          <Property Name="IsolateControl" Type="Boolean" />
+          <Property Name="EngineeringControl" Type="Boolean" />
+          <Property Name="AdministrationControl" Type="Boolean" />
+          <Property Name="PPEControl" Type="Boolean" />
+          <Property Name="ControlDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ResidualRisk" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TrainingRequired" Type="Boolean" />
+          <Property Name="FurtherActions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PersonToAction" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="DueDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateCompleted" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateChecked" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CheckedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyUid" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="DateAdded" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AddedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Deleted" Type="Boolean" />
+          <Property Name="DeletedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AnnualSafetyPlan">
+          <Key>
+            <PropertyRef Name="PlanningUid" />
+          </Key>
+          <Property Name="PlanningUid" Type="Guid" Nullable="false" />
+          <Property Name="CompanyUid" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="DueDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Objective" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ActionRequired" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ResponsiblePersonUid" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="DateCompleted" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastCheck" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CheckedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="AddedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateAdded" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Deleted" Type="Boolean" />
+          <Property Name="DeletedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2013,23 +2201,6 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
             <EntityTypeMapping TypeName="DBModelVigil.RawData">
               <MappingFragment StoreEntitySet="RawData">
                 <ScalarProperty Name="RawFile" ColumnName="RawFile" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="FileDatas">
-            <EntityTypeMapping TypeName="DBModelVigil.FileData">
-              <MappingFragment StoreEntitySet="FileData">
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
-                <ScalarProperty Name="FileSize" ColumnName="FileSize" />
-                <ScalarProperty Name="FileExtension" ColumnName="FileExtension" />
-                <ScalarProperty Name="FileName" ColumnName="FileName" />
-                <ScalarProperty Name="FileTopic" ColumnName="FileTopic" />
-                <ScalarProperty Name="FileDescription" ColumnName="FileDescription" />
-                <ScalarProperty Name="SubFolder" ColumnName="SubFolder" />
-                <ScalarProperty Name="ParentName" ColumnName="ParentName" />
-                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2495,6 +2666,117 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
                 <ScalarProperty Name="CheckListName" ColumnName="CheckListName" />
                 <ScalarProperty Name="CheckListDate" ColumnName="CheckListDate" />
                 <ScalarProperty Name="CheckLogId" ColumnName="CheckLogId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hazards">
+            <EntityTypeMapping TypeName="DBModelVigil.Hazard">
+              <MappingFragment StoreEntitySet="Hazards">
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Deleted_Date" ColumnName="Deleted_Date" />
+                <ScalarProperty Name="Deleted_By" ColumnName="Deleted_By" />
+                <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
+                <ScalarProperty Name="LastUpdate_By" ColumnName="LastUpdate_By" />
+                <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="InitiatorSignOffDate" ColumnName="InitiatorSignOffDate" />
+                <ScalarProperty Name="SupervisorSignOffDate" ColumnName="SupervisorSignOffDate" />
+                <ScalarProperty Name="InitiatorSignOff" ColumnName="InitiatorSignOff" />
+                <ScalarProperty Name="SupervisorSignOff" ColumnName="SupervisorSignOff" />
+                <ScalarProperty Name="InitiatorAdvised" ColumnName="InitiatorAdvised" />
+                <ScalarProperty Name="SupervisorAction" ColumnName="SupervisorAction" />
+                <ScalarProperty Name="SupervisorPosition" ColumnName="SupervisorPosition" />
+                <ScalarProperty Name="SupervisorName" ColumnName="SupervisorName" />
+                <ScalarProperty Name="SuggestedSolution" ColumnName="SuggestedSolution" />
+                <ScalarProperty Name="Reported" ColumnName="Reported" />
+                <ScalarProperty Name="Isolated" ColumnName="Isolated" />
+                <ScalarProperty Name="ImmediateDescription" ColumnName="ImmediateDescription" />
+                <ScalarProperty Name="ImmediateFix" ColumnName="ImmediateFix" />
+                <ScalarProperty Name="RiskMatrix" ColumnName="RiskMatrix" />
+                <ScalarProperty Name="LocationOnSite" ColumnName="LocationOnSite" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Site" ColumnName="Site" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="HazardDate" ColumnName="HazardDate" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CompanyUID" ColumnName="CompanyUID" />
+                <ScalarProperty Name="HazardUID" ColumnName="HazardUID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FileDatas">
+            <EntityTypeMapping TypeName="DBModelVigil.FileData">
+              <MappingFragment StoreEntitySet="FileData">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+                <ScalarProperty Name="FileSize" ColumnName="FileSize" />
+                <ScalarProperty Name="FileExtension" ColumnName="FileExtension" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="FileTopic" ColumnName="FileTopic" />
+                <ScalarProperty Name="FileDescription" ColumnName="FileDescription" />
+                <ScalarProperty Name="SubFolder" ColumnName="SubFolder" />
+                <ScalarProperty Name="ParentName" ColumnName="ParentName" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RiskRegisters">
+            <EntityTypeMapping TypeName="DBModelVigil.RiskRegister">
+              <MappingFragment StoreEntitySet="RiskRegister">
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="CompanyUid" ColumnName="CompanyUid" />
+                <ScalarProperty Name="CheckedBy" ColumnName="CheckedBy" />
+                <ScalarProperty Name="DateChecked" ColumnName="DateChecked" />
+                <ScalarProperty Name="DateCompleted" ColumnName="DateCompleted" />
+                <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+                <ScalarProperty Name="PersonToAction" ColumnName="PersonToAction" />
+                <ScalarProperty Name="FurtherActions" ColumnName="FurtherActions" />
+                <ScalarProperty Name="TrainingRequired" ColumnName="TrainingRequired" />
+                <ScalarProperty Name="ResidualRisk" ColumnName="ResidualRisk" />
+                <ScalarProperty Name="ControlDescription" ColumnName="ControlDescription" />
+                <ScalarProperty Name="PPEControl" ColumnName="PPEControl" />
+                <ScalarProperty Name="AdministrationControl" ColumnName="AdministrationControl" />
+                <ScalarProperty Name="EngineeringControl" ColumnName="EngineeringControl" />
+                <ScalarProperty Name="IsolateControl" ColumnName="IsolateControl" />
+                <ScalarProperty Name="SubstituteControl" ColumnName="SubstituteControl" />
+                <ScalarProperty Name="EliminateControl" ColumnName="EliminateControl" />
+                <ScalarProperty Name="RiskRating" ColumnName="RiskRating" />
+                <ScalarProperty Name="Consequence" ColumnName="Consequence" />
+                <ScalarProperty Name="Likelihood" ColumnName="Likelihood" />
+                <ScalarProperty Name="PotentialRisk" ColumnName="PotentialRisk" />
+                <ScalarProperty Name="Risk" ColumnName="Risk" />
+                <ScalarProperty Name="RiskUid" ColumnName="RiskUid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AnnualSafetyPlans">
+            <EntityTypeMapping TypeName="DBModelVigil.AnnualSafetyPlan">
+              <MappingFragment StoreEntitySet="AnnualSafetyPlan">
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+                <ScalarProperty Name="CheckedBy" ColumnName="CheckedBy" />
+                <ScalarProperty Name="LastCheck" ColumnName="LastCheck" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="DateCompleted" ColumnName="DateCompleted" />
+                <ScalarProperty Name="ResponsiblePersonUid" ColumnName="ResponsiblePersonUid" />
+                <ScalarProperty Name="ActionRequired" ColumnName="ActionRequired" />
+                <ScalarProperty Name="Objective" ColumnName="Objective" />
+                <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+                <ScalarProperty Name="CompanyUid" ColumnName="CompanyUid" />
+                <ScalarProperty Name="PlanningUid" ColumnName="PlanningUid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

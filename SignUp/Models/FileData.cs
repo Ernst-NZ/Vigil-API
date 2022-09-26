@@ -15,7 +15,7 @@ namespace SignUp.Models
     public partial class FileData
     {
         public int Id { get; set; }
-        public Nullable<int> ParentId { get; set; }
+        public string ParentId { get; set; }
         public string ParentName { get; set; }
         public string SubFolder { get; set; }
         public string FileDescription { get; set; }

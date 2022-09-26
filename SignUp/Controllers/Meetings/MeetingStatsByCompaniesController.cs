@@ -17,17 +17,23 @@ namespace SignUp.Controllers.Meetings
       string connString = ConfigurationManager.ConnectionStrings["IdentityDemoConnection"].ConnectionString;
       string query =
          @"SET DATEFIRST 1
-          Select 'Meeting Week', Count(distinct MeetingId) as Total	
+          Select 'Meeting 1 Week', Count(distinct MeetingId) as Total	
             From Meetings
             Where MeetingCompanyCode = '" + id + "' " +
          "   AND (CAST((SUBSTRING(MeetingDate, 1, CHARINDEX(',', MeetingDate)-1)) as date)) >= dateadd(day, 1-datepart(dw, getdate()), CONVERT(date,getdate())) " +
          "   AND (CAST((SUBSTRING(MeetingDate, 1, CHARINDEX(',', MeetingDate)-1)) as date)) <  dateadd(day, 8-datepart(dw, getdate()), CONVERT(date,getdate())) " +
          "   And Deleted is Null " +
          "   union " +
-         "   Select 'Meeting Month', Count(distinct MeetingId) as Total " +
+         "   Select 'Meeting 2 Month', Count(distinct MeetingId) as Total " +
          "   From Meetings " +
          "   Where MeetingCompanyCode = '" + id + "' " +
          "   and datepart(mm,(CAST((SUBSTRING(MeetingDate, 1, CHARINDEX(',', MeetingDate)-1)) as date))) =month(getdate()) " +
+         "   and datepart(yyyy,(CAST((SUBSTRING(MeetingDate, 1, CHARINDEX(',', MeetingDate)-1)) as date))) =year(getdate()) " +
+         " And Deleted is Null " +
+         "   union " +
+         "   Select 'Meeting 3 Older', Count(distinct MeetingId) as Total " +
+         "   From Meetings " +
+         "   Where MeetingCompanyCode = '" + id + "' " +         
          "   and datepart(yyyy,(CAST((SUBSTRING(MeetingDate, 1, CHARINDEX(',', MeetingDate)-1)) as date))) =year(getdate()) " +
          " And Deleted is Null ";
       SqlConnection conn = new SqlConnection(connString);

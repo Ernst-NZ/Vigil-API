@@ -1,6 +1,4 @@
-﻿using SignUp.Models;
-using System;
-using System.Linq;
+﻿using System;
 using System.Web.Http;
 using System.Configuration;
 using System.Data;
@@ -10,7 +8,7 @@ namespace SignUp.Controllers
 {
   public class TrainingByCompanyIdController : ApiController
   {
-    private Entities db = new Entities();
+   // private Entities db = new Entities();
     [HttpGet]
     //public IHttpActionResult TrainingByCompanyId(int id)
     //{

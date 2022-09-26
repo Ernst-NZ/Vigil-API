@@ -34,7 +34,6 @@
         <EntityTypeShape EntityType="DBModelVigil.Project" Width="1.5" PointX="14.375" PointY="6.75" />
         <EntityTypeShape EntityType="DBModelVigil.LinkedProject" Width="1.5" PointX="5.375" PointY="4.75" />
         <EntityTypeShape EntityType="DBModelVigil.RawData" Width="1.5" PointX="5.375" PointY="11.75" />
-        <EntityTypeShape EntityType="DBModelVigil.FileData" Width="1.5" PointX="7.375" PointY="11.75" />
         <EntityTypeShape EntityType="DBModelVigil.CompanyStaff" Width="1.5" PointX="5.375" PointY="15.75" />
         <EntityTypeShape EntityType="DBModelVigil.Image" Width="1.5" PointX="0.75" PointY="12.75" />
         <EntityTypeShape EntityType="DBModelVigil.Module" Width="1.5" PointX="16.75" PointY="6.75" />
@@ -51,6 +50,10 @@
         <EntityTypeShape EntityType="DBModelVigil.Company" Width="1.5" PointX="10.375" PointY="11.75" />
         <EntityTypeShape EntityType="DBModelVigil.Chemical" Width="1.5" PointX="19.375" PointY="15.75" />
         <EntityTypeShape EntityType="DBModelVigil.CheckListLog" Width="1.5" PointX="0.75" PointY="19.75" />
+        <EntityTypeShape EntityType="DBModelVigil.Hazard" Width="1.5" PointX="12.375" PointY="20.75" />
+        <EntityTypeShape EntityType="DBModelVigil.FileData" Width="1.5" PointX="7.375" PointY="11.75" />
+        <EntityTypeShape EntityType="DBModelVigil.RiskRegister" Width="1.5" PointX="14.375" PointY="20.75" />
+        <EntityTypeShape EntityType="DBModelVigil.AnnualSafetyPlan" Width="1.5" PointX="21.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
