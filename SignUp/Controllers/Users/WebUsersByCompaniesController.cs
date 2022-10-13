@@ -16,7 +16,7 @@ namespace SignUp.Controllers
       string connString = ConfigurationManager.ConnectionStrings["IdentityDemoConnection"].ConnectionString;
       string query =
         @"Select webuser.UserId,
-        	UserFirstName as Username,
+        	UserFirstName + ' ' + coalesce(UserLastName, '') as Username,
           UserLastName,
     	    UserEmail,
         	coalesce(UserPhoneNumber, '') UserPhoneNumber,

@@ -118,7 +118,7 @@
           <Property Name="CheckListUID" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="CheckListName" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="CheckListCategory" Type="nvarchar" MaxLength="50" />
-          <Property Name="CheckListItem" Type="nvarchar" MaxLength="50" />
+          <Property Name="CheckListItem" Type="nvarchar" MaxLength="128" />
           <Property Name="CheckListDescription" Type="nvarchar" MaxLength="128" />
           <Property Name="AddedBy" Type="nvarchar" MaxLength="50" />
           <Property Name="LastUpdate" Type="nvarchar" MaxLength="50" />
@@ -1565,7 +1565,7 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <Property Name="CheckListUID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="CheckListName" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="CheckListCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CheckListItem" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CheckListItem" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="CheckListDescription" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="AddedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="LastUpdate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
