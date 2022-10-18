@@ -20,69 +20,69 @@ namespace SignUp.Controllers.Briefings
           ,(SELECT Count(DISTINCT BriefingUid)
              FROM   DailyBriefings
              WHERE  BriefingCompanyUid = '" + id + "' " +
-       "      AND (CAST((SUBSTRING(BriefingDate, 1, CHARINDEX(',', BriefingDate)-1)) as date)) >= dateadd(day, 1-datepart(dw, getdate()), CONVERT(date,getdate())) " +
-       "      AND (CAST((SUBSTRING(BriefingDate, 1, CHARINDEX(',', BriefingDate)-1)) as date)) <  dateadd(day, 8-datepart(dw, getdate()), CONVERT(date,getdate())) " +
+       "      AND CAST(BriefingDate as date) >= dateadd(day, 1-datepart(dw, getdate()), CONVERT(date,getdate())) " +
+       "      AND CAST(BriefingDate as date) <  dateadd(day, 8-datepart(dw, getdate()), CONVERT(date,getdate())) " +
        "      AND (BriefingChecked = 1) " +
-       "      And BriefingDeleted is null or BriefingDeleted = 0 ) AS Done " +
+       "      And (BriefingDeleted is null or BriefingDeleted = 0 ) ) AS Done " +
        "  ,(SELECT Count(DISTINCT BriefingUid) " +
        "    FROM   DailyBriefings " +
        "     WHERE  BriefingCompanyUid = '" + id + "' " +
-       "      AND (CAST((SUBSTRING(BriefingDate, 1, CHARINDEX(',', BriefingDate)-1)) as date)) >= dateadd(day, 1-datepart(dw, getdate()), CONVERT(date,getdate())) " +
-       "      AND (CAST((SUBSTRING(BriefingDate, 1, CHARINDEX(',', BriefingDate)-1)) as date)) <  dateadd(day, 8-datepart(dw, getdate()), CONVERT(date,getdate())) " +
+       "      AND CAST(BriefingDate as date) >= dateadd(day, 1-datepart(dw, getdate()), CONVERT(date,getdate())) " +
+       "      AND CAST(BriefingDate as date) <  dateadd(day, 8-datepart(dw, getdate()), CONVERT(date,getdate())) " +
        "      AND Isnull(BriefingChecked, '') = '' " +
-       "      and BriefingChecked <> 1 " +
-       "      And BriefingDeleted is null or BriefingDeleted = 0) AS Outstanding " +
+       "      and (BriefingChecked <> 1 OR BriefingChecked is null) " +
+       "      And (BriefingDeleted is null or BriefingDeleted = 0 )) AS Outstanding " +
        "FROM   DailyBriefings " +
        "WHERE  BriefingCompanyUid = '" + id + "' " +
-       " AND (CAST((SUBSTRING(BriefingDate, 1, CHARINDEX(',', BriefingDate)-1)) as date)) >= dateadd(day, 1-datepart(dw, getdate()), CONVERT(date,getdate())) " +
-       " AND (CAST((SUBSTRING(BriefingDate, 1, CHARINDEX(',', BriefingDate)-1)) as date)) <  dateadd(day, 8-datepart(dw, getdate()), CONVERT(date,getdate())) " +
-       " And BriefingDeleted is null or BriefingDeleted = 0 " +
+       " AND CAST(BriefingDate as date) >= dateadd(day, 1-datepart(dw, getdate()), CONVERT(date,getdate())) " +
+       " AND CAST(BriefingDate as date) <  dateadd(day, 8-datepart(dw, getdate()), CONVERT(date,getdate())) " +
+       " And (BriefingDeleted is null or BriefingDeleted = 0 ) " +
        "UNION " +
        "SELECT 'Briefing 2 Month' " +
        "  ,Count(DISTINCT BriefingUid) AS Total  " +
        "   ,(SELECT Count(DISTINCT BriefingUid) " +
        "       FROM   DailyBriefings " +
        "       WHERE  BriefingCompanyUid = '" + id + "' " +
-       "        AND Datepart(mm, ( Cast(( Substring(BriefingDate, 1, Charindex(',', BriefingDate) - 1) ) AS DATE) )) = Month(Getdate()) " +
-       "        AND Datepart(yyyy, ( Cast(( Substring(BriefingDate, 1, Charindex(',', BriefingDate ) - 1) ) AS DATE) )) = Year(Getdate()) " +
+       "        AND Datepart(mm, CAST(BriefingDate as date)) = Month(Getdate()) " +
+       "        AND Datepart(yyyy, CAST(BriefingDate as date)) = Year(Getdate()) " +
        "        AND (BriefingChecked = 1) " +
-       "        And BriefingDeleted is null or BriefingDeleted = 0) AS Done " +
+       "        And (BriefingDeleted is null or BriefingDeleted = 0 )) AS Done " +
        "   ,(SELECT Count(DISTINCT BriefingUid) " +
        "       FROM   DailyBriefings " +
        "       WHERE  BriefingCompanyUid = '" + id + "' " +
-       "        AND Datepart(mm, ( Cast(( Substring(BriefingDate, 1, Charindex(',', BriefingDate) - 1) ) AS DATE) )) = Month(Getdate()) " +
-       "        AND Datepart(yyyy, ( Cast(( Substring(BriefingDate, 1, Charindex(',', BriefingDate ) - 1) ) AS DATE) )) = Year(Getdate()) " +
+       "        AND Datepart(mm, CAST(BriefingDate as date)) = Month(Getdate()) " +
+       "        AND Datepart(yyyy, CAST(BriefingDate as date)) = Year(Getdate()) " +
        "        AND Isnull(BriefingChecked, '') = '' " +
-       "        AND BriefingChecked <> 1 " +
-       "        And BriefingDeleted is null or BriefingDeleted = 0) AS Outstanding " +
+       "        AND (BriefingChecked <> 1 OR BriefingChecked is null) " +
+       "        And (BriefingDeleted is null or BriefingDeleted = 0 )) AS Outstanding " +
        "FROM   DailyBriefings " +
        "WHERE  BriefingCompanyUid = '" + id + "' " +
-       "AND Datepart(mm, ( Cast(( Substring(BriefingDate, 1, Charindex(',', BriefingDate) - 1) ) AS DATE) )) = Month(Getdate()) " +
-       "AND Datepart(yyyy, ( Cast(( Substring(BriefingDate, 1, Charindex(',', BriefingDate ) - 1) ) AS DATE) )) = Year(Getdate()) " +
-       " And BriefingDeleted is null or BriefingDeleted = 0 " +
+       "AND Datepart(mm, CAST(BriefingDate as date)) = Month(Getdate()) " +
+       "AND Datepart(yyyy,CAST(BriefingDate as date)) = Year(Getdate()) " +
+       " And (BriefingDeleted is null or BriefingDeleted = 0 ) " +
        "UNION " +
        "SELECT 'Briefing 3 Older' " +
        "  ,Count(DISTINCT BriefingUid) AS Total  " +
        "   ,(SELECT Count(DISTINCT BriefingUid) " +
        "       FROM   DailyBriefings " +
        "       WHERE  BriefingCompanyUid = '" + id + "' " +
-       "        AND (Datepart(mm, ( Cast(( Substring(BriefingDate, 1, Charindex(',', BriefingDate) - 1) ) AS DATE) )) < Month(Getdate()) " +
-       "             OR Datepart(yyyy, ( Cast(( Substring(BriefingDate, 1, Charindex(',', BriefingDate ) - 1) ) AS DATE) )) < Year(Getdate())) " +
+       "        AND (Datepart(mm, CAST(BriefingDate as date)) < Month(Getdate()) " +
+       "             OR Datepart(yyyy, CAST(BriefingDate as date)) < Year(Getdate())) " +
        "        AND (BriefingChecked = 1) " +
-       "        And BriefingDeleted is null or BriefingDeleted = 0) AS Done " +
+       "        And (BriefingDeleted is null or BriefingDeleted = 0 )) AS Done " +
        "   ,(SELECT Count(DISTINCT BriefingUid) " +
        "       FROM   DailyBriefings " +
        "       WHERE  BriefingCompanyUid = '" + id + "' " +
-       "        AND (Datepart(mm, ( Cast(( Substring(BriefingDate, 1, Charindex(',', BriefingDate) - 1) ) AS DATE) )) < Month(Getdate()) " +
-       "             OR Datepart(yyyy, ( Cast(( Substring(BriefingDate, 1, Charindex(',', BriefingDate ) - 1) ) AS DATE) )) < Year(Getdate())) " +
+       "        AND (Datepart(mm, CAST(BriefingDate as date)) < Month(Getdate()) " +
+       "             OR Datepart(yyyy, CAST(BriefingDate as date)) < Year(Getdate())) " +
        "        AND Isnull(BriefingChecked, '') = '' " +
-       "        AND BriefingChecked <> 1 " +
-       "        And BriefingDeleted is null or BriefingDeleted = 0) AS Outstanding " +
+       "        AND(BriefingChecked <> 1 OR BriefingChecked is null) " +
+       "        And (BriefingDeleted is null or BriefingDeleted = 0 )) AS Outstanding " +
        "FROM   DailyBriefings " +
        "WHERE  BriefingCompanyUid = '" + id + "' " +
-       "AND (Datepart(mm, ( Cast(( Substring(BriefingDate, 1, Charindex(',', BriefingDate) - 1) ) AS DATE) )) < Month(Getdate()) " +
-       "     OR Datepart(yyyy, ( Cast(( Substring(BriefingDate, 1, Charindex(',', BriefingDate ) - 1) ) AS DATE) )) < Year(Getdate())) " +
-       " And BriefingDeleted is null or BriefingDeleted = 0 ";
+       "AND (Datepart(mm,CAST(BriefingDate as date)) < Month(Getdate()) " +
+       "     OR Datepart(yyyy, CAST(BriefingDate as date)) < Year(Getdate())) " +
+       " And (BriefingDeleted is null or BriefingDeleted = 0 ) ";
       SqlConnection conn = new SqlConnection(connString);
       SqlCommand cmd = new SqlCommand(query, conn);
       SqlDataAdapter da = new SqlDataAdapter(cmd);

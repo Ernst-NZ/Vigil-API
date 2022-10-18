@@ -32,7 +32,7 @@ namespace SignUp.Controllers.Briefings
                        BriefingStartOne = b.BriefingStartOne ?? "",
                        BriefingStartThree = b.BriefingStartThree ?? "",
                        BriefingStarttwo = b.BriefingStarttwo ?? "",
-                       BriefingTotalHours = b.BriefingTotalHours ?? 0,
+                       BriefingTotalHours = b.BriefingTotalHours ?? "",
                        b.BriefingUid
                      };
       briefings.OrderBy(x => x.BriefingDate).ThenBy(n => n.BriefingLocation);

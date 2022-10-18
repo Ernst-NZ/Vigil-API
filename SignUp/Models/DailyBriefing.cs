@@ -25,7 +25,7 @@ namespace SignUp.Models
         public string BriefingEndOne { get; set; }
         public string BriefingEndTwo { get; set; }
         public string BriefingEndThree { get; set; }
-        public Nullable<decimal> BriefingTotalHours { get; set; }
+        public string BriefingTotalHours { get; set; }
         public string BriefingComments { get; set; }
         public string BriefingCompanyUid { get; set; }
         public string BriefingAddedBy { get; set; }
