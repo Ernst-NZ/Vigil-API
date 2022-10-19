@@ -15,7 +15,7 @@ namespace SignUp.Models
 
             DataTable dataTable = new DataTable();
             string connString = ConfigurationManager.ConnectionStrings["IdentityDemoConnection"].ConnectionString;
-            string query = @"SELECT TOP (1000) UserId
+            string query = @"SELECT UserId
                             ,UserName
 	                          ,UserName as UserCode
 	                          ,UserProfileCode as UserRole
