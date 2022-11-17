@@ -34,5 +34,7 @@ namespace SignUp.Models
         public string BriefingCheckedBy { get; set; }
         public Nullable<bool> BriefingDeleted { get; set; }
         public string BriefingDeletedBy { get; set; }
+        public Nullable<bool> BriefingInReachMessage { get; set; }
+        public Nullable<bool> BriefingInReachTracking { get; set; }
     }
 }

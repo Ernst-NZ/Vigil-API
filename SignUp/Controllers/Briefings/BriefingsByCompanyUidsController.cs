@@ -33,6 +33,8 @@ namespace SignUp.Controllers.Briefings
                        BriefingStartThree = b.BriefingStartThree ?? "",
                        BriefingStarttwo = b.BriefingStarttwo ?? "",
                        BriefingTotalHours = b.BriefingTotalHours ?? "",
+                       BriefingInReachMessage = b.BriefingInReachMessage ?? false,
+                       BriefingInReachTracking = b.BriefingInReachTracking ?? false,
                        b.BriefingUid
                      };
       briefings.OrderBy(x => x.BriefingDate).ThenBy(n => n.BriefingLocation);

@@ -320,6 +320,8 @@
           <Property Name="BriefingCheckedBy" Type="nvarchar" MaxLength="50" />
           <Property Name="BriefingDeleted" Type="bit" />
           <Property Name="BriefingDeletedBy" Type="nvarchar" MaxLength="125" />
+          <Property Name="BriefingInReachMessage" Type="bit" />
+          <Property Name="BriefingInReachTracking" Type="bit" />
         </EntityType>
         <EntityType Name="Departments">
           <Key>
@@ -1977,6 +1979,8 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <Property Name="BriefingCheckedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="BriefingDeleted" Type="Boolean" />
           <Property Name="BriefingDeletedBy" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="BriefingInReachMessage" Type="Boolean" />
+          <Property Name="BriefingInReachTracking" Type="Boolean" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2835,6 +2839,8 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <EntitySetMapping Name="DailyBriefings">
             <EntityTypeMapping TypeName="DBModelVigil.DailyBriefing">
               <MappingFragment StoreEntitySet="DailyBriefings">
+                <ScalarProperty Name="BriefingInReachTracking" ColumnName="BriefingInReachTracking" />
+                <ScalarProperty Name="BriefingInReachMessage" ColumnName="BriefingInReachMessage" />
                 <ScalarProperty Name="BriefingDeletedBy" ColumnName="BriefingDeletedBy" />
                 <ScalarProperty Name="BriefingDeleted" ColumnName="BriefingDeleted" />
                 <ScalarProperty Name="BriefingCheckedBy" ColumnName="BriefingCheckedBy" />
