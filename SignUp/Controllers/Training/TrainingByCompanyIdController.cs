@@ -56,12 +56,14 @@ namespace SignUp.Controllers
           ,coalesce(train.NZQANumber, '') NZQANumber
           ,train.LastUpdateBy
           ,coalesce(train.UpdateDate, '') UpdateDate
-  	      ,count(FD.Id) as Docs
+  	      ,(Select Count(FD.Id) from 
+    				FileData as FD
+		    		Inner join RawData on RawData.Id = fd.Id
+	    			where FD.ParentId = train.TrainingId
+			    	and ParentName = 'Training') as Docs
         FROM WebUser 
           Inner Join Company on Company.CompanyCode = WebUser.UsercompanyCode
           Inner Join Training train on train.UserId = WebUser.UserId
-          left Join FileData as FD on FD.ParentId = train.TrainingId 
-            AND FD.ParentName = 'Training'   
         Where Company.CompanyId =  '" + id + "' " +
         "Group by WebUser.UserFirstName " +
         "  , WebUser.UserLastName " +
@@ -90,12 +92,14 @@ namespace SignUp.Controllers
         " , coalesce(train.NZQANumber, '') NZQANumber " +
         "  ,train.LastUpdateBy " +
         "  ,coalesce(train.UpdateDate, '') UpdateDate " +
-        "  ,count(FD.Id) as Docs " +
+        "  ,(Select Count(FD.Id) from " +
+        "   FileData as FD " +
+        "   Inner join RawData on RawData.Id = fd.Id " +
+        "   where FD.ParentId = train.TrainingId " +
+        "   and ParentName = 'Training') as Docs " +
         "FROM CompanyStaff " +
         "  Inner Join Company on Company.CompanyCode = CompanyStaff.CompanyCode " +
         "  Inner Join Training train on train.UserId = cast(CompanyStaff.StaffId as varchar(6)) " +
-        "  left Join FileData as FD on FD.ParentId = train.TrainingId " +
-        "    AND FD.ParentName = 'Training' " +
         "Where Company.CompanyId =  '" + id + "' " +
         "Group by CompanyStaff.StaffName " +
         "  , CompanyStaff.StaffSurName " +

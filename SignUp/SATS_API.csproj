@@ -347,6 +347,8 @@
     <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Controllers\FileUpload\FileDatasController.cs" />
     <Compile Include="Controllers\FileUpload\fileUploadControllerOld.cs" />
+    <Compile Include="Controllers\FileUpload\GetOfflineProjectsImagesController.cs" />
+    <Compile Include="Controllers\FileUpload\GetOfflineTrainingImagesController.cs" />
     <Compile Include="Controllers\Functions\FunctionsByCompaniesController.cs" />
     <Compile Include="Controllers\Functions\FunctionsController.cs" />
     <Compile Include="Controllers\Hazards\HazardsByCompanyIdsController.cs" />
