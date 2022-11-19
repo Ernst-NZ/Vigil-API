@@ -16,42 +16,53 @@ using System.Net.Mail;
 using System.Configuration;
 using System.Data.SqlClient;
 
-namespace SignUp.Controllers
+namespace WebAPI.Controllers
 {
+    [AllowAnonymous]
     public class TestController : ApiController
-    {
+  {
+    //  private DBModelVigil db = new DBModelVigil();
+
+    //public List<Persoon> GetEmails()
+    //{
+    //    IQueryable<Persoon> users = db.Persoons;
+    //    string searchString = "@";
+
+    //    if (!String.IsNullOrEmpty(searchString))
+    //    {
+    //        users = users.Where(s => s.Email.Contains(searchString) && s.IsActive.Contains("True"));
+    //    }
+    //    return (users.ToList());
+    //}
+
 
     [HttpPost]
     [AllowAnonymous]
-    public void PostEmail(string client)
+    [ResponseType(typeof(gmail))]
+    //   public IHttpActionResult PostBatchEmail(gmail gmail)
+    public IHttpActionResult PostEmail(dynamic gmail)
     {
-      var xx = client;
+      //var bytes = Convert.FromBase64String(gmail.Attachments[0]);
+      //MemoryStream strm = new MemoryStream(bytes);
+      //Attachment data = new Attachment(strm, "Test.pdf");
+
+      var xx = gmail;
       Console.WriteLine(xx);
-
-      
-
-      //string mailBody;
-      //mailBody = @"<h3>AnB Counselling Appointment: " + client + "<br>" +
-      //            "" + appointment + "</h3>" +
-      //            "<b>Good day " + client + "</b>,<br><br> " +
-      //            "Just a quick reminder of your upcoming appointment with Anneke.<br> " +
-      //            "Your appointment is scheduled for: <b><i>" + appointment + "</i></b>.<br><br> " +
-      //            "<u><h4>Please let us know in advance if you won't be able to attend the scheduled meeting.</h4></u>" +
-      //            "Kind regards.<br> " +
-      //            "Anneke.<br><br> " +
-      //            "<b><i>AnB Councelling<br> " +
-      //            "www:</i></b> https://anbcounselling.co.nz<br>" +
-      //            "<b><i>Email:</i></b> <a href='mailto: anneke@example.com'>anneke@example.com</a><br>" +
-      //            "<b><i>Phone:</i></b> 012 10111<br><br>" +
-      //            "Actual Email will go to: " + EmailTo;
+      //if (gmail.EmailTo2.Length > 5)
+      //{
+      //  gmail.EmailTo = gmail.EmailTo + " , " + gmail.EmailTo2;
+      //}
+      return Ok("ok");
 
       //string messageResult;
-      //string EmailFrom = "admin@anbcounselling.co.nz";
-      //EmailTo = "ernst@hotmail.co.nz";
-      //MailMessage mm = new MailMessage(EmailFrom, EmailTo);
-      //mm.Subject = "AnB Counselling Appointment: " + client;
-      //mm.Body = mailBody;
+      //gmail.EmailFrom = "info@nzsats.co.nz";
+      //gmail.EmailBcc = "ernst@nzsats.co.nz";
+      //MailMessage mm = new MailMessage(gmail.EmailFrom, gmail.EmailTo);
+      //mm.Subject = gmail.Subject;
+      //mm.Body = gmail.Body;
+      //mm.Bcc.Add(gmail.EmailBcc);
       //mm.IsBodyHtml = true;
+      ////      mm.Attachments.Add(data);
       //try
       //{
       //  SmtpClient smtp = new SmtpClient();
@@ -62,97 +73,127 @@ namespace SignUp.Controllers
       //  Console.Write(e.Message);
       //  messageResult = e.Message;
       //}
+
+
     }
+    //if (gmail.EmailType == "Navraag")
+    //{
+    //  gmail.EmailFrom = "info@nzsats.co.nz";
+    //  MailMessage mm = new MailMessage(gmail.EmailFrom, gmail.EmailTo);
+    //  mm.Subject = gmail.Subject;
+    //  mm.Body = gmail.Body;
+    //  mm.IsBodyHtml = true;
+    //  try
+    //  {
+    //    SmtpClient smtp = new SmtpClient(); 
+    //    smtp.Send(mm);
+    //    messageResult = "OK";
+    //  }
+    //  catch (Exception e)
+    //  {
+    //    Console.Write(e.Message);
+    //  }
+    //}
+    //else
+    //{
+    //  gmail.EmailFrom = "info@nzsats.co.nz";
+    //  MailMessage mm = new MailMessage(gmail.EmailFrom, gmail.EmailTo);
+    //  mm.Subject = gmail.Subject;
+    //  mm.Body = gmail.Body;
+    //  mm.IsBodyHtml = true;
+    //  try
+    //  {
+    //    SmtpClient smtp = new SmtpClient(); 
+    //    smtp.Send(mm);        
+    //  }
+    //  catch (Exception e)
+    //  {
+    //    Console.Write(e.Message);
+    //    messageResult = e.Message;
+    //  }
+    //  //string emailTo;
+    //  //string emailName;
+    //  //List<Persoon> lstEmail = GetEmails();
 
-    // Get Reminders from DB
-    // Called as scheduled task and from void below
-    // If found will sent Email
-  //  [HttpGet]
-  //  [ResponseType(typeof(calendar))]
-  //  public IHttpActionResult GetRemindersFromDB()
-  //  {
-  //    DateTime today = DateTime.Now;
-  //    DateTime ToDate = today.AddDays(3);
-  //    string toDate = ToDate.ToString("yyyy-MM-dd");
-  //    string fromDate = today.ToString("yyyy-MM-dd");
+    //  //emailTo = "ernst@hotmail.co.nz";
+    //  //emailName = string.Concat("<h3>Goeie dag ", "Admin", ",</h3><br>Die eerste van die Emails<br>");
+    //  //MailMessage mm1 = new MailMessage(gmail.EmailFrom, emailTo);
+    //  //mm1.Subject = gmail.Subject;
+    //  //mm1.Body = string.Concat(emailName, gmail.Body);
+    //  //mm1.IsBodyHtml = true;
+    //  //SmtpClient smtp1 = new SmtpClient();
+    //  //smtp1.Send(mm1);
 
-  //    DataTable dataTable = new DataTable();
-  //    string connString = ConfigurationManager.ConnectionStrings["IdentityDemoConnection"].ConnectionString;
-  //    string query = @"SELECT calendar.id " +
-  //           " ,startDate " +
-  //           " ,endDate " +
-  //           " ,UserInfo.Email " +
-  //           " ,Case when UserInfo.Firstname = '' or UserInfo.FirstName IS NULL then calendar.title else UserInfo.FirstName end FirstName " +
-  //           " FROM calendar " +
-  //           " inner join UserInfo on UserInfo.id = calendar.clientId " +
-  //           " Where clientId between 1 and 99998 " +
-  //           " and Upper(title) <> 'CANCELLED' " +
-  //           " and EmailReminder = 'True' " +
-  //           " and (RemiderSent = '' OR RemiderSent is NULL ) " +
-  //           " and startDate > '" + fromDate + "' and startDate < '" + toDate + "' ";
+    //  //foreach (var email in lstEmail)
+    //  //{
+    //  //    try
+    //  //    {
+    //  //        emailTo = email.Email;
+    //  //        //  emailTo = "ernst@hotmail.co.nz";
+    //  //    }
+    //  //    catch (FormatException)
+    //  //    {
+    //  //        //do nothing, illformed address. screw it.
+    //  //    }
 
-  //    SqlConnection conn = new SqlConnection(connString);
-  //    SqlCommand cmd = new SqlCommand(query, conn);
-  //    SqlDataAdapter da = new SqlDataAdapter(cmd);
-  //    try
-  //    {
-  //      conn.Open();
-  //      da.Fill(dataTable);
-  //    }
-  //    catch (Exception ex)
-  //    {
-  //      myErrors(ex);
-  //    }
+    //  //    System.Threading.Thread.Sleep(5000);
+    //  //    if (n % 5 == 0)
+    //  //    {
+    //  //        System.Threading.Thread.Sleep(3000);
+    //  //    }
 
-  //    conn.Close();
-  //    da.Dispose();
-  //    string client;
-  //    string appointment;
-  //    string EmailTo;
+    //  //    emailName = string.Concat("<h3>Goeie dag ", email.FirstName, ",</h3><br>");
+    //  //    //emailName = string.Concat("<h3>Goeie dag ", "Test", ",</h3><br>");
 
-  //    foreach (DataRow name in dataTable.Rows)
-  //    {
-  //      //client = Enc.Decryptword(name["FirstName"].ToString());
-  //      //EmailTo = Enc.Decryptword(name["Email"].ToString());
-  //      //string tempDate = name["startDate"].ToString();
-  //      //var oDate = DateTime.Parse(tempDate);
-  //      //appointment = oDate.ToString("dddd', 'dd' 'MMM' 'yyyy' at 'HH':'mm");
-  //      //updateEmail(int.Parse(name["id"].ToString()));
-  //      //PostEmail(client, EmailTo, appointment);
-  //    }
-  //    //  string result = dataTable.Rows.Count.ToString() + " Email/s Sent";
-  //    string result = fromDate + "  " + toDate;  
-  //    return Ok(result);
-  //  }
+    //  //    MailMessage mm = new MailMessage(gmail.EmailFrom, emailTo);
+    //  //    mm.Subject = gmail.Subject;
+    //  //    mm.Body = string.Concat(emailName, gmail.Body);
+    //  //    mm.IsBodyHtml = true;
+    //  //    w = w + emailTo + "<br>";
+    //  //    //   SmtpClient smtp = new SmtpClient(); smtp.Send(mm);
+    //  //    try
+    //  //    {
+    //  //        mm1.Body = string.Concat(emailTo, "<br/>", emailName, gmail.Body);
+    //  //        smtp1.Send(mm1);
+    //  //        SmtpClient smtp = new SmtpClient(); smtp.Send(mm);
+    //  //    }
+    //  //    catch (SmtpFailedRecipientsException ex)
+    //  //    {
+    //  //        x++;
+    //  //        errorMessage = errorMessage + ex.Message;
+    //  //        File.WriteAllText("errorlog.txt", ex.Message);
+    //  //        continue;
+    //  //        //    //                  return Ok(errorMessage);
+    //  //    }
+    //  //    catch (FormatException ex)
+    //  //    {
+    //  //        //do nothing, illformed address. screw it.
+    //  //        x++;
+    //  //        errorMessage = errorMessage + ex.Message;
+    //  //    }
+    //  //    catch (SmtpException ex)
+    //  //    {
+    //  //        x++;
+    //  //        errorMessage = errorMessage + ex.Message;
+    //  //        File.WriteAllText("errorlog.txt", ex.Message);
+    //  //        continue;
+    //  //        //    //                  return Ok(errorMessage);
+    //  //    }
+    //  //    catch (Exception e)
+    //  //    {
+    //  //        x++;
+    //  //        errorMessage = errorMessage + e.Message;
+    //  //        File.WriteAllText("errorlog.txt", e.Message);
+    //  //        continue;
+    //  //    }
+
+    //  //    n++;
+    //  //}
+
+    //}
 
 
-  //  //   GET: api/SPGetText/ - Text per ID
-  //  [HttpGet]
-  //  [ResponseType(typeof(calendar))]
-  //  public IHttpActionResult getReminders(string id)
-  //  {
-  //    var result = GetRemindersFromDB();
-  //    //      var result = "test";
-  //    return Ok(result);
-  //  }
-
-
-  //  public static string myErrors(object Error)
-  //  {
-  //    Console.WriteLine(Error);
-  //    return "Error";
-  //  }
-
-  //  public static string updateEmail(int id)
-  //  {
-  //    using (var db = new DBModelVigil())
-  //    {
-  //      var Calendar = db.calendars.Single(u => u.id == id);
-  //      Calendar.RemiderSent = true;
-  //      db.SaveChanges();
-  //    }
-  //    return "OK";
-  //  }
-
+    // }
   }
 }
+
