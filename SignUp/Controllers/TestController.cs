@@ -15,6 +15,7 @@ using System.Security.Cryptography;
 using System.Net.Mail;
 using System.Configuration;
 using System.Data.SqlClient;
+using Newtonsoft.Json;
 
 namespace WebAPI.Controllers
 {
@@ -48,6 +49,34 @@ namespace WebAPI.Controllers
 
       var xx = gmail;
       Console.WriteLine(xx);
+
+      try
+      {
+        var ff = gmail["body"];
+        Console.WriteLine(ff);
+        return Ok(ff);
+
+      }
+      catch (SyntaxErrorException ex) {
+        Console.WriteLine(ex.Message);
+      }
+
+      try
+      {
+        var data = (JObject)JsonConvert.DeserializeObject(gmail);
+
+        JArray orders = new JArray();
+        orders = (JArray)data["body"];
+        Console.WriteLine(xx);
+      }
+      catch (SyntaxErrorException ex)
+      {
+        Console.WriteLine(ex.Message);
+      }
+
+
+      
+
       //if (gmail.EmailTo2.Length > 5)
       //{
       //  gmail.EmailTo = gmail.EmailTo + " , " + gmail.EmailTo2;

@@ -59,7 +59,6 @@ namespace SignUp.Models
         public virtual DbSet<MyLog> MyLogs { get; set; }
         public virtual DbSet<ChecklistMaster> ChecklistMasters { get; set; }
         public virtual DbSet<CheckLogFull> CheckLogFulls { get; set; }
-        public virtual DbSet<Incident> Incidents { get; set; }
         public virtual DbSet<Meeting> Meetings { get; set; }
         public virtual DbSet<Training> Trainings { get; set; }
         public virtual DbSet<Company> Companies { get; set; }
@@ -70,5 +69,6 @@ namespace SignUp.Models
         public virtual DbSet<RiskRegister> RiskRegisters { get; set; }
         public virtual DbSet<AnnualSafetyPlan> AnnualSafetyPlans { get; set; }
         public virtual DbSet<DailyBriefing> DailyBriefings { get; set; }
+        public virtual DbSet<Incident> Incidents { get; set; }
     }
 }

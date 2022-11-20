@@ -49,5 +49,6 @@ namespace SignUp.Models
         public string AddedBy { get; set; }
         public Nullable<bool> Deleted { get; set; }
         public string DeletedBy { get; set; }
+        public string IncidentUid { get; set; }
     }
 }
