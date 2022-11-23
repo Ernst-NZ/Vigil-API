@@ -46,6 +46,8 @@ namespace SignUp.Controllers.Hazards
                                i.Deleted_By,
                                i.Deleted_Date,
                                Deleted = i.Deleted ?? false,
+                               Longitude = i.Longitude ?? "",
+                               Latitude = i.Latitude ?? ""
                              };
       companyHazards.OrderBy(x => x.Date);
       if (companyHazards == null)

@@ -393,6 +393,8 @@
           <Property Name="Deleted_By" Type="nvarchar" MaxLength="50" />
           <Property Name="Deleted_Date" Type="nvarchar" MaxLength="50" />
           <Property Name="Deleted" Type="bit" />
+          <Property Name="Longitude" Type="nvarchar" MaxLength="50" />
+          <Property Name="Latitude" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Images">
           <Key>
@@ -1230,12 +1232,12 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <EntitySet Name="Companies" EntityType="DBModelVigil.Company" />
           <EntitySet Name="Chemicals" EntityType="DBModelVigil.Chemical" />
           <EntitySet Name="CheckListLogs" EntityType="DBModelVigil.CheckListLog" />
-          <EntitySet Name="Hazards" EntityType="DBModelVigil.Hazard" />
           <EntitySet Name="FileDatas" EntityType="DBModelVigil.FileData" />
           <EntitySet Name="RiskRegisters" EntityType="DBModelVigil.RiskRegister" />
           <EntitySet Name="AnnualSafetyPlans" EntityType="DBModelVigil.AnnualSafetyPlan" />
           <EntitySet Name="Incidents" EntityType="DBModelVigil.Incident" />
           <EntitySet Name="DailyBriefings" EntityType="DBModelVigil.DailyBriefing" />
+          <EntitySet Name="Hazards" EntityType="DBModelVigil.Hazard" />
         </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
@@ -1811,43 +1813,6 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <Property Name="Deleted" Type="Boolean" />
           <Property Name="DeletedBy" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="Hazard">
-          <Key>
-            <PropertyRef Name="HazardUID" />
-          </Key>
-          <Property Name="HazardUID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="CompanyUID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="HazardDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Site" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Type" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="LocationOnSite" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="RiskMatrix" Type="Int32" />
-          <Property Name="ImmediateFix" Type="Boolean" />
-          <Property Name="ImmediateDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Isolated" Type="Boolean" />
-          <Property Name="Reported" Type="Boolean" />
-          <Property Name="SuggestedSolution" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="SupervisorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SupervisorPosition" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SupervisorAction" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="InitiatorAdvised" Type="Boolean" />
-          <Property Name="SupervisorSignOff" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="InitiatorSignOff" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="SupervisorSignOffDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="InitiatorSignOffDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="AddedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Created_Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="LastUpdate_By" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Updated_Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Deleted_By" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Deleted_Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Deleted" Type="Boolean" />
-        </EntityType>
         <EntityType Name="FileData">
           <Key>
             <PropertyRef Name="Id" />
@@ -1985,6 +1950,45 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <Property Name="BriefingDeletedBy" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
           <Property Name="BriefingInReachMessage" Type="Boolean" />
           <Property Name="BriefingInReachTracking" Type="Boolean" />
+          <Property Name="Longitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Latitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Hazard">
+          <Key>
+            <PropertyRef Name="HazardUID" />
+          </Key>
+          <Property Name="HazardUID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyUID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HazardDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Site" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LocationOnSite" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RiskMatrix" Type="Int32" />
+          <Property Name="ImmediateFix" Type="Boolean" />
+          <Property Name="ImmediateDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Isolated" Type="Boolean" />
+          <Property Name="Reported" Type="Boolean" />
+          <Property Name="SuggestedSolution" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SupervisorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SupervisorPosition" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SupervisorAction" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="InitiatorAdvised" Type="Boolean" />
+          <Property Name="SupervisorSignOff" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="InitiatorSignOff" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SupervisorSignOffDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InitiatorSignOffDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AddedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Created_Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdate_By" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Updated_Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Deleted_By" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Deleted_Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Deleted" Type="Boolean" />
           <Property Name="Longitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Latitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
@@ -2690,44 +2694,6 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Hazards">
-            <EntityTypeMapping TypeName="DBModelVigil.Hazard">
-              <MappingFragment StoreEntitySet="Hazards">
-                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
-                <ScalarProperty Name="Deleted_Date" ColumnName="Deleted_Date" />
-                <ScalarProperty Name="Deleted_By" ColumnName="Deleted_By" />
-                <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
-                <ScalarProperty Name="LastUpdate_By" ColumnName="LastUpdate_By" />
-                <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
-                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="InitiatorSignOffDate" ColumnName="InitiatorSignOffDate" />
-                <ScalarProperty Name="SupervisorSignOffDate" ColumnName="SupervisorSignOffDate" />
-                <ScalarProperty Name="InitiatorSignOff" ColumnName="InitiatorSignOff" />
-                <ScalarProperty Name="SupervisorSignOff" ColumnName="SupervisorSignOff" />
-                <ScalarProperty Name="InitiatorAdvised" ColumnName="InitiatorAdvised" />
-                <ScalarProperty Name="SupervisorAction" ColumnName="SupervisorAction" />
-                <ScalarProperty Name="SupervisorPosition" ColumnName="SupervisorPosition" />
-                <ScalarProperty Name="SupervisorName" ColumnName="SupervisorName" />
-                <ScalarProperty Name="SuggestedSolution" ColumnName="SuggestedSolution" />
-                <ScalarProperty Name="Reported" ColumnName="Reported" />
-                <ScalarProperty Name="Isolated" ColumnName="Isolated" />
-                <ScalarProperty Name="ImmediateDescription" ColumnName="ImmediateDescription" />
-                <ScalarProperty Name="ImmediateFix" ColumnName="ImmediateFix" />
-                <ScalarProperty Name="RiskMatrix" ColumnName="RiskMatrix" />
-                <ScalarProperty Name="LocationOnSite" ColumnName="LocationOnSite" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="Site" ColumnName="Site" />
-                <ScalarProperty Name="Time" ColumnName="Time" />
-                <ScalarProperty Name="HazardDate" ColumnName="HazardDate" />
-                <ScalarProperty Name="Position" ColumnName="Position" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="CompanyUID" ColumnName="CompanyUID" />
-                <ScalarProperty Name="HazardUID" ColumnName="HazardUID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="FileDatas">
             <EntityTypeMapping TypeName="DBModelVigil.FileData">
               <MappingFragment StoreEntitySet="FileData">
@@ -2870,6 +2836,46 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
                 <ScalarProperty Name="BriefingDate" ColumnName="BriefingDate" />
                 <ScalarProperty Name="BriefingLocation" ColumnName="BriefingLocation" />
                 <ScalarProperty Name="BriefingUid" ColumnName="BriefingUid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hazards">
+            <EntityTypeMapping TypeName="DBModelVigil.Hazard">
+              <MappingFragment StoreEntitySet="Hazards">
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Deleted_Date" ColumnName="Deleted_Date" />
+                <ScalarProperty Name="Deleted_By" ColumnName="Deleted_By" />
+                <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
+                <ScalarProperty Name="LastUpdate_By" ColumnName="LastUpdate_By" />
+                <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="InitiatorSignOffDate" ColumnName="InitiatorSignOffDate" />
+                <ScalarProperty Name="SupervisorSignOffDate" ColumnName="SupervisorSignOffDate" />
+                <ScalarProperty Name="InitiatorSignOff" ColumnName="InitiatorSignOff" />
+                <ScalarProperty Name="SupervisorSignOff" ColumnName="SupervisorSignOff" />
+                <ScalarProperty Name="InitiatorAdvised" ColumnName="InitiatorAdvised" />
+                <ScalarProperty Name="SupervisorAction" ColumnName="SupervisorAction" />
+                <ScalarProperty Name="SupervisorPosition" ColumnName="SupervisorPosition" />
+                <ScalarProperty Name="SupervisorName" ColumnName="SupervisorName" />
+                <ScalarProperty Name="SuggestedSolution" ColumnName="SuggestedSolution" />
+                <ScalarProperty Name="Reported" ColumnName="Reported" />
+                <ScalarProperty Name="Isolated" ColumnName="Isolated" />
+                <ScalarProperty Name="ImmediateDescription" ColumnName="ImmediateDescription" />
+                <ScalarProperty Name="ImmediateFix" ColumnName="ImmediateFix" />
+                <ScalarProperty Name="RiskMatrix" ColumnName="RiskMatrix" />
+                <ScalarProperty Name="LocationOnSite" ColumnName="LocationOnSite" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Site" ColumnName="Site" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="HazardDate" ColumnName="HazardDate" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CompanyUID" ColumnName="CompanyUID" />
+                <ScalarProperty Name="HazardUID" ColumnName="HazardUID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
