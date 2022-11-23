@@ -79,7 +79,7 @@ namespace SignUp.Controllers.Briefings
                 return BadRequest(ModelState);
             }
 
-            db.DailyBriefings.Add(dailyBriefing);
+      db.DailyBriefings.Add(dailyBriefing);
 
             try
             {

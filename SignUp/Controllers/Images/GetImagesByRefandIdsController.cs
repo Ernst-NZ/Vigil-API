@@ -25,7 +25,7 @@ namespace SignUp.Controllers.Images
                      select i;
       } else {
         images = from i in db.SATSImages
-                     where i.ReferenceUID == uid
+                     where i.ImageCat == category && i.ReferenceUID == uid
                      select i;
       }
       

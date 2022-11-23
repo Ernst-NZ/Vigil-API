@@ -35,7 +35,9 @@ namespace SignUp.Controllers.Briefings
                        BriefingTotalHours = b.BriefingTotalHours ?? "",
                        BriefingInReachMessage = b.BriefingInReachMessage ?? false,
                        BriefingInReachTracking = b.BriefingInReachTracking ?? false,
-                       b.BriefingUid
+                       b.BriefingUid,
+                       Longitude = b.Longitude ?? "",
+                       Latitude = b.Latitude ?? ""
                      };
       briefings.OrderBy(x => x.BriefingDate).ThenBy(n => n.BriefingLocation);
       if (briefings == null)
