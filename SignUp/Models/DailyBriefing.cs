@@ -36,5 +36,7 @@ namespace SignUp.Models
         public string BriefingDeletedBy { get; set; }
         public Nullable<bool> BriefingInReachMessage { get; set; }
         public Nullable<bool> BriefingInReachTracking { get; set; }
+        public string Longitude { get; set; }
+        public string Latitude { get; set; }
     }
 }

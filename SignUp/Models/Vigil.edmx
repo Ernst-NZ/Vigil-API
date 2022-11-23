@@ -322,6 +322,8 @@
           <Property Name="BriefingDeletedBy" Type="nvarchar" MaxLength="125" />
           <Property Name="BriefingInReachMessage" Type="bit" />
           <Property Name="BriefingInReachTracking" Type="bit" />
+          <Property Name="Longitude" Type="nvarchar" MaxLength="50" />
+          <Property Name="Latitude" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Departments">
           <Key>
@@ -1232,8 +1234,8 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <EntitySet Name="FileDatas" EntityType="DBModelVigil.FileData" />
           <EntitySet Name="RiskRegisters" EntityType="DBModelVigil.RiskRegister" />
           <EntitySet Name="AnnualSafetyPlans" EntityType="DBModelVigil.AnnualSafetyPlan" />
-          <EntitySet Name="DailyBriefings" EntityType="DBModelVigil.DailyBriefing" />
           <EntitySet Name="Incidents" EntityType="DBModelVigil.Incident" />
+          <EntitySet Name="DailyBriefings" EntityType="DBModelVigil.DailyBriefing" />
         </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
@@ -1916,33 +1918,6 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <Property Name="Deleted" Type="Boolean" />
           <Property Name="DeletedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="DailyBriefing">
-          <Key>
-            <PropertyRef Name="BriefingUid" />
-          </Key>
-          <Property Name="BriefingUid" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="BriefingLocation" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="BriefingDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="BriefingCompletedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="BriefingSafeToWork" Type="Boolean" />
-          <Property Name="BriefingStartOne" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="BriefingStarttwo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="BriefingStartThree" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="BriefingEndOne" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="BriefingEndTwo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="BriefingEndThree" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="BriefingTotalHours" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="BriefingComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="BriefingCompanyUid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="BriefingAddedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="BriefingCreatedAt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="BriefingChecked" Type="Boolean" />
-          <Property Name="BriefingCheckedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="BriefingDeleted" Type="Boolean" />
-          <Property Name="BriefingDeletedBy" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
-          <Property Name="BriefingInReachMessage" Type="Boolean" />
-          <Property Name="BriefingInReachTracking" Type="Boolean" />
-        </EntityType>
         <EntityType Name="Incident">
           <Key>
             <PropertyRef Name="IncidentId" />
@@ -1983,6 +1958,35 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <Property Name="Deleted" Type="Boolean" />
           <Property Name="DeletedBy" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
           <Property Name="IncidentUid" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="DailyBriefing">
+          <Key>
+            <PropertyRef Name="BriefingUid" />
+          </Key>
+          <Property Name="BriefingUid" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="BriefingLocation" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="BriefingDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BriefingCompletedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="BriefingSafeToWork" Type="Boolean" />
+          <Property Name="BriefingStartOne" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BriefingStarttwo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BriefingStartThree" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BriefingEndOne" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BriefingEndTwo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BriefingEndThree" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BriefingTotalHours" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BriefingComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BriefingCompanyUid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BriefingAddedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BriefingCreatedAt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BriefingChecked" Type="Boolean" />
+          <Property Name="BriefingCheckedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BriefingDeleted" Type="Boolean" />
+          <Property Name="BriefingDeletedBy" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="BriefingInReachMessage" Type="Boolean" />
+          <Property Name="BriefingInReachTracking" Type="Boolean" />
+          <Property Name="Longitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Latitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2797,34 +2801,6 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="DailyBriefings">
-            <EntityTypeMapping TypeName="DBModelVigil.DailyBriefing">
-              <MappingFragment StoreEntitySet="DailyBriefings">
-                <ScalarProperty Name="BriefingInReachTracking" ColumnName="BriefingInReachTracking" />
-                <ScalarProperty Name="BriefingInReachMessage" ColumnName="BriefingInReachMessage" />
-                <ScalarProperty Name="BriefingDeletedBy" ColumnName="BriefingDeletedBy" />
-                <ScalarProperty Name="BriefingDeleted" ColumnName="BriefingDeleted" />
-                <ScalarProperty Name="BriefingCheckedBy" ColumnName="BriefingCheckedBy" />
-                <ScalarProperty Name="BriefingChecked" ColumnName="BriefingChecked" />
-                <ScalarProperty Name="BriefingCreatedAt" ColumnName="BriefingCreatedAt" />
-                <ScalarProperty Name="BriefingAddedBy" ColumnName="BriefingAddedBy" />
-                <ScalarProperty Name="BriefingCompanyUid" ColumnName="BriefingCompanyUid" />
-                <ScalarProperty Name="BriefingComments" ColumnName="BriefingComments" />
-                <ScalarProperty Name="BriefingTotalHours" ColumnName="BriefingTotalHours" />
-                <ScalarProperty Name="BriefingEndThree" ColumnName="BriefingEndThree" />
-                <ScalarProperty Name="BriefingEndTwo" ColumnName="BriefingEndTwo" />
-                <ScalarProperty Name="BriefingEndOne" ColumnName="BriefingEndOne" />
-                <ScalarProperty Name="BriefingStartThree" ColumnName="BriefingStartThree" />
-                <ScalarProperty Name="BriefingStarttwo" ColumnName="BriefingStarttwo" />
-                <ScalarProperty Name="BriefingStartOne" ColumnName="BriefingStartOne" />
-                <ScalarProperty Name="BriefingSafeToWork" ColumnName="BriefingSafeToWork" />
-                <ScalarProperty Name="BriefingCompletedBy" ColumnName="BriefingCompletedBy" />
-                <ScalarProperty Name="BriefingDate" ColumnName="BriefingDate" />
-                <ScalarProperty Name="BriefingLocation" ColumnName="BriefingLocation" />
-                <ScalarProperty Name="BriefingUid" ColumnName="BriefingUid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Incidents">
             <EntityTypeMapping TypeName="DBModelVigil.Incident">
               <MappingFragment StoreEntitySet="Incidents">
@@ -2864,6 +2840,36 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
                 <ScalarProperty Name="IncidentTime" ColumnName="IncidentTime" />
                 <ScalarProperty Name="IncidentDate" ColumnName="IncidentDate" />
                 <ScalarProperty Name="IncidentId" ColumnName="IncidentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DailyBriefings">
+            <EntityTypeMapping TypeName="DBModelVigil.DailyBriefing">
+              <MappingFragment StoreEntitySet="DailyBriefings">
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="BriefingInReachTracking" ColumnName="BriefingInReachTracking" />
+                <ScalarProperty Name="BriefingInReachMessage" ColumnName="BriefingInReachMessage" />
+                <ScalarProperty Name="BriefingDeletedBy" ColumnName="BriefingDeletedBy" />
+                <ScalarProperty Name="BriefingDeleted" ColumnName="BriefingDeleted" />
+                <ScalarProperty Name="BriefingCheckedBy" ColumnName="BriefingCheckedBy" />
+                <ScalarProperty Name="BriefingChecked" ColumnName="BriefingChecked" />
+                <ScalarProperty Name="BriefingCreatedAt" ColumnName="BriefingCreatedAt" />
+                <ScalarProperty Name="BriefingAddedBy" ColumnName="BriefingAddedBy" />
+                <ScalarProperty Name="BriefingCompanyUid" ColumnName="BriefingCompanyUid" />
+                <ScalarProperty Name="BriefingComments" ColumnName="BriefingComments" />
+                <ScalarProperty Name="BriefingTotalHours" ColumnName="BriefingTotalHours" />
+                <ScalarProperty Name="BriefingEndThree" ColumnName="BriefingEndThree" />
+                <ScalarProperty Name="BriefingEndTwo" ColumnName="BriefingEndTwo" />
+                <ScalarProperty Name="BriefingEndOne" ColumnName="BriefingEndOne" />
+                <ScalarProperty Name="BriefingStartThree" ColumnName="BriefingStartThree" />
+                <ScalarProperty Name="BriefingStarttwo" ColumnName="BriefingStarttwo" />
+                <ScalarProperty Name="BriefingStartOne" ColumnName="BriefingStartOne" />
+                <ScalarProperty Name="BriefingSafeToWork" ColumnName="BriefingSafeToWork" />
+                <ScalarProperty Name="BriefingCompletedBy" ColumnName="BriefingCompletedBy" />
+                <ScalarProperty Name="BriefingDate" ColumnName="BriefingDate" />
+                <ScalarProperty Name="BriefingLocation" ColumnName="BriefingLocation" />
+                <ScalarProperty Name="BriefingUid" ColumnName="BriefingUid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
