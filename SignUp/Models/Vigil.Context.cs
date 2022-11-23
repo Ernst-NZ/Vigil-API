@@ -64,11 +64,11 @@ namespace SignUp.Models
         public virtual DbSet<Company> Companies { get; set; }
         public virtual DbSet<Chemical> Chemicals { get; set; }
         public virtual DbSet<CheckListLog> CheckListLogs { get; set; }
-        public virtual DbSet<Hazard> Hazards { get; set; }
         public virtual DbSet<FileData> FileDatas { get; set; }
         public virtual DbSet<RiskRegister> RiskRegisters { get; set; }
         public virtual DbSet<AnnualSafetyPlan> AnnualSafetyPlans { get; set; }
         public virtual DbSet<Incident> Incidents { get; set; }
         public virtual DbSet<DailyBriefing> DailyBriefings { get; set; }
+        public virtual DbSet<Hazard> Hazards { get; set; }
     }
 }
