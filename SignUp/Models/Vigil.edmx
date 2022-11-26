@@ -448,6 +448,8 @@
           <Property Name="Deleted" Type="bit" />
           <Property Name="DeletedBy" Type="nvarchar" MaxLength="125" />
           <Property Name="IncidentUid" Type="nvarchar" MaxLength="125" />
+          <Property Name="Latitude" Type="nvarchar" MaxLength="50" />
+          <Property Name="Longitude" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="LinkedModules">
           <Key>
@@ -1235,9 +1237,9 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <EntitySet Name="FileDatas" EntityType="DBModelVigil.FileData" />
           <EntitySet Name="RiskRegisters" EntityType="DBModelVigil.RiskRegister" />
           <EntitySet Name="AnnualSafetyPlans" EntityType="DBModelVigil.AnnualSafetyPlan" />
-          <EntitySet Name="Incidents" EntityType="DBModelVigil.Incident" />
           <EntitySet Name="DailyBriefings" EntityType="DBModelVigil.DailyBriefing" />
           <EntitySet Name="Hazards" EntityType="DBModelVigil.Hazard" />
+          <EntitySet Name="Incidents" EntityType="DBModelVigil.Incident" />
         </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
@@ -1883,47 +1885,6 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <Property Name="Deleted" Type="Boolean" />
           <Property Name="DeletedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="Incident">
-          <Key>
-            <PropertyRef Name="IncidentId" />
-          </Key>
-          <Property Name="IncidentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IncidentDate" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IncidentTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IncidentLocation" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="PartyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IncidentInjuries" Type="Boolean" />
-          <Property Name="IncidentDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ReportDate" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="EmailSent" Type="Boolean" />
-          <Property Name="EmailTo" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="Status" Type="Boolean" Nullable="false" />
-          <Property Name="StatusDetail" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="Acknowledged" Type="Boolean" />
-          <Property Name="AcknowledgedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="AcknowledgeDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IncidentType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="TreatmentType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Treatment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="TreatmentBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="UrgentAction" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IncidentSeverity" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
-          <Property Name="ManagementComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ManagementCommentsBy" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
-          <Property Name="ManagementCommentsDate" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
-          <Property Name="ReportableIncident" Type="Boolean" />
-          <Property Name="Reported" Type="Boolean" />
-          <Property Name="ReportedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="ReportedDate" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="FeedbackToAffected" Type="Boolean" />
-          <Property Name="FeedbackDate" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="FeedbackBy" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="CompanyId" Type="Int32" Nullable="false" />
-          <Property Name="AddedBy" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
-          <Property Name="Deleted" Type="Boolean" />
-          <Property Name="DeletedBy" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
-          <Property Name="IncidentUid" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="DailyBriefing">
           <Key>
             <PropertyRef Name="BriefingUid" />
@@ -1991,6 +1952,49 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <Property Name="Deleted" Type="Boolean" />
           <Property Name="Longitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Latitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Incident">
+          <Key>
+            <PropertyRef Name="IncidentId" />
+          </Key>
+          <Property Name="IncidentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IncidentDate" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IncidentTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IncidentLocation" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PartyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IncidentInjuries" Type="Boolean" />
+          <Property Name="IncidentDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ReportDate" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="EmailSent" Type="Boolean" />
+          <Property Name="EmailTo" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="StatusDetail" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Acknowledged" Type="Boolean" />
+          <Property Name="AcknowledgedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AcknowledgeDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IncidentType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TreatmentType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Treatment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TreatmentBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UrgentAction" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IncidentSeverity" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="ManagementComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ManagementCommentsBy" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="ManagementCommentsDate" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="ReportableIncident" Type="Boolean" />
+          <Property Name="Reported" Type="Boolean" />
+          <Property Name="ReportedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ReportedDate" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="FeedbackToAffected" Type="Boolean" />
+          <Property Name="FeedbackDate" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="FeedbackBy" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyId" Type="Int32" Nullable="false" />
+          <Property Name="AddedBy" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="Deleted" Type="Boolean" />
+          <Property Name="DeletedBy" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="IncidentUid" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="Latitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Longitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2767,48 +2771,6 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Incidents">
-            <EntityTypeMapping TypeName="DBModelVigil.Incident">
-              <MappingFragment StoreEntitySet="Incidents">
-                <ScalarProperty Name="IncidentUid" ColumnName="IncidentUid" />
-                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
-                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
-                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
-                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
-                <ScalarProperty Name="FeedbackBy" ColumnName="FeedbackBy" />
-                <ScalarProperty Name="FeedbackDate" ColumnName="FeedbackDate" />
-                <ScalarProperty Name="FeedbackToAffected" ColumnName="FeedbackToAffected" />
-                <ScalarProperty Name="ReportedDate" ColumnName="ReportedDate" />
-                <ScalarProperty Name="ReportedBy" ColumnName="ReportedBy" />
-                <ScalarProperty Name="Reported" ColumnName="Reported" />
-                <ScalarProperty Name="ReportableIncident" ColumnName="ReportableIncident" />
-                <ScalarProperty Name="ManagementCommentsDate" ColumnName="ManagementCommentsDate" />
-                <ScalarProperty Name="ManagementCommentsBy" ColumnName="ManagementCommentsBy" />
-                <ScalarProperty Name="ManagementComments" ColumnName="ManagementComments" />
-                <ScalarProperty Name="IncidentSeverity" ColumnName="IncidentSeverity" />
-                <ScalarProperty Name="UrgentAction" ColumnName="UrgentAction" />
-                <ScalarProperty Name="TreatmentBy" ColumnName="TreatmentBy" />
-                <ScalarProperty Name="Treatment" ColumnName="Treatment" />
-                <ScalarProperty Name="TreatmentType" ColumnName="TreatmentType" />
-                <ScalarProperty Name="IncidentType" ColumnName="IncidentType" />
-                <ScalarProperty Name="AcknowledgeDate" ColumnName="AcknowledgeDate" />
-                <ScalarProperty Name="AcknowledgedBy" ColumnName="AcknowledgedBy" />
-                <ScalarProperty Name="Acknowledged" ColumnName="Acknowledged" />
-                <ScalarProperty Name="StatusDetail" ColumnName="StatusDetail" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="EmailTo" ColumnName="EmailTo" />
-                <ScalarProperty Name="EmailSent" ColumnName="EmailSent" />
-                <ScalarProperty Name="ReportDate" ColumnName="ReportDate" />
-                <ScalarProperty Name="IncidentDescription" ColumnName="IncidentDescription" />
-                <ScalarProperty Name="IncidentInjuries" ColumnName="IncidentInjuries" />
-                <ScalarProperty Name="PartyName" ColumnName="PartyName" />
-                <ScalarProperty Name="IncidentLocation" ColumnName="IncidentLocation" />
-                <ScalarProperty Name="IncidentTime" ColumnName="IncidentTime" />
-                <ScalarProperty Name="IncidentDate" ColumnName="IncidentDate" />
-                <ScalarProperty Name="IncidentId" ColumnName="IncidentId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="DailyBriefings">
             <EntityTypeMapping TypeName="DBModelVigil.DailyBriefing">
               <MappingFragment StoreEntitySet="DailyBriefings">
@@ -2876,6 +2838,50 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="CompanyUID" ColumnName="CompanyUID" />
                 <ScalarProperty Name="HazardUID" ColumnName="HazardUID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Incidents">
+            <EntityTypeMapping TypeName="DBModelVigil.Incident">
+              <MappingFragment StoreEntitySet="Incidents">
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="IncidentUid" ColumnName="IncidentUid" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="FeedbackBy" ColumnName="FeedbackBy" />
+                <ScalarProperty Name="FeedbackDate" ColumnName="FeedbackDate" />
+                <ScalarProperty Name="FeedbackToAffected" ColumnName="FeedbackToAffected" />
+                <ScalarProperty Name="ReportedDate" ColumnName="ReportedDate" />
+                <ScalarProperty Name="ReportedBy" ColumnName="ReportedBy" />
+                <ScalarProperty Name="Reported" ColumnName="Reported" />
+                <ScalarProperty Name="ReportableIncident" ColumnName="ReportableIncident" />
+                <ScalarProperty Name="ManagementCommentsDate" ColumnName="ManagementCommentsDate" />
+                <ScalarProperty Name="ManagementCommentsBy" ColumnName="ManagementCommentsBy" />
+                <ScalarProperty Name="ManagementComments" ColumnName="ManagementComments" />
+                <ScalarProperty Name="IncidentSeverity" ColumnName="IncidentSeverity" />
+                <ScalarProperty Name="UrgentAction" ColumnName="UrgentAction" />
+                <ScalarProperty Name="TreatmentBy" ColumnName="TreatmentBy" />
+                <ScalarProperty Name="Treatment" ColumnName="Treatment" />
+                <ScalarProperty Name="TreatmentType" ColumnName="TreatmentType" />
+                <ScalarProperty Name="IncidentType" ColumnName="IncidentType" />
+                <ScalarProperty Name="AcknowledgeDate" ColumnName="AcknowledgeDate" />
+                <ScalarProperty Name="AcknowledgedBy" ColumnName="AcknowledgedBy" />
+                <ScalarProperty Name="Acknowledged" ColumnName="Acknowledged" />
+                <ScalarProperty Name="StatusDetail" ColumnName="StatusDetail" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="EmailTo" ColumnName="EmailTo" />
+                <ScalarProperty Name="EmailSent" ColumnName="EmailSent" />
+                <ScalarProperty Name="ReportDate" ColumnName="ReportDate" />
+                <ScalarProperty Name="IncidentDescription" ColumnName="IncidentDescription" />
+                <ScalarProperty Name="IncidentInjuries" ColumnName="IncidentInjuries" />
+                <ScalarProperty Name="PartyName" ColumnName="PartyName" />
+                <ScalarProperty Name="IncidentLocation" ColumnName="IncidentLocation" />
+                <ScalarProperty Name="IncidentTime" ColumnName="IncidentTime" />
+                <ScalarProperty Name="IncidentDate" ColumnName="IncidentDate" />
+                <ScalarProperty Name="IncidentId" ColumnName="IncidentId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

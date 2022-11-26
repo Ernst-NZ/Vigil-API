@@ -52,9 +52,9 @@
         <EntityTypeShape EntityType="DBModelVigil.FileData" Width="1.5" PointX="7.375" PointY="11.75" />
         <EntityTypeShape EntityType="DBModelVigil.RiskRegister" Width="1.5" PointX="14.375" PointY="20.75" />
         <EntityTypeShape EntityType="DBModelVigil.AnnualSafetyPlan" Width="1.5" PointX="21.375" PointY="0.75" />
-        <EntityTypeShape EntityType="DBModelVigil.Incident" Width="1.5" PointX="21.375" PointY="11.75" />
         <EntityTypeShape EntityType="DBModelVigil.DailyBriefing" Width="1.5" PointX="19.375" PointY="21.75" />
         <EntityTypeShape EntityType="DBModelVigil.Hazard" Width="1.5" PointX="10.375" PointY="17.75" />
+        <EntityTypeShape EntityType="DBModelVigil.Incident" Width="1.5" PointX="21.375" PointY="5.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

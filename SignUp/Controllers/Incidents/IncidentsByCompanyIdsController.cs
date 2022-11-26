@@ -52,6 +52,8 @@ namespace SignUp.Controllers.Incidents
                                Deleted = i.Deleted ?? false,
                                DeletedBy = i.DeletedBy ?? "",
                                IncidentUid = i.IncidentUid ?? "",
+                               Longitude = i.Longitude ?? "",
+                               Latitude = i.Latitude ?? ""
                              };
       companyIncidents.OrderBy(x => x.ReportedDate);
       if (companyIncidents == null)
