@@ -32,16 +32,16 @@ namespace SignUp
 
       ConfigureAuth(app);
 
-      Hangfire.GlobalConfiguration.Configuration.UseSqlServerStorage("DefaultConnection");
-      // app.UseHangfireDashboard();
-      app.UseHangfireDashboard("/Jobs", new DashboardOptions()
-      {
-        Authorization = new[] { new HangfireAthorizationFilter() }
-      });
-      BackgroundJob.Enqueue(() => Console.WriteLine("HangFire-Startup!"));
-      //RecurringJob.AddOrUpdate<ShopifyGetOrderController>(js => js.GetOrder(),() => "*/15 * * * *");
-      RecurringJob.AddOrUpdate<Startup>(log => log.xxx(), () => "*/10 * * * *");
-      app.UseHangfireServer();
+      //Hangfire.GlobalConfiguration.Configuration.UseSqlServerStorage("DefaultConnection");
+      //// app.UseHangfireDashboard();
+      //app.UseHangfireDashboard("/Jobs", new DashboardOptions()
+      //{
+      //  Authorization = new[] { new HangfireAthorizationFilter() }
+      //});
+      //BackgroundJob.Enqueue(() => Console.WriteLine("HangFire-Startup!"));
+      ////RecurringJob.AddOrUpdate<ShopifyGetOrderController>(js => js.GetOrder(),() => "*/15 * * * *");
+      //RecurringJob.AddOrUpdate<Startup>(log => log.xxx(), () => "*/10 * * * *");
+      //app.UseHangfireServer();
     }
 
     public void xxx()
