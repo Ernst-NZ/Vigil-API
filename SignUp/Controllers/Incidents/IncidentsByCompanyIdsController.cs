@@ -50,7 +50,10 @@ namespace SignUp.Controllers.Incidents
                                i.CompanyId,
                                AddedBy = i.AddedBy ?? "",
                                Deleted = i.Deleted ?? false,
-                               DeletedBy = i.DeletedBy ?? ""
+                               DeletedBy = i.DeletedBy ?? "",
+                               IncidentUid = i.IncidentUid ?? "",
+                               Longitude = i.Longitude ?? "",
+                               Latitude = i.Latitude ?? ""
                              };
       companyIncidents.OrderBy(x => x.ReportedDate);
       if (companyIncidents == null)

@@ -33,7 +33,11 @@ namespace SignUp.Controllers.Briefings
                        BriefingStartThree = b.BriefingStartThree ?? "",
                        BriefingStarttwo = b.BriefingStarttwo ?? "",
                        BriefingTotalHours = b.BriefingTotalHours ?? "",
-                       b.BriefingUid
+                       BriefingInReachMessage = b.BriefingInReachMessage ?? false,
+                       BriefingInReachTracking = b.BriefingInReachTracking ?? false,
+                       b.BriefingUid,
+                       Longitude = b.Longitude ?? "",
+                       Latitude = b.Latitude ?? ""
                      };
       briefings.OrderBy(x => x.BriefingDate).ThenBy(n => n.BriefingLocation);
       if (briefings == null)

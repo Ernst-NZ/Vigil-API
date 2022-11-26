@@ -320,7 +320,9 @@
     <Compile Include="Controllers\AspNetRolesController.cs" />
     <Compile Include="Controllers\AspNetUserRolesController.cs" />
     <Compile Include="Controllers\AspNetUsersController.cs" />
+    <Compile Include="Controllers\Briefings\AddDailyBriefingsController.cs" />
     <Compile Include="Controllers\Briefings\BriefingsByCompanyUidsController.cs" />
+    <Compile Include="Controllers\Briefings\BriefingsByUserCodesController.cs" />
     <Compile Include="Controllers\Briefings\BriefingStatsByCompaniesController.cs" />
     <Compile Include="Controllers\Briefings\BriefingStatsByUsersController.cs" />
     <Compile Include="Controllers\Briefings\DailyBriefingsController.cs" />
@@ -347,6 +349,8 @@
     <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Controllers\FileUpload\FileDatasController.cs" />
     <Compile Include="Controllers\FileUpload\fileUploadControllerOld.cs" />
+    <Compile Include="Controllers\FileUpload\GetOfflineProjectsImagesController.cs" />
+    <Compile Include="Controllers\FileUpload\GetOfflineTrainingImagesController.cs" />
     <Compile Include="Controllers\Functions\FunctionsByCompaniesController.cs" />
     <Compile Include="Controllers\Functions\FunctionsController.cs" />
     <Compile Include="Controllers\Hazards\HazardsByCompanyIdsController.cs" />
