@@ -321,6 +321,7 @@
     <Compile Include="Controllers\AspNetUserRolesController.cs" />
     <Compile Include="Controllers\AspNetUsersController.cs" />
     <Compile Include="Controllers\Briefings\AddDailyBriefingsController.cs" />
+    <Compile Include="Controllers\Briefings\BriefingsByCompanyUidDatesController.cs" />
     <Compile Include="Controllers\Briefings\BriefingsByCompanyUidsController.cs" />
     <Compile Include="Controllers\Briefings\BriefingsByUserCodesController.cs" />
     <Compile Include="Controllers\Briefings\BriefingStatsByCompaniesController.cs" />

@@ -23,15 +23,15 @@ namespace SignUp.Controllers.Incidents
             Where CompanyId = " + id + " " +
         "      AND (CAST((SUBSTRING(ReportDate, 1, CHARINDEX(',', ReportDate)-1)) as date)) >= dateadd(day, 1-datepart(dw, getdate()), CONVERT(date,getdate())) " +
         "      AND (CAST((SUBSTRING(ReportDate, 1, CHARINDEX(',', ReportDate)-1)) as date)) <  dateadd(day, 8-datepart(dw, getdate()), CONVERT(date,getdate())) " +
-        "      and Status = 1) as Done " +
+        "      and Status = 1 and Deleted = 0) as Done " +
         "  ,(Select Count(distinct IncidentID) " +
         "    From Incidents " +
         "    Where CompanyId = " + id + " " +
         "      AND (CAST((SUBSTRING(ReportDate, 1, CHARINDEX(',', ReportDate)-1)) as date)) >= dateadd(day, 1-datepart(dw, getdate()), CONVERT(date,getdate())) " +
         "      AND (CAST((SUBSTRING(ReportDate, 1, CHARINDEX(',', ReportDate)-1)) as date)) <  dateadd(day, 8-datepart(dw, getdate()), CONVERT(date,getdate())) " +
-        "      and ISNULL(Status, '') = '') as Outstanding " +
+        "      and ISNULL(Status, '') = '' and Deleted = 0) as Outstanding " +
         "From Incidents " +
-        "Where CompanyId = " + id + " " +
+        "Where CompanyId = " + id + "  and Deleted = 0 " +
         "  AND (CAST((SUBSTRING(ReportDate, 1, CHARINDEX(',', ReportDate)-1)) as date)) >= dateadd(day, 1-datepart(dw, getdate()), CONVERT(date,getdate())) " +
         "  AND (CAST((SUBSTRING(ReportDate, 1, CHARINDEX(',', ReportDate)-1)) as date)) <  dateadd(day, 8-datepart(dw, getdate()), CONVERT(date,getdate())) " +
         "UNION " +
@@ -41,15 +41,15 @@ namespace SignUp.Controllers.Incidents
         "    Where CompanyId = " + id + " " +
         "      and datepart(mm,(CAST((SUBSTRING(ReportDate, 1, CHARINDEX(',', ReportDate)-1)) as date))) =month(getdate()) " +
         "      and datepart(yyyy,(CAST((SUBSTRING(ReportDate, 1, CHARINDEX(',', ReportDate)-1)) as date))) =year(getdate()) " +
-        "      and Status = 1) as Done " +
+        "      and Status = 1  and Deleted = 0) as Done " +
         ",(Select Count(distinct IncidentID) " +
         "  From Incidents " +
         "  Where CompanyId = " + id + " " +
         "    and datepart(mm,(CAST((SUBSTRING(ReportDate, 1, CHARINDEX(',', ReportDate)-1)) as date))) =month(getdate()) " +
         "    and datepart(yyyy,(CAST((SUBSTRING(ReportDate, 1, CHARINDEX(',', ReportDate)-1)) as date))) =year(getdate()) " +
-        "    and ISNULL(Status, '') = '') as Outstanding " +
+        "    and ISNULL(Status, '') = ''  and Deleted = 0) as Outstanding " +
         "From Incidents " +
-        "Where CompanyId = " + id + " " +
+        "Where CompanyId = " + id + "  and Deleted = 0 " +
         "  and datepart(mm,(CAST((SUBSTRING(ReportDate, 1, CHARINDEX(',', ReportDate)-1)) as date))) =month(getdate()) " +
         "  and datepart(yyyy,(CAST((SUBSTRING(ReportDate, 1, CHARINDEX(',', ReportDate)-1)) as date))) =year(getdate()) " +
         "UNION " +
@@ -59,15 +59,15 @@ namespace SignUp.Controllers.Incidents
         "    Where CompanyId = " + id + " " +
         "      and (datepart(mm,(CAST((SUBSTRING(ReportDate, 1, CHARINDEX(',', ReportDate)-1)) as date))) < month(getdate()) " +
         "           OR datepart(yyyy,(CAST((SUBSTRING(ReportDate, 1, CHARINDEX(',', ReportDate)-1)) as date))) < year(getdate())) " +
-        "      and Status = 1) as Done " +
+        "      and Status = 1  and Deleted = 0) as Done " +
         ",(Select Count(distinct IncidentID) " +
         "  From Incidents " +
         "  Where CompanyId = " + id + " " +
         "    and (datepart(mm,(CAST((SUBSTRING(ReportDate, 1, CHARINDEX(',', ReportDate)-1)) as date))) < month(getdate()) " +
         "         OR datepart(yyyy,(CAST((SUBSTRING(ReportDate, 1, CHARINDEX(',', ReportDate)-1)) as date))) < year(getdate())) " +
-        "    and ISNULL(Status, '') = '') as Outstanding " +
+        "    and ISNULL(Status, '') = ''  and Deleted = 0) as Outstanding " +
         "From Incidents " +
-        "Where CompanyId = " + id + " " +
+        "Where CompanyId = " + id + "  and Deleted = 0 " +
         "  and (datepart(mm,(CAST((SUBSTRING(ReportDate, 1, CHARINDEX(',', ReportDate)-1)) as date))) < month(getdate()) " +
         "        OR datepart(yyyy,(CAST((SUBSTRING(ReportDate, 1, CHARINDEX(',', ReportDate)-1)) as date))) < year(getdate())) ";
       SqlConnection conn = new SqlConnection(connString);

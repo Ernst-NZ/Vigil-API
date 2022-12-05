@@ -9,8 +9,8 @@ namespace SignUp.Controllers.Images
     {
 
     private Entities db = new Entities();
-   // [Authorize]
-     [AllowAnonymous]
+   //  [Authorize]
+    [AllowAnonymous]
     [HttpPost]
     [ResponseType(typeof(void))]
     public IHttpActionResult GetImagesByRefAndId(imagesParams data)

@@ -21,57 +21,57 @@ namespace SignUp.Controllers.Incidents
 	          ,(Select Count(distinct HazardUID)
             From Hazards
             Where CompanyUID = '" + id + "' " +
-            "AND HazardDate >= dateadd(day, 1-datepart(dw, getdate()), CONVERT(date,getdate())) " +
-            "AND HazardDate <  dateadd(day, 8-datepart(dw, getdate()), CONVERT(date,getdate())) " +
+            "AND (HazardDate >= dateadd(day, 1-datepart(dw, getdate()), CONVERT(date,getdate())) " +
+            "AND HazardDate <  dateadd(day, 8-datepart(dw, getdate()), CONVERT(date,getdate())) OR HazardDate IS NULL ) " +
             "and SupervisorSignOffDate IS NOT NULl " +
             "AND SupervisorSignOffDate <> '' " +
             ") as Done " +
             "     ,(Select Count(distinct HazardUID) " +
             "     From Hazards " +
-            "     Where CompanyUID = '" + id + "' " +
-            "     AND HazardDate >= dateadd(day, 1-datepart(dw, getdate()), CONVERT(date,getdate())) " +
-            "     AND HazardDate <  dateadd(day, 8-datepart(dw, getdate()), CONVERT(date,getdate())) " +
+            "     Where CompanyUID = '" + id + "' and Deleted = 0 " +
+            "     AND (HazardDate >= dateadd(day, 1-datepart(dw, getdate()), CONVERT(date,getdate())) " +
+            "     AND HazardDate <  dateadd(day, 8-datepart(dw, getdate()), CONVERT(date,getdate())) OR HazardDate IS NULL ) " +
             "     and ISNULL(SupervisorSignOffDate, '') = '') as Outstanding " +
             "     From Hazards " +
-            "     Where CompanyUID = '" + id + "' " +
-            "     AND HazardDate >= dateadd(day, 1-datepart(dw, getdate()), CONVERT(date,getdate())) " +
-            "     AND HazardDate <  dateadd(day, 8-datepart(dw, getdate()), CONVERT(date,getdate())) " +
+            "     Where CompanyUID = '" + id + "' and Deleted = 0 " +
+            "     AND (HazardDate >= dateadd(day, 1-datepart(dw, getdate()), CONVERT(date,getdate())) " +
+            "     AND HazardDate <  dateadd(day, 8-datepart(dw, getdate()), CONVERT(date,getdate())) OR HazardDate IS NULL )" +
             "     union " +
             "     Select 'Hazard 2 Month', Count(distinct HazardUID) as Total " +
             "     ,(Select Count(distinct HazardUID) " +
             "     From Hazards " +
-            "     Where CompanyUID = '" + id + "' " +
+            "     Where CompanyUID = '" + id + "' and Deleted = 0 " +
             "     and datepart(mm,HazardDate) =month(getdate()) " +
             "     and datepart(yyyy,HazardDate) =year(getdate()) " +
             "     and SupervisorSignOffDate IS NOT NULl " +
             " AND SupervisorSignOffDate <> '') as Done " +
             "       ,(Select Count(distinct HazardUID) " +
             "       From Hazards " +
-            "       Where CompanyUID = '" + id + "' " +
+            "       Where CompanyUID = '" + id + "' and Deleted = 0 " +
             "     and datepart(mm,HazardDate) =month(getdate()) " +
             "     and datepart(yyyy,HazardDate) =year(getdate()) " +
             "       and ISNULL(SupervisorSignOffDate, '') = '') as Outstanding " +
             "       From Hazards   " +
-            "       Where CompanyUID = '" + id + "' " +
+            "       Where CompanyUID = '" + id + "' and Deleted = 0 " +
             "       and datepart(mm,HazardDate) =month(getdate()) " +
             "     and datepart(yyyy,HazardDate) =year(getdate()) " +
             "       union " +
             "       Select 'Hazard 3 Older', Count(distinct HazardUID) as Total " +
             "       ,(Select Count(distinct HazardUID) " +
             "       From Hazards " +
-            "       Where CompanyUID = '" + id + "' " +
+            "       Where CompanyUID = '" + id + "' and Deleted = 0 " +
             "       and (datepart(mm,HazardDate) <month(getdate()) " +
             "       OR datepart(yyyy,HazardDate) <year(getdate())) " +
             "       and SupervisorSignOffDate IS NOT NULl " +
             "      AND SupervisorSignOffDate <> '') as Done " +
             "           ,(Select Count(distinct HazardUID) " +
             "          From Hazards " +
-            "         Where CompanyUID = '" + id + "'   " +
+            "         Where CompanyUID = '" + id + "' and Deleted = 0   " +
             "      and (datepart(mm,HazardDate) <month(getdate())   " +
             "     OR datepart(yyyy,HazardDate) <year(getdate()))   " +
             "       and ISNULL(SupervisorSignOffDate, '') = '') as Outstanding   " +
             "       From Hazards   " +
-            "       Where CompanyUID = '" + id + "'   " +
+            "       Where CompanyUID = '" + id + "' and Deleted = 0   " +
             "       and (datepart(mm,HazardDate) <month(getdate())   " +
             "     OR datepart(yyyy,HazardDate) <year(getdate()))";
       SqlConnection conn = new SqlConnection(connString);
