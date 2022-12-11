@@ -324,6 +324,7 @@
     <Compile Include="Controllers\Briefings\BriefingsByCompanyUidDatesController.cs" />
     <Compile Include="Controllers\Briefings\BriefingsByCompanyUidsController.cs" />
     <Compile Include="Controllers\Briefings\BriefingsByUserCodesController.cs" />
+    <Compile Include="Controllers\Briefings\BriefingsByUserCodesDatesController.cs" />
     <Compile Include="Controllers\Briefings\BriefingStatsByCompaniesController.cs" />
     <Compile Include="Controllers\Briefings\BriefingStatsByUsersController.cs" />
     <Compile Include="Controllers\Briefings\DailyBriefingsController.cs" />

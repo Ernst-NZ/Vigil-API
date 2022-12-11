@@ -6,9 +6,10 @@ using System.Data.SqlClient;
 using System.Web.Http;
 using System.Web.Http.Description;
 
-namespace SignUp.Controllers.Images
+
+namespace SignUp.Controllers.Briefings
 {
-  public class BriefingsByCompanyUidDatesController : ApiController
+    public class BriefingsByUserCodesDatesController : ApiController
   {
 
     private Entities db = new Entities();
@@ -16,19 +17,19 @@ namespace SignUp.Controllers.Images
     [AllowAnonymous]
     [HttpPost]
     [ResponseType(typeof(void))]
-    public IHttpActionResult GetImagesByRefAndId(dynamic data)
+    public IHttpActionResult BriefingsByUserCodesDates(dynamic data)
     {
       string uid = data.uid;
       string dateFrom = data.fromDate;
       string dateTo = data.toDate;
-    
+
 
       DataTable dataTable = new DataTable();
       string connString = ConfigurationManager.ConnectionStrings["IdentityDemoConnection"].ConnectionString;
       string query =
         @"SELECT *
        FROM   DailyBriefings 
-       WHERE  BriefingCompanyUid = '" + uid + "' " +
+       WHERE  BriefingAddedBy = '" + uid + "' " +
        " AND (CAST(BriefingDate as date)) >= '" + dateFrom + " ' and (CAST(BriefingDate as date)) <= '" + dateTo + " '   " +
        " Order by CAST(BriefingDate as date) desc, BriefingLocation";
       SqlConnection conn = new SqlConnection(connString);
