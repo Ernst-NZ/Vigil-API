@@ -59,7 +59,7 @@ namespace SignUp.Controllers.Incidents
         "    Where CompanyId = " + id + " " +
         "      and (datepart(mm,(CAST((SUBSTRING(ReportDate, 1, CHARINDEX(',', ReportDate)-1)) as date))) < month(getdate()) " +
         "           OR datepart(yyyy,(CAST((SUBSTRING(ReportDate, 1, CHARINDEX(',', ReportDate)-1)) as date))) < year(getdate())) " +
-        "      and Status = 1  and (Deleted = 0 OR Deleted is null)) as Done " +
+        "      and Status = 1 and (Deleted = 0 OR Deleted is null)) as Done " +
         ",(Select Count(distinct IncidentID) " +
         "  From Incidents " +
         "  Where CompanyId = " + id + " " +
