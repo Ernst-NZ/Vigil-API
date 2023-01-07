@@ -5,6 +5,20 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="DBModelVigil.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AccessCompany">
+          <Key>
+            <PropertyRef Name="AccessUid" />
+          </Key>
+          <Property Name="AccessUid" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CompanyUid" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="NoOfUsers" Type="int" Nullable="false" />
+          <Property Name="PaymentDate" Type="nvarchar" MaxLength="50" />
+          <Property Name="PaymentPeriod" Type="int" />
+          <Property Name="PaymentAmount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ExpiryDate" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastUpdate" Type="nvarchar" MaxLength="50" />
+          <Property Name="UpdateBy" Type="nvarchar" MaxLength="150" />
+        </EntityType>
         <EntityType Name="AnnualSafetyPlan">
           <Key>
             <PropertyRef Name="PlanningUid" />
@@ -450,6 +464,7 @@
           <Property Name="IncidentUid" Type="nvarchar" MaxLength="125" />
           <Property Name="Latitude" Type="nvarchar" MaxLength="50" />
           <Property Name="Longitude" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmailMessage" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="LinkedModules">
           <Key>
@@ -939,6 +954,7 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="DBModelVigilStoreContainer">
+          <EntitySet Name="AccessCompany" EntityType="Self.AccessCompany" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AnnualSafetyPlan" EntityType="Self.AnnualSafetyPlan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
@@ -1240,6 +1256,7 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <EntitySet Name="DailyBriefings" EntityType="DBModelVigil.DailyBriefing" />
           <EntitySet Name="Hazards" EntityType="DBModelVigil.Hazard" />
           <EntitySet Name="Incidents" EntityType="DBModelVigil.Incident" />
+          <EntitySet Name="AccessCompanies" EntityType="DBModelVigil.AccessCompany" />
         </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
@@ -1995,6 +2012,21 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <Property Name="IncidentUid" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
           <Property Name="Latitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Longitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmailMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AccessCompany">
+          <Key>
+            <PropertyRef Name="AccessUid" />
+          </Key>
+          <Property Name="AccessUid" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyUid" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="NoOfUsers" Type="Int32" Nullable="false" />
+          <Property Name="PaymentDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PaymentPeriod" Type="Int32" />
+          <Property Name="PaymentAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ExpiryDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateBy" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2844,6 +2876,7 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <EntitySetMapping Name="Incidents">
             <EntityTypeMapping TypeName="DBModelVigil.Incident">
               <MappingFragment StoreEntitySet="Incidents">
+                <ScalarProperty Name="EmailMessage" ColumnName="EmailMessage" />
                 <ScalarProperty Name="Longitude" ColumnName="Longitude" />
                 <ScalarProperty Name="Latitude" ColumnName="Latitude" />
                 <ScalarProperty Name="IncidentUid" ColumnName="IncidentUid" />
@@ -2882,6 +2915,21 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
                 <ScalarProperty Name="IncidentTime" ColumnName="IncidentTime" />
                 <ScalarProperty Name="IncidentDate" ColumnName="IncidentDate" />
                 <ScalarProperty Name="IncidentId" ColumnName="IncidentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccessCompanies">
+            <EntityTypeMapping TypeName="DBModelVigil.AccessCompany">
+              <MappingFragment StoreEntitySet="AccessCompany">
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+                <ScalarProperty Name="PaymentAmount" ColumnName="PaymentAmount" />
+                <ScalarProperty Name="PaymentPeriod" ColumnName="PaymentPeriod" />
+                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+                <ScalarProperty Name="NoOfUsers" ColumnName="NoOfUsers" />
+                <ScalarProperty Name="CompanyUid" ColumnName="CompanyUid" />
+                <ScalarProperty Name="AccessUid" ColumnName="AccessUid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

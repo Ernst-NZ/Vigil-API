@@ -316,6 +316,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AccessCompany\AccessByCompanyUidsController.cs" />
+    <Compile Include="Controllers\AccessCompany\AccessCompaniesController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AspNetRolesController.cs" />
     <Compile Include="Controllers\AspNetUserRolesController.cs" />
@@ -396,6 +398,9 @@
     <Compile Include="Controllers\Visits\VisitRegistersController.cs" />
     <Compile Include="Controllers\Visits\VisitsByCompanyCodesController.cs" />
     <Compile Include="Controllers\Visits\VisitStatsByCompaniesController.cs" />
+    <Compile Include="Models\AccessCompany.cs">
+      <DependentUpon>Vigil.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\AnnualSafetyPlan.cs">
       <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>

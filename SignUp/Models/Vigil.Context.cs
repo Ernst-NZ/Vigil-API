@@ -70,5 +70,6 @@ namespace SignUp.Models
         public virtual DbSet<DailyBriefing> DailyBriefings { get; set; }
         public virtual DbSet<Hazard> Hazards { get; set; }
         public virtual DbSet<Incident> Incidents { get; set; }
+        public virtual DbSet<AccessCompany> AccessCompanies { get; set; }
     }
 }
