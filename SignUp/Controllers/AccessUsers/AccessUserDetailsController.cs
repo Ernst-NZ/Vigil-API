@@ -36,7 +36,7 @@ namespace SignUp.Controllers.AccessUsers
                   ,[AppVersion]
                   ,(Select Count(au.UserAccessUid) 
                       From AccessUser au
-                      Where au.UserUid = AccessUser.UserUid) as total
+                      Where au.UserUid = AccessUser.UserUid and au.Action = AccessUser.Action) as total
               FROM [Vigil].[dbo].[AccessUser]
               inner join company on company.CompanyUid = AccessUser.companyuid
               inner join WebUser on WebUser.UserId = AccessUser.UserUid
