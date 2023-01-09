@@ -23,7 +23,7 @@ namespace SignUp.Controllers.AccessUsers
               @"SELECT Distinct [UserAccessUid]
                   ,UserFirstName + ' ' + UserLastName userName 
                   ,CompanyName
-                  ,Format(ActionDate, 'dd-MMM-yyyy HH:mm:ss') as ActionDate
+                  ,Format(ActionDate, 'dd-MMM-yyyy HH:mm:ss') as 'ActionDate'
                   ,[Action]
                   ,[Device]
                   ,[DeviceType]

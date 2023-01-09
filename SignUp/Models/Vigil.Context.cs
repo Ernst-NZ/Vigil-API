@@ -72,5 +72,6 @@ namespace SignUp.Models
         public virtual DbSet<Incident> Incidents { get; set; }
         public virtual DbSet<AccessCompany> AccessCompanies { get; set; }
         public virtual DbSet<AccessUser> AccessUsers { get; set; }
+        public virtual DbSet<AppVersion> AppVersions { get; set; }
     }
 }

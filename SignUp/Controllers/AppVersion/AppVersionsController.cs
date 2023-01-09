@@ -6,46 +6,46 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using SignUp.Models;
 
-namespace SignUp.Controllers.AccessUsers
+namespace SignUp.Controllers.AppVersions
 {
-    public class AccessUsersController : ApiController
+    public class AppVersionsController : ApiController
     {
         private Entities db = new Entities();
 
-        // GET: api/AccessUsers
-        public IQueryable<AccessUser> GetAccessUsers()
+        // GET: api/AppVersions
+        public IQueryable<AppVersion> GetAppVersions()
         {
-            return db.AccessUsers;
+            return db.AppVersions;
         }
 
-        // GET: api/AccessUsers/5
-        [ResponseType(typeof(AccessUser))]
-        public IHttpActionResult GetAccessUser(string id)
+        // GET: api/AppVersions/5
+        [ResponseType(typeof(AppVersion))]
+        public IHttpActionResult GetAppVersion(string id)
         {
-            AccessUser accessUser = db.AccessUsers.Find(id);
-            if (accessUser == null)
+            AppVersion appVersion = db.AppVersions.Find(id);
+            if (appVersion == null)
             {
                 return NotFound();
             }
 
-            return Ok(accessUser);
+            return Ok(appVersion);
         }
 
-        // PUT: api/AccessUsers/5
+        // PUT: api/AppVersions/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutAccessUser(string id, AccessUser accessUser)
+        public IHttpActionResult PutAppVersion(string id, AppVersion appVersion)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != accessUser.UserAccessUid)
+            if (id != appVersion.VersionUid)
             {
                 return BadRequest();
             }
 
-            db.Entry(accessUser).State = EntityState.Modified;
+            db.Entry(appVersion).State = EntityState.Modified;
 
             try
             {
@@ -53,7 +53,7 @@ namespace SignUp.Controllers.AccessUsers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AccessUserExists(id))
+                if (!AppVersionExists(id))
                 {
                     return NotFound();
                 }
@@ -66,16 +66,16 @@ namespace SignUp.Controllers.AccessUsers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/AccessUsers
-        [ResponseType(typeof(AccessUser))]
-        public IHttpActionResult PostAccessUser(AccessUser accessUser)
+        // POST: api/AppVersions
+        [ResponseType(typeof(AppVersion))]
+        public IHttpActionResult PostAppVersion(AppVersion appVersion)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.AccessUsers.Add(accessUser);
+            db.AppVersions.Add(appVersion);
 
             try
             {
@@ -83,7 +83,7 @@ namespace SignUp.Controllers.AccessUsers
             }
             catch (DbUpdateException)
             {
-                if (AccessUserExists(accessUser.UserAccessUid))
+                if (AppVersionExists(appVersion.VersionUid))
                 {
                     return Conflict();
                 }
@@ -93,23 +93,23 @@ namespace SignUp.Controllers.AccessUsers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = accessUser.UserAccessUid }, accessUser);
+            return CreatedAtRoute("DefaultApi", new { id = appVersion.VersionUid }, appVersion);
         }
 
-        // DELETE: api/AccessUsers/5
-        [ResponseType(typeof(AccessUser))]
-        public IHttpActionResult DeleteAccessUser(string id)
+        // DELETE: api/AppVersions/5
+        [ResponseType(typeof(AppVersion))]
+        public IHttpActionResult DeleteAppVersion(string id)
         {
-            AccessUser accessUser = db.AccessUsers.Find(id);
-            if (accessUser == null)
+            AppVersion appVersion = db.AppVersions.Find(id);
+            if (appVersion == null)
             {
                 return NotFound();
             }
 
-            db.AccessUsers.Remove(accessUser);
+            db.AppVersions.Remove(appVersion);
             db.SaveChanges();
 
-            return Ok(accessUser);
+            return Ok(appVersion);
         }
 
         protected override void Dispose(bool disposing)
@@ -121,9 +121,9 @@ namespace SignUp.Controllers.AccessUsers
             base.Dispose(disposing);
         }
 
-        private bool AccessUserExists(string id)
+        private bool AppVersionExists(string id)
         {
-            return db.AccessUsers.Count(e => e.UserAccessUid == id) > 0;
+            return db.AppVersions.Count(e => e.VersionUid == id) > 0;
         }
     }
 }

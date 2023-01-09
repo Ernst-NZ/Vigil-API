@@ -57,6 +57,7 @@
         <EntityTypeShape EntityType="DBModelVigil.Incident" Width="1.5" PointX="21.375" PointY="5.75" />
         <EntityTypeShape EntityType="DBModelVigil.AccessCompany" Width="1.5" PointX="21.375" PointY="15.75" />
         <EntityTypeShape EntityType="DBModelVigil.AccessUser" Width="1.5" PointX="21.375" PointY="19.75" />
+        <EntityTypeShape EntityType="DBModelVigil.AppVersion" Width="1.5" PointX="23.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
