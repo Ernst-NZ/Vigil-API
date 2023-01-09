@@ -59,6 +59,15 @@
           <Property Name="Deleted" Type="bit" />
           <Property Name="DeletedBy" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="AppVersion">
+          <Key>
+            <PropertyRef Name="VersionUid" />
+          </Key>
+          <Property Name="VersionUid" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="VersionNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="VersionDate" Type="date" Nullable="false" />
+          <Property Name="VersionNotes" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="AspNetRoles">
           <Key>
             <PropertyRef Name="Id" />
@@ -976,6 +985,7 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <EntitySet Name="AccessCompany" EntityType="Self.AccessCompany" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AccessUser" EntityType="Self.AccessUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AnnualSafetyPlan" EntityType="Self.AnnualSafetyPlan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AppVersion" EntityType="Self.AppVersion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
@@ -1278,6 +1288,7 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <EntitySet Name="Incidents" EntityType="DBModelVigil.Incident" />
           <EntitySet Name="AccessCompanies" EntityType="DBModelVigil.AccessCompany" />
           <EntitySet Name="AccessUsers" EntityType="DBModelVigil.AccessUser" />
+          <EntitySet Name="AppVersions" EntityType="DBModelVigil.AppVersion" />
         </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
@@ -2067,6 +2078,15 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <Property Name="Latitude" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="Longitude" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="AppVersion" Type="String" MaxLength="125" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="AppVersion">
+          <Key>
+            <PropertyRef Name="VersionUid" />
+          </Key>
+          <Property Name="VersionUid" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="VersionNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VersionDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="VersionNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2990,6 +3010,16 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
                 <ScalarProperty Name="CompanyUid" ColumnName="CompanyUid" />
                 <ScalarProperty Name="UserUid" ColumnName="UserUid" />
                 <ScalarProperty Name="UserAccessUid" ColumnName="UserAccessUid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AppVersions">
+            <EntityTypeMapping TypeName="DBModelVigil.AppVersion">
+              <MappingFragment StoreEntitySet="AppVersion">
+                <ScalarProperty Name="VersionNotes" ColumnName="VersionNotes" />
+                <ScalarProperty Name="VersionDate" ColumnName="VersionDate" />
+                <ScalarProperty Name="VersionNumber" ColumnName="VersionNumber" />
+                <ScalarProperty Name="VersionUid" ColumnName="VersionUid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
