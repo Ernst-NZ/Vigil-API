@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'E:\_Git\__SATS 2022\SATS API\SignUp\Models\Vigil.edmx'. 
+﻿// T4 code generation is enabled for model 'G:\_Git\__SATS 2023\SATS API\SignUp\Models\Vigil.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

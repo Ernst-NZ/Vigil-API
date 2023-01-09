@@ -19,6 +19,25 @@
           <Property Name="LastUpdate" Type="nvarchar" MaxLength="50" />
           <Property Name="UpdateBy" Type="nvarchar" MaxLength="150" />
         </EntityType>
+        <EntityType Name="AccessUser">
+          <Key>
+            <PropertyRef Name="UserAccessUid" />
+          </Key>
+          <Property Name="UserAccessUid" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserUid" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CompanyUid" Type="nvarchar" MaxLength="128" />
+          <Property Name="ActionDate" Type="datetime" Nullable="false" />
+          <Property Name="Action" Type="nvarchar(max)" />
+          <Property Name="Device" Type="nvarchar" MaxLength="128" />
+          <Property Name="DeviceType" Type="nvarchar" MaxLength="128" />
+          <Property Name="DeviceUserAgent" Type="nvarchar" MaxLength="256" />
+          <Property Name="DeviceOs" Type="nvarchar" MaxLength="128" />
+          <Property Name="DeviceOsVersion" Type="nvarchar" MaxLength="128" />
+          <Property Name="DeviceBrowser" Type="nvarchar" MaxLength="128" />
+          <Property Name="Latitude" Type="nvarchar" MaxLength="128" />
+          <Property Name="Longitude" Type="nvarchar" MaxLength="128" />
+          <Property Name="AppVersion" Type="varchar" MaxLength="125" />
+        </EntityType>
         <EntityType Name="AnnualSafetyPlan">
           <Key>
             <PropertyRef Name="PlanningUid" />
@@ -955,6 +974,7 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
         </Association>
         <EntityContainer Name="DBModelVigilStoreContainer">
           <EntitySet Name="AccessCompany" EntityType="Self.AccessCompany" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AccessUser" EntityType="Self.AccessUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AnnualSafetyPlan" EntityType="Self.AnnualSafetyPlan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
@@ -1257,6 +1277,7 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <EntitySet Name="Hazards" EntityType="DBModelVigil.Hazard" />
           <EntitySet Name="Incidents" EntityType="DBModelVigil.Incident" />
           <EntitySet Name="AccessCompanies" EntityType="DBModelVigil.AccessCompany" />
+          <EntitySet Name="AccessUsers" EntityType="DBModelVigil.AccessUser" />
         </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
@@ -2027,6 +2048,25 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <Property Name="ExpiryDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="LastUpdate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UpdateBy" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AccessUser">
+          <Key>
+            <PropertyRef Name="UserAccessUid" />
+          </Key>
+          <Property Name="UserAccessUid" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserUid" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyUid" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ActionDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Action" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Device" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="DeviceType" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="DeviceUserAgent" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="DeviceOs" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="DeviceOsVersion" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="DeviceBrowser" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Latitude" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Longitude" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="AppVersion" Type="String" MaxLength="125" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2930,6 +2970,26 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
                 <ScalarProperty Name="NoOfUsers" ColumnName="NoOfUsers" />
                 <ScalarProperty Name="CompanyUid" ColumnName="CompanyUid" />
                 <ScalarProperty Name="AccessUid" ColumnName="AccessUid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccessUsers">
+            <EntityTypeMapping TypeName="DBModelVigil.AccessUser">
+              <MappingFragment StoreEntitySet="AccessUser">
+                <ScalarProperty Name="AppVersion" ColumnName="AppVersion" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="DeviceBrowser" ColumnName="DeviceBrowser" />
+                <ScalarProperty Name="DeviceOsVersion" ColumnName="DeviceOsVersion" />
+                <ScalarProperty Name="DeviceOs" ColumnName="DeviceOs" />
+                <ScalarProperty Name="DeviceUserAgent" ColumnName="DeviceUserAgent" />
+                <ScalarProperty Name="DeviceType" ColumnName="DeviceType" />
+                <ScalarProperty Name="Device" ColumnName="Device" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="ActionDate" ColumnName="ActionDate" />
+                <ScalarProperty Name="CompanyUid" ColumnName="CompanyUid" />
+                <ScalarProperty Name="UserUid" ColumnName="UserUid" />
+                <ScalarProperty Name="UserAccessUid" ColumnName="UserAccessUid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
