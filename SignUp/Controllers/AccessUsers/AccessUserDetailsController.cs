@@ -20,8 +20,7 @@ namespace SignUp.Controllers.AccessUsers
             DataTable dataTable = new DataTable();
             string connString = ConfigurationManager.ConnectionStrings["IdentityDemoConnection"].ConnectionString;
             string query =
-              @"SELECT Distinct [UserAccessUid]
-                  ,UserFirstName + ' ' + UserLastName userName 
+              @"SELECT Distinct UserFirstName + ' ' + UserLastName userName 
                   ,CompanyName
                   ,Format(ActionDate, 'dd-MMM-yyyy HH:mm:ss') as 'ActionDate'
                   ,[Action]
@@ -34,9 +33,11 @@ namespace SignUp.Controllers.AccessUsers
                   ,[Latitude]
                   ,[Longitude]
                   ,[AppVersion]
-                  ,(Select Count(au.UserAccessUid) 
+                  ,(Select Count(au.UserAccessUid)
                       From AccessUser au
-                      Where au.UserUid = AccessUser.UserUid and au.Action = AccessUser.Action) as total
+                      Where au.UserUid = AccessUser.UserUid 
+					  and au.Action = AccessUser.Action
+					  and au.DeviceType = AccessUser.DeviceType) as total
               FROM [Vigil].[dbo].[AccessUser]
               inner join company on company.CompanyUid = AccessUser.companyuid
               inner join WebUser on WebUser.UserId = AccessUser.UserUid
