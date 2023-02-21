@@ -23,7 +23,7 @@ namespace SignUp.Controllers
                   inner join Company on Company.CompanyCode = WebUser.userCompanyCode
                   Where Company.CompanyUid = t.CompanyUid
                   and
-                  UserNotActive is null OR UserNotActive <> '1') activeUsers
+                  (UserNotActive is null OR UserNotActive <> '1')) activeUsers
                 FROM [Vigil].[dbo].[AccessCompany] t
 	                inner join (
                     Select distinct companyUid, max(CAST(ExpiryDate AS DATE)) as maxDate
