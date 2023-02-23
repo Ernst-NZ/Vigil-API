@@ -67,7 +67,8 @@ namespace SignUp.Controllers.Briefings
                 }
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return Ok(dailyBriefing);
+            //return StatusCode(HttpStatusCode.NoContent);
         }
 
         // POST: api/DailyBriefings

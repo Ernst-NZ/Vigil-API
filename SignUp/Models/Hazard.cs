@@ -48,5 +48,6 @@ namespace SignUp.Models
         public Nullable<bool> Deleted { get; set; }
         public string Longitude { get; set; }
         public string Latitude { get; set; }
+        public string LocationUid { get; set; }
     }
 }

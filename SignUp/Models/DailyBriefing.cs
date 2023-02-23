@@ -38,5 +38,11 @@ namespace SignUp.Models
         public Nullable<bool> BriefingInReachTracking { get; set; }
         public string Longitude { get; set; }
         public string Latitude { get; set; }
+        public string LastUpdate { get; set; }
+        public string UpdateBy { get; set; }
+        public Nullable<bool> IsOpen { get; set; }
+        public string SiteUid { get; set; }
+        public Nullable<bool> HasHazard { get; set; }
+        public string HazardUid { get; set; }
     }
 }

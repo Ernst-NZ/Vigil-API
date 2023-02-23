@@ -22,5 +22,6 @@ namespace SignUp.Models
         public string ProjectDocDescription { get; set; }
         public string AddedBy { get; set; }
         public string Date { get; set; }
+        public string ProjectActivity { get; set; }
     }
 }

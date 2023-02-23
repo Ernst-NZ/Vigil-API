@@ -366,6 +366,12 @@
           <Property Name="BriefingInReachTracking" Type="bit" />
           <Property Name="Longitude" Type="nvarchar" MaxLength="50" />
           <Property Name="Latitude" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastUpdate" Type="nvarchar" MaxLength="50" />
+          <Property Name="UpdateBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsOpen" Type="bit" />
+          <Property Name="SiteUid" Type="nvarchar" MaxLength="50" />
+          <Property Name="HasHazard" Type="bit" />
+          <Property Name="HazardUid" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Departments">
           <Key>
@@ -437,6 +443,7 @@
           <Property Name="Deleted" Type="bit" />
           <Property Name="Longitude" Type="nvarchar" MaxLength="50" />
           <Property Name="Latitude" Type="nvarchar" MaxLength="50" />
+          <Property Name="LocationUid" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Images">
           <Key>
@@ -569,6 +576,7 @@
           <Property Name="ProjectDocDescription" Type="nvarchar" MaxLength="500" />
           <Property Name="AddedBy" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="Date" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProjectActivity" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="Projects">
           <Key>
@@ -1079,19 +1087,6 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <Property Name="AddedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
-        <EntityType Name="ProjectDoc">
-          <Key>
-            <PropertyRef Name="ProjectDocId" />
-          </Key>
-          <Property Name="ProjectDocId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProjectCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ProjectSubFolder" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ProjectDocName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ProjectDocType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ProjectDocDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="AddedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-        </EntityType>
         <EntityType Name="Hash">
           <Key>
             <PropertyRef Name="Key" />
@@ -1222,7 +1217,6 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
         </Association>
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="CompanyDocs" EntityType="Self.CompanyDoc" />
-          <EntitySet Name="ProjectDocs" EntityType="Self.ProjectDoc" />
           <EntitySet Name="Hashes" EntityType="Self.Hash" />
           <EntitySet Name="Jobs" EntityType="Self.Job" />
           <EntitySet Name="JobParameters" EntityType="Self.JobParameter" />
@@ -1283,12 +1277,13 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <EntitySet Name="FileDatas" EntityType="DBModelVigil.FileData" />
           <EntitySet Name="RiskRegisters" EntityType="DBModelVigil.RiskRegister" />
           <EntitySet Name="AnnualSafetyPlans" EntityType="DBModelVigil.AnnualSafetyPlan" />
-          <EntitySet Name="DailyBriefings" EntityType="DBModelVigil.DailyBriefing" />
-          <EntitySet Name="Hazards" EntityType="DBModelVigil.Hazard" />
           <EntitySet Name="Incidents" EntityType="DBModelVigil.Incident" />
           <EntitySet Name="AccessCompanies" EntityType="DBModelVigil.AccessCompany" />
           <EntitySet Name="AccessUsers" EntityType="DBModelVigil.AccessUser" />
           <EntitySet Name="AppVersions" EntityType="DBModelVigil.AppVersion" />
+          <EntitySet Name="DailyBriefings" EntityType="DBModelVigil.DailyBriefing" />
+          <EntitySet Name="Hazards" EntityType="DBModelVigil.Hazard" />
+          <EntitySet Name="ProjectDocs" EntityType="DBModelVigil.ProjectDoc" />
         </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
@@ -1934,74 +1929,6 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <Property Name="Deleted" Type="Boolean" />
           <Property Name="DeletedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="DailyBriefing">
-          <Key>
-            <PropertyRef Name="BriefingUid" />
-          </Key>
-          <Property Name="BriefingUid" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="BriefingLocation" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="BriefingDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="BriefingCompletedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="BriefingSafeToWork" Type="Boolean" />
-          <Property Name="BriefingStartOne" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="BriefingStarttwo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="BriefingStartThree" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="BriefingEndOne" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="BriefingEndTwo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="BriefingEndThree" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="BriefingTotalHours" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="BriefingComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="BriefingCompanyUid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="BriefingAddedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="BriefingCreatedAt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="BriefingChecked" Type="Boolean" />
-          <Property Name="BriefingCheckedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="BriefingDeleted" Type="Boolean" />
-          <Property Name="BriefingDeletedBy" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
-          <Property Name="BriefingInReachMessage" Type="Boolean" />
-          <Property Name="BriefingInReachTracking" Type="Boolean" />
-          <Property Name="Longitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Latitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Hazard">
-          <Key>
-            <PropertyRef Name="HazardUID" />
-          </Key>
-          <Property Name="HazardUID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="CompanyUID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="HazardDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Site" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Type" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="LocationOnSite" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="RiskMatrix" Type="Int32" />
-          <Property Name="ImmediateFix" Type="Boolean" />
-          <Property Name="ImmediateDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Isolated" Type="Boolean" />
-          <Property Name="Reported" Type="Boolean" />
-          <Property Name="SuggestedSolution" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="SupervisorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SupervisorPosition" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SupervisorAction" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="InitiatorAdvised" Type="Boolean" />
-          <Property Name="SupervisorSignOff" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="InitiatorSignOff" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="SupervisorSignOffDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="InitiatorSignOffDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="AddedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Created_Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="LastUpdate_By" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Updated_Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Deleted_By" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Deleted_Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Deleted" Type="Boolean" />
-          <Property Name="Longitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Latitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="Incident">
           <Key>
             <PropertyRef Name="IncidentId" />
@@ -2088,6 +2015,95 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <Property Name="VersionDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="VersionNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="DailyBriefing">
+          <Key>
+            <PropertyRef Name="BriefingUid" />
+          </Key>
+          <Property Name="BriefingUid" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="BriefingLocation" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="BriefingDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BriefingCompletedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="BriefingSafeToWork" Type="Boolean" />
+          <Property Name="BriefingStartOne" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BriefingStarttwo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BriefingStartThree" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BriefingEndOne" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BriefingEndTwo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BriefingEndThree" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BriefingTotalHours" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BriefingComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BriefingCompanyUid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BriefingAddedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BriefingCreatedAt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BriefingChecked" Type="Boolean" />
+          <Property Name="BriefingCheckedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BriefingDeleted" Type="Boolean" />
+          <Property Name="BriefingDeletedBy" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="BriefingInReachMessage" Type="Boolean" />
+          <Property Name="BriefingInReachTracking" Type="Boolean" />
+          <Property Name="Longitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Latitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsOpen" Type="Boolean" />
+          <Property Name="SiteUid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HasHazard" Type="Boolean" />
+          <Property Name="HazardUid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Hazard">
+          <Key>
+            <PropertyRef Name="HazardUID" />
+          </Key>
+          <Property Name="HazardUID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyUID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HazardDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Site" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LocationOnSite" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RiskMatrix" Type="Int32" />
+          <Property Name="ImmediateFix" Type="Boolean" />
+          <Property Name="ImmediateDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Isolated" Type="Boolean" />
+          <Property Name="Reported" Type="Boolean" />
+          <Property Name="SuggestedSolution" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SupervisorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SupervisorPosition" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SupervisorAction" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="InitiatorAdvised" Type="Boolean" />
+          <Property Name="SupervisorSignOff" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="InitiatorSignOff" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SupervisorSignOffDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InitiatorSignOffDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AddedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Created_Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdate_By" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Updated_Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Deleted_By" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Deleted_Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Deleted" Type="Boolean" />
+          <Property Name="Longitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Latitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LocationUid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ProjectDoc">
+          <Key>
+            <PropertyRef Name="ProjectDocId" />
+          </Key>
+          <Property Name="ProjectDocId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProjectSubFolder" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ProjectDocName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ProjectDocType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProjectDocDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="AddedBy" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProjectActivity" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2103,20 +2119,6 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
                 <ScalarProperty Name="CompanyDocName" ColumnName="CompanyDocName" />
                 <ScalarProperty Name="CompanyDocType" ColumnName="CompanyDocType" />
                 <ScalarProperty Name="CompanyDocDescription" ColumnName="CompanyDocDescription" />
-                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ProjectDocs">
-            <EntityTypeMapping TypeName="DBModelVigil.ProjectDoc">
-              <MappingFragment StoreEntitySet="ProjectDocs">
-                <ScalarProperty Name="ProjectDocId" ColumnName="ProjectDocId" />
-                <ScalarProperty Name="ProjectCode" ColumnName="ProjectCode" />
-                <ScalarProperty Name="ProjectSubFolder" ColumnName="ProjectSubFolder" />
-                <ScalarProperty Name="ProjectDocName" ColumnName="ProjectDocName" />
-                <ScalarProperty Name="ProjectDocType" ColumnName="ProjectDocType" />
-                <ScalarProperty Name="ProjectDocDescription" ColumnName="ProjectDocDescription" />
                 <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
               </MappingFragment>
@@ -2863,76 +2865,6 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="DailyBriefings">
-            <EntityTypeMapping TypeName="DBModelVigil.DailyBriefing">
-              <MappingFragment StoreEntitySet="DailyBriefings">
-                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
-                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
-                <ScalarProperty Name="BriefingInReachTracking" ColumnName="BriefingInReachTracking" />
-                <ScalarProperty Name="BriefingInReachMessage" ColumnName="BriefingInReachMessage" />
-                <ScalarProperty Name="BriefingDeletedBy" ColumnName="BriefingDeletedBy" />
-                <ScalarProperty Name="BriefingDeleted" ColumnName="BriefingDeleted" />
-                <ScalarProperty Name="BriefingCheckedBy" ColumnName="BriefingCheckedBy" />
-                <ScalarProperty Name="BriefingChecked" ColumnName="BriefingChecked" />
-                <ScalarProperty Name="BriefingCreatedAt" ColumnName="BriefingCreatedAt" />
-                <ScalarProperty Name="BriefingAddedBy" ColumnName="BriefingAddedBy" />
-                <ScalarProperty Name="BriefingCompanyUid" ColumnName="BriefingCompanyUid" />
-                <ScalarProperty Name="BriefingComments" ColumnName="BriefingComments" />
-                <ScalarProperty Name="BriefingTotalHours" ColumnName="BriefingTotalHours" />
-                <ScalarProperty Name="BriefingEndThree" ColumnName="BriefingEndThree" />
-                <ScalarProperty Name="BriefingEndTwo" ColumnName="BriefingEndTwo" />
-                <ScalarProperty Name="BriefingEndOne" ColumnName="BriefingEndOne" />
-                <ScalarProperty Name="BriefingStartThree" ColumnName="BriefingStartThree" />
-                <ScalarProperty Name="BriefingStarttwo" ColumnName="BriefingStarttwo" />
-                <ScalarProperty Name="BriefingStartOne" ColumnName="BriefingStartOne" />
-                <ScalarProperty Name="BriefingSafeToWork" ColumnName="BriefingSafeToWork" />
-                <ScalarProperty Name="BriefingCompletedBy" ColumnName="BriefingCompletedBy" />
-                <ScalarProperty Name="BriefingDate" ColumnName="BriefingDate" />
-                <ScalarProperty Name="BriefingLocation" ColumnName="BriefingLocation" />
-                <ScalarProperty Name="BriefingUid" ColumnName="BriefingUid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Hazards">
-            <EntityTypeMapping TypeName="DBModelVigil.Hazard">
-              <MappingFragment StoreEntitySet="Hazards">
-                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
-                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
-                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
-                <ScalarProperty Name="Deleted_Date" ColumnName="Deleted_Date" />
-                <ScalarProperty Name="Deleted_By" ColumnName="Deleted_By" />
-                <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
-                <ScalarProperty Name="LastUpdate_By" ColumnName="LastUpdate_By" />
-                <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
-                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="InitiatorSignOffDate" ColumnName="InitiatorSignOffDate" />
-                <ScalarProperty Name="SupervisorSignOffDate" ColumnName="SupervisorSignOffDate" />
-                <ScalarProperty Name="InitiatorSignOff" ColumnName="InitiatorSignOff" />
-                <ScalarProperty Name="SupervisorSignOff" ColumnName="SupervisorSignOff" />
-                <ScalarProperty Name="InitiatorAdvised" ColumnName="InitiatorAdvised" />
-                <ScalarProperty Name="SupervisorAction" ColumnName="SupervisorAction" />
-                <ScalarProperty Name="SupervisorPosition" ColumnName="SupervisorPosition" />
-                <ScalarProperty Name="SupervisorName" ColumnName="SupervisorName" />
-                <ScalarProperty Name="SuggestedSolution" ColumnName="SuggestedSolution" />
-                <ScalarProperty Name="Reported" ColumnName="Reported" />
-                <ScalarProperty Name="Isolated" ColumnName="Isolated" />
-                <ScalarProperty Name="ImmediateDescription" ColumnName="ImmediateDescription" />
-                <ScalarProperty Name="ImmediateFix" ColumnName="ImmediateFix" />
-                <ScalarProperty Name="RiskMatrix" ColumnName="RiskMatrix" />
-                <ScalarProperty Name="LocationOnSite" ColumnName="LocationOnSite" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="Site" ColumnName="Site" />
-                <ScalarProperty Name="Time" ColumnName="Time" />
-                <ScalarProperty Name="HazardDate" ColumnName="HazardDate" />
-                <ScalarProperty Name="Position" ColumnName="Position" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="CompanyUID" ColumnName="CompanyUID" />
-                <ScalarProperty Name="HazardUID" ColumnName="HazardUID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Incidents">
             <EntityTypeMapping TypeName="DBModelVigil.Incident">
               <MappingFragment StoreEntitySet="Incidents">
@@ -3020,6 +2952,98 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
                 <ScalarProperty Name="VersionDate" ColumnName="VersionDate" />
                 <ScalarProperty Name="VersionNumber" ColumnName="VersionNumber" />
                 <ScalarProperty Name="VersionUid" ColumnName="VersionUid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DailyBriefings">
+            <EntityTypeMapping TypeName="DBModelVigil.DailyBriefing">
+              <MappingFragment StoreEntitySet="DailyBriefings">
+                <ScalarProperty Name="HazardUid" ColumnName="HazardUid" />
+                <ScalarProperty Name="HasHazard" ColumnName="HasHazard" />
+                <ScalarProperty Name="SiteUid" ColumnName="SiteUid" />
+                <ScalarProperty Name="IsOpen" ColumnName="IsOpen" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="BriefingInReachTracking" ColumnName="BriefingInReachTracking" />
+                <ScalarProperty Name="BriefingInReachMessage" ColumnName="BriefingInReachMessage" />
+                <ScalarProperty Name="BriefingDeletedBy" ColumnName="BriefingDeletedBy" />
+                <ScalarProperty Name="BriefingDeleted" ColumnName="BriefingDeleted" />
+                <ScalarProperty Name="BriefingCheckedBy" ColumnName="BriefingCheckedBy" />
+                <ScalarProperty Name="BriefingChecked" ColumnName="BriefingChecked" />
+                <ScalarProperty Name="BriefingCreatedAt" ColumnName="BriefingCreatedAt" />
+                <ScalarProperty Name="BriefingAddedBy" ColumnName="BriefingAddedBy" />
+                <ScalarProperty Name="BriefingCompanyUid" ColumnName="BriefingCompanyUid" />
+                <ScalarProperty Name="BriefingComments" ColumnName="BriefingComments" />
+                <ScalarProperty Name="BriefingTotalHours" ColumnName="BriefingTotalHours" />
+                <ScalarProperty Name="BriefingEndThree" ColumnName="BriefingEndThree" />
+                <ScalarProperty Name="BriefingEndTwo" ColumnName="BriefingEndTwo" />
+                <ScalarProperty Name="BriefingEndOne" ColumnName="BriefingEndOne" />
+                <ScalarProperty Name="BriefingStartThree" ColumnName="BriefingStartThree" />
+                <ScalarProperty Name="BriefingStarttwo" ColumnName="BriefingStarttwo" />
+                <ScalarProperty Name="BriefingStartOne" ColumnName="BriefingStartOne" />
+                <ScalarProperty Name="BriefingSafeToWork" ColumnName="BriefingSafeToWork" />
+                <ScalarProperty Name="BriefingCompletedBy" ColumnName="BriefingCompletedBy" />
+                <ScalarProperty Name="BriefingDate" ColumnName="BriefingDate" />
+                <ScalarProperty Name="BriefingLocation" ColumnName="BriefingLocation" />
+                <ScalarProperty Name="BriefingUid" ColumnName="BriefingUid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hazards">
+            <EntityTypeMapping TypeName="DBModelVigil.Hazard">
+              <MappingFragment StoreEntitySet="Hazards">
+                <ScalarProperty Name="LocationUid" ColumnName="LocationUid" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Deleted_Date" ColumnName="Deleted_Date" />
+                <ScalarProperty Name="Deleted_By" ColumnName="Deleted_By" />
+                <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
+                <ScalarProperty Name="LastUpdate_By" ColumnName="LastUpdate_By" />
+                <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="InitiatorSignOffDate" ColumnName="InitiatorSignOffDate" />
+                <ScalarProperty Name="SupervisorSignOffDate" ColumnName="SupervisorSignOffDate" />
+                <ScalarProperty Name="InitiatorSignOff" ColumnName="InitiatorSignOff" />
+                <ScalarProperty Name="SupervisorSignOff" ColumnName="SupervisorSignOff" />
+                <ScalarProperty Name="InitiatorAdvised" ColumnName="InitiatorAdvised" />
+                <ScalarProperty Name="SupervisorAction" ColumnName="SupervisorAction" />
+                <ScalarProperty Name="SupervisorPosition" ColumnName="SupervisorPosition" />
+                <ScalarProperty Name="SupervisorName" ColumnName="SupervisorName" />
+                <ScalarProperty Name="SuggestedSolution" ColumnName="SuggestedSolution" />
+                <ScalarProperty Name="Reported" ColumnName="Reported" />
+                <ScalarProperty Name="Isolated" ColumnName="Isolated" />
+                <ScalarProperty Name="ImmediateDescription" ColumnName="ImmediateDescription" />
+                <ScalarProperty Name="ImmediateFix" ColumnName="ImmediateFix" />
+                <ScalarProperty Name="RiskMatrix" ColumnName="RiskMatrix" />
+                <ScalarProperty Name="LocationOnSite" ColumnName="LocationOnSite" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Site" ColumnName="Site" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="HazardDate" ColumnName="HazardDate" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CompanyUID" ColumnName="CompanyUID" />
+                <ScalarProperty Name="HazardUID" ColumnName="HazardUID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectDocs">
+            <EntityTypeMapping TypeName="DBModelVigil.ProjectDoc">
+              <MappingFragment StoreEntitySet="ProjectDocs">
+                <ScalarProperty Name="ProjectActivity" ColumnName="ProjectActivity" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+                <ScalarProperty Name="ProjectDocDescription" ColumnName="ProjectDocDescription" />
+                <ScalarProperty Name="ProjectDocType" ColumnName="ProjectDocType" />
+                <ScalarProperty Name="ProjectDocName" ColumnName="ProjectDocName" />
+                <ScalarProperty Name="ProjectSubFolder" ColumnName="ProjectSubFolder" />
+                <ScalarProperty Name="ProjectCode" ColumnName="ProjectCode" />
+                <ScalarProperty Name="ProjectDocId" ColumnName="ProjectDocId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
