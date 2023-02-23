@@ -6,7 +6,6 @@
     <edmx:Diagrams>
       <Diagram DiagramId="907cabada1e346a89789d4a894442ddd" Name="Diagram1" ZoomLevel="64">
         <EntityTypeShape EntityType="DBModelVigil.CompanyDoc" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBModelVigil.ProjectDoc" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DBModelVigil.Hash" Width="1.5" PointX="11.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DBModelVigil.Job" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DBModelVigil.JobParameter" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
@@ -52,12 +51,13 @@
         <EntityTypeShape EntityType="DBModelVigil.FileData" Width="1.5" PointX="7.375" PointY="11.75" />
         <EntityTypeShape EntityType="DBModelVigil.RiskRegister" Width="1.5" PointX="14.375" PointY="20.75" />
         <EntityTypeShape EntityType="DBModelVigil.AnnualSafetyPlan" Width="1.5" PointX="21.375" PointY="0.75" />
-        <EntityTypeShape EntityType="DBModelVigil.DailyBriefing" Width="1.5" PointX="19.375" PointY="21.75" />
-        <EntityTypeShape EntityType="DBModelVigil.Hazard" Width="1.5" PointX="10.375" PointY="17.75" />
         <EntityTypeShape EntityType="DBModelVigil.Incident" Width="1.5" PointX="21.375" PointY="5.75" />
         <EntityTypeShape EntityType="DBModelVigil.AccessCompany" Width="1.5" PointX="21.375" PointY="15.75" />
         <EntityTypeShape EntityType="DBModelVigil.AccessUser" Width="1.5" PointX="21.375" PointY="19.75" />
         <EntityTypeShape EntityType="DBModelVigil.AppVersion" Width="1.5" PointX="23.375" PointY="0.75" />
+        <EntityTypeShape EntityType="DBModelVigil.DailyBriefing" Width="1.5" PointX="10.375" PointY="17.75" />
+        <EntityTypeShape EntityType="DBModelVigil.Hazard" Width="1.5" PointX="23.375" PointY="3.75" />
+        <EntityTypeShape EntityType="DBModelVigil.ProjectDoc" Width="1.5" PointX="3.375" PointY="23.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

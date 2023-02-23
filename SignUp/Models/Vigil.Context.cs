@@ -26,7 +26,6 @@ namespace SignUp.Models
         }
     
         public virtual DbSet<CompanyDoc> CompanyDocs { get; set; }
-        public virtual DbSet<ProjectDoc> ProjectDocs { get; set; }
         public virtual DbSet<Hash> Hashes { get; set; }
         public virtual DbSet<Job> Jobs { get; set; }
         public virtual DbSet<JobParameter> JobParameters { get; set; }
@@ -67,11 +66,12 @@ namespace SignUp.Models
         public virtual DbSet<FileData> FileDatas { get; set; }
         public virtual DbSet<RiskRegister> RiskRegisters { get; set; }
         public virtual DbSet<AnnualSafetyPlan> AnnualSafetyPlans { get; set; }
-        public virtual DbSet<DailyBriefing> DailyBriefings { get; set; }
-        public virtual DbSet<Hazard> Hazards { get; set; }
         public virtual DbSet<Incident> Incidents { get; set; }
         public virtual DbSet<AccessCompany> AccessCompanies { get; set; }
         public virtual DbSet<AccessUser> AccessUsers { get; set; }
         public virtual DbSet<AppVersion> AppVersions { get; set; }
+        public virtual DbSet<DailyBriefing> DailyBriefings { get; set; }
+        public virtual DbSet<Hazard> Hazards { get; set; }
+        public virtual DbSet<ProjectDoc> ProjectDocs { get; set; }
     }
 }

@@ -321,6 +321,7 @@
     <Compile Include="Controllers\AccessCompany\AccessCompaniesController.cs" />
     <Compile Include="Controllers\AccessUsers\AccessUserDetailsController.cs" />
     <Compile Include="Controllers\AccessUsers\AccessUsersController.cs" />
+    <Compile Include="Controllers\AccessUsers\AccessUserSummaryController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AppVersion\AppVersionsController.cs" />
     <Compile Include="Controllers\AspNetRolesController.cs" />
