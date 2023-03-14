@@ -377,6 +377,14 @@
     <Compile Include="Controllers\Incidents\IncidentsByUserIdsController.cs" />
     <Compile Include="Controllers\Incidents\IncidentStatsByUsersController.cs" />
     <Compile Include="Controllers\Incidents\IncidentsController.cs" />
+    <Compile Include="Controllers\Jsa\getReviewedController.cs" />
+    <Compile Include="Controllers\Jsa\JsaByCompanyUidsController.cs" />
+    <Compile Include="Controllers\Jsa\JsaByUidsController.cs" />
+    <Compile Include="Controllers\Jsa\JsaByUserUidsController.cs" />
+    <Compile Include="Controllers\Jsa\JSADatasController.cs" />
+    <Compile Include="Controllers\Jsa\JSAReviewedController.cs" />
+    <Compile Include="Controllers\Jsa\JsaStatsByCompaniesController.cs" />
+    <Compile Include="Controllers\Jsa\JsaStatsByUsersController.cs" />
     <Compile Include="Controllers\Meetings\MeetingsByCompanyCodesController.cs" />
     <Compile Include="Controllers\Meetings\MeetingsController.cs" />
     <Compile Include="Controllers\Meetings\MeetingStatsByCompaniesController.cs" />
@@ -519,6 +527,12 @@
       <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\JobQueue.cs">
+      <DependentUpon>Vigil.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\JSAData.cs">
+      <DependentUpon>Vigil.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\JSAReviewed.cs">
       <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LinkedModule.cs">

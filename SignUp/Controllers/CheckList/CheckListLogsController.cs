@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Newtonsoft.Json.Linq;
@@ -13,7 +10,7 @@ using SignUp.Models;
 
 namespace SignUp.Controllers.CheckList
 {
-  public class CheckListLogsController : ApiController
+    public class CheckListLogsController : ApiController
   {
     private Entities db = new Entities();
 

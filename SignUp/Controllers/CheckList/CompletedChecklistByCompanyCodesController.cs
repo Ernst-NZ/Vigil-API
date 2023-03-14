@@ -1,5 +1,4 @@
 ﻿using SignUp.Models;
-using System.Linq;
 using System.Web.Http;
 using System;
 using System.Configuration;
@@ -8,7 +7,7 @@ using System.Data.SqlClient;
 
 namespace SignUp.Controllers.CheckList
 {
-  public class CompletedChecklistByCompanyCodesController : ApiController
+    public class CompletedChecklistByCompanyCodesController : ApiController
   {
     private Entities db = new Entities();
     [HttpGet]
