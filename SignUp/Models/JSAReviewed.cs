@@ -12,13 +12,14 @@ namespace SignUp.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class LinkedProject
+    public partial class JSAReviewed
     {
-        public int LinkedId { get; set; }
-        public string ProjectCode { get; set; }
-        public string UserCode { get; set; }
-        public string LinkedBy { get; set; }
-        public string Date { get; set; }
-        public Nullable<int> Sequence { get; set; }
+        public string AcknowledgeUid { get; set; }
+        public string JSAUid { get; set; }
+        public string AcknowledgeBy { get; set; }
+        public string AcknowledgeDate { get; set; }
+        public string AddedBy { get; set; }
+        public string AddedOn { get; set; }
+        public string Comments { get; set; }
     }
 }

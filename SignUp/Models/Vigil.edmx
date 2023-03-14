@@ -501,6 +501,43 @@
           <Property Name="Longitude" Type="nvarchar" MaxLength="50" />
           <Property Name="EmailMessage" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="JSAData">
+          <Key>
+            <PropertyRef Name="TaskUid" />
+          </Key>
+          <Property Name="TaskUid" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CompanyUid" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AddedByUid" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AddedByName" Type="nvarchar" MaxLength="50" />
+          <Property Name="JobName" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Date" Type="nvarchar" MaxLength="50" />
+          <Property Name="Location" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Sequence" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Hazard" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="RiskBefore" Type="nvarchar" MaxLength="50" />
+          <Property Name="RecommendedActions" Type="nvarchar(max)" />
+          <Property Name="RiskAfter" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="AddedOn" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastUpdate" Type="nvarchar" MaxLength="50" />
+          <Property Name="Latitude" Type="nvarchar" MaxLength="50" />
+          <Property Name="Longitude" Type="nvarchar" MaxLength="50" />
+          <Property Name="Deleted" Type="bit" />
+          <Property Name="DeletedBy" Type="nvarchar" MaxLength="125" />
+          <Property Name="JsaUid" Type="nvarchar" MaxLength="125" />
+        </EntityType>
+        <EntityType Name="JSAReviewed">
+          <Key>
+            <PropertyRef Name="AcknowledgeUid" />
+          </Key>
+          <Property Name="AcknowledgeUid" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="JSAUid" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AcknowledgeBy" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="AcknowledgeDate" Type="nvarchar" MaxLength="50" />
+          <Property Name="AddedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="AddedOn" Type="nvarchar" MaxLength="50" />
+          <Property Name="Comments" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="LinkedModules">
           <Key>
             <PropertyRef Name="LinkedId" />
@@ -520,6 +557,7 @@
           <Property Name="UserCode" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="LinkedBy" Type="nvarchar" MaxLength="250" />
           <Property Name="Date" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sequence" Type="int" />
         </EntityType>
         <EntityType Name="Meetings">
           <Key>
@@ -1013,6 +1051,8 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <EntitySet Name="Hazards" EntityType="Self.Hazards" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Images" EntityType="Self.Images" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Incidents" EntityType="Self.Incidents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JSAData" EntityType="Self.JSAData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JSAReviewed" EntityType="Self.JSAReviewed" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LinkedModules" EntityType="Self.LinkedModules" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LinkedProjects" EntityType="Self.LinkedProjects" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Meetings" EntityType="Self.Meetings" Schema="dbo" store:Type="Tables" />
@@ -1257,7 +1297,6 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <EntitySet Name="Departments" EntityType="DBModelVigil.Department" />
           <EntitySet Name="Functions" EntityType="DBModelVigil.Function" />
           <EntitySet Name="Projects" EntityType="DBModelVigil.Project" />
-          <EntitySet Name="LinkedProjects" EntityType="DBModelVigil.LinkedProject" />
           <EntitySet Name="RawDatas" EntityType="DBModelVigil.RawData" />
           <EntitySet Name="CompanyStaffs" EntityType="DBModelVigil.CompanyStaff" />
           <EntitySet Name="Images" EntityType="DBModelVigil.Image" />
@@ -1284,6 +1323,9 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <EntitySet Name="DailyBriefings" EntityType="DBModelVigil.DailyBriefing" />
           <EntitySet Name="Hazards" EntityType="DBModelVigil.Hazard" />
           <EntitySet Name="ProjectDocs" EntityType="DBModelVigil.ProjectDoc" />
+          <EntitySet Name="LinkedProjects" EntityType="DBModelVigil.LinkedProject" />
+          <EntitySet Name="JSARevieweds" EntityType="DBModelVigil.JSAReviewed" />
+          <EntitySet Name="JSADatas" EntityType="DBModelVigil.JSAData" />
         </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
@@ -1432,16 +1474,6 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <Property Name="ProjectLocation" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="ProjectStatus" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="AddedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="LinkedProject">
-          <Key>
-            <PropertyRef Name="LinkedId" />
-          </Key>
-          <Property Name="LinkedId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProjectCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="UserCode" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="LinkedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="RawData">
@@ -2104,6 +2136,54 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <Property Name="Date" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ProjectActivity" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="LinkedProject">
+          <Key>
+            <PropertyRef Name="LinkedId" />
+          </Key>
+          <Property Name="LinkedId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserCode" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="LinkedBy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sequence" Type="Int32" />
+        </EntityType>
+        <EntityType Name="JSAReviewed">
+          <Key>
+            <PropertyRef Name="AcknowledgeUid" />
+          </Key>
+          <Property Name="AcknowledgeUid" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="JSAUid" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AcknowledgeBy" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="AcknowledgeDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AddedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AddedOn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="JSAData">
+          <Key>
+            <PropertyRef Name="TaskUid" />
+          </Key>
+          <Property Name="TaskUid" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyUid" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AddedByUid" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AddedByName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="JobName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Location" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Sequence" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Hazard" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RiskBefore" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RecommendedActions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RiskAfter" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AddedOn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Latitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Longitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Deleted" Type="Boolean" />
+          <Property Name="DeletedBy" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="JsaUid" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2347,17 +2427,6 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
                 <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
                 <ScalarProperty Name="ProjectCode" ColumnName="ProjectCode" />
                 <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="LinkedProjects">
-            <EntityTypeMapping TypeName="DBModelVigil.LinkedProject">
-              <MappingFragment StoreEntitySet="LinkedProjects">
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="LinkedBy" ColumnName="LinkedBy" />
-                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
-                <ScalarProperty Name="ProjectCode" ColumnName="ProjectCode" />
-                <ScalarProperty Name="LinkedId" ColumnName="LinkedId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3044,6 +3113,57 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
                 <ScalarProperty Name="ProjectSubFolder" ColumnName="ProjectSubFolder" />
                 <ScalarProperty Name="ProjectCode" ColumnName="ProjectCode" />
                 <ScalarProperty Name="ProjectDocId" ColumnName="ProjectDocId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LinkedProjects">
+            <EntityTypeMapping TypeName="DBModelVigil.LinkedProject">
+              <MappingFragment StoreEntitySet="LinkedProjects">
+                <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="LinkedBy" ColumnName="LinkedBy" />
+                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+                <ScalarProperty Name="ProjectCode" ColumnName="ProjectCode" />
+                <ScalarProperty Name="LinkedId" ColumnName="LinkedId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JSARevieweds">
+            <EntityTypeMapping TypeName="DBModelVigil.JSAReviewed">
+              <MappingFragment StoreEntitySet="JSAReviewed">
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="AddedOn" ColumnName="AddedOn" />
+                <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+                <ScalarProperty Name="AcknowledgeDate" ColumnName="AcknowledgeDate" />
+                <ScalarProperty Name="AcknowledgeBy" ColumnName="AcknowledgeBy" />
+                <ScalarProperty Name="JSAUid" ColumnName="JSAUid" />
+                <ScalarProperty Name="AcknowledgeUid" ColumnName="AcknowledgeUid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JSADatas">
+            <EntityTypeMapping TypeName="DBModelVigil.JSAData">
+              <MappingFragment StoreEntitySet="JSAData">
+                <ScalarProperty Name="JsaUid" ColumnName="JsaUid" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="AddedOn" ColumnName="AddedOn" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="RiskAfter" ColumnName="RiskAfter" />
+                <ScalarProperty Name="RecommendedActions" ColumnName="RecommendedActions" />
+                <ScalarProperty Name="RiskBefore" ColumnName="RiskBefore" />
+                <ScalarProperty Name="Hazard" ColumnName="Hazard" />
+                <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="JobName" ColumnName="JobName" />
+                <ScalarProperty Name="AddedByName" ColumnName="AddedByName" />
+                <ScalarProperty Name="AddedByUid" ColumnName="AddedByUid" />
+                <ScalarProperty Name="CompanyUid" ColumnName="CompanyUid" />
+                <ScalarProperty Name="TaskUid" ColumnName="TaskUid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -16,7 +16,7 @@ namespace SignUp.Controllers.Images
     [AllowAnonymous]
     [HttpPost]
     [ResponseType(typeof(void))]
-    public IHttpActionResult GetImagesByRefAndId(dynamic data)
+    public IHttpActionResult GetBriefingsByCompanyUidDates(dynamic data)
     {
       string uid = data.uid;
       string dateFrom = data.fromDate;
