@@ -10,9 +10,10 @@ namespace SignUp.Controllers.Jsa
     public class JsaStatsByUsersController : ApiController
     {
         private Entities db = new Entities();
-        [HttpGet]
-        public IHttpActionResult JsaStatsByCompanyUid(string uid)
+        [HttpPost]
+        public IHttpActionResult JsaStatsByCompanyUid(dynamic data)
         {
+            string uid = data.uid;
             DataTable dataTable = new DataTable();
             string connString = ConfigurationManager.ConnectionStrings["IdentityDemoConnection"].ConnectionString;
             string query =
