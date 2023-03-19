@@ -394,6 +394,11 @@
     <Compile Include="Controllers\Modules\ModulesLinkedController.cs" />
     <Compile Include="Controllers\Modules\ModulesOutstandingController.cs" />
     <Compile Include="Controllers\Projects\ProjectsByUserCodesController.cs" />
+    <Compile Include="Controllers\VisitLogs\GetSchedulesByCompanyCodesController.cs" />
+    <Compile Include="Controllers\VisitLogs\GetSchedulesByUserUidController.cs" />
+    <Compile Include="Controllers\VisitLogs\GetUserDayScheduleByUidsController.cs" />
+    <Compile Include="Controllers\VisitLogs\GetVisitLogsByCompanyUidsController.cs" />
+    <Compile Include="Controllers\VisitLogs\SiteSequenceController.cs" />
     <Compile Include="Controllers\SafetyPlan\AnnualSafetyPlansController.cs" />
     <Compile Include="Controllers\SafetyPlan\SafetyPlansByCompanyUidsController.cs" />
     <Compile Include="Controllers\SafetyPlan\SafetyPlanStatsByCompaniesController.cs" />
@@ -408,6 +413,7 @@
     <Compile Include="Controllers\Users\CompanyStaffsController.cs" />
     <Compile Include="Controllers\Users\CompanyUserUpdateStatusesController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\VisitLogs\VisitLogsController.cs" />
     <Compile Include="Controllers\Visits\VisitRegistersController.cs" />
     <Compile Include="Controllers\Visits\VisitsByCompanyCodesController.cs" />
     <Compile Include="Controllers\Visits\VisitStatsByCompaniesController.cs" />
@@ -605,6 +611,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Vigil.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VisitLog.cs">
+      <DependentUpon>Vigil.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\VisitRegister.cs">
       <DependentUpon>Vigil.tt</DependentUpon>

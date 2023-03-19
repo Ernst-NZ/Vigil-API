@@ -75,5 +75,6 @@ namespace SignUp.Models
         public virtual DbSet<LinkedProject> LinkedProjects { get; set; }
         public virtual DbSet<JSAReviewed> JSARevieweds { get; set; }
         public virtual DbSet<JSAData> JSADatas { get; set; }
+        public virtual DbSet<VisitLog> VisitLogs { get; set; }
     }
 }

@@ -795,6 +795,23 @@
           <Property Name="StudentNumber" Type="varchar" MaxLength="50" />
           <Property Name="NZQANumber" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="VisitLog">
+          <Key>
+            <PropertyRef Name="VisitUid" />
+          </Key>
+          <Property Name="VisitUid" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CompanyUid" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserUid" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SiteUid" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="VisitTime" Type="datetime" Nullable="false" />
+          <Property Name="Latitude" Type="nvarchar" MaxLength="50" />
+          <Property Name="Longitude" Type="nvarchar" MaxLength="50" />
+          <Property Name="Result" Type="bit" Nullable="false" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="500" />
+          <Property Name="Created_at" Type="datetime" />
+          <Property Name="Created_by" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastUpdate" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="VisitRegister">
           <Key>
             <PropertyRef Name="VisitId" />
@@ -1066,6 +1083,7 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <EntitySet Name="SATSImages" EntityType="Self.SATSImages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Stepback" EntityType="Self.Stepback" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Training" EntityType="Self.Training" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VisitLog" EntityType="Self.VisitLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VisitRegister" EntityType="Self.VisitRegister" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WebUser" EntityType="Self.WebUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AggregatedCounter" EntityType="Self.AggregatedCounter" Schema="HangFire" store:Type="Tables" />
@@ -1326,6 +1344,7 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <EntitySet Name="LinkedProjects" EntityType="DBModelVigil.LinkedProject" />
           <EntitySet Name="JSARevieweds" EntityType="DBModelVigil.JSAReviewed" />
           <EntitySet Name="JSADatas" EntityType="DBModelVigil.JSAData" />
+          <EntitySet Name="VisitLogs" EntityType="DBModelVigil.VisitLog" />
         </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
@@ -2183,6 +2202,23 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
           <Property Name="Deleted" Type="Boolean" />
           <Property Name="DeletedBy" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
           <Property Name="JsaUid" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="VisitLog">
+          <Key>
+            <PropertyRef Name="VisitUid" />
+          </Key>
+          <Property Name="VisitUid" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyUid" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserUid" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SiteUid" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VisitTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Latitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Longitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Result" Type="Boolean" Nullable="false" />
+          <Property Name="Notes" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Created_at" Type="DateTime" Precision="3" />
+          <Property Name="Created_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -3164,6 +3200,24 @@ warning 6002: The table/view 'Vigil.HangFire.Counter' does not have a primary ke
                 <ScalarProperty Name="AddedByUid" ColumnName="AddedByUid" />
                 <ScalarProperty Name="CompanyUid" ColumnName="CompanyUid" />
                 <ScalarProperty Name="TaskUid" ColumnName="TaskUid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VisitLogs">
+            <EntityTypeMapping TypeName="DBModelVigil.VisitLog">
+              <MappingFragment StoreEntitySet="VisitLog">
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="Created_by" ColumnName="Created_by" />
+                <ScalarProperty Name="Created_at" ColumnName="Created_at" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="VisitTime" ColumnName="VisitTime" />
+                <ScalarProperty Name="SiteUid" ColumnName="SiteUid" />
+                <ScalarProperty Name="UserUid" ColumnName="UserUid" />
+                <ScalarProperty Name="CompanyUid" ColumnName="CompanyUid" />
+                <ScalarProperty Name="VisitUid" ColumnName="VisitUid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
