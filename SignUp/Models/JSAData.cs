@@ -34,5 +34,6 @@ namespace SignUp.Models
         public Nullable<bool> Deleted { get; set; }
         public string DeletedBy { get; set; }
         public string JsaUid { get; set; }
+        public string SequenceDescription { get; set; }
     }
 }

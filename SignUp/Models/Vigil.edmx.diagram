@@ -59,8 +59,8 @@
         <EntityTypeShape EntityType="DBModelVigil.ProjectDoc" Width="1.5" PointX="3.375" PointY="23.75" />
         <EntityTypeShape EntityType="DBModelVigil.LinkedProject" Width="1.5" PointX="23.375" PointY="15.75" />
         <EntityTypeShape EntityType="DBModelVigil.JSAReviewed" Width="1.5" PointX="23.375" PointY="18.75" />
-        <EntityTypeShape EntityType="DBModelVigil.JSAData" Width="1.5" PointX="5.375" PointY="23.75" />
         <EntityTypeShape EntityType="DBModelVigil.VisitLog" Width="1.5" PointX="23.375" PointY="22.75" />
+        <EntityTypeShape EntityType="DBModelVigil.JSAData" Width="1.5" PointX="5.375" PointY="23.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
