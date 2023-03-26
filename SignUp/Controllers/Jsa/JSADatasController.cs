@@ -1,12 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Newtonsoft.Json.Linq;
 using SignUp.Models;
+
 namespace SignUp.Controllers.Jsa
 {
     public class JSADatasController : ApiController
@@ -108,7 +111,15 @@ namespace SignUp.Controllers.Jsa
             JArray itemDetailsJson = objData;
             foreach (var item in itemDetailsJson)
             {
-                lstItemDetails.Add(item.ToObject<JSAData>());
+                int email = item.ToString().IndexOf("Reported Job Safety Analysis");
+                if (email > 0)
+                {
+                    PostEmail(item);
+                }
+                else {
+                    lstItemDetails.Add(item.ToObject<JSAData>());
+                }
+                
             }
             foreach (JSAData itemDetail in lstItemDetails)
             {
@@ -117,7 +128,7 @@ namespace SignUp.Controllers.Jsa
             try
             {
                 db.SaveChanges();
-                System.Threading.Thread.Sleep(500);
+                System.Threading.Thread.Sleep(500);                
                 return Ok();
             }
             catch (WebException ex)
@@ -179,5 +190,38 @@ namespace SignUp.Controllers.Jsa
         {
             return db.JSADatas.Count(e => e.TaskUid == id) > 0;
         }
+
+
+        private void PostEmail(dynamic incident)
+        {
+            string messageResult = "";
+            incident.EmailTo = "ernst@hotmail.co.nz";
+            MailMessage mm = new MailMessage();
+            mm.From = new MailAddress("info@nzsats.co.nz");
+            mm.To.Add("ernst@hotmail.co.nz");
+            mm.Subject = "Job Safety Anallysis registered";
+            mm.Body = incident.EmailMessage;
+            mm.Bcc.Add("ernst@nzsats.co.nz");
+            mm.IsBodyHtml = true;
+            try
+            {
+                SmtpClient smtp = new SmtpClient();
+                smtp.Send(mm);
+            }
+            catch (Exception e)
+            {
+                Console.Write(e.Message);
+                messageResult = e.Message;
+                test(messageResult);
+            }
+            Console.WriteLine(messageResult);
+        }
+
+        private void test(dynamic xx)
+        {
+            Console.Write(xx);
+            Console.WriteLine(xx);
+        }
+
     }
 }
