@@ -34,10 +34,12 @@ namespace SignUp.Controllers.VisitLogs
                   FROM [Vigil].[dbo].[VisitLog] vl
                   inner Join Projects P on P.ProjectId = vl.SiteUid
                   inner join LinkedProjects LP on LP.ProjectCode = vl.SiteUid
+                    and NOT lp.Sequence IS NULL
+                    and Lp.UserCode = vl.UserUid
                   Where UserUid = '" + userUid + "' " +
                 "  and VisitTime >= '" + fromDate + "' " +
                 "  and VisitTime <= '" + toDate + "' " +
-                " and NOT lp.Sequence IS NULL " +
+                "  " +
                 "  Order by VisitTime, lp.Sequence";
 
             SqlConnection conn = new SqlConnection(connString);

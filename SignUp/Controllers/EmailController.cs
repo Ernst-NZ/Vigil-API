@@ -30,8 +30,8 @@ namespace WebAPI.Controllers
     [ResponseType(typeof(gmail))]
     public void PostBatchEmail(gmail gmail)
     {
-       // gmail.EmailFrom = "info@nzsats.co.nz";
-        MailMessage mm = new MailMessage(gmail.EmailFrom, gmail.EmailTo);
+      // gmail.EmailFrom = "noreply@ezy.kiwi";
+      MailMessage mm = new MailMessage(gmail.EmailFrom, gmail.EmailTo);
         gmail.EmailBcc = "ernst.nz@outlook.com";
         mm.Subject = gmail.Subject;
         mm.Body = gmail.Body;

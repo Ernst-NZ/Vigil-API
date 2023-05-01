@@ -41,7 +41,8 @@ namespace SignUp.Controllers
                                ", Projects.ProjectLocation" +
                                ", Projects.ProjectStatus" +
                                ", Projects.AddedBy" +
-                               ", Projects.Date";
+                               ", Projects.Date" +
+                               " Order by Projects.ProjectName ";
 
             SqlConnection conn = new SqlConnection(connString);
             SqlCommand cmd = new SqlCommand(query, conn);
