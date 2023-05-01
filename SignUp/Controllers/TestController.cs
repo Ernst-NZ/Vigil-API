@@ -41,73 +41,120 @@ namespace WebAPI.Controllers
     [AllowAnonymous]
     [ResponseType(typeof(gmail))]
     //   public IHttpActionResult PostBatchEmail(gmail gmail)
-    public IHttpActionResult PostEmail(dynamic gmail)
+    public IHttpActionResult PostEmail(gmail gmail)
     {
       //var bytes = Convert.FromBase64String(gmail.Attachments[0]);
       //MemoryStream strm = new MemoryStream(bytes);
       //Attachment data = new Attachment(strm, "Test.pdf");
 
-      var xx = gmail;
-      Console.WriteLine(xx);
+      if (gmail.EmailTo2.Length > 5)
+      {
+        gmail.EmailTo = gmail.EmailTo + " , " + gmail.EmailTo2;
+      }
 
+
+      string messageResult;
+      gmail.EmailFrom = "noreply@ezy.kiwi";
+      gmail.EmailBcc = "ernst@ezy.kiwi";
+      MailMessage mm = new MailMessage(gmail.EmailFrom, gmail.EmailTo);
+      mm.Subject = gmail.Subject;
+      mm.Body = gmail.Body;
+      mm.Bcc.Add(gmail.EmailBcc);
+      mm.IsBodyHtml = true;
+      //      mm.Attachments.Add(data);
       try
       {
-        var ff = gmail["body"];
-        Console.WriteLine(ff);
-        return Ok(ff);
-
+        SmtpClient smtp = new SmtpClient();
+        smtp.Send(mm);
+        return Ok("Email Sent");
       }
-      catch (SyntaxErrorException ex) {
-        Console.WriteLine(ex.Message);
-      }
-
-      try
+      catch (Exception e)
       {
-        var data = (JObject)JsonConvert.DeserializeObject(gmail);
-
-        JArray orders = new JArray();
-        orders = (JArray)data["body"];
-        Console.WriteLine(xx);
+        Console.Write(e.Message);
+        messageResult = e.Message;
+        return BadRequest("EMAIL NOT SENT -  " + e.Message);
       }
-      catch (SyntaxErrorException ex)
-      {
-        Console.WriteLine(ex.Message);
-      }
-
-
-      
-
-      //if (gmail.EmailTo2.Length > 5)
-      //{
-      //  gmail.EmailTo = gmail.EmailTo + " , " + gmail.EmailTo2;
-      //}
-      return Ok("ok");
-
-      //string messageResult;
-      //gmail.EmailFrom = "info@nzsats.co.nz";
-      //gmail.EmailBcc = "ernst@nzsats.co.nz";
-      //MailMessage mm = new MailMessage(gmail.EmailFrom, gmail.EmailTo);
-      //mm.Subject = gmail.Subject;
-      //mm.Body = gmail.Body;
-      //mm.Bcc.Add(gmail.EmailBcc);
-      //mm.IsBodyHtml = true;
-      ////      mm.Attachments.Add(data);
-      //try
-      //{
-      //  SmtpClient smtp = new SmtpClient();
-      //  smtp.Send(mm);
-      //}
-      //catch (Exception e)
-      //{
-      //  Console.Write(e.Message);
-      //  messageResult = e.Message;
-      //}
-
-
     }
+
+
+
+
+    //[HttpPost]
+    //[AllowAnonymous]
+    //[ResponseType(typeof(gmail))]
+    ////   public IHttpActionResult PostBatchEmail(gmail gmail)
+    //public IHttpActionResult PostEmail(dynamic gmail)
+    //{
+    //  //var bytes = Convert.FromBase64String(gmail.Attachments[0]);
+    //  //MemoryStream strm = new MemoryStream(bytes);
+    //  //Attachment data = new Attachment(strm, "Test.pdf");
+
+    //  var xx = gmail;
+    //  Console.WriteLine(xx);
+
+    //  try
+    //  {
+    //    var ff = gmail["body"];
+    //    Console.WriteLine(ff);
+    //    return Ok(ff);
+
+    //  }
+    //  catch (SyntaxErrorException ex) {
+    //    Console.WriteLine(ex.Message);
+    //  }
+
+    //  try
+    //  {
+    //    var data = (JObject)JsonConvert.DeserializeObject(gmail);
+
+    //    JArray orders = new JArray();
+    //    orders = (JArray)data["body"];
+    //    Console.WriteLine(xx);
+    //  }
+    //  catch (SyntaxErrorException ex)
+    //  {
+    //    Console.WriteLine(ex.Message);
+    //  }
+
+
+
+
+    //  //if (gmail.EmailTo2.Length > 5)
+    //  //{
+    //  //  gmail.EmailTo = gmail.EmailTo + " , " + gmail.EmailTo2;
+    //  //}
+    //  return Ok("ok");
+
+    //  //string messageResult;
+    //  //gmail.EmailFrom = "noreply@ezy.kiwi";
+    //  //gmail.EmailBcc = "ernst@ezy.kiwi";
+    //  //MailMessage mm = new MailMessage(gmail.EmailFrom, gmail.EmailTo);
+    //  //mm.Subject = gmail.Subject;
+    //  //mm.Body = gmail.Body;
+    //  //mm.Bcc.Add(gmail.EmailBcc);
+    //  //mm.IsBodyHtml = true;
+    //  ////      mm.Attachments.Add(data);
+    //  //try
+    //  //{
+    //  //  SmtpClient smtp = new SmtpClient();
+    //  //  smtp.Send(mm);
+    //  //}
+    //  //catch (Exception e)
+    //  //{
+    //  //  Console.Write(e.Message);
+    //  //  messageResult = e.Message;
+    //  //}
+
+
+    //}
+
+
+
+
+
     //if (gmail.EmailType == "Navraag")
     //{
-    //  gmail.EmailFrom = "info@nzsats.co.nz";
+    //  gmail.EmailFrom = "noreply@ezy.kiwi";
     //  MailMessage mm = new MailMessage(gmail.EmailFrom, gmail.EmailTo);
     //  mm.Subject = gmail.Subject;
     //  mm.Body = gmail.Body;
@@ -125,7 +172,7 @@ namespace WebAPI.Controllers
     //}
     //else
     //{
-    //  gmail.EmailFrom = "info@nzsats.co.nz";
+    //  gmail.EmailFrom = "noreply@ezy.kiwi";
     //  MailMessage mm = new MailMessage(gmail.EmailFrom, gmail.EmailTo);
     //  mm.Subject = gmail.Subject;
     //  mm.Body = gmail.Body;

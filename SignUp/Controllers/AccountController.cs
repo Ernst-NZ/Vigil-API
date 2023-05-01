@@ -441,7 +441,7 @@ namespace SignUp.Controllers
       //  string mailBody;
       //  string messageResult;
       //  //string EmailFrom = "admin@anbcounselling.co.nz";
-      //  string EmailFrom = "admin@nzsats.co.nz";
+      //  string EmailFrom = "noreply@ezy.kiwi";
 
       //  //string FilePath = "E:/_Git/AB/API 2/SignUp/Views/SignUp.html";
       //  var mappedPath = System.Web.Hosting.HostingEnvironment.MapPath("~/SignUp.html");
@@ -476,7 +476,7 @@ namespace SignUp.Controllers
       //    Console.Write(e.Message);
       //    messageResult = e.Message;
       //  }
-        return "Email Sent";
+      return "Email Sent";
       }
 
       // GET: /Account/ConfirmEmail
@@ -539,7 +539,7 @@ namespace SignUp.Controllers
 
           
          await UserManager.SendEmailAsync(user.Id, "Reset Password",
-          "<br><br><h3>Message From NZ SATS.</h3><br><br><h4> Please reset your password by clicking <a href=\"" + callbackUrl + "\">here.</a></h4><br><br><h2>Kind Regards<br>The Nz SATS Counselling Team</h2>");
+          "<br><br><h3>Message From the team at Ezy Kiwi.</h3><br><br><h4> Please reset your password by clicking <a href=\"" + callbackUrl + "\">here.</a></h4><br><br><h2>Kind Regards<br>The Team at Ezy Kiwi</h2>");
           return Ok("An email has been sent to your inbox.");
         }
         catch (Exception ex)

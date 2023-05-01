@@ -195,13 +195,13 @@ namespace SignUp.Controllers.Jsa
         private void PostEmail(dynamic incident)
         {
             string messageResult = "";
-            incident.EmailTo = "ernst@hotmail.co.nz";
+            incident.EmailTo = incident.EmailTo;
             MailMessage mm = new MailMessage();
-            mm.From = new MailAddress("info@nzsats.co.nz");
+            mm.From = new MailAddress("noreply@ezy.kiwi");
             mm.To.Add("ernst@hotmail.co.nz");
             mm.Subject = "Job Safety Anallysis registered";
             mm.Body = incident.EmailMessage;
-            mm.Bcc.Add("ernst@nzsats.co.nz");
+            mm.Bcc.Add("ernst@ezy.kiwi");
             mm.IsBodyHtml = true;
             try
             {

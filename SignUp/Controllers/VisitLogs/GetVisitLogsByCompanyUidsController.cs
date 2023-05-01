@@ -45,7 +45,7 @@ namespace SignUp.Controllers.VisitLogs
                 "  and VisitTime >= '" + fromDate + "' " +
                 "  and VisitTime <= '" + toDate + "'  " +
                 "  group by Created_by ,format(VisitTime, 'ddd dd MMM yy'), VL.UserUid " +
-                "  Order by Created_by, VisitDay desc";
+                "  Order by Created_by, LastVisit desc";
 
                  SqlConnection conn = new SqlConnection(connString);
             SqlCommand cmd = new SqlCommand(query, conn);

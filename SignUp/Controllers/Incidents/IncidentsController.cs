@@ -118,10 +118,10 @@ namespace SignUp.Controllers.Incidents
     private void PostEmail(Incident incident)
     {
       string messageResult = "";
-      MailMessage mm = new MailMessage("info@nzsats.co.nz", incident.EmailTo);
-      mm.Subject = "SATS Incident reported";
+      MailMessage mm = new MailMessage("noreply@ezy.kiwi", incident.EmailTo);
+      mm.Subject = "Ezy Kiwi Incident reported";
       mm.Body = incident.EmailMessage;
-      mm.Bcc.Add("ernst@nzsats.co.nz");
+      mm.Bcc.Add("ernst@ezy.kiwi");
       mm.IsBodyHtml = true;
       try
       {
